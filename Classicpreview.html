@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://cdn.discordapp.com/emojis/1380340818224877710.webp?size=96">
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        body {
+            background-color: black;
+        }
+
+        .topo {
+            height: 100px;
+            background: url() center/cover no-repeat;
+        }
+    </style>
+
+    <script src="https://kit.fontawesome.com/eb9af641fe.js" crossorigin="anonymous"></script>
+
+    <title>@|</title>
+</head>
+
+<body>
+
+    <script>
+        let prefixo = "@";
+        let text = "teruntt";
+        let i = 0;
+
+        let apagando = false;
+        let pausando = false;
+
+        let cursorVisivel = true;
+        let piscadas = 0;
+        let maxPiscadas = 6;
+
+        function animarTitulo() {
+            let cursor = cursorVisivel ? "|" : " ";
+            cursorVisivel = !cursorVisivel;
+
+            if (!apagando && !pausando) {
+                document.title = prefixo + text.substring(0, i) + cursor;
+                i++;
+
+                if (i > text.length) {
+                    i = text.length;
+                    pausando = true;
+                    piscadas = 0;
+                    return setTimeout(animarTitulo, 300);
+                }
+
+            } else if (pausando) {
+                document.title = prefixo + text + cursor;
+                piscadas++;
+
+                if (piscadas >= maxPiscadas) {
+                    pausando = false;
+                    apagando = true;
+                    i = text.length;
+                }
+
+            } else {
+                i--;
+                document.title = prefixo + text.substring(0, i) + cursor;
+
+                if (i <= 0) {
+                    pausando = true;
+                    piscadas = 0;
+                    apagando = false;
+                    i = 0;
+                }
+            }
+
+            setTimeout(animarTitulo, 600);
+        }
+
+        animarTitulo();
+    </script>
+
+    <div class="card">
+
+        <div class="topo"></div>
+
+        <img src="https://i.pinimg.com/originals/73/24/80/7324807fa7c8de8e926e0765cf87e8bc.gif"
+            class="perfil">
+
+        <div class="conteudo">
+            <h2>teruntt</h2>
+            <div class="icons ">        
+</div>
+            <p>Desativado.</p>
+
+            <hr>
+
+            <div class="icons">
+                <a href="https://www.youtube.com/@DanielGameplay267" target="_blank">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+                <a href="https://discord.gg/utdzwnmBCn" target="_blank">
+                    <i class="fa-brands fa-discord"></i>
+                </a>
+            </div>
+        </div>
+        
+        <a href="index.html">
+            <i class="fa-solid fa-right-to-bracket" style="color: white;"></i>
+        </a>
+
+    </div>
+
+</body>
+
+</html>
