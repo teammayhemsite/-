@@ -85,3 +85,61 @@ hr {
   transform: scale(1.2);
   color: #000;
 }
+
+
+
+
+.cardking {
+  width: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+
+  text-align: left;
+  padding: 90px 1px 10px 1px;
+  color: white;
+}
+
+.perfilking {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  object-fit: cover;
+
+  position: absolute;
+  top: 85px;
+  left: 11%;
+  transform: translate(-50%, -50%);
+
+  border: 2 px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.conteudoking {
+  padding: 45px 15px 20px;
+}
+
+.embking {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(145deg,
+      #ffd95a 0%,
+      #facb30 20%,
+      #a88314 40%,
+      #cfae3c 60%,
+      #f1d76a 80%,
+      #917416 100%);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
