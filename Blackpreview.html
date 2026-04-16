@@ -2,140 +2,178 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="https://cdn.discordapp.com/emojis/1456496256976420864.webp?size=96">
-    <link rel="stylesheet" href="estilos.css">
-    <style>
-        body {
-            background: url(https://media.discordapp.net/attachments/1493722049569358036/1494401464812965919/c8874e55b58b1d28a91bbaec1708956b.jpg?ex=69e27951&is=69e127d1&hm=9b1526b8cd4bc4c8c637f5bb3de760b64e550d1d6bb27fcf0d6262e3f592f74a&=&format=webp) center/cover no-repeat;
-        }
+  <link rel="icon" href="https://cdn.discordapp.com/emojis/1327602992731389972.webp?size=96">
+  <link rel="stylesheet" href="estilos.css">
+  <style>
+    body {      
+      background: url(https://media.discordapp.net/attachments/1493722049569358036/1494406680715464795/83a6ab9483bca2feea04b0bcd6f6f35a.gif?ex=69e27e2d&is=69e12cad&hm=ff4ad58ba03fa0ec9eccd3c80d14d4278a00f284e648906aadbe8f4b4a415f45&=) center/cover no-repeat;
+      cursor: url(http://www.rw-designer.com/cursor-extern.php?id=246959), auto;
+      background-color: #000;
+    }
 
-        .topo {
-            height: 100px;
-            background: url(https://media.discordapp.net/attachments/1493722049569358036/1494401429882929222/0ee9d0b8b2558f163673bd6a1567d8f4.jpg?ex=69e27949&is=69e127c9&hm=8f39ec16f2ea73ff163f4db87e86e6735884785784001cdf731e9b1a8d125258&=&format=webp) center/cover no-repeat;
-        }
-    </style>
+    .topo {
+      height: 100px;
+      background: url(https://media.discordapp.net/attachments/1493722049569358036/1494406660163244122/82df822e87d4a1c160937aa35005c345.gif?ex=69e27e28&is=69e12ca8&hm=90a6d1cbd2dba1abe0ebd9a53d9392abb4fc569d6cc27a954021a5e86b43fa81&=) center/cover no-repeat;
+    }
+  </style>
 
-    <script src="https://kit.fontawesome.com/eb9af641fe.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/eb9af641fe.js" crossorigin="anonymous"></script>
 
-    <title>@|</title>
+  <title>@|</title>
 </head>
 
 <body>
+  <script>
+    let prefixo = "@";
+    let text = "Premium";
+    let i = 0;
 
-    <script>
-        let prefixo = "@";
-        let text = "pzclan";
-        let i = 0;
+    let apagando = false;
+    let pausando = false;
 
-        let apagando = false;
-        let pausando = false;
+    let cursorVisivel = true;
+    let piscadas = 0;
+    let maxPiscadas = 6;
 
-        let cursorVisivel = true;
-        let piscadas = 0;
-        let maxPiscadas = 6;
+    function animarTitulo() {
+      let cursor = cursorVisivel ? "|" : " ";
+      cursorVisivel = !cursorVisivel;
 
-        function animarTitulo() {
-            let cursor = cursorVisivel ? "|" : " ";
-            cursorVisivel = !cursorVisivel;
+      if (!apagando && !pausando) {
+        document.title = prefixo + text.substring(0, i) + cursor;
+        i++;
 
-            if (!apagando && !pausando) {
-                document.title = prefixo + text.substring(0, i) + cursor;
-                i++;
-
-                if (i > text.length) {
-                    i = text.length;
-                    pausando = true;
-                    piscadas = 0;
-                    return setTimeout(animarTitulo, 300);
-                }
-
-            } else if (pausando) {
-                document.title = prefixo + text + cursor;
-                piscadas++;
-
-                if (piscadas >= maxPiscadas) {
-                    pausando = false;
-                    apagando = true;
-                    i = text.length;
-                }
-
-            } else {
-                i--;
-                document.title = prefixo + text.substring(0, i) + cursor;
-
-                if (i <= 0) {
-                    pausando = true;
-                    piscadas = 0;
-                    apagando = false;
-                    i = 0;
-                }
-            }
-
-            setTimeout(animarTitulo, 600);
+        if (i > text.length) {
+          i = text.length;
+          pausando = true;
+          piscadas = 0;
+          return setTimeout(animarTitulo, 300);
         }
 
-        animarTitulo();
-    </script>
+      } else if (pausando) {
+        document.title = prefixo + text + cursor;
+        piscadas++;
 
-    <div class="card">
+        if (piscadas >= maxPiscadas) {
+          pausando = false;
+          apagando = true;
+          i = text.length;
+        }
 
-        <div class="topo"></div>
+      } else {
+        i--;
+        document.title = prefixo + text.substring(0, i) + cursor;
 
-        <img src="https://media.discordapp.net/attachments/1493722049569358036/1494401415450202334/14e4e7dd4aa495162b8ea9c6ac09f206.gif?ex=69e27946&is=69e127c6&hm=466cc30c269ea6ef38fc2355532a68994e8ab0b2abf9d810c18691d57bc8ebeb&="
-            class="perfil">
+        if (i <= 0) {
+          pausando = true;
+          piscadas = 0;
+          apagando = false;
+          i = 0;
+        }
+      }
 
-        <div class="conteudo">
-            <h2>Nome</h2>
-            <div class="icons ">
-  <p style="
-    width: 90px;
-    padding: 8px 10px;
-    border-radius: 20px;
-    background: linear-gradient(
-      145deg,
-      #0f0f0f 0%,
-      #2a2a2a 30%,
-      #cfcfcf 50%,
-      #2a2a2a 70%,
-      #0f0f0f 100%
-    );
-    color: #fff;
-    font-weight: bold;
+      setTimeout(animarTitulo, 600);
+    }
 
-    box-shadow:
-      0 3px 8px rgba(0, 0, 0, 0.6),
-      inset 0 1px 2px rgba(255, 255, 255, 0.2);
-  ">Black</p>       
-</div>
-            <p>Sua biografia.</p>
+    animarTitulo();
+  </script>
 
-            <hr>
+  <div class="card">
 
-            <div class="icons">
-               <a href="">
-                    <i class="fa-brands fa-youtube"></i>
-                </a>
-                <a href="">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="">
-                    <i class="fa-brands fa-tiktok"></i>
-                </a>
-                <a href="">
-                    <i class="fa-brands fa-discord"></i>
-                </a>
-            </div>
-        </div>
-        
-        <a href="precos.html">
-            <i class="fa-solid fa-right-to-bracket" style="color: white;"></i>
+    <div class="topo"></div>
+
+    <img
+      src="https://media.discordapp.net/attachments/1493722049569358036/1494406639162359828/5ecd07d2d7acc0b7f619aeb4202a7089.jpg?ex=69e27e23&is=69e12ca3&hm=a8ec68e20883c4b758744c78d38bc2cac096255b31dca1c83556164afba5a519&=&format=webp"
+      class="perfil">
+
+    <div class="conteudo">
+      <h2>Nome</h2>
+      <div class="icons ">
+        <p style=" width: 90px;
+            padding: 5px;
+            border-radius: 20px;
+            background: linear-gradient(
+            145deg,
+          #0f0f0f 0%,
+          #2a2a2a 30%,
+          #cfcfcf 50%,
+          #2a2a2a 70%,
+          #0f0f0f 100%);
+           color: #000;
+           font-weight: bold;
+           padding: 6px 10px;
+           border-radius: 20px;">Black</p>       
+      </div>
+      <p>ςυค ცɿ૦૭ՐคԲɿค.</p>
+      <hr>
+
+      <div class="icons">
+        <a href="">
+          <i class="fa-brands fa-youtube"></i>
         </a>
 
-    </div>
+        <a href="">
+          <i class="fa-brands fa-discord"></i>
+        </a>
 
+        <a href="">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+
+        <a href="">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+      </div>
+    </div>    
+
+    <a href="precos.html">
+        <i class="fa-solid fa-right-to-bracket" style="color: white;"></i>
+    </a>
+    
+  </div>
+
+  <audio id="bg-music" autoplay loop muted>
+    <source src="song.m4a" type="audio/mpeg">
+  </audio>
+
+  <script>
+    document.addEventListener("click", () => {
+      const music = document.getElementById("bg-music");
+      music.muted = false;
+      music.play();
+    });
+  </script>
+
+  <div style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0,0,0,0.6);
+  padding: 10px 15px;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  color: white;
+  font-size: 14px;
+">
+  ♫
+  <input type="range" id="volume-control" min="0" max="1" step="0.01" value="0.1">
+</div>
+
+  <script>
+  const music = document.getElementById("bg-music");
+  const volumeControl = document.getElementById("volume-control");
+  music.volume = 0.05;
+
+  volumeControl.addEventListener("input", () => {
+    music.volume = volumeControl.value;
+  });
+</script>
+  
 </body>
 
 </html>
+
+
