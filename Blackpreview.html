@@ -133,45 +133,7 @@
         <i class="fa-solid fa-right-to-bracket" style="color: white;"></i>
     </a>
     
-  </div>
-
-  <audio id="bg-music" autoplay loop muted>
-    <source src="song.m4a" type="audio/mpeg">
-  </audio>
-
-  <script>
-    document.addEventListener("click", () => {
-      const music = document.getElementById("bg-music");
-      music.muted = false;
-      music.play();
-    });
-  </script>
-
-  <div style="
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: rgba(0,0,0,0.6);
-  padding: 10px 15px;
-  border-radius: 10px;
-  backdrop-filter: blur(5px);
-  color: white;
-  font-size: 14px;
-">
-  ♫
-  <input type="range" id="volume-control" min="0" max="1" step="0.01" value="0.1">
-</div>
-
-  <script>
-  const music = document.getElementById("bg-music");
-  const volumeControl = document.getElementById("volume-control");
-  music.volume = 0.05;
-
-  volumeControl.addEventListener("input", () => {
-    music.volume = volumeControl.value;
-  });
-</script>
-  
+  </div> 
 </body>
 
 </html>
