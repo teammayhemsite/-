@@ -39,6 +39,22 @@
       filter: blur(1px);
       opacity: 0.8;
     }
+
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(15px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 999;
+    }
   </style>
 
   <script src="https://kit.fontawesome.com/eb9af641fe.js" crossorigin="anonymous"></script>
@@ -47,9 +63,13 @@
 </head>
 
 <body>
+  <div id="overlay" onclick="entrar()">
+    <p style="color: white;">@krpris</p>
+    <div class="botao" style="color: rgb(70, 66, 66);">Toque para entrar.</div>
+  </div>
   <script>
     let prefixo = "@";
-    let text = "Premium";
+    let text = "krpris";
     let i = 0;
 
     let apagando = false;
@@ -176,6 +196,13 @@
     volumeControl.addEventListener("input", () => {
       music.volume = volumeControl.value;
     });
+  </script>
+
+  <script>
+    function entrar() {
+      document.getElementById("overlay").style.display = "none";
+      document.getElementById("conteudo").style.display = "block";
+    }
   </script>
 
 </body>
