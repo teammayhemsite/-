@@ -47,7 +47,7 @@
 
 </head>
 
-<body>
+<body oncontextmenu="return false">
 
     <div class="card2">
     <div style="
@@ -74,6 +74,21 @@ Caso você esteja interessado em adicionar suas redes sociais para facilitar o a
         </p>
         
     </div>
+
+    <script>
+document.addEventListener("keydown", function(e) {
+    if (e.key === "F12") {
+        e.preventDefault();
+    }
+    if (e.ctrlKey && e.key === "u") {
+        e.preventDefault();
+    }
+    if (e.ctrlKey && e.shiftKey && e.key === "I") {
+        e.preventDefault();
+    }
+});
+</script>
+    
 </body>
 
 </html>
