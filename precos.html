@@ -70,7 +70,7 @@
     </style>
 </head>
 
-<body>
+<body oncontextmenu="return false">
     <div class="card2">
         <a href="index.html" style="text-decoration: none; color: black;">❬ Voltar</a>
         <p>Abra um ticket no Discord para efetuar a compra.</p>
@@ -118,6 +118,21 @@
             </div>
         </div>
     </div>
+
+    <script>
+document.addEventListener("keydown", function(e) {
+    if (e.key === "F12") {
+        e.preventDefault();
+    }
+    if (e.ctrlKey && e.key === "u") {
+        e.preventDefault();
+    }
+    if (e.ctrlKey && e.shiftKey && e.key === "I") {
+        e.preventDefault();
+    }
+});
+</script>
+    
 </body>
 
 </html>
