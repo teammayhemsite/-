@@ -6,6 +6,10 @@ body {
   align-items: center;
 }
 
+a {
+  text-decoration: none
+}
+
 .card {
   width: 320px;
   border-radius: 20px;
@@ -156,4 +160,73 @@ hr {
   border-radius: 20px;
   font-size: 12px;
   font-weight: bold;
+}
+
+.balao {
+  position: absolute;
+  top: 110px;
+  left: 102px; /* ou o valor que você quiser */
+
+  transform: none;
+  white-space: nowrap;
+
+  background: rgb(30, 30, 30);
+  backdrop-filter: blur(10px);
+
+  padding: 10px 15px;
+  border-radius: 20px;
+  color: white;
+  font-size: 13px;
+
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+}
+
+/* bolinha */
+.balao::before {
+  content: "";
+  position: absolute;
+
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+
+  background: rgba(30, 30, 30, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  top: -17px;  
+  left: 1px;  
+}
+
+/* pontinha */
+.balao::after {
+  content: "";
+  position: absolute;
+
+  left: 14px;
+  top: -6px;
+
+  width: 24px;
+  height: 15px;
+  border-radius: 50%;
+  background: rgb(30, 30, 30);
+
+  border: 1px solid rgb(30, 30, 30);
+
+}
+
+.prud {
+  width: 320px;
+  white-space: nowrap;
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+
+  padding: 10px 15px;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
