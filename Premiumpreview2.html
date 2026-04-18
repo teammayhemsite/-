@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="https://cdn.discordapp.com/emojis/1327602992731389972.webp?size=96">
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        body {
+            background: url(https://i.pinimg.com/originals/72/08/69/720869c836a0e3f0b11ade1bfb377a69.gif) center/cover no-repeat;
+            background-color: #000000;
+            cursor: url(http://www.rw-designer.com/cursor-extern.php?id=246959), auto;
+        }
+
+        .topo {
+            margin-top: -90px;
+            height: 90px;
+            background: url(https://i.pinimg.com/originals/72/08/69/720869c836a0e3f0b11ade1bfb377a69.gif) center/cover no-repeat;
+        }
+
+        .destaque {
+            position: relative;
+            display: inline-block;
+        }
+
+        .destaque::after {
+            content: "";
+            position: absolute;
+            left: -10px;
+            right: -10px;
+            top: 50%;
+            height: 120%;
+            border: 1px solid red;
+            border-radius: 50%;
+            transform: translateY(-50%) rotate(-5deg);
+        }
+
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(15px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 999;
+        }
+    </style>
+
+    <script src="https://kit.fontawesome.com/eb9af641fe.js" crossorigin="anonymous"></script>
+
+    <title>@|</title>
+</head>
+
+<body oncontextmenu="return false">
+    <div id="overlay" onclick="entrar()">
+        <p style="color: white;">@Premium</p>
+        <div class="botao" style="color: rgb(0, 0, 0);">Toque para entrar.</div>
+    </div>
+    <script>
+        let prefixo = "@";
+        let text = "Premium";
+        let i = 0;
+
+        let apagando = false;
+        let pausando = false;
+
+        let cursorVisivel = true;
+        let piscadas = 0;
+        let maxPiscadas = 6;
+
+        function animarTitulo() {
+            let cursor = cursorVisivel ? "|" : " ";
+            cursorVisivel = !cursorVisivel;
+
+            if (!apagando && !pausando) {
+                document.title = prefixo + text.substring(0, i) + cursor;
+                i++;
+
+                if (i > text.length) {
+                    i = text.length;
+                    pausando = true;
+                    piscadas = 0;
+                    return setTimeout(animarTitulo, 300);
+                }
+
+            } else if (pausando) {
+                document.title = prefixo + text + cursor;
+                piscadas++;
+
+                if (piscadas >= maxPiscadas) {
+                    pausando = false;
+                    apagando = true;
+                    i = text.length;
+                }
+
+            } else {
+                i--;
+                document.title = prefixo + text.substring(0, i) + cursor;
+
+                if (i <= 0) {
+                    pausando = true;
+                    piscadas = 0;
+                    apagando = false;
+                    i = 0;
+                }
+            }
+
+            setTimeout(animarTitulo, 600);
+        }
+
+        animarTitulo();
+    </script>
+
+
+    <div class="cardking">
+
+        <div class="topo"></div>
+
+        <img src="https://i.pinimg.com/1200x/cb/95/4a/cb954a72cbbcaf5615537d2ad2da77de.jpg"
+            class="perfilking">
+        <div class="balao">Sua bi𝗼́graf🆇a.</div>
+
+        <div class="conteudoking">
+            <h2 style="font-size: 22px;font-weight: 600;">Nome</h2><br>
+            <div class="embking">Premium</div>
+
+            <DIV class="">
+                <a href="">
+                    <i class="fa-brands fa-youtube" style="color: white;"></i>
+                </a>
+
+                <a href="">
+                    <i class="fa-brands fa-tiktok" style="color: white;"></i>
+                </a>
+
+                <a href="">
+                    <i class="fa-brands fa-instagram" style="color: white;"></i>
+                </a>
+
+                <a href="">
+                    <i class="fa-brands fa-spotify" style="color: white; "></i>
+                </a>
+            </DIV>
+
+            <hr>
+            <div class="prud">
+                <a href="">
+                    <i class="fa-solid fa-cart-shopping" style="color: white;"> ➫ Itens a venda</i>
+                </a>
+            </div>
+            <br>
+            <a href="precos.html">
+                <i class="fa-solid fa-right-to-bracket" style="color: white;"></i>
+            </a>
+        </div>
+    </div>
+
+    <audio id="bg-music" autoplay loop muted>
+        <source src="song.m4a" type="audio/mpeg">
+    </audio>
+
+    <script>
+        document.addEventListener("click", () => {
+            const music = document.getElementById("bg-music");
+            music.muted = false;
+            music.play();
+        });
+    </script>
+
+    <div style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0,0,0,0.6);
+  padding: 10px 15px;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  color: white;
+  font-size: 14px;
+">
+        ♫
+        <input type="range" id="volume-control" min="0" max="1" step="0.01" value="0.1">
+    </div>
+
+    <script>
+        const music = document.getElementById("bg-music");
+        const volumeControl = document.getElementById("volume-control");
+        music.volume = 0.15;
+
+        volumeControl.addEventListener("input", () => {
+            music.volume = volumeControl.value;
+        });
+    </script>
+
+    <script>
+        function entrar() {
+            document.getElementById("overlay").style.display = "none";
+            document.getElementById("conteudo").style.display = "block";
+        }
+    </script>
+
+    <script>
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "F12") {
+                e.preventDefault();
+            }
+            if (e.ctrlKey && e.key === "u") {
+                e.preventDefault();
+            }
+            if (e.ctrlKey && e.shiftKey && e.key === "I") {
+                e.preventDefault();
+            }
+        });
+    </script>
+
+</body>
+
+</html>

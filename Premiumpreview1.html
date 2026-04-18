@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="https://cdn.discordapp.com/emojis/1327602992731389972.webp?size=96">
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        body {
+            background: url(https://i.pinimg.com/1200x/cb/95/4a/cb954a72cbbcaf5615537d2ad2da77de.jpg) center/cover no-repeat;
+            cursor: url(http://www.rw-designer.com/cursor-extern.php?id=246959), auto;
+            background-color: #000;
+        }
+
+        .topo {
+            height: 100px;
+            background: url(https://i.pinimg.com/originals/72/08/69/720869c836a0e3f0b11ade1bfb377a69.gif) center/cover no-repeat;
+        }
+        
+    </style>
+
+    <script src="https://kit.fontawesome.com/eb9af641fe.js" crossorigin="anonymous"></script>
+
+    <title>@|</title>
+</head>
+
+<body oncontextmenu="return false">
+
+    <div id="overlay" onclick="entrar()">
+        <p style="color: white;">@Premium</p>
+        <div class="botao" style="color: rgb(70, 66, 66);">Toque para entrar.</div>
+    </div>
+
+    <script>
+        let prefixo = "@";
+        let text = "Premium";
+        let i = 0;
+
+        let apagando = false;
+        let pausando = false;
+
+        let cursorVisivel = true;
+        let piscadas = 0;
+        let maxPiscadas = 6;
+
+        function animarTitulo() {
+            let cursor = cursorVisivel ? "|" : " ";
+            cursorVisivel = !cursorVisivel;
+
+            if (!apagando && !pausando) {
+                document.title = prefixo + text.substring(0, i) + cursor;
+                i++;
+
+                if (i > text.length) {
+                    i = text.length;
+                    pausando = true;
+                    piscadas = 0;
+                    return setTimeout(animarTitulo, 300);
+                }
+
+            } else if (pausando) {
+                document.title = prefixo + text + cursor;
+                piscadas++;
+
+                if (piscadas >= maxPiscadas) {
+                    pausando = false;
+                    apagando = true;
+                    i = text.length;
+                }
+
+            } else {
+                i--;
+                document.title = prefixo + text.substring(0, i) + cursor;
+
+                if (i <= 0) {
+                    pausando = true;
+                    piscadas = 0;
+                    apagando = false;
+                    i = 0;
+                }
+            }
+
+            setTimeout(animarTitulo, 600);
+        }
+
+        animarTitulo();
+    </script>
+
+    <div class="card">
+
+        <div class="topo"></div>
+
+        <img src="https://i.pinimg.com/1200x/cb/95/4a/cb954a72cbbcaf5615537d2ad2da77de.jpg" class="perfil">
+
+        <div class="conteudo">
+            <h2>Nome</h2>
+            <div class="icons ">
+                <p style=" width: 90px;
+            padding: 5px;
+            border-radius: 20px;
+            background: linear-gradient(
+            145deg,
+          #ffd95a 0%,
+          #facb30 20%,
+          #a88314 40%,
+          #cfae3c 60%,
+          #f1d76a 80%,
+          #917416 100%);
+           color: #000;
+           font-weight: bold;
+           padding: 6px 10px;
+           border-radius: 20px;">Premium</p>
+            </div>
+            <p>𝓈𝓊𝒶 𝒷𝒾𝑜𝑔𝓇𝒶𝒻𝒾𝒶.</p>
+            <hr>
+
+            <div class="icons">
+                <a href="">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+
+                <a href="">
+                    <i class="fa-brands fa-discord"></i>
+                </a>
+
+                <a href="">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+
+                <a href="">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+        <a href="precos.html">
+            <i class="fa-solid fa-right-to-bracket" style="color: white;"></i>
+        </a>
+    </div>
+
+    <audio id="bg-music" autoplay loop muted>
+        <source src="song.m4a" type="audio/mpeg">
+    </audio>
+
+    <script>
+        document.addEventListener("click", () => {
+            const music = document.getElementById("bg-music");
+            music.muted = false;
+            music.play();
+        });
+    </script>
+
+    <div style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0,0,0,0.6);
+  padding: 10px 15px;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  color: white;
+  font-size: 14px;
+">
+        ♫
+        <input type="range" id="volume-control" min="0" max="1" step="0.01" value="0.1">
+    </div>
+
+    <script>
+        const music = document.getElementById("bg-music");
+        const volumeControl = document.getElementById("volume-control");
+        music.volume = 0.05;
+
+        volumeControl.addEventListener("input", () => {
+            music.volume = volumeControl.value;
+        });
+    </script>
+
+   <script>
+    function entrar() {
+      document.getElementById("overlay").style.display = "none";
+      document.getElementById("conteudo").style.display = "block";
+    }
+  </script>
+
+    <script>
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "F12") {
+                e.preventDefault();
+            }
+            if (e.ctrlKey && e.key === "u") {
+                e.preventDefault();
+            }
+            if (e.ctrlKey && e.shiftKey && e.key === "I") {
+                e.preventDefault();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
