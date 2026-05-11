@@ -1,19 +1,35 @@
 async function loadProfile() {
 
-  const params =
-  new URLSearchParams(
-    window.location.search
-  );
+  let username = null;
 
-  const username =
+  // TENTA PEGAR ?user=
+
+  const params =
+  new URLSearchParams(window.location.search);
+
+  username =
   params.get("user");
 
-  console.log(
-    "USERNAME URL:",
-    username
-  );
+  // SE NÃO TIVER ?user=
+  // PEGA DA URL
 
   if (!username) {
+
+    username =
+    window.location.pathname
+    .replace("/", "")
+    .trim();
+
+  }
+
+  console.log("USERNAME:", username);
+
+  // IGNORA u.html
+
+  if (
+    !username ||
+    username === "u.html"
+  ) {
 
     document.body.innerHTML =
     "<h1>Usuário não encontrado</h1>";
@@ -21,6 +37,8 @@ async function loadProfile() {
     return;
 
   }
+
+  // BUSCA PERFIL
 
   const { data, error } =
 
@@ -30,8 +48,8 @@ async function loadProfile() {
   .eq("username", username)
   .single();
 
-  console.log("DATA:", data);
-  console.log("ERROR:", error);
+  console.log(data);
+  console.log(error);
 
   if (error || !data) {
 
@@ -42,52 +60,49 @@ async function loadProfile() {
 
   }
 
+  // TÍTULO
+
   document.title =
   `@${data.username}`;
 
-  document.getElementById(
-    "username"
-  ).innerText =
-  data.display_name ||
-  data.username;
+  // TEXTO
 
-  document.getElementById(
-    "bio"
-  ).innerText =
+  document.getElementById("username").innerText =
+  data.display_name || data.username;
+
+  document.getElementById("bio").innerText =
   data.bio || "";
 
+  // BALÃO
+
   const balao =
-  document.getElementById(
-    "balao"
-  );
+  document.getElementById("balao");
 
   if (
     !data.balao ||
     data.balao.trim() === ""
   ) {
 
-    balao.style.display =
-    "none";
+    balao.style.display = "none";
 
   } else {
 
-    balao.style.display =
-    "block";
+    balao.style.display = "block";
 
     balao.innerText =
     data.balao;
 
   }
 
-  document.getElementById(
-    "avatar"
-  ).src =
+  // IMAGENS
+
+  document.getElementById("avatar").src =
   data.avatar_url || "";
 
-  document.getElementById(
-    "banner"
-  ).style.backgroundImage =
+  document.getElementById("banner").style.backgroundImage =
   `url(${data.banner_url || ""})`;
+
+  // FUNDO
 
   if (data.background_url) {
 
@@ -108,19 +123,17 @@ async function loadProfile() {
 
   }
 
+  // REDES
+
   const socials =
-  document.getElementById(
-    "socials"
-  );
+  document.getElementById("socials");
 
   socials.innerHTML = "";
 
-  function addSocial(
-    url,
-    iconHTML
-  ) {
+  function addSocial(url, iconHTML) {
 
-    if (!url) return;
+    if (!url || url.trim() === "")
+    return;
 
     socials.innerHTML += `
       <a href="${url}" target="_blank">
