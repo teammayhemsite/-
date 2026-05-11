@@ -53,7 +53,7 @@ async function loadProfile() {
   // TEXTO
 
   document.getElementById("username").innerText =
-  data.username || "";
+  data.display_name || data.username;
 
   document.getElementById("bio").innerText =
   data.bio || "";
