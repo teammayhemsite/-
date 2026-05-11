@@ -2,13 +2,15 @@ async function loadProfile() {
 
   // PEGA O USERNAME DA URL
   // exemplo:
-  // /krpris
+  // /krpris -> rewrite -> /u.html?user=krpris
 
   const params =
   new URLSearchParams(window.location.search);
 
   const username =
   params.get("user");
+
+  console.log("USERNAME:", username);
 
   if (!username) {
 
@@ -41,16 +43,12 @@ async function loadProfile() {
 
   }
 
-  // =========================
   // TÍTULO
-  // =========================
 
   document.title =
   `@${data.username}`;
 
-  // =========================
   // TEXTO
-  // =========================
 
   document.getElementById("username").innerText =
   data.username || "";
@@ -58,9 +56,7 @@ async function loadProfile() {
   document.getElementById("bio").innerText =
   data.bio || "";
 
-  // =========================
   // BALÃO
-  // =========================
 
   const balao =
   document.getElementById("balao");
@@ -81,9 +77,7 @@ async function loadProfile() {
 
   }
 
-  // =========================
   // IMAGENS
-  // =========================
 
   document.getElementById("avatar").src =
   data.avatar_url || "";
@@ -91,9 +85,7 @@ async function loadProfile() {
   document.getElementById("banner").style.backgroundImage =
   `url(${data.banner_url || ""})`;
 
-  // =========================
   // FUNDO
-  // =========================
 
   if (data.background_url) {
 
@@ -114,24 +106,17 @@ async function loadProfile() {
 
   }
 
-  // =========================
-  // REDES SOCIAIS
-  // =========================
+  // REDES
 
   const socials =
   document.getElementById("socials");
 
   socials.innerHTML = "";
 
-  function addSocial(
-    url,
-    iconHTML
-  ) {
+  function addSocial(url, iconHTML) {
 
-    if (
-      !url ||
-      url.trim() === ""
-    ) return;
+    if (!url || url.trim() === "")
+    return;
 
     socials.innerHTML += `
       <a href="${url}" target="_blank">
