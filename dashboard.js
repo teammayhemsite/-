@@ -283,6 +283,8 @@ user.email
 
     username: usernameFinal,
 
+    display_name: nameInput.value,
+
     bio: bioInput.value,
 
     balao: overlayInput.value,
