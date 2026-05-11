@@ -147,6 +147,107 @@ spotifyInput.addEventListener("input", () => {
 
 
 // =========================
+// CARREGAR PERFIL SALVO
+// =========================
+
+async function loadDashboard() {
+
+  const {
+    data: { user }
+  } =
+  await supabaseClient.auth.getUser();
+
+  if (!user) return;
+
+  const { data, error } =
+  await supabaseClient
+  .from("profiles")
+  .select("*")
+  .eq("id", user.id)
+  .single();
+
+  console.log(data);
+  console.log(error);
+
+  if (error || !data) return;
+
+  // INPUTS
+
+  nameInput.value =
+  data.username || "";
+
+  bioInput.value =
+  data.bio || "";
+
+  avatarInput.value =
+  data.avatar_url || "";
+
+  bannerInput.value =
+  data.banner_url || "";
+
+  backgroundInput.value =
+  data.background_url || "";
+
+  overlayInput.value =
+  data.balao || "";
+
+  youtubeInput.value =
+  data.youtube_url || "";
+
+  instagramInput.value =
+  data.instagram_url || "";
+
+  discordInput.value =
+  data.discord_url || "";
+
+  spotifyInput.value =
+  data.spotify_url || "";
+
+  tiktokInput.value =
+  data.tiktok_url || "";
+
+  whatsappInput.value =
+  data.whatsapp_url || "";
+
+  facebookInput.value =
+  data.facebook_url || "";
+
+  twitterInput.value =
+  data.twitter_url || "";
+
+  // PREVIEW
+
+  document.getElementById(
+    "preview-name"
+  ).innerText =
+  data.username || "usuário";
+
+  document.getElementById(
+    "preview-bio"
+  ).innerText =
+  data.bio || "sua bio aqui...";
+
+  document.getElementById(
+    "preview-avatar"
+  ).src =
+  data.avatar_url || "";
+
+  document.getElementById(
+    "preview-banner"
+  ).style.backgroundImage =
+  `url(${data.banner_url || ""})`;
+
+  document.getElementById(
+    "preview-overlay"
+  ).innerText =
+  data.balao || "";
+
+}
+
+loadDashboard();
+
+
+// =========================
 // SALVAR
 // =========================
 
