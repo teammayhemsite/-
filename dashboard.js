@@ -28,6 +28,18 @@ const discordInput =
 const spotifyInput =
   document.getElementById("spotify-input");
 
+const tiktokInput =
+  document.getElementById("tiktok-input");
+
+const whatsappInput =
+  document.getElementById("whatsapp-input");
+
+const facebookInput =
+  document.getElementById("facebook-input");
+
+const twitterInput =
+  document.getElementById("twitter-input");
+
 
 // =========================
 // PREVIEW
@@ -190,7 +202,15 @@ saveBtn.addEventListener("click", async () => {
 
         discord_url: discordInput.value,
 
-        spotify_url: spotifyInput.value
+        spotify_url: spotifyInput.value,
+
+        tiktok_url: tiktokInput.value,
+        
+        whatsapp_url: whatsappInput.value,
+        
+        facebook_url: facebookInput.value,
+        
+        twitter_url: twitterInput.value,
 
       });
 
@@ -206,7 +226,7 @@ saveBtn.addEventListener("click", async () => {
   alert("Perfil salvo!");
 
   // PERFIL PELO ID
-window.location.href =
-  `/u.html?id=${user.id}`;
+  window.location.href =
+    `/u.html?id=${user.id}`;
 
 });
