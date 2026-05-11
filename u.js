@@ -117,7 +117,7 @@ async function loadProfile() {
 
     socials.innerHTML += `
       <a href="${data.youtube_url}" target="_blank">
-        <i class="fa-brands fa-youtube"></i>
+        <img src="https://www.riqueza.life/images/socials/youtube.png" alt="" width="30%">
       </a>
     `;
   }
@@ -126,7 +126,7 @@ async function loadProfile() {
 
     socials.innerHTML += `
       <a href="${data.instagram_url}" target="_blank">
-        <i class="fa-brands fa-instagram"></i>
+         <img src="https://www.riqueza.life/images/socials/instagram.png" alt="" width="30%">ㅤ
       </a>
     `;
   }
@@ -135,7 +135,7 @@ async function loadProfile() {
 
     socials.innerHTML += `
       <a href="${data.discord_url}" target="_blank">
-        <i class="fa-brands fa-discord"></i>
+        <img src="https://www.riqueza.life/images/socials/discord.png" alt="" width="30%">
       </a>
     `;
   }
@@ -144,7 +144,7 @@ async function loadProfile() {
 
     socials.innerHTML += `
       <a href="${data.spotify_url}" target="_blank">
-        <i class="fa-brands fa-spotify"></i>
+        <img src="https://www.riqueza.life/images/socials/spotify.png" alt="" width="30%">
       </a>
     `;
   }
