@@ -1,9 +1,7 @@
 async function loadProfile() {
 
   const params =
-    new URLSearchParams(
-      window.location.search
-    );
+    new URLSearchParams(window.location.search);
 
   const userId =
     params.get("id");
@@ -23,9 +21,6 @@ async function loadProfile() {
       .eq("id", userId)
       .single();
 
-  console.log(data);
-  console.log(error);
-
   if (error || !data) {
 
     document.body.innerHTML =
@@ -38,25 +33,20 @@ async function loadProfile() {
   // TÍTULO
   // =========================
 
-  document.title =
-    `@${data.username}`;
+  document.title = `@${data.username}`;
 
   // =========================
   // TEXTO
   // =========================
 
-  document.getElementById(
-    "username"
-  ).innerText =
+  document.getElementById("username").innerText =
     data.username || "";
 
-  document.getElementById(
-    "bio"
-  ).innerText =
+  document.getElementById("bio").innerText =
     data.bio || "";
 
   // =========================
-  // BALÃO (FIX)
+  // BALÃO (OCULTA SE VAZIO)
   // =========================
 
   const balao = document.getElementById("balao");
@@ -72,15 +62,11 @@ async function loadProfile() {
   // IMAGENS
   // =========================
 
-  document.getElementById(
-    "avatar"
-  ).src =
+  document.getElementById("avatar").src =
     data.avatar_url || "";
 
-  document.getElementById(
-    "banner"
-  ).style.backgroundImage =
-    `url(${data.banner_url})`;
+  document.getElementById("banner").style.backgroundImage =
+    `url(${data.banner_url || ""})`;
 
   // =========================
   // FUNDO
@@ -91,17 +77,10 @@ async function loadProfile() {
     document.body.style.backgroundImage =
       `url(${data.background_url})`;
 
-    document.body.style.backgroundSize =
-      "cover";
-
-    document.body.style.backgroundPosition =
-      "center";
-
-    document.body.style.backgroundRepeat =
-      "no-repeat";
-
-    document.body.style.backgroundAttachment =
-      "fixed";
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "center";
+    document.body.style.backgroundRepeat = "no-repeat";
+    document.body.style.backgroundAttachment = "fixed";
   }
 
   // =========================
@@ -113,41 +92,47 @@ async function loadProfile() {
 
   socials.innerHTML = "";
 
-  if (data.youtube_url) {
+  function addSocial(url, iconHTML) {
+    if (!url || url.trim() === "") return;
 
     socials.innerHTML += `
-      <a href="${data.youtube_url}" target="_blank">
-        <img src="https://www.riqueza.life/images/socials/youtube.png" alt="" width="30%">
+      <a href="${url}" target="_blank">
+        ${iconHTML}
       </a>
     `;
   }
 
-  if (data.instagram_url) {
+  // ICONES PADRÃO (FontAwesome + imagens onde precisa)
 
-    socials.innerHTML += `
-      <a href="${data.instagram_url}" target="_blank">
-         <img src="https://www.riqueza.life/images/socials/instagram.png" alt="" width="30%">ㅤ
-      </a>
-    `;
-  }
+  addSocial(data.youtube_url, `<i class="fa-brands fa-youtube"></i>`);
 
-  if (data.discord_url) {
+  addSocial(data.instagram_url,
+    `<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" width="28">`
+  );
 
-    socials.innerHTML += `
-      <a href="${data.discord_url}" target="_blank">
-        <img src="https://www.riqueza.life/images/socials/discord.png" alt="" width="30%">
-      </a>
-    `;
-  }
+  addSocial(data.discord_url,
+    `<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/discord.svg" width="28">`
+  );
 
-  if (data.spotify_url) {
+  addSocial(data.spotify_url, `<i class="fa-brands fa-spotify"></i>`);
 
-    socials.innerHTML += `
-      <a href="${data.spotify_url}" target="_blank">
-        <img src="https://www.riqueza.life/images/socials/spotify.png" alt="" width="30%">
-      </a>
-    `;
-  }
+  // NOVAS REDES
+
+  addSocial(data.tiktok_url,
+    `<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" width="28">`
+  );
+
+  addSocial(data.whatsapp_url,
+    `<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" width="28">`
+  );
+
+  addSocial(data.facebook_url,
+    `<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" width="28">`
+  );
+
+  addSocial(data.twitter_url,
+    `<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" width="28">`
+  );
 
 }
 
