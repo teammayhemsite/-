@@ -268,13 +268,10 @@ saveBtn.addEventListener("click", async () => {
 
   }
 
-  const usernameFinal =
-
-  nameInput.value.trim()
-
-  ||
-
-  user.email.split("@")[0];
+ const usernameFinal =
+user.email
+.split("@")[0]
+.toLowerCase();
 
   const { error } =
 
