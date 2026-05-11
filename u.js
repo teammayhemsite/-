@@ -1,61 +1,85 @@
+```js id="6t78r7"
 async function loadProfile() {
 
-  const params =
-    new URLSearchParams(window.location.search);
+  // PEGA O USERNAME DA URL
+  // exemplo:
+  // /krpris
 
-  const userId =
-    params.get("id");
+  const username =
 
-  if (!userId) {
+  window.location.pathname
+  .replace("/", "")
+  .trim();
+
+  if (!username) {
 
     document.body.innerHTML =
-      "<h1>Usuário não encontrado</h1>";
+    "<h1>Usuário não encontrado</h1>";
 
     return;
+
   }
 
+  // BUSCA NO SUPABASE
+
   const { data, error } =
-    await supabaseClient
-      .from("profiles")
-      .select("*")
-      .eq("id", userId)
-      .single();
+
+  await supabaseClient
+  .from("profiles")
+  .select("*")
+  .eq("username", username)
+  .single();
+
+  console.log(data);
+  console.log(error);
 
   if (error || !data) {
 
     document.body.innerHTML =
-      "<h1>Perfil não encontrado</h1>";
+    "<h1>Perfil não encontrado</h1>";
 
     return;
+
   }
 
   // =========================
   // TÍTULO
   // =========================
 
-  document.title = `@${data.username}`;
+  document.title =
+  `@${data.username}`;
 
   // =========================
   // TEXTO
   // =========================
 
   document.getElementById("username").innerText =
-    data.username || "";
+  data.username || "";
 
   document.getElementById("bio").innerText =
-    data.bio || "";
+  data.bio || "";
 
   // =========================
-  // BALÃO (OCULTA SE VAZIO)
+  // BALÃO
   // =========================
 
-  const balao = document.getElementById("balao");
+  const balao =
+  document.getElementById("balao");
 
-  if (!data.balao || data.balao.trim() === "") {
+  if (
+    !data.balao ||
+    data.balao.trim() === ""
+  ) {
+
     balao.style.display = "none";
+
   } else {
+
     balao.style.display = "block";
-    balao.innerText = data.balao;
+
+    balao.innerText =
+    data.balao;
+
   }
 
   // =========================
@@ -63,10 +87,10 @@ async function loadProfile() {
   // =========================
 
   document.getElementById("avatar").src =
-    data.avatar_url || "";
+  data.avatar_url || "";
 
   document.getElementById("banner").style.backgroundImage =
-    `url(${data.banner_url || ""})`;
+  `url(${data.banner_url || ""})`;
 
   // =========================
   // FUNDO
@@ -75,12 +99,20 @@ async function loadProfile() {
   if (data.background_url) {
 
     document.body.style.backgroundImage =
-      `url(${data.background_url})`;
+    `url(${data.background_url})`;
 
-    document.body.style.backgroundSize = "cover";
-    document.body.style.backgroundPosition = "center";
-    document.body.style.backgroundRepeat = "no-repeat";
-    document.body.style.backgroundAttachment = "fixed";
+    document.body.style.backgroundSize =
+    "cover";
+
+    document.body.style.backgroundPosition =
+    "center";
+
+    document.body.style.backgroundRepeat =
+    "no-repeat";
+
+    document.body.style.backgroundAttachment =
+    "fixed";
+
   }
 
   // =========================
@@ -88,52 +120,69 @@ async function loadProfile() {
   // =========================
 
   const socials =
-    document.getElementById("socials");
+  document.getElementById("socials");
 
   socials.innerHTML = "";
 
-  function addSocial(url, iconHTML) {
-    if (!url || url.trim() === "") return;
+  function addSocial(
+    url,
+    iconHTML
+  ) {
+
+    if (
+      !url ||
+      url.trim() === ""
+    ) return;
 
     socials.innerHTML += `
       <a href="${url}" target="_blank">
         ${iconHTML}
       </a>
     `;
+
   }
 
-  // ICONES PADRÃO (FontAwesome + imagens onde precisa)
-
-  addSocial(data.youtube_url, ` <img src="https://www.riqueza.life/images/socials/youtube.png" alt="">`);
-
-  addSocial(data.instagram_url,
-    ` <img src="https://www.riqueza.life/images/socials/instagram.png" alt="">`
+  addSocial(
+    data.youtube_url,
+    `<img src="https://www.riqueza.life/images/socials/youtube.png">`
   );
 
-  addSocial(data.discord_url,
-    `<img src="https://www.riqueza.life/images/socials/discord.png" alt="">`
+  addSocial(
+    data.instagram_url,
+    `<img src="https://www.riqueza.life/images/socials/instagram.png">`
   );
 
-  addSocial(data.spotify_url, `<img src="https://www.riqueza.life/images/socials/spotify.png" alt="">`);
-
-  // NOVAS REDES
-
-  addSocial(data.tiktok_url,
-    `<img src="https://www.riqueza.life/images/socials/tiktok.png" alt="">`
+  addSocial(
+    data.discord_url,
+    `<img src="https://www.riqueza.life/images/socials/discord.png">`
   );
 
-  addSocial(data.whatsapp_url,
+  addSocial(
+    data.spotify_url,
+    `<img src="https://www.riqueza.life/images/socials/spotify.png">`
+  );
+
+  addSocial(
+    data.tiktok_url,
+    `<img src="https://www.riqueza.life/images/socials/tiktok.png">`
+  );
+
+  addSocial(
+    data.whatsapp_url,
     `<img src="https://www.riqueza.life/images/socials/whatsapp.png">`
   );
 
-  addSocial(data.facebook_url,
+  addSocial(
+    data.facebook_url,
     `<img src="https://www.riqueza.life/images/socials/twitch.png">`
   );
 
-  addSocial(data.twitter_url,
+  addSocial(
+    data.twitter_url,
     `<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg">`
   );
 
 }
 
 loadProfile();
+```
