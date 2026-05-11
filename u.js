@@ -10,6 +10,8 @@ async function loadProfile() {
   const username =
   params.get("user");
 
+  console.log("USERNAME URL:", username);
+
   console.log("USERNAME:", username);
 
   if (!username) {
