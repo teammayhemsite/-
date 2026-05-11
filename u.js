@@ -4,11 +4,11 @@ async function loadProfile() {
   // exemplo:
   // /krpris
 
-  const username =
+  const params =
+  new URLSearchParams(window.location.search);
 
-  window.location.pathname
-  .replace("/", "")
-  .trim();
+  const username =
+  params.get("user");
 
   if (!username) {
 
@@ -184,4 +184,3 @@ async function loadProfile() {
 }
 
 loadProfile();
-
