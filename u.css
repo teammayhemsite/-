@@ -232,23 +232,24 @@ body {
 /* REDES */
 
 .socials {
-
   display: flex;
-
   flex-wrap: wrap;
-
   gap: 18px;
-
-  margin-top: 25px;
+  align-items: center;
 }
 
 .socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
 
-  color: white;
-
-  font-size: 26px;
-
-  transition: 0.2s;
+.socials img {
+  display: block;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
 }
 
 .socials a:hover {
