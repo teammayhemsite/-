@@ -104,34 +104,34 @@ async function loadProfile() {
 
   // ICONES PADRÃO (FontAwesome + imagens onde precisa)
 
-  addSocial(data.youtube_url, `<i class="fa-brands fa-youtube"></i>`);
+  addSocial(data.youtube_url, ` <img src="https://www.riqueza.life/images/socials/youtube.png" alt="">`);
 
   addSocial(data.instagram_url,
-    `<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" width="28">`
+    ` <img src="https://www.riqueza.life/images/socials/instagram.png" alt="">`
   );
 
   addSocial(data.discord_url,
-    `<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/discord.svg" width="28">`
+    `<img src="https://www.riqueza.life/images/socials/discord.png" alt="">`
   );
 
-  addSocial(data.spotify_url, `<i class="fa-brands fa-spotify"></i>`);
+  addSocial(data.spotify_url, `<img src="https://www.riqueza.life/images/socials/spotify.png" alt="">`);
 
   // NOVAS REDES
 
   addSocial(data.tiktok_url,
-    `<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" width="28">`
+    `<img src="https://www.riqueza.life/images/socials/tiktok.png" alt="">`
   );
 
   addSocial(data.whatsapp_url,
-    `<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" width="28">`
+    `<img src="https://www.riqueza.life/images/socials/whatsapp.png">`
   );
 
   addSocial(data.facebook_url,
-    `<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" width="28">`
+    `<img src="https://www.riqueza.life/images/socials/twitch.png">`
   );
 
   addSocial(data.twitter_url,
-    `<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" width="28">`
+    `<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg">`
   );
 
 }
