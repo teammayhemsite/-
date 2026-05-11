@@ -206,10 +206,7 @@ saveBtn.addEventListener("click", async () => {
   alert("Perfil salvo!");
 
   // PERFIL PELO ID
-
-  window.open(
-    `u.html?id=${user.id}`,
-    "_blank"
-  );
+window.location.href =
+  `/u.html?id=${user.id}`;
 
 });
