@@ -17,7 +17,6 @@ async function loadProfile() {
   }
 
   const { data, error } =
-
     await supabaseClient
       .from("profiles")
       .select("*")
@@ -56,10 +55,18 @@ async function loadProfile() {
   ).innerText =
     data.bio || "";
 
-  document.getElementById(
-    "balao"
-  ).innerText =
-    data.balao || "";
+  // =========================
+  // BALÃO (FIX)
+  // =========================
+
+  const balao = document.getElementById("balao");
+
+  if (!data.balao || data.balao.trim() === "") {
+    balao.style.display = "none";
+  } else {
+    balao.style.display = "block";
+    balao.innerText = data.balao;
+  }
 
   // =========================
   // IMAGENS
@@ -102,9 +109,7 @@ async function loadProfile() {
   // =========================
 
   const socials =
-    document.getElementById(
-      "socials"
-    );
+    document.getElementById("socials");
 
   socials.innerHTML = "";
 
