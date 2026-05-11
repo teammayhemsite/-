@@ -232,30 +232,37 @@ body {
 /* REDES */
 
 .socials {
-
   display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 18px;
-
+  gap: 16px;
   margin-top: 25px;
+  align-items: center;
 }
 
 .socials a {
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 12px;
+
+  background: rgba(255,255,255,0.06);
+
+  backdrop-filter: blur(10px);
 
   color: white;
 
-  font-size: 26px;
+  font-size: 20px;
 
   transition: 0.2s;
 }
 
 .socials a:hover {
-
-  transform: scale(1.15);
+  transform: translateY(-3px) scale(1.05);
+  background: rgba(255,255,255,0.12);
 }
-
 /* MOBILE */
 
 @media(max-width: 600px) {
