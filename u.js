@@ -1,4 +1,3 @@
-```js id="6t78r7"
 async function loadProfile() {
 
   // PEGA O USERNAME DA URL
@@ -185,4 +184,4 @@ async function loadProfile() {
 }
 
 loadProfile();
-```
+
