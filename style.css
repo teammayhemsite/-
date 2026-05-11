@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.auth-body {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background:
+  url(https://media.discordapp.net/attachments/1493722049569358036/1494745087236640941/uwp4579803.webp?ex=6a035d57&is=6a020bd7&hm=8ca1a71b62f89a68996dbd0f2195ab091fc828f0764cca652b39bdaf5cf87579&=&format=webp&width=1601&height=864)
+  center/cover;
+
+  overflow: hidden;
+}
+
+.auth-card {
+  width: 420px;
+
+  padding: 50px;
+
+  border-radius: 30px;
+
+  background: rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255,255,255,0.15);
+
+  box-shadow:
+  0 0 40px rgba(0, 0, 0, 0.014);
+
+  color: rgb(0, 0, 0);
+}
+
+.auth-card h1 {
+  text-align: center;
+  margin-bottom: 40px;
+
+  letter-spacing: 3px;
+}
+
+.auth-card input {
+  width: 100%;
+
+  margin-bottom: 20px;
+
+  padding: 15px;
+
+  border: none;
+  outline: none;
+
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+
+  background: transparent;
+
+  color: white;
+
+  font-size: 16px;
+}
+
+.auth-card input::placeholder {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.auth-card button {
+  width: 100%;
+
+  padding: 16px;
+
+  border: none;
+
+  border-radius: 15px;
+
+  background: #3c3f41;
+
+  color: white;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.auth-card button:hover {
+  transform: scale(1.02);
+}
+
+.auth-card p {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.auth-card a {
+  color: #9b0000;
+  text-decoration: none;
+}

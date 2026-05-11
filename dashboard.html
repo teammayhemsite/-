@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Dashboard</title>
+
+  <link rel="stylesheet" href="dashboard.css">
+
+  <script src="https://kit.fontawesome.com/eb9af641fe.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <div class="dashboard">
+
+    <!-- ESQUERDA -->
+    <div class="editor">
+
+      <h2>EDITOR</h2>
+
+      <label>Nome</label>
+      <input type="text" id="name-input">
+
+      <label>Bio</label>
+      <textarea id="bio-input"></textarea>
+
+      <label>Avatar URL</label>
+      <input type="text" id="avatar-input">
+
+      <label>Banner URL</label>
+      <input type="text" id="banner-input">
+
+      <label>Plano de fundo</label>
+      <input type="text" id="background-input">
+
+      <label>Texto do balão</label>
+      <input type="text" id="overlay-input">
+
+      <label>Youtube</label>
+      <input type="text" id="youtube-input">
+
+      <label>Instagram</label>
+      <input type="text" id="instagram-input">
+
+      <label>Discord</label>
+      <input type="text" id="discord-input">
+
+      <label>Spotify</label>
+      <input type="text" id="spotify-input">
+
+      <button id="save-btn">
+        SALVAR PERFIL
+      </button>
+
+    </div>
+
+
+    <!-- CENTRO -->
+    <div class="preview-area">
+
+      <div class="cardking">
+
+        <div
+          class="topo"
+          id="preview-banner">
+        </div>
+
+        <img
+          src=""
+          class="perfilking"
+          id="preview-avatar">
+
+        <div
+          class="balao"
+          id="preview-overlay">
+          eu amo Deus
+        </div>
+
+        <div class="conteudoking">
+
+          <h2 id="preview-name">
+            krpris
+          </h2>
+
+          <p id="preview-bio">
+            sua bio aqui...
+          </p>
+
+          <div class="embking">
+            KING
+          </div>
+
+          <div class="socials">
+
+            <a id="youtube-link" target="_blank">
+              <i class="fa-brands fa-youtube"></i>
+            </a>
+
+            <a id="instagram-link" target="_blank">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+
+            <a id="discord-link" target="_blank">
+              <i class="fa-brands fa-discord"></i>
+            </a>
+
+            <a id="spotify-link" target="_blank">
+              <i class="fa-brands fa-spotify"></i>
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- DIREITA -->
+    <div class="templates">
+
+      <h2>TEMPLATES</h2>
+
+      <div class="template active">
+        KING
+      </div>
+
+      <div class="template">
+        MINIMAL
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="supabase.js"></script>
+
+  <script src="dashboard.js"></script>
+
+</body>
+</html>

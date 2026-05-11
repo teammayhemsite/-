@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Perfil</title>
+</head>
+
+<body>
+
+  <h1>Perfil carregado.</h1>
+
+  <script>
+
+    const params =
+    new URLSearchParams(window.location.search);
+
+    const user =
+    params.get("user");
+
+    document.body.innerHTML += `
+      <h2>Usuário: ${user}</h2>
+    `;
+
+  </script>
+
+</body>
+</html>

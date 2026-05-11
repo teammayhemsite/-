@@ -1,0 +1,295 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+
+  background-color: black;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  color: white;
+
+  font-family: sans-serif;
+}
+
+.cardking {
+
+  width: 90%;
+  max-width: 500px;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  position: relative;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 0 40px rgba(0, 0, 0, 0.5);
+
+  padding-bottom: 25px;
+}
+
+/* BADGE */
+
+.embking {
+
+  position: absolute;
+
+  top: 10px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  padding:
+    5px 15px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(145deg,
+      #fff8dc 0%,
+      #ffd700 20%,
+      #f0b00f 35%,
+      #ffd700 50%,
+      #fff2cc 65%,
+      #f5c21a 80%,
+      #fff8dc 100%);
+
+  color: black;
+
+  font-size: 10px;
+  font-weight: bold;
+
+  z-index: 10;
+}
+
+/* BANNER */
+
+.topo {
+
+  width: 100%;
+
+  height: 130px;
+
+  background-size: cover;
+  background-position: center;
+}
+
+/* FOTO + BALÃO */
+
+.top-info {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 1px;
+
+  padding:
+    0 25px;
+
+  margin-top: -45px;
+
+  position: relative;
+
+  z-index: 5;
+}
+
+.perfilking {
+
+  width: 95px;
+  height: 95px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  border:
+    -1px solid rgba(255, 255, 255, 0);
+
+  box-shadow:
+    0 0 20px rgb(255, 255, 255);
+
+  flex-shrink: 0;
+}
+
+.balao {
+
+  position: relative;
+
+  top: 27px;
+  left: 5px;
+  background:
+    rgb(25, 25, 25);
+
+  padding:
+    11px 16px;
+
+  border-radius: 20px;
+
+  font-size: 14px;
+
+  color: white;
+
+  max-width: 220px;
+
+  word-break: break-word;
+
+  position: relative;
+}
+
+/* bolinha */
+
+.balao::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 9px;
+  height: 9px;
+
+  border-radius: 50%;
+
+  background:
+    rgb(25, 25, 25);
+
+  top: -16px;
+  left: 4px;
+}
+
+/* pontinha */
+
+.balao::after {
+
+  content: "";
+
+  position: absolute;
+
+  left: 12px;
+  top: -5px;
+
+  width: 22px;
+  height: 14px;
+
+  border-radius: 50%;
+
+  background:
+    rgb(25, 25, 25);
+}
+
+/* CONTEÚDO */
+
+.conteudoking {
+
+  padding:
+    25px 25px 10px;
+}
+
+.conteudoking h2 {
+
+  font-size:
+    clamp(28px, 5vw, 38px);
+
+  margin-bottom: 15px;
+
+  font-weight: 700;
+}
+
+.conteudoking p {
+
+  font-size:
+    clamp(15px, 3vw, 18px);
+
+  line-height: 1.6;
+
+  opacity: 0.9;
+}
+
+/* REDES */
+
+.socials {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 18px;
+
+  margin-top: 25px;
+}
+
+.socials a {
+
+  color: white;
+
+  font-size: 26px;
+
+  transition: 0.2s;
+}
+
+.socials a:hover {
+
+  transform: scale(1.15);
+}
+
+/* MOBILE */
+
+@media(max-width: 600px) {
+
+  .top-info {
+
+    gap: 14px;
+
+    padding: 0 18px;
+  }
+
+  .perfilking {
+
+    width: 82px;
+    height: 82px;
+  }
+
+  .balao {
+
+    font-size: 13px;
+
+    padding:
+      10px 14px;
+  }
+
+  .conteudoking {
+
+    padding:
+      20px 18px 10px;
+  }
+
+  .socials a {
+
+    font-size: 23px;
+  }
+
+}
