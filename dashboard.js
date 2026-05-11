@@ -45,109 +45,97 @@ document.getElementById("twitter-input");
 // PREVIEW
 // =========================
 
-nameInput.addEventListener("input", () => {
+function updatePreview() {
 
   document.getElementById(
     "preview-name"
   ).innerText =
   nameInput.value || "usuário";
 
-});
-
-bioInput.addEventListener("input", () => {
-
   document.getElementById(
     "preview-bio"
   ).innerText =
   bioInput.value || "sua bio aqui...";
 
-});
-
-avatarInput.addEventListener("input", () => {
-
   document.getElementById(
     "preview-avatar"
   ).src =
-  avatarInput.value;
-
-});
-
-bannerInput.addEventListener("input", () => {
+  avatarInput.value || "";
 
   document.getElementById(
     "preview-banner"
   ).style.backgroundImage =
-  `url(${bannerInput.value})`;
-
-});
-
-overlayInput.addEventListener("input", () => {
+  `url(${bannerInput.value || ""})`;
 
   document.getElementById(
     "preview-overlay"
   ).innerText =
   overlayInput.value || "eu amo Deus";
 
-});
+  if (backgroundInput.value) {
 
-backgroundInput.addEventListener("input", () => {
+    document.body.style.backgroundImage =
+    `url(${backgroundInput.value})`;
 
-  document.body.style.backgroundImage =
-  `url(${backgroundInput.value})`;
+    document.body.style.backgroundSize =
+    "cover";
 
-  document.body.style.backgroundSize =
-  "cover";
+    document.body.style.backgroundPosition =
+    "center";
 
-  document.body.style.backgroundPosition =
-  "center";
+    document.body.style.backgroundRepeat =
+    "no-repeat";
 
-  document.body.style.backgroundRepeat =
-  "no-repeat";
+    document.body.style.backgroundAttachment =
+    "fixed";
 
-  document.body.style.backgroundAttachment =
-  "fixed";
-
-});
-
-youtubeInput.addEventListener("input", () => {
+  }
 
   document.getElementById(
     "youtube-link"
   ).href =
   youtubeInput.value;
 
-});
-
-instagramInput.addEventListener("input", () => {
-
   document.getElementById(
     "instagram-link"
   ).href =
   instagramInput.value;
-
-});
-
-discordInput.addEventListener("input", () => {
 
   document.getElementById(
     "discord-link"
   ).href =
   discordInput.value;
 
-});
-
-spotifyInput.addEventListener("input", () => {
-
   document.getElementById(
     "spotify-link"
   ).href =
   spotifyInput.value;
 
+}
+
+[
+  nameInput,
+  bioInput,
+  avatarInput,
+  bannerInput,
+  backgroundInput,
+  overlayInput,
+  youtubeInput,
+  instagramInput,
+  discordInput,
+  spotifyInput
+].forEach(input => {
+
+  input.addEventListener(
+    "input",
+    updatePreview
+  );
+
 });
 
 
 // =========================
-// CARREGAR PERFIL SALVO
+// CARREGAR PERFIL
 // =========================
 
 async function loadDashboard() {
@@ -166,15 +154,13 @@ async function loadDashboard() {
   .eq("id", user.id)
   .single();
 
-  console.log(data);
-  console.log(error);
+  console.log("PROFILE:", data);
+  console.log("ERROR:", error);
 
-  if (error || !data) return;
-
-  // INPUTS
+  if (!data) return;
 
   nameInput.value =
-  data.username || "";
+  data.display_name || "";
 
   bioInput.value =
   data.bio || "";
@@ -215,32 +201,7 @@ async function loadDashboard() {
   twitterInput.value =
   data.twitter_url || "";
 
-  // PREVIEW
-
-  document.getElementById(
-    "preview-name"
-  ).innerText =
-  data.username || "usuário";
-
-  document.getElementById(
-    "preview-bio"
-  ).innerText =
-  data.bio || "sua bio aqui...";
-
-  document.getElementById(
-    "preview-avatar"
-  ).src =
-  data.avatar_url || "";
-
-  document.getElementById(
-    "preview-banner"
-  ).style.backgroundImage =
-  `url(${data.banner_url || ""})`;
-
-  document.getElementById(
-    "preview-overlay"
-  ).innerText =
-  data.balao || "";
+  updatePreview();
 
 }
 
@@ -268,10 +229,16 @@ saveBtn.addEventListener("click", async () => {
 
   }
 
- const usernameFinal =
-user.email
-.split("@")[0]
-.toLowerCase();
+  const usernameFinal =
+  user.email
+  .split("@")[0]
+  .toLowerCase()
+  .trim();
+
+  console.log(
+    "USERNAME FINAL:",
+    usernameFinal
+  );
 
   const { error } =
 
@@ -283,33 +250,47 @@ user.email
 
     username: usernameFinal,
 
-    display_name: nameInput.value,
+    display_name:
+    nameInput.value,
 
-    bio: bioInput.value,
+    bio:
+    bioInput.value,
 
-    balao: overlayInput.value,
+    balao:
+    overlayInput.value,
 
-    avatar_url: avatarInput.value,
+    avatar_url:
+    avatarInput.value,
 
-    banner_url: bannerInput.value,
+    banner_url:
+    bannerInput.value,
 
-    background_url: backgroundInput.value,
+    background_url:
+    backgroundInput.value,
 
-    youtube_url: youtubeInput.value,
+    youtube_url:
+    youtubeInput.value,
 
-    instagram_url: instagramInput.value,
+    instagram_url:
+    instagramInput.value,
 
-    discord_url: discordInput.value,
+    discord_url:
+    discordInput.value,
 
-    spotify_url: spotifyInput.value,
+    spotify_url:
+    spotifyInput.value,
 
-    tiktok_url: tiktokInput.value,
+    tiktok_url:
+    tiktokInput.value,
 
-    whatsapp_url: whatsappInput.value,
+    whatsapp_url:
+    whatsappInput.value,
 
-    facebook_url: facebookInput.value,
+    facebook_url:
+    facebookInput.value,
 
-    twitter_url: twitterInput.value
+    twitter_url:
+    twitterInput.value
 
   });
 
@@ -325,6 +306,11 @@ user.email
 
   const profileLink =
   `${location.origin}/${usernameFinal}`;
+
+  console.log(
+    "PROFILE LINK:",
+    profileLink
+  );
 
   alert(
     `Perfil salvo!\n\n${profileLink}`
