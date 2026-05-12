@@ -425,3 +425,30 @@ MINIMAL VIDRO
 
   display: none;
 }
+
+.section {
+  margin-bottom: 15px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.03);
+}
+
+.toggle {
+  width: 100%;
+  padding: 14px;
+  background: rgba(255,255,255,0.08);
+  border: none;
+  color: white;
+  text-align: left;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.content {
+  display: none;
+  padding: 15px;
+}
+
+.section.active .content {
+  display: block;
+}
