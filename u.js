@@ -36,16 +36,16 @@ function add(url, img) {
 }
 
 // redes principais
-add(data.youtube_url, "fa-youtube");
-add(data.instagram_url, "fa-instagram");
-add(data.discord_url, "fa-discord");
-add(data.spotify_url, "fa-spotify");
+add(data.youtube_url, "https://www.riqueza.life/images/socials/youtube.png");
+add(data.instagram_url, "https://www.riqueza.life/images/socials/instagram.png");
+add(data.discord_url, "https://www.riqueza.life/images/socials/discord.png");
+add(data.spotify_url, "https://www.riqueza.life/images/socials/spotify.png");
 
 // extras que você TEM no banco
-add(data.tiktok_url, "fa-tiktok");
-add(data.whatsapp_url, "fa-whatsapp");
-add(data.facebook_url, "fa-facebook");
-add(data.twitter_url, "fa-twitter");
+add(data.tiktok_url, "https://www.riqueza.life/images/socials/tiktok.png");
+add(data.whatsapp_url, "https://www.riqueza.life/images/socials/whatsapp.png");
+add(data.facebook_url, "https://www.riqueza.life/images/socials/twitch.png");
+add(data.twitter_url, "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg");
 
   // CARDS EXTRAS (CORRIGIDO)
   for (let i = 1; i <= 4; i++) {
