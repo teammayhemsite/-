@@ -63,10 +63,20 @@ document.querySelectorAll("input, textarea").forEach(el => {
 // =====================
 document.getElementById("save-btn").addEventListener("click", async () => {
 
-  const { data: { user } } = await supabaseClient.auth.getUser();
+  const { data: { user } } =
+    await supabaseClient.auth.getUser();
+
+  if (!user) {
+    alert("Usuário não logado");
+    return;
+  }
+
+  const usernameFinal =
+    user.email.split("@")[0].toLowerCase().trim();
 
   const payload = {
     id: user.id,
+    username: usernameFinal,
 
     display_name: nameInput.value,
     bio: bioInput.value,
@@ -80,16 +90,29 @@ document.getElementById("save-btn").addEventListener("click", async () => {
     instagram_url: instagramInput.value,
     discord_url: discordInput.value,
     spotify_url: spotifyInput.value,
+    tiktok_url: tiktokInput.value,
+    whatsapp_url: whatsappInput.value
   };
 
-  // cards extras
   cards.forEach((c, i) => {
-    payload[`extra${i+1}_text`] = c.t.value;
-    payload[`extra${i+1}_img`] = c.i.value;
-    payload[`extra${i+1}_link`] = c.l.value;
+    payload[`extra${i+1}_text`] = c.text.value;
+    payload[`extra${i+1}_img`] = c.img.value;
+    payload[`extra${i+1}_link`] = c.link.value;
   });
 
-  await supabaseClient.from("profiles").upsert(payload);
+  const { error } =
+    await supabaseClient.from("profiles").upsert(payload);
 
-  alert("Salvo!");
+  if (error) {
+    alert(error.message);
+    return;
+  }
+
+  const profileLink = `${location.origin}/${usernameFinal}`;
+
+  alert("Perfil salvo!");
+
+  // 👇 ISSO AQUI É O QUE FALTAVA
+  window.location.href = profileLink;
+
 });
