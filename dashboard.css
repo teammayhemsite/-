@@ -270,3 +270,75 @@ body {
 
   cursor: pointer;
 }
+
+/* =======================
+MINIMAL
+======================= */
+
+.cardking.minimal {
+
+  max-width: 400px;
+
+  background:
+    rgba(10,10,10,0.7);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  padding-top: 40px;
+}
+
+.cardking.minimal .topo {
+
+  display: none;
+}
+
+.cardking.minimal .perfilking {
+
+  position: static;
+
+  transform: none;
+
+  width: 110px;
+  height: 110px;
+
+  margin: 0 auto;
+
+  display: block;
+
+  border:
+    3px solid rgba(255,255,255,0.5);
+
+  box-shadow:
+    0 0 25px rgba(255,255,255,0.4);
+}
+
+.cardking.minimal .balao {
+
+  display: none;
+}
+
+.cardking.minimal .conteudoking {
+
+  padding: 25px;
+  text-align: center;
+}
+
+.cardking.minimal .conteudoking h2 {
+
+  font-size: 45px;
+
+  margin-top: 15px;
+}
+
+.cardking.minimal .socials {
+
+  justify-content: center;
+
+  margin-top: 30px;
+}
+
+.cardking.minimal .embking {
+
+  display: none;
+}
