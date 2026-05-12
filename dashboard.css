@@ -1,436 +1,527 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-
-  font-family: sans-serif;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:sans-serif;
 }
 
-body {
-
-  min-height: 100vh;
-
-  background: #0f0f0f;
-
-  color: white;
+body{
+  min-height:100vh;
+  background:#0f0f0f;
+  color:white;
 }
 
-.dashboard {
+/* =========================
+DASHBOARD
+========================= */
 
-  display: grid;
+.dashboard{
+  width:100%;
+
+  display:grid;
 
   grid-template-columns:
-    320px
-    1fr
-    260px;
+    340px
+    1fr;
 
-  gap: 20px;
+  gap:25px;
 
-  padding: 20px;
+  padding:25px;
 }
 
-.editor,
-.templates {
+/* =========================
+EDITOR
+========================= */
 
+.editor{
   background:
     rgba(255,255,255,0.05);
 
-  border-radius: 25px;
+  border:
+    1px solid rgba(255,255,255,0.08);
 
-  padding: 20px;
+  border-radius:25px;
 
-  height: fit-content;
+  padding:20px;
+
+  height:fit-content;
+
+  position:sticky;
+  top:20px;
+}
+
+.editor h2{
+  margin-bottom:20px;
+}
+
+/* =========================
+SECTIONS
+========================= */
+
+.section{
+  margin-bottom:18px;
+
+  border-radius:18px;
+
+  overflow:hidden;
+
+  background:
+    rgba(255,255,255,0.03);
+
+  border:
+    1px solid rgba(255,255,255,0.05);
+}
+
+.toggle{
+  width:100%;
+
+  padding:16px;
+
+  border:none;
+
+  background:
+    rgba(255,255,255,0.04);
+
+  color:white;
+
+  font-size:15px;
+  font-weight:bold;
+
+  cursor:pointer;
+
+  text-align:left;
+
+  transition:0.25s;
+}
+
+.toggle:hover{
+  background:
+    rgba(255,255,255,0.08);
+}
+
+.content{
+  display:none;
+
+  padding:15px;
+}
+
+.section.active .content{
+  display:block;
+}
+
+/* =========================
+INPUTS
+========================= */
+
+.editor label{
+  display:block;
+
+  margin-bottom:8px;
+  margin-top:12px;
+
+  font-size:14px;
+
+  opacity:0.8;
 }
 
 .editor input,
-.editor textarea {
+.editor textarea{
+  width:100%;
 
-  width: 100%;
+  padding:14px;
 
-  margin-top: 8px;
-  margin-bottom: 15px;
+  border:none;
+  outline:none;
 
-  padding: 14px;
+  border-radius:14px;
 
-  border: none;
+  background:
+    rgba(255,255,255,0.07);
 
-  border-radius: 12px;
+  color:white;
+
+  margin-bottom:12px;
+}
+
+.editor textarea{
+  resize:none;
+  height:110px;
+}
+
+.editor hr{
+  border:none;
+
+  height:1px;
 
   background:
     rgba(255,255,255,0.08);
 
-  color: white;
+  margin:18px 0;
 }
 
-.editor textarea {
+/* =========================
+BOTÃO
+========================= */
 
-  resize: none;
+#save-btn{
+  width:100%;
 
-  height: 100px;
+  margin-top:10px;
+
+  padding:16px;
+
+  border:none;
+
+  border-radius:16px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #cfcfcf
+    );
+
+  color:black;
+
+  font-weight:bold;
+
+  cursor:pointer;
+
+  transition:0.25s;
 }
 
-.editor button {
-
-  width: 100%;
-
-  padding: 15px;
-
-  border: none;
-
-  border-radius: 15px;
-
-  background: #1e90ff;
-
-  color: white;
-
-  font-weight: bold;
-
-  cursor: pointer;
+#save-btn:hover{
+  transform:translateY(-2px);
 }
 
-.preview-area {
+/* =========================
+PREVIEW
+========================= */
 
-  display: flex;
+.preview-area{
+  display:flex;
 
-  justify-content: center;
-  align-items: center;
+  justify-content:center;
+
+  align-items:flex-start;
 }
 
-/* CARD */
+/* =========================
+CARD
+========================= */
 
-.cardking {
+.cardking{
+  width:100%;
+  max-width:560px;
 
-  width: 100%;
-  max-width: 520px;
+  overflow:hidden;
 
-  border-radius: 25px;
-
-  overflow: hidden;
-
-  position: relative;
+  border-radius:28px;
 
   background:
     rgba(255,255,255,0.06);
 
-  backdrop-filter: blur(18px);
-
   border:
     1px solid rgba(255,255,255,0.08);
 
-  padding-bottom: 25px;
+  backdrop-filter:blur(18px);
+
+  position:relative;
+
+  padding-bottom:25px;
 }
 
-.topo {
+/* =========================
+BANNER
+========================= */
 
-  height: 140px;
+.topo{
+  width:100%;
+  height:150px;
 
-  background-size: cover;
-  background-position: center;
+  background-size:cover;
+  background-position:center;
 }
 
-.perfilking {
+/* =========================
+AVATAR + BALÃO
+========================= */
 
-  width: 95px;
-  height: 95px;
+.perfilking{
+  width:95px;
+  height:95px;
 
-  border-radius: 50%;
+  border-radius:50%;
 
-  object-fit: cover;
+  object-fit:cover;
 
-  position: absolute;
+  position:absolute;
 
-  top: 92px;
-  left: 50px;
-
-  transform: translateY(-50%);
-}
-
-.balao {
-
-  position: absolute;
-
-  top: 104px;
-  left: 125px;
-
-  background: rgb(25,25,25);
-
-  padding: 11px 16px;
-
-  border-radius: 20px;
-
-  font-size: 14px;
-}
-
-/* bolinha */
-.balao::before {
-
-  content: "";
-
-  position: absolute;
-
-  width: 9px;
-  height: 9px;
-
-  border-radius: 50%;
-
-  background: rgb(25,25,25);
-
-  top: -16px;
-  left: 4px;
-}
-
-/* pontinha */
-.balao::after {
-
-  content: "";
-
-  position: absolute;
-
-  left: 12px;
-  top: -5px;
-
-  width: 22px;
-  height: 14px;
-
-  border-radius: 50%;
-
-  background: rgb(25,25,25);
-}
-
-.conteudoking {
-
-  padding: 65px 25px 20px;
-}
-
-.conteudoking h2 {
-
-  font-size: 38px;
-
-  margin-bottom: 15px;
-}
-
-.socials {
-
-  display: flex;
-
-  gap: 18px;
-
-  margin-top: 25px;
-}
-
-.socials a {
-
-  color: white;
-
-  font-size: 26px;
-}
-
-.embking {
-
-  position: absolute;
-
-  top: 15px;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  padding: 6px 18px;
-
-  border-radius: 999px;
-
-  background: linear-gradient(
-    145deg,
-    #f5f5f5,
-    #cfcfcf
-  );
-
-  color: black;
-
-  font-size: 13px;
-  font-weight: bold;
-}
-
-.templates {
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 15px;
-}
-
-.template {
-
-  padding: 18px;
-
-  border-radius: 16px;
-
-  background:
-    rgba(255,255,255,0.05);
-
-  cursor: pointer;
-}
-
-/* =======================
-MINIMAL
-======================= */
-
-.cardking.minimal {
-
-  max-width: 400px;
-
-  background:
-    rgba(10,10,10,0.7);
+  top:100px;
+  left:25px;
 
   border:
-    1px solid rgba(255,255,255,0.08);
+    3px solid rgba(255,255,255,0.15);
 
-  padding-top: 40px;
+  background:#111;
 }
 
-.cardking.minimal .topo {
+.balao{
+  position:absolute;
 
-  display: none;
+  top:112px;
+  left:130px;
+
+  background:#191919;
+
+  padding:11px 16px;
+
+  border-radius:18px;
+
+  max-width:240px;
+
+  font-size:14px;
+
+  word-break:break-word;
 }
 
-.cardking.minimal .perfilking {
+.balao::before{
+  content:"";
 
-  position: static;
+  position:absolute;
 
-  transform: none;
+  width:10px;
+  height:10px;
 
-  width: 110px;
-  height: 110px;
+  border-radius:50%;
 
-  margin: 0 auto;
+  background:#191919;
 
-  display: block;
-
-  border:
-    3px solid rgba(255,255,255,0.5);
-
-  box-shadow:
-    0 0 25px rgba(255,255,255,0.4);
+  top:-15px;
+  left:5px;
 }
 
-.cardking.minimal .balao {
+.balao::after{
+  content:"";
 
-  display: none;
+  position:absolute;
+
+  width:22px;
+  height:14px;
+
+  border-radius:50%;
+
+  background:#191919;
+
+  top:-5px;
+  left:12px;
 }
 
-.cardking.minimal .conteudoking {
+/* =========================
+CONTEÚDO
+========================= */
 
-  padding: 25px;
-  text-align: center;
+.conteudoking{
+  padding:
+    70px 25px 10px;
 }
 
-.cardking.minimal .conteudoking h2 {
+.conteudoking h2{
+  font-size:38px;
 
-  font-size: 45px;
+  margin-bottom:12px;
 
-  margin-top: 15px;
+  word-break:break-word;
 }
 
-.cardking.minimal .socials {
+.conteudoking p{
+  line-height:1.6;
 
-  justify-content: center;
+  opacity:0.9;
 
-  margin-top: 30px;
+  word-break:break-word;
 }
 
-.cardking.minimal .embking {
+/* =========================
+SOCIALS
+========================= */
 
-  display: none;
+.socials{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:15px;
+
+  margin-top:25px;
 }
 
+.socials a{
+  width:48px;
+  height:48px;
 
-/* =======================
-MINIMAL VIDRO
-======================= */
+  border-radius:14px;
 
-.cardking.minimal {
+  display:flex;
 
-  max-width: 420px;
+  align-items:center;
+  justify-content:center;
 
   background:
     rgba(255,255,255,0.06);
 
-  backdrop-filter:
-    blur(22px);
+  text-decoration:none;
 
-  -webkit-backdrop-filter:
-    blur(22px);
+  transition:0.25s;
+}
+
+.socials a:hover{
+  transform:translateY(-2px);
+
+  background:
+    rgba(255,255,255,0.12);
+}
+
+.socials i{
+  color:white;
+
+  font-size:22px;
+}
+
+/* =========================
+CARDS EXTRAS
+========================= */
+
+#extras-container{
+  margin-top:25px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:15px;
+}
+
+.extra-card{
+  width:100%;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:15px;
+
+  padding:14px;
+
+  border-radius:20px;
+
+  background:
+    rgba(255,255,255,0.04);
 
   border:
-    1px solid rgba(255,255,255,0.1);
+    1px solid rgba(255,255,255,0.06);
 
-  box-shadow:
-    0 0 40px rgba(0,0,0,0.4);
+  text-decoration:none;
 
-  padding-top: 35px;
+  color:white;
+
+  transition:0.25s;
 }
 
-.cardking.minimal .topo {
+.extra-card:hover{
+  transform:translateY(-2px);
 
-  display: none;
+  background:
+    rgba(255,255,255,0.08);
 }
 
-.cardking.minimal .perfilking {
+.extra-card-icon{
+  width:60px;
+  height:60px;
 
-  position: static;
+  border-radius:18px;
 
-  transform: none;
+  overflow:hidden;
 
-  width: 110px;
-  height: 110px;
+  flex-shrink:0;
 
-  margin: 0 auto;
-
-  display: block;
-
-  border:
-    3px solid rgba(255,255,255,0.4);
-
-  box-shadow:
-    0 0 25px rgba(255,255,255,0.3);
+  background:
+    rgba(255,255,255,0.08);
 }
 
-.cardking.minimal .balao {
+.extra-card-icon img{
+  width:100%;
+  height:100%;
 
-  display: none;
+  object-fit:cover;
 }
 
-.cardking.minimal .conteudoking {
+.extra-card span{
+  font-size:16px;
 
-  padding: 25px;
+  line-height:1.5;
 
-  text-align: center;
+  word-break:break-word;
 }
 
-.cardking.minimal .conteudoking h2 {
+/* =========================
+RESPONSIVO
+========================= */
 
-  font-size: 42px;
+@media(max-width:1000px){
 
-  margin-top: 15px;
+  .dashboard{
+    grid-template-columns:1fr;
+  }
+
+  .editor{
+    position:static;
+  }
+
+  .preview-area{
+    justify-content:center;
+  }
+
 }
 
-.cardking.minimal .socials {
+@media(max-width:600px){
 
-  justify-content: center;
+  .dashboard{
+    padding:15px;
+  }
 
-  margin-top: 25px;
-}
+  .cardking{
+    border-radius:22px;
+  }
 
-.cardking.minimal .embking {
+  .topo{
+    height:120px;
+  }
 
-  display: none;
-}
+  .perfilking{
+    width:82px;
+    height:82px;
 
-.section .content {
-  display: none;
-  margin-top: 10px;
-}
+    top:78px;
+    left:18px;
+  }
 
-.section.active .content {
-  display: block;
+  .balao{
+    left:105px;
+    top:88px;
+
+    max-width:180px;
+
+    font-size:13px;
+  }
+
+  .conteudoking{
+    padding:
+      55px 18px 10px;
+  }
+
+  .conteudoking h2{
+    font-size:30px;
+  }
+
 }
