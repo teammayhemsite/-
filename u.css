@@ -340,10 +340,10 @@ body {
 
 .extra-card-icon {
 
-  width: 60px;
-  height: 60px;
+  width: 65px;
+  height: 65px;
 
-  border-radius: 28px;
+  border-radius: 20px;
 
   background:
     rgba(255,255,255,0.04);
