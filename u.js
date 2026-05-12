@@ -10,7 +10,7 @@ async function loadProfile() {
     .from("profiles")
     .select("*")
     .eq("username", username)
-    .maybeSingle(); // <- CORREÇÃO IMPORTANTE
+    .maybeSingle();
 
   if (error || !data) {
     document.body.innerHTML = "<h1>Perfil não encontrado</h1>";
@@ -23,8 +23,9 @@ async function loadProfile() {
   document.getElementById("avatar").src = data.avatar_url || "";
   document.getElementById("banner").style.backgroundImage = `url(${data.banner_url || ""})`;
 
-  // 🔥 BALÃO SUMIR SE VAZIO (CORREÇÃO)
+  // BALÃO (some se vazio)
   const balao = document.getElementById("balao");
+
   if (data.balao && data.balao.trim() !== "") {
     balao.innerText = data.balao;
     balao.style.display = "block";
@@ -32,6 +33,7 @@ async function loadProfile() {
     balao.style.display = "none";
   }
 
+  // REDES
   const socials = document.getElementById("socials");
   socials.innerHTML = "";
 
@@ -55,6 +57,7 @@ async function loadProfile() {
   add(data.facebook_url, "https://www.riqueza.life/images/socials/twitch.png");
   add(data.twitter_url, "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg");
 
+  // CARDS EXTRAS
   for (let i = 1; i <= 4; i++) {
 
     const text = data[`extra${i}_text`];
@@ -70,7 +73,7 @@ async function loadProfile() {
 
     card.innerHTML = `
       <div class="extra-card-icon">
-        <img src="${img || ''}">
+        <img src="${img || 'https://via.placeholder.com/55'}">
       </div>
       <span>${text || ''}</span>
     `;
