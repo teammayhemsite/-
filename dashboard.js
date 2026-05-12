@@ -377,3 +377,27 @@ saveBtn.addEventListener("click", async () => {
   profileLink;
 
 });
+
+const inputs = [
+  nameInput,
+  bioInput,
+  avatarInput,
+  bannerInput,
+  backgroundInput,
+  overlayInput,
+  youtubeInput,
+  instagramInput,
+  discordInput,
+  spotifyInput,
+  tiktokInput,
+  whatsappInput,
+  facebookInput,
+  twitterInput,
+  extraCardTextInput,
+  extraCardImageInput,
+  extraCardLinkInput
+];
+
+inputs.forEach(input => {
+  input.addEventListener("input", updatePreview);
+});
