@@ -1,5 +1,5 @@
 // =====================
-// TOGGLE (PERFIL / REDES / CARDS)
+// TOGGLE
 // =====================
 document.querySelectorAll(".toggle").forEach(btn => {
   btn.addEventListener("click", () => {
@@ -7,9 +7,6 @@ document.querySelectorAll(".toggle").forEach(btn => {
   });
 });
 
-// =====================
-// INPUTS
-// =====================
 const $ = (id) => document.getElementById(id);
 
 // PERFIL
@@ -53,20 +50,20 @@ function updatePreview() {
   $("instagram-link").href = instagramInput.value || "#";
   $("discord-link").href = discordInput.value || "#";
   $("spotify-link").href = spotifyInput.value || "#";
+  $("tiktok-link").href = tiktokInput.value || "#";
+  $("whatsapp-link").href = whatsappInput.value || "#";
 }
 
-// auto update
 document.querySelectorAll("input, textarea").forEach(el => {
   el.addEventListener("input", updatePreview);
 });
 
 // =====================
-// SAVE SUPABASE
+// SAVE SUPABASE (FIX PRINCIPAL)
 // =====================
 document.getElementById("save-btn").addEventListener("click", async () => {
 
-  const { data: { user } } =
-    await supabaseClient.auth.getUser();
+  const { data: { user } } = await supabaseClient.auth.getUser();
 
   if (!user) {
     alert("Usuário não logado");
@@ -102,10 +99,9 @@ document.getElementById("save-btn").addEventListener("click", async () => {
     payload[`extra${i+1}_link`] = c.l.value;
   });
 
- const { error } = await supabaseClient
-  .from("profiles")
-  .update(payload)
-  .eq("id", user.id);
+  const { error } = await supabaseClient
+    .from("profiles")
+    .upsert(payload, { onConflict: "id" });
 
   if (error) {
     alert(error.message);
