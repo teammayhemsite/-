@@ -84,10 +84,7 @@ if (loginBtn) {
       alert("Usuário ou senha incorretos");
       return;
 
-    }
-
-    alert("Login feito!");
-
+    }  
     // REDIRECIONA PARA O DASHBOARD
     window.location.href =
     "dashboard.html";
