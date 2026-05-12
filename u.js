@@ -59,9 +59,9 @@ async function loadProfile() {
 
   }
 
- // =========================
- // TITLE
- // =========================
+  // =========================
+  // TITLE
+  // =========================
 
   document.title =
   `@${data.username}`;
@@ -222,52 +222,59 @@ async function loadProfile() {
   );
 
   // =========================
-  // CARD EXTRA
+  // CARDS EXTRAS
   // =========================
 
-  const extraCard =
-  document.getElementById("extra-card");
+  const conteudo =
+  document.querySelector(".conteudoking");
 
-  if (
-    !data.extra_card_text ||
-    !data.extra_card_link
-  ) {
+  for (let i = 1; i <= 4; i++) {
 
-    extraCard.style.display =
-    "none";
+    const text =
+    data[`extra${i}_text`];
 
-  } else {
+    const image =
+    data[`extra${i}_image`];
 
-    extraCard.style.display =
-    "flex";
+    const link =
+    data[`extra${i}_link`];
 
-    extraCard.href =
-    data.extra_card_link;
+    if (
+      !text &&
+      !image &&
+      !link
+    ) continue;
 
-    document.getElementById(
-      "extra-card-text-view"
-    ).innerText =
-    data.extra_card_text;
+    const card =
+    document.createElement("a");
 
-    const extraImg =
-    document.getElementById(
-      "extra-card-img"
-    );
+    card.className =
+    "extra-card";
 
-    if (data.extra_card_image) {
+    card.href =
+    link || "#";
 
-      extraImg.src =
-      data.extra_card_image;
+    card.target =
+    "_blank";
 
-      extraImg.style.display =
-      "block";
+    card.innerHTML = `
+      <div class="extra-card-icon">
 
-    } else {
+        <img
+          src="${
+            image ||
+            "https://via.placeholder.com/55"
+          }"
+        >
 
-      extraImg.style.display =
-      "none";
+      </div>
 
-    }
+      <span>
+        ${text || ""}
+      </span>
+    `;
+
+    conteudo.appendChild(card);
 
   }
 
