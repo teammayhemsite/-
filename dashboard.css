@@ -425,3 +425,12 @@ MINIMAL VIDRO
 
   display: none;
 }
+
+.section .content {
+  display: none;
+  margin-top: 10px;
+}
+
+.section.active .content {
+  display: block;
+}
