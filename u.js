@@ -225,58 +225,69 @@ async function loadProfile() {
   // CARDS EXTRAS
   // =========================
 
-  const conteudo =
-  document.querySelector(".conteudoking");
+const conteudo =
+document.querySelector(".conteudoking");
 
-  for (let i = 1; i <= 4; i++) {
+// remove cards antigos
+document
+.querySelectorAll(".extra-card")
+.forEach(el => el.remove());
 
-    const text =
-    data[`extra${i}_text`];
+for (let i = 1; i <= 4; i++) {
 
-    const image =
-    data[`extra${i}_img`];
+  const text =
+  (data[`extra${i}_text`] || "").trim();
 
-    const link =
-    data[`extra${i}_link`];
+  const image =
+  (data[`extra${i}_img`] || "").trim();
 
-    if (
-      !text &&
-      !image &&
-      !link
-    ) continue;
+  const link =
+  (data[`extra${i}_link`] || "").trim();
 
-    const card =
-    document.createElement("a");
+  // se TODOS estiverem vazios
+  // NÃO cria card
+  if (
+    text === "" &&
+    image === "" &&
+    link === ""
+  ) {
+    continue;
+  }
 
-    card.className =
-    "extra-card";
+  const card =
+  document.createElement("a");
 
-    card.href =
-    link || "#";
+  card.className =
+  "extra-card";
 
-    card.target =
-    "_blank";
+  card.href =
+  link || "#";
 
-    card.innerHTML = `
+  card.target =
+  "_blank";
+
+  // imagem
+  let imageHTML = "";
+
+  if (image !== "") {
+
+    imageHTML = `
       <div class="extra-card-icon">
-
-        <img
-          src="${
-            image ||
-            "https://via.placeholder.com/55"
-          }"
-        >
-
+        <img src="${image}">
       </div>
-
-      <span>
-        ${text || ""}
-      </span>
     `;
 
-    conteudo.appendChild(card);
-
   }
+
+  card.innerHTML = `
+    ${imageHTML}
+
+    <span>
+      ${text || "Card extra"}
+    </span>
+  `;
+
+  conteudo.appendChild(card);
 
 }
 
