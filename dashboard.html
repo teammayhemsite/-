@@ -4,209 +4,161 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="icon" href="https://cdn.discordapp.com/emojis/1380340818224877710.webp?size=96">
+  <link rel="icon" href="https://cdn.discordapp.com/emojis/1380340818224877710.webp?size=96">
 
   <title>teammayhem</title>
 
   <link rel="stylesheet" href="dashboard.css">
-
   <script src="https://kit.fontawesome.com/eb9af641fe.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
-  <div class="dashboard">
+<div class="dashboard">
 
-    <!-- ESQUERDA -->
-    <div class="editor">
+  <!-- EDITOR -->
+  <div class="editor">
 
-  <h2>EDITOR</h2>
+    <h2>EDITOR</h2>
 
-  <!-- PERFIL -->
-  <div class="section">
+    <!-- ================= PERFIL ================= -->
+    <div class="section">
+      <button class="toggle">PERFIL</button>
 
-    <button class="toggle">PERFIL</button>
+      <div class="content">
 
-    <div class="content">
+        <label>Nome</label>
+        <input id="name-input">
 
-      <label>Nome</label>
-      <input id="name-input">
+        <label>Bio</label>
+        <textarea id="bio-input"></textarea>
 
-      <label>Bio</label>
-      <textarea id="bio-input"></textarea>
+        <label>Avatar</label>
+        <input id="avatar-input">
 
-      <label>Avatar</label>
-      <input id="avatar-input">
+        <label>Banner</label>
+        <input id="banner-input">
 
-      <label>Banner</label>
-      <input id="banner-input">
+        <label>Fundo</label>
+        <input id="background-input">
 
-      <label>Fundo</label>
-      <input id="background-input">
+        <label>Balão</label>
+        <input id="overlay-input">
 
-      <label>Balão</label>
-      <input id="overlay-input">
+      </div>
+    </div>
+
+    <!-- ================= REDES ================= -->
+    <div class="section">
+      <button class="toggle">REDES</button>
+
+      <div class="content">
+
+        <label>YouTube</label>
+        <input id="youtube-input">
+
+        <label>Instagram</label>
+        <input id="instagram-input">
+
+        <label>Discord</label>
+        <input id="discord-input">
+
+        <label>Spotify</label>
+        <input id="spotify-input">
+
+        <label>TikTok</label>
+        <input id="tiktok-input">
+
+        <label>WhatsApp</label>
+        <input id="whatsapp-input">
+
+      </div>
+    </div>
+
+    <!-- ================= CARDS EXTRAS ================= -->
+    <div class="section">
+      <button class="toggle">CARDS EXTRAS</button>
+
+      <div class="content">
+
+        <!-- CARD 1 -->
+        <input id="extra1-text" placeholder="Texto 1">
+        <input id="extra1-img" placeholder="Imagem 1">
+        <input id="extra1-link" placeholder="Link 1">
+
+        <br><br>
+
+        <!-- CARD 2 -->
+        <input id="extra2-text" placeholder="Texto 2">
+        <input id="extra2-img" placeholder="Imagem 2">
+        <input id="extra2-link" placeholder="Link 2">
+
+        <br><br>
+
+        <!-- CARD 3 -->
+        <input id="extra3-text" placeholder="Texto 3">
+        <input id="extra3-img" placeholder="Imagem 3">
+        <input id="extra3-link" placeholder="Link 3">
+
+        <br><br>
+
+        <!-- CARD 4 -->
+        <input id="extra4-text" placeholder="Texto 4">
+        <input id="extra4-img" placeholder="Imagem 4">
+        <input id="extra4-link" placeholder="Link 4">
+
+        <br><br>
+
+        <!-- CARD 5 -->
+        <input id="extra5-text" placeholder="Texto 5">
+        <input id="extra5-img" placeholder="Imagem 5">
+        <input id="extra5-link" placeholder="Link 5">
+
+      </div>
+    </div>
+
+    <button id="save-btn">SALVAR PERFIL</button>
+
+  </div>
+
+  <!-- PREVIEW -->
+  <div class="preview-area">
+
+    <div class="cardking" id="preview-card">
+
+      <div class="topo" id="preview-banner"></div>
+
+      <img class="perfilking" id="preview-avatar">
+
+      <div class="balao" id="preview-overlay"></div>
+
+      <div class="conteudoking">
+
+        <h2 id="preview-name"></h2>
+        <p id="preview-bio"></p>
+
+        <div class="embking">KING</div>
+
+        <div class="socials">
+
+          <a id="youtube-link"><i class="fa-brands fa-youtube"></i></a>
+          <a id="instagram-link"><i class="fa-brands fa-instagram"></i></a>
+          <a id="discord-link"><i class="fa-brands fa-discord"></i></a>
+          <a id="spotify-link"><i class="fa-brands fa-spotify"></i></a>
+
+        </div>
+
+      </div>
 
     </div>
 
   </div>
-
-  <!-- REDES -->
-  <div class="section">
-
-    <button class="toggle">REDES</button>
-
-    <div class="content">
-
-      <label>YouTube</label>
-      <input id="youtube-input">
-
-      <label>Instagram</label>
-      <input id="instagram-input">
-
-      <label>Discord</label>
-      <input id="discord-input">
-
-      <label>Spotify</label>
-      <input id="spotify-input">
-
-      <label>TikTok</label>
-      <input id="tiktok-input">
-
-      <label>WhatsApp</label>
-      <input id="whatsapp-input">
-
-    </div>
-
-  </div>
-
-  <!-- CARDS EXTRAS -->
-  <div class="section">
-
-    <button class="toggle">CARDS EXTRAS</button>
-
-    <div class="content">
-
-      <!-- CARD 1 -->
-      <input id="extra1-text" placeholder="Texto 1">
-      <input id="extra1-img" placeholder="Imagem 1">
-      <input id="extra1-link" placeholder="Link 1">
-
-      <br><br>
-
-      <!-- CARD 2 -->
-      <input id="extra2-text" placeholder="Texto 2">
-      <input id="extra2-img" placeholder="Imagem 2">
-      <input id="extra2-link" placeholder="Link 2">
-
-      <br><br>
-
-      <!-- CARD 3 -->
-      <input id="extra3-text" placeholder="Texto 3">
-      <input id="extra3-img" placeholder="Imagem 3">
-      <input id="extra3-link" placeholder="Link 3">
-
-      <br><br>
-
-      <!-- CARD 4 -->
-      <input id="extra4-text" placeholder="Texto 4">
-      <input id="extra4-img" placeholder="Imagem 4">
-      <input id="extra4-link" placeholder="Link 4">
-
-      <br><br>
-
-      <!-- CARD 5 -->
-      <input id="extra5-text" placeholder="Texto 5">
-      <input id="extra5-img" placeholder="Imagem 5">
-      <input id="extra5-link" placeholder="Link 5">
-
-    </div>
-
-  </div>
-
-  <button id="save-btn">SALVAR PERFIL</button>
 
 </div>
 
-
-    <!-- CENTRO -->
-    <div class="preview-area">
-
-      <div  class="cardking" id="preview-card">
-
-        <div class="topo" id="preview-banner">
-        </div>
-
-        <img src="" class="perfilking" id="preview-avatar">
-
-        <div class="balao" id="preview-overlay">
-          eu amo Deus
-        </div>
-
-        <div class="conteudoking">
-
-          <h2 id="preview-name">
-            krpris
-          </h2>
-
-          <p id="preview-bio">
-            sua bio aqui...
-          </p>
-
-          <div class="embking">
-            KING
-          </div>
-
-          <div class="socials">
-
-            <a id="youtube-link" target="_blank">
-              <i class="fa-brands fa-youtube"></i>
-            </a>
-
-            <a id="instagram-link" target="_blank">
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-
-            <a id="discord-link" target="_blank">
-              <i class="fa-brands fa-discord"></i>
-            </a>
-
-            <a id="spotify-link" target="_blank">
-              <i class="fa-brands fa-spotify"></i>
-            </a>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- DIREITA -->
-    <div class="templates">
-
-      <h2>TEMPLATES</h2>
-
-      <div class="template active">
-        KING
-      </div>
-
-      <div class="template">
-        MINIMAL
-      </div>
-
-    </div>
-
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <script src="supabase.js"></script>
-
-  <script src="dashboard.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script src="dashboard.js"></script>
 
 </body>
-
 </html>
