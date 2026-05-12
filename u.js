@@ -23,7 +23,9 @@ async function loadProfile() {
   document.getElementById("avatar").src = data.avatar_url || "";
   document.getElementById("banner").style.backgroundImage = `url(${data.banner_url || ""})`;
 
-  // BALÃO (some se vazio)
+  // ======================
+  // BALÃO (FIX DEFINITIVO)
+  // ======================
   const balao = document.getElementById("balao");
 
   if (data.balao && data.balao.trim() !== "") {
@@ -33,7 +35,9 @@ async function loadProfile() {
     balao.style.display = "none";
   }
 
+  // ======================
   // REDES
+  // ======================
   const socials = document.getElementById("socials");
   socials.innerHTML = "";
 
@@ -51,13 +55,14 @@ async function loadProfile() {
   add(data.instagram_url, "https://www.riqueza.life/images/socials/instagram.png");
   add(data.discord_url, "https://www.riqueza.life/images/socials/discord.png");
   add(data.spotify_url, "https://www.riqueza.life/images/socials/spotify.png");
-
   add(data.tiktok_url, "https://www.riqueza.life/images/socials/tiktok.png");
   add(data.whatsapp_url, "https://www.riqueza.life/images/socials/whatsapp.png");
   add(data.facebook_url, "https://www.riqueza.life/images/socials/twitch.png");
   add(data.twitter_url, "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg");
 
-  // CARDS EXTRAS
+  // ======================
+  // CARDS EXTRAS (FIX VISUAL)
+  // ======================
   for (let i = 1; i <= 4; i++) {
 
     const text = data[`extra${i}_text`];
