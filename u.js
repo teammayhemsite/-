@@ -2,16 +2,15 @@ async function loadProfile() {
 
   let username = null;
 
-  // TENTA PEGAR ?user=
+  // =========================
+  // PEGA USERNAME
+  // =========================
 
   const params =
   new URLSearchParams(window.location.search);
 
   username =
   params.get("user");
-
-  // SE NÃO TIVER ?user=
-  // PEGA DA URL
 
   if (!username) {
 
@@ -23,8 +22,6 @@ async function loadProfile() {
   }
 
   console.log("USERNAME:", username);
-
-  // IGNORA u.html
 
   if (
     !username ||
@@ -38,7 +35,9 @@ async function loadProfile() {
 
   }
 
+  // =========================
   // BUSCA PERFIL
+  // =========================
 
   const { data, error } =
 
@@ -60,20 +59,30 @@ async function loadProfile() {
 
   }
 
-  // TÍTULO
+  // =========================
+  // TITLE
+  // =========================
 
   document.title =
   `@${data.username}`;
 
+  // =========================
   // TEXTO
+  // =========================
 
-  document.getElementById("username").innerText =
+  document.getElementById(
+    "username"
+  ).innerText =
   data.display_name || data.username;
 
-  document.getElementById("bio").innerText =
+  document.getElementById(
+    "bio"
+  ).innerText =
   data.bio || "";
 
+  // =========================
   // BALÃO
+  // =========================
 
   const balao =
   document.getElementById("balao");
@@ -83,26 +92,36 @@ async function loadProfile() {
     data.balao.trim() === ""
   ) {
 
-    balao.style.display = "none";
+    balao.style.display =
+    "none";
 
   } else {
 
-    balao.style.display = "block";
+    balao.style.display =
+    "block";
 
     balao.innerText =
     data.balao;
 
   }
 
+  // =========================
   // IMAGENS
+  // =========================
 
-  document.getElementById("avatar").src =
+  document.getElementById(
+    "avatar"
+  ).src =
   data.avatar_url || "";
 
-  document.getElementById("banner").style.backgroundImage =
+  document.getElementById(
+    "banner"
+  ).style.backgroundImage =
   `url(${data.banner_url || ""})`;
 
+  // =========================
   // FUNDO
+  // =========================
 
   if (data.background_url) {
 
@@ -123,17 +142,24 @@ async function loadProfile() {
 
   }
 
+  // =========================
   // REDES
+  // =========================
 
   const socials =
   document.getElementById("socials");
 
   socials.innerHTML = "";
 
-  function addSocial(url, iconHTML) {
+  function addSocial(
+    url,
+    iconHTML
+  ) {
 
-    if (!url || url.trim() === "")
-    return;
+    if (
+      !url ||
+      url.trim() === ""
+    ) return;
 
     socials.innerHTML += `
       <a href="${url}" target="_blank">
@@ -183,46 +209,55 @@ async function loadProfile() {
     `<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg">`
   );
 
-}
+  // =========================
+  // CARD EXTRA
+  // =========================
 
-// =========================
-// CARD EXTRA
-// =========================
+  const extraCard =
+  document.getElementById("extra-card");
 
-const extraCard =
-document.getElementById("extra-card");
+  if (
+    !data.extra_card_text ||
+    !data.extra_card_link
+  ) {
 
-if (
-  !data.extra_card_text ||
-  !data.extra_card_link
-) {
+    extraCard.style.display =
+    "none";
 
-  extraCard.style.display =
-  "none";
+  } else {
 
-} else {
+    extraCard.style.display =
+    "flex";
 
-  extraCard.style.display =
-  "flex";
+    extraCard.href =
+    data.extra_card_link;
 
-  extraCard.href =
-  data.extra_card_link;
+    document.getElementById(
+      "extra-card-text-view"
+    ).innerText =
+    data.extra_card_text;
 
-  document.getElementById(
-    "extra-card-text-view"
-  ).innerText =
-  data.extra_card_text;
+    const extraImg =
+    document.getElementById(
+      "extra-card-img"
+    );
 
-  const extraImg =
-document.getElementById(
-  "extra-card-img"
-);
+    if (data.extra_card_image) {
 
-extraImg.src =
-data.extra_card_image;
+      extraImg.src =
+      data.extra_card_image;
 
-extraImg.style.display =
-"block";
+      extraImg.style.display =
+      "block";
+
+    } else {
+
+      extraImg.style.display =
+      "none";
+
+    }
+
+  }
 
 }
 
