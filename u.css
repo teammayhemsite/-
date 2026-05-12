@@ -340,8 +340,8 @@ body {
 
 .extra-card-icon {
 
-  width: 65px;
-  height: 65px;
+  width: 55px;
+  height: 55px;
 
   border-radius: 20px;
 
@@ -358,8 +358,8 @@ body {
 
 .extra-card-icon img {
 
-  width: 42px;
-  height: 42px;
+  width: 35px;
+  height: 35px;
 
   object-fit: contain;
 }
