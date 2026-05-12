@@ -1,275 +1,51 @@
 async function loadProfile() {
 
-  let username = null;
-
-  // =========================
-  // PEGA USERNAME
-  // =========================
-
-  const params =
-  new URLSearchParams(window.location.search);
-
-  username =
-  params.get("user");
-
-  if (!username) {
-
-    username =
-    window.location.pathname
-    .replace("/", "")
-    .trim();
-
-  }
-
-  console.log("USERNAME:", username);
-
-  if (
-    !username ||
-    username === "u.html"
-  ) {
-
-    document.body.innerHTML =
-    "<h1>Usuário não encontrado</h1>";
-
-    return;
-
-  }
-
-  // =========================
-  // BUSCA PERFIL
-  // =========================
-
-  const { data, error } =
-
-  await supabaseClient
-  .from("profiles")
-  .select("*")
-  .eq("username", username)
-  .single();
-
-  console.log(data);
-  console.log(error);
-
-  if (error || !data) {
-
-    document.body.innerHTML =
-    "<h1>Perfil não encontrado</h1>";
-
-    return;
-
-  }
-
- // =========================
- // TITLE
- // =========================
-
-  document.title =
-  `@${data.username}`;
-
-  // =========================
-  // TEMPLATE
-  // =========================
-
-  if (data.template === "minimal") {
-
-    document.body.classList.add(
-      "minimal-theme"
-    );
-
-  }
-
-  // =========================
-  // TEXTO
-  // =========================
-
-  document.getElementById(
-    "username"
-  ).innerText =
-  data.display_name || data.username;
-
-  document.getElementById(
-    "bio"
-  ).innerText =
-  data.bio || "";
-
-  // =========================
-  // BALÃO
-  // =========================
-
-  const balao =
-  document.getElementById("balao");
-
-  if (
-    !data.balao ||
-    data.balao.trim() === ""
-  ) {
-
-    balao.style.display =
-    "none";
-
-  } else {
-
-    balao.style.display =
-    "block";
-
-    balao.innerText =
-    data.balao;
-
-  }
-
-  // =========================
-  // IMAGENS
-  // =========================
-
-  document.getElementById(
-    "avatar"
-  ).src =
-  data.avatar_url || "";
-
-  document.getElementById(
-    "banner"
-  ).style.backgroundImage =
-  `url(${data.banner_url || ""})`;
-
-  // =========================
-  // FUNDO
-  // =========================
-
-  if (data.background_url) {
-
-    document.body.style.backgroundImage =
-    `url(${data.background_url})`;
-
-    document.body.style.backgroundSize =
-    "cover";
-
-    document.body.style.backgroundPosition =
-    "center";
-
-    document.body.style.backgroundRepeat =
-    "no-repeat";
-
-    document.body.style.backgroundAttachment =
-    "fixed";
-
-  }
-
-  // =========================
-  // REDES
-  // =========================
-
-  const socials =
-  document.getElementById("socials");
-
-  socials.innerHTML = "";
-
-  function addSocial(
-    url,
-    iconHTML
-  ) {
-
-    if (
-      !url ||
-      url.trim() === ""
-    ) return;
-
-    socials.innerHTML += `
-      <a href="${url}" target="_blank">
-        ${iconHTML}
-      </a>
-    `;
-
-  }
-
-  addSocial(
-    data.youtube_url,
-    `<img src="https://www.riqueza.life/images/socials/youtube.png">`
-  );
-
-  addSocial(
-    data.instagram_url,
-    `<img src="https://www.riqueza.life/images/socials/instagram.png">`
-  );
-
-  addSocial(
-    data.discord_url,
-    `<img src="https://www.riqueza.life/images/socials/discord.png">`
-  );
-
-  addSocial(
-    data.spotify_url,
-    `<img src="https://www.riqueza.life/images/socials/spotify.png">`
-  );
-
-  addSocial(
-    data.tiktok_url,
-    `<img src="https://www.riqueza.life/images/socials/tiktok.png">`
-  );
-
-  addSocial(
-    data.whatsapp_url,
-    `<img src="https://www.riqueza.life/images/socials/whatsapp.png">`
-  );
-
-  addSocial(
-    data.facebook_url,
-    `<img src="https://www.riqueza.life/images/socials/twitch.png">`
-  );
-
-  addSocial(
-    data.twitter_url,
-    `<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg">`
-  );
-
-  // =========================
-  // CARD EXTRA
-  // =========================
-
-  const extraCard =
-  document.getElementById("extra-card");
-
-  if (
-    !data.extra_card_text ||
-    !data.extra_card_link
-  ) {
-
-    extraCard.style.display =
-    "none";
-
-  } else {
-
-    extraCard.style.display =
-    "flex";
-
-    extraCard.href =
-    data.extra_card_link;
-
-    document.getElementById(
-      "extra-card-text-view"
-    ).innerText =
-    data.extra_card_text;
-
-    const extraImg =
-    document.getElementById(
-      "extra-card-img"
-    );
-
-    if (data.extra_card_image) {
-
-      extraImg.src =
-      data.extra_card_image;
-
-      extraImg.style.display =
-      "block";
-
-    } else {
-
-      extraImg.style.display =
-      "none";
-
-    }
-
-  }
+const username = new URLSearchParams(location.search).get("user");
+
+const { data } = await supabaseClient
+.from("profiles")
+.select("*")
+.eq("username", username)
+.single();
+
+document.getElementById("username").innerText = data.display_name;
+document.getElementById("bio").innerText = data.bio;
+
+document.getElementById("avatar").src = data.avatar_url;
+document.getElementById("banner").style.backgroundImage = `url(${data.banner_url})`;
+document.getElementById("balao").innerText = data.balao;
+
+// REDES
+const socials = document.getElementById("socials");
+socials.innerHTML = "";
+
+function add(url, icon) {
+if (!url) return;
+socials.innerHTML += `<a href="${url}" target="_blank">${icon}</a>`;
+}
+
+add(data.youtube_url, "YT");
+add(data.instagram_url, "IG");
+add(data.discord_url, "DC");
+add(data.spotify_url, "SP");
+
+// CARDS EXTRAS (5)
+for (let i = 1; i <= 5; i++) {
+
+const text = data[`extra${i}_text`];
+const img = data[`extra${i}_img`];
+const link = data[`extra${i}_link`];
+
+if (!text && !img && !link) continue;
+
+document.body.innerHTML += `
+<a class="extra-card" href="${link}" target="_blank">
+<img src="${img}">
+<span>${text}</span>
+</a>
+`;
+
+}
 
 }
 
