@@ -299,48 +299,54 @@ body {
 
   width: 100%;
 
-  margin-top: 30px;
+  margin-top: 35px;
 
-  padding: 18px;
+  padding: 18px 22px;
 
-  border-radius: 30px;
+  border-radius: 35px;
 
   background:
-    rgba(255,255,255,0.03);
+    rgba(255,255,255,0.02);
 
   border:
-    1px solid rgba(255,255,255,0.08);
+    1px solid rgba(255,255,255,0.06);
 
   display: flex;
 
   align-items: center;
 
-  gap: 18px;
+  gap: 22px;
 
   text-decoration: none;
 
   color: white;
 
+  backdrop-filter: blur(18px);
+
   transition: 0.3s;
+
+  box-shadow:
+    0 0 40px rgba(0,0,0,0.25);
 }
 
 .extra-card:hover {
 
-  transform: scale(1.02);
+  transform:
+    translateY(-2px);
 
   background:
-    rgba(255,255,255,0.05);
+    rgba(255,255,255,0.04);
 }
 
 .extra-card-icon {
 
-  width: 85px;
-  height: 85px;
+  width: 82px;
+  height: 82px;
 
-  border-radius: 25px;
+  border-radius: 28px;
 
   background:
-    rgba(255,255,255,0.05);
+    rgba(255,255,255,0.04);
 
   display: flex;
 
@@ -360,7 +366,12 @@ body {
 
 .extra-card span {
 
-  font-size: 16px;
+  font-size: 17px;
+
+  color:
+    rgba(255,255,255,0.92);
 
   line-height: 1.5;
+
+  font-weight: 500;
 }
