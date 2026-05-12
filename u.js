@@ -234,7 +234,7 @@ async function loadProfile() {
     data[`extra${i}_text`];
 
     const image =
-    data[`extra${i}_image`];
+    data[`extra${i}_img`];
 
     const link =
     data[`extra${i}_link`];
