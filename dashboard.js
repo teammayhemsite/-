@@ -3,46 +3,100 @@
 // =========================
 
 document.querySelectorAll(".toggle").forEach(btn => {
+
   btn.addEventListener("click", () => {
-    btn.parentElement.classList.toggle("active");
+
+    btn.parentElement.classList.toggle(
+      "active"
+    );
+
   });
+
 });
 
-const $ = (id) => document.getElementById(id);
+const $ = (id) =>
+document.getElementById(id);
 
 // =========================
 // INPUTS PERFIL
 // =========================
 
-const nameInput = $("name-input");
-const bioInput = $("bio-input");
-const avatarInput = $("avatar-input");
-const bannerInput = $("banner-input");
-const backgroundInput = $("background-input");
-const overlayInput = $("overlay-input");
+const nameInput =
+$("name-input");
+
+const bioInput =
+$("bio-input");
+
+const avatarInput =
+$("avatar-input");
+
+const bannerInput =
+$("banner-input");
+
+const backgroundInput =
+$("background-input");
+
+const overlayInput =
+$("overlay-input");
 
 // =========================
 // REDES
 // =========================
 
-const youtubeInput = $("youtube-input");
-const instagramInput = $("instagram-input");
-const discordInput = $("discord-input");
-const spotifyInput = $("spotify-input");
-const tiktokInput = $("tiktok-input");
-const whatsappInput = $("whatsapp-input");
-const twitterInput = $("twitter-input");
-const facebookInput = $("facebook-input");
+const youtubeInput =
+$("youtube-input");
+
+const instagramInput =
+$("instagram-input");
+
+const discordInput =
+$("discord-input");
+
+const spotifyInput =
+$("spotify-input");
+
+const tiktokInput =
+$("tiktok-input");
+
+const whatsappInput =
+$("whatsapp-input");
+
+const twitterInput =
+$("twitter-input");
+
+const facebookInput =
+$("facebook-input");
 
 // =========================
-// CARDS EXTRAS (4)
+// CARDS EXTRAS
 // =========================
 
 const cards = [
-  { t: $("extra1-text"), i: $("extra1-img"), l: $("extra1-link") },
-  { t: $("extra2-text"), i: $("extra2-img"), l: $("extra2-link") },
-  { t: $("extra3-text"), i: $("extra3-img"), l: $("extra3-link") },
-  { t: $("extra4-text"), i: $("extra4-img"), l: $("extra4-link") }
+
+  {
+    t: $("extra1-text"),
+    i: $("extra1-img"),
+    l: $("extra1-link")
+  },
+
+  {
+    t: $("extra2-text"),
+    i: $("extra2-img"),
+    l: $("extra2-link")
+  },
+
+  {
+    t: $("extra3-text"),
+    i: $("extra3-img"),
+    l: $("extra3-link")
+  },
+
+  {
+    t: $("extra4-text"),
+    i: $("extra4-img"),
+    l: $("extra4-link")
+  }
+
 ];
 
 // =========================
@@ -51,75 +105,188 @@ const cards = [
 
 function updatePreview() {
 
+  // =========================
+  // TEXTO
+  // =========================
+
   $("preview-name").innerText =
-    nameInput.value || "Nome";
+  nameInput.value || "Nome";
 
   $("preview-bio").innerText =
-    bioInput.value || "Bio";
+  bioInput.value || "Bio";
+
+  // =========================
+  // IMAGENS
+  // =========================
 
   $("preview-avatar").src =
-    avatarInput.value || "";
+  avatarInput.value || "";
 
   $("preview-banner").style.backgroundImage =
-    `url(${bannerInput.value || ""})`;
+  `url(${bannerInput.value || ""})`;
 
+  // =========================
   // BALÃO
-  const balao = $("preview-overlay");
+  // =========================
 
-  if (overlayInput.value && overlayInput.value.trim() !== "") {
-    balao.innerText = overlayInput.value;
-    balao.style.display = "block";
+  const balao =
+  $("preview-overlay");
+
+  if (
+    overlayInput.value &&
+    overlayInput.value.trim() !== ""
+  ) {
+
+    balao.innerText =
+    overlayInput.value;
+
+    balao.style.display =
+    "block";
+
   } else {
-    balao.style.display = "none";
+
+    balao.style.display =
+    "none";
+
   }
 
-  // REDES PREVIEW
+  // =========================
+  // FUNDO
+  // =========================
+
+  if (backgroundInput.value) {
+
+    document.body.style.backgroundImage =
+    `url(${backgroundInput.value})`;
+
+    document.body.style.backgroundSize =
+    "cover";
+
+    document.body.style.backgroundPosition =
+    "center";
+
+    document.body.style.backgroundRepeat =
+    "no-repeat";
+
+    document.body.style.backgroundAttachment =
+    "fixed";
+
+  }
+
+  // =========================
+  // REDES
+  // =========================
+
   const socials = {
-    youtube: youtubeInput.value,
-    instagram: instagramInput.value,
-    discord: discordInput.value,
-    spotify: spotifyInput.value,
-    tiktok: tiktokInput.value,
-    whatsapp: whatsappInput.value,
-    twitter: twitterInput.value,
-    facebook: facebookInput.value
+
+    youtube:
+    youtubeInput.value,
+
+    instagram:
+    instagramInput.value,
+
+    discord:
+    discordInput.value,
+
+    spotify:
+    spotifyInput.value,
+
+    tiktok:
+    tiktokInput.value,
+
+    whatsapp:
+    whatsappInput.value,
+
+    twitter:
+    twitterInput.value,
+
+    facebook:
+    facebookInput.value
+
   };
 
-  Object.entries(socials).forEach(([key, value]) => {
-    const el = document.getElementById(key + "-link");
-    if (el) el.href = value || "#";
+  Object.entries(socials)
+  .forEach(([key, value]) => {
+
+    const el =
+    document.getElementById(
+      key + "-link"
+    );
+
+    if (!el) return;
+
+    el.href =
+    value || "#";
+
   });
 
+  // =========================
   // CARDS PREVIEW
-  const container = $("extras-container");
+  // =========================
+
+  const container =
+  $("extras-container");
+
+  if (!container) return;
+
   container.innerHTML = "";
 
-  cards.forEach(c => {
+  cards.forEach((c) => {
 
-    if (!c.t.value && !c.i.value && !c.l.value) return;
+    if (
+      !c.t.value &&
+      !c.i.value &&
+      !c.l.value
+    ) return;
 
-    const card = document.createElement("a");
-    card.className = "extra-card";
-    card.href = c.l.value || "#";
-    card.target = "_blank";
+    const card =
+    document.createElement("a");
+
+    card.className =
+    "extra-card";
+
+    card.href =
+    c.l.value || "#";
+
+    card.target =
+    "_blank";
 
     card.innerHTML = `
       <div class="extra-card-icon">
-        <img src="${c.i.value || ""}">
+
+        <img
+          src="${
+            c.i.value ||
+            "https://via.placeholder.com/55"
+          }"
+        >
+
       </div>
-      <span>${c.t.value || ""}</span>
+
+      <span>
+        ${c.t.value || ""}
+      </span>
     `;
 
     container.appendChild(card);
+
   });
+
 }
 
 // =========================
 // LISTENERS LIVE
 // =========================
 
-document.querySelectorAll("input, textarea").forEach(el => {
-  el.addEventListener("input", updatePreview);
+document
+.querySelectorAll("input, textarea")
+.forEach((el) => {
+
+  el.addEventListener(
+    "input",
+    updatePreview
+  );
+
 });
 
 // =========================
@@ -128,42 +295,103 @@ document.querySelectorAll("input, textarea").forEach(el => {
 
 async function loadDashboard() {
 
-  const { data: { user } } =
-    await supabaseClient.auth.getUser();
+  const {
+    data: { user }
+  } =
+  await supabaseClient.auth.getUser();
 
   if (!user) return;
 
-  const { data } = await supabaseClient
-    .from("profiles")
-    .select("*")
-    .eq("id", user.id)
-    .single();
+  const { data, error } =
+
+  await supabaseClient
+  .from("profiles")
+  .select("*")
+  .eq("id", user.id)
+  .single();
+
+  console.log(data);
+  console.log(error);
 
   if (!data) return;
 
-  nameInput.value = data.display_name || "";
-  bioInput.value = data.bio || "";
-  avatarInput.value = data.avatar_url || "";
-  bannerInput.value = data.banner_url || "";
-  backgroundInput.value = data.background_url || "";
-  overlayInput.value = data.balao || "";
+  // =========================
+  // TEXTO
+  // =========================
 
-  youtubeInput.value = data.youtube_url || "";
-  instagramInput.value = data.instagram_url || "";
-  discordInput.value = data.discord_url || "";
-  spotifyInput.value = data.spotify_url || "";
-  tiktokInput.value = data.tiktok_url || "";
-  whatsappInput.value = data.whatsapp_url || "";
-  twitterInput.value = data.twitter_url || "";
-  facebookInput.value = data.facebook_url || "";
+  nameInput.value =
+  data.display_name || "";
+
+  bioInput.value =
+  data.bio || "";
+
+  // =========================
+  // IMAGENS
+  // =========================
+
+  avatarInput.value =
+  data.avatar_url || "";
+
+  bannerInput.value =
+  data.banner_url || "";
+
+  backgroundInput.value =
+  data.background_url || "";
+
+  // =========================
+  // BALÃO
+  // =========================
+
+  overlayInput.value =
+  data.balao || "";
+
+  // =========================
+  // REDES
+  // =========================
+
+  youtubeInput.value =
+  data.youtube_url || "";
+
+  instagramInput.value =
+  data.instagram_url || "";
+
+  discordInput.value =
+  data.discord_url || "";
+
+  spotifyInput.value =
+  data.spotify_url || "";
+
+  tiktokInput.value =
+  data.tiktok_url || "";
+
+  whatsappInput.value =
+  data.whatsapp_url || "";
+
+  twitterInput.value =
+  data.twitter_url || "";
+
+  facebookInput.value =
+  data.facebook_url || "";
+
+  // =========================
+  // CARDS
+  // =========================
 
   cards.forEach((c, i) => {
-    c.t.value = data[`extra${i+1}_text`] || "";
-    c.i.value = data[`extra${i+1}_img`] || "";
-    c.l.value = data[`extra${i+1}_link`] || "";
+
+    c.t.value =
+    data[`extra${i+1}_text`] || "";
+
+    c.i.value =
+    data[`extra${i+1}_img`] || "";
+
+    c.l.value =
+    data[`extra${i+1}_link`] || "";
+
   });
 
   updatePreview();
+
 }
 
 loadDashboard();
@@ -172,57 +400,129 @@ loadDashboard();
 // SALVAR PERFIL
 // =========================
 
-document.getElementById("save-btn").addEventListener("click", async () => {
+document
+.getElementById("save-btn")
+.addEventListener(
+  "click",
+  async () => {
 
-  const { data: { user } } =
+    const {
+      data: { user }
+    } =
     await supabaseClient.auth.getUser();
 
-  if (!user) {
-    alert("Usuário não logado");
-    return;
-  }
+    if (!user) {
 
-  const username =
-    user.email.split("@")[0].toLowerCase().trim();
+      alert(
+        "Usuário não logado"
+      );
 
-  const payload = {
-    id: user.id,
-    username,
+      return;
 
-    display_name: nameInput.value,
-    bio: bioInput.value,
+    }
 
-    avatar_url: avatarInput.value,
-    banner_url: bannerInput.value,
-    background_url: backgroundInput.value,
-    balao: overlayInput.value,
+    const username =
 
-    youtube_url: youtubeInput.value,
-    instagram_url: instagramInput.value,
-    discord_url: discordInput.value,
-    spotify_url: spotifyInput.value,
-    tiktok_url: tiktokInput.value,
-    whatsapp_url: whatsappInput.value,
-    twitter_url: twitterInput.value,
-    facebook_url: facebookInput.value
-  };
+    user.email
+    .split("@")[0]
+    .toLowerCase()
+    .trim();
 
-  cards.forEach((c, i) => {
-    payload[`extra${i+1}_text`] = c.t.value;
-    payload[`extra${i+1}_img`] = c.i.value;
-    payload[`extra${i+1}_link`] = c.l.value;
-  });
+    const payload = {
 
-  const { error } = await supabaseClient
+      id:
+      user.id,
+
+      username,
+
+      // PERFIL
+
+      display_name:
+      nameInput.value,
+
+      bio:
+      bioInput.value,
+
+      avatar_url:
+      avatarInput.value,
+
+      banner_url:
+      bannerInput.value,
+
+      background_url:
+      backgroundInput.value,
+
+      balao:
+      overlayInput.value,
+
+      // REDES
+
+      youtube_url:
+      youtubeInput.value,
+
+      instagram_url:
+      instagramInput.value,
+
+      discord_url:
+      discordInput.value,
+
+      spotify_url:
+      spotifyInput.value,
+
+      tiktok_url:
+      tiktokInput.value,
+
+      whatsapp_url:
+      whatsappInput.value,
+
+      twitter_url:
+      twitterInput.value,
+
+      facebook_url:
+      facebookInput.value
+
+    };
+
+    // =========================
+    // CARDS EXTRAS
+    // =========================
+
+    cards.forEach((c, i) => {
+
+      payload[`extra${i+1}_text`] =
+      c.t.value;
+
+      payload[`extra${i+1}_img`] =
+      c.i.value;
+
+      payload[`extra${i+1}_link`] =
+      c.l.value;
+
+    });
+
+    console.log(payload);
+
+    const { error } =
+
+    await supabaseClient
     .from("profiles")
     .upsert(payload);
 
-  if (error) {
-    alert(error.message);
-    return;
-  }
+    if (error) {
 
-  alert("Perfil salvo com sucesso!");
+      console.log(error);
 
-  window.location.href = `/${username}`;
+      alert(error.message);
+
+      return;
+
+    }
+
+    alert(
+      "Perfil salvo com sucesso!"
+    );
+
+    window.location.href =
+    `/${username}`;
+
 });
