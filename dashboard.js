@@ -45,6 +45,11 @@ document.getElementById(
   "template-select"
 );
 
+templateSelect.addEventListener("change", () => {
+  updatePreview();
+  // opcional: auto salvar ou marcar como "não salvo"
+});
+
 const extraCardTextInput =
 document.getElementById("extra-card-text");
 
