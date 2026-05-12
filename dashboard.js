@@ -44,7 +44,17 @@ function updatePreview() {
   $("preview-avatar").src = avatarInput.value || "";
   $("preview-banner").style.backgroundImage = `url(${bannerInput.value || ""})`;
 
-  $("preview-overlay").innerText = overlayInput.value || "";
+  // BALÃO preview (some se vazio)
+  const overlay = overlayInput.value;
+
+  const balaoPreview = $("preview-overlay");
+
+  if (overlay && overlay.trim() !== "") {
+    balaoPreview.innerText = overlay;
+    balaoPreview.style.display = "block";
+  } else {
+    balaoPreview.style.display = "none";
+  }
 
   $("youtube-link").href = youtubeInput.value || "#";
   $("instagram-link").href = instagramInput.value || "#";
@@ -53,10 +63,6 @@ function updatePreview() {
   $("tiktok-link").href = tiktokInput.value || "#";
   $("whatsapp-link").href = whatsappInput.value || "#";
 }
-
-document.querySelectorAll("input, textarea").forEach(el => {
-  el.addEventListener("input", updatePreview);
-});
 
 // =====================
 // SAVE SUPABASE (FIX PRINCIPAL)
