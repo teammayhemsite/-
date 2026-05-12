@@ -264,6 +264,15 @@ saveBtn.addEventListener("click", async () => {
     bio:
     bioInput.value,
 
+    extra_card_text:
+   extraCardTextInput.value,
+
+    extra_card_image:
+    extraCardImageInput.value,
+
+    extra_card_link:
+    extraCardLinkInput.value,
+
     balao:
     overlayInput.value,
 
