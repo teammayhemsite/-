@@ -294,3 +294,73 @@ body {
   }
 
 }
+
+.extra-card {
+
+  width: 100%;
+
+  margin-top: 30px;
+
+  padding: 18px;
+
+  border-radius: 30px;
+
+  background:
+    rgba(255,255,255,0.03);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+  text-decoration: none;
+
+  color: white;
+
+  transition: 0.3s;
+}
+
+.extra-card:hover {
+
+  transform: scale(1.02);
+
+  background:
+    rgba(255,255,255,0.05);
+}
+
+.extra-card-icon {
+
+  width: 85px;
+  height: 85px;
+
+  border-radius: 25px;
+
+  background:
+    rgba(255,255,255,0.05);
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  flex-shrink: 0;
+}
+
+.extra-card-icon img {
+
+  width: 42px;
+  height: 42px;
+
+  object-fit: contain;
+}
+
+.extra-card span {
+
+  font-size: 16px;
+
+  line-height: 1.5;
+}
