@@ -28,15 +28,20 @@ if (!username) {
   const socials = document.getElementById("socials");
   socials.innerHTML = "";
 
-  function add(url, icon) {
-    if (!url) return;
-    socials.innerHTML += `<a href="${url}" target="_blank">${icon}</a>`;
-  }
+  function add(url, img) {
+  if (!url) return;
 
-  add(data.youtube_url, "YT");
-  add(data.instagram_url, "IG");
-  add(data.discord_url, "DC");
-  add(data.spotify_url, "SP");
+  socials.innerHTML += `
+    <a href="${url}" target="_blank">
+      <img src="${img}">
+    </a>
+  `;
+}
+
+add(data.youtube_url, "https://www.riqueza.life/images/socials/youtube.png");
+add(data.instagram_url, "https://www.riqueza.life/images/socials/instagram.png");
+add(data.discord_url, "https://www.riqueza.life/images/socials/discord.png");
+add(data.spotify_url, "https://www.riqueza.life/images/socials/spotify.png");
 
   // CARDS EXTRAS (CORRIGIDO)
   for (let i = 1; i <= 4; i++) {
