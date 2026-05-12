@@ -4,182 +4,133 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="icon" href="https://cdn.discordapp.com/emojis/1380340818224877710.webp?size=96">
-
-  <title>teammayhem</title>
+  <title>Dashboard</title>
 
   <link rel="stylesheet" href="dashboard.css">
-
   <script src="https://kit.fontawesome.com/eb9af641fe.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
-  <div class="dashboard">
+<div class="dashboard">
 
-    <!-- ESQUERDA -->
-    <div class="editor">
+  <!-- EDITOR -->
+  <div class="editor">
 
-      <h2>EDITOR</h2>
-      <br>
-      <label>Template</label>
+    <h2>EDITOR</h2>
 
-      <select id="template-select">
+    <!-- PERFIL -->
+    <div class="section">
+      <button class="toggle">Perfil</button>
 
-      <option value="king">
-            KING
-      </option>
+      <div class="content hidden">
 
-      <option value="minimal">
-            MINIMAL
-      </option>
+        <label>Nome</label>
+        <input id="name-input">
 
-      </select>
-      <br>
-      <br>
-      <label>Nome</label>
-      <input type="text" id="name-input">
+        <label>Bio</label>
+        <textarea id="bio-input"></textarea>
 
-      <label>Bio</label>
-      <textarea id="bio-input"></textarea>
+        <label>Avatar</label>
+        <input id="avatar-input">
 
-      <label>Avatar URL</label>
-      <input type="text" id="avatar-input">
+        <label>Banner</label>
+        <input id="banner-input">
 
-      <label>Banner URL</label>
-      <input type="text" id="banner-input">
+        <label>Fundo</label>
+        <input id="background-input">
 
-      <label>Plano de fundo</label>
-      <input type="text" id="background-input">
-
-      <label>Texto do balão</label>
-      <input type="text" id="overlay-input">
-
-      <label>Youtube</label>
-      <input type="text" id="youtube-input">
-
-      <label>Instagram</label>
-      <input type="text" id="instagram-input">
-
-      <label>Discord</label>
-      <input type="text" id="discord-input">
-
-      <label>Spotify</label>
-      <input type="text" id="spotify-input">
-
-      <label>TikTok</label>
-      <input type="text" id="tiktok-input">
-
-      <label>WhatsApp</label>
-      <input type="text" id="whatsapp-input">
-
-      <label>Twitch</label>
-      <input type="text" id="facebook-input">
-
-      <label>Twitter/X</label>
-      <input type="text" id="twitter-input">
-
-      <label>Card extra</label>
-      <input
-          type="text"
-          placeholder="Texto do card"
-          id="extra-card-text">
-
-      <input
-          type="text"
-          placeholder="Imagem do card"
-          id="extra-card-image">
-
-      <input
-          type="text"
-          placeholder="Link do card"
-          id="extra-card-link">      
-
-      <button id="save-btn">
-        SALVAR PERFIL
-      </button>
-
-    </div>
-
-
-    <!-- CENTRO -->
-    <div class="preview-area">
-
-      <div  class="cardking" id="preview-card">
-
-        <div class="topo" id="preview-banner">
-        </div>
-
-        <img src="" class="perfilking" id="preview-avatar">
-
-        <div class="balao" id="preview-overlay">
-          eu amo Deus
-        </div>
-
-        <div class="conteudoking">
-
-          <h2 id="preview-name">
-            krpris
-          </h2>
-
-          <p id="preview-bio">
-            sua bio aqui...
-          </p>
-
-          <div class="embking">
-            KING
-          </div>
-
-          <div class="socials">
-
-            <a id="youtube-link" target="_blank">
-              <i class="fa-brands fa-youtube"></i>
-            </a>
-
-            <a id="instagram-link" target="_blank">
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-
-            <a id="discord-link" target="_blank">
-              <i class="fa-brands fa-discord"></i>
-            </a>
-
-            <a id="spotify-link" target="_blank">
-              <i class="fa-brands fa-spotify"></i>
-            </a>
-
-          </div>
-
-        </div>
+        <label>Balão</label>
+        <input id="overlay-input">
 
       </div>
-
     </div>
 
+    <!-- REDES -->
+    <div class="section">
+      <button class="toggle">Redes</button>
 
-    <!-- DIREITA -->
-    <div class="templates">
+      <div class="content hidden">
 
-      <h2>TEMPLATES</h2>
+        <input id="youtube-input" placeholder="YouTube">
+        <input id="instagram-input" placeholder="Instagram">
+        <input id="discord-input" placeholder="Discord">
+        <input id="spotify-input" placeholder="Spotify">
+        <input id="tiktok-input" placeholder="TikTok">
+        <input id="whatsapp-input" placeholder="WhatsApp">
+        <input id="twitter-input" placeholder="Twitter/X">
+        <input id="facebook-input" placeholder="Twitch">
 
-      <div class="template active">
-        KING
       </div>
+    </div>
 
-      <div class="template">
-        MINIMAL
+    <!-- CARDS EXTRAS -->
+    <div class="section">
+      <button class="toggle">Cards Extras</button>
+
+      <div class="content hidden">
+
+        <!-- CARD 1 -->
+        <input id="extra1-text" placeholder="Texto 1">
+        <input id="extra1-img" placeholder="Imagem 1">
+        <input id="extra1-link" placeholder="Link 1">
+        <hr>
+
+        <!-- CARD 2 -->
+        <input id="extra2-text" placeholder="Texto 2">
+        <input id="extra2-img" placeholder="Imagem 2">
+        <input id="extra2-link" placeholder="Link 2">
+        <hr>
+
+        <!-- CARD 3 -->
+        <input id="extra3-text" placeholder="Texto 3">
+        <input id="extra3-img" placeholder="Imagem 3">
+        <input id="extra3-link" placeholder="Link 3">
+        <hr>
+
+        <!-- CARD 4 -->
+        <input id="extra4-text" placeholder="Texto 4">
+        <input id="extra4-img" placeholder="Imagem 4">
+        <input id="extra4-link" placeholder="Link 4">
+
+      </div>
+    </div>
+
+    <button id="save-btn">SALVAR PERFIL</button>
+
+  </div>
+
+  <!-- PREVIEW -->
+  <div class="preview-area">
+
+    <div class="cardking">
+
+      <div class="topo" id="preview-banner"></div>
+
+      <img id="preview-avatar" class="perfilking">
+
+      <div class="balao" id="preview-overlay"></div>
+
+      <div class="conteudoking">
+
+        <h2 id="preview-name"></h2>
+        <p id="preview-bio"></p>
+
+        <div class="socials" id="socials"></div>
+
+        <div id="extras-container"></div>
+
       </div>
 
     </div>
 
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</div>
 
-  <script src="supabase.js"></script>
-
-  <script src="dashboard.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script src="dashboard.js"></script>
 
 </body>
-
 </html>
