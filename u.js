@@ -185,4 +185,39 @@ async function loadProfile() {
 
 }
 
+// =========================
+// CARD EXTRA
+// =========================
+
+const extraCard =
+document.getElementById("extra-card");
+
+if (
+  !data.extra_card_text ||
+  !data.extra_card_link
+) {
+
+  extraCard.style.display =
+  "none";
+
+} else {
+
+  extraCard.style.display =
+  "flex";
+
+  extraCard.href =
+  data.extra_card_link;
+
+  document.getElementById(
+    "extra-card-text-view"
+  ).innerText =
+  data.extra_card_text;
+
+  document.getElementById(
+    "extra-card-img"
+  ).src =
+  data.extra_card_image || "";
+
+}
+
 loadProfile();
