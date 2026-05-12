@@ -2,7 +2,6 @@ async function loadProfile() {
 
   let username = new URLSearchParams(location.search).get("user");
 
-  // fallback para Vercel rewrite /:user
   if (!username) {
     username = location.pathname.split("/").filter(Boolean).pop();
   }
@@ -11,6 +10,7 @@ async function loadProfile() {
     .from("profiles")
     .select("*")
     .eq("username", username)
+    .limit(1)
     .single();
 
   if (error || !data) {
@@ -25,9 +25,6 @@ async function loadProfile() {
   document.getElementById("banner").style.backgroundImage = `url(${data.banner_url || ""})`;
   document.getElementById("balao").innerText = data.balao || "";
 
-  // =====================
-  // REDES
-  // =====================
   const socials = document.getElementById("socials");
   socials.innerHTML = "";
 
@@ -45,15 +42,11 @@ async function loadProfile() {
   add(data.instagram_url, "https://www.riqueza.life/images/socials/instagram.png");
   add(data.discord_url, "https://www.riqueza.life/images/socials/discord.png");
   add(data.spotify_url, "https://www.riqueza.life/images/socials/spotify.png");
+
   add(data.tiktok_url, "https://www.riqueza.life/images/socials/tiktok.png");
   add(data.whatsapp_url, "https://www.riqueza.life/images/socials/whatsapp.png");
-  add(data.facebook_url, "https://www.riqueza.life/images/socials/facebook.png");
+  add(data.facebook_url, "https://www.riqueza.life/images/socials/twitch.png");
   add(data.twitter_url, "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg");
-
-  // =====================
-  // CARDS EXTRAS
-  // =====================
-  const container = document.querySelector(".cardking");
 
   for (let i = 1; i <= 4; i++) {
 
@@ -75,7 +68,7 @@ async function loadProfile() {
       <span>${text || ''}</span>
     `;
 
-    container.appendChild(card);
+    document.querySelector(".cardking").appendChild(card);
   }
 }
 
