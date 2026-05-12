@@ -136,7 +136,8 @@ function updatePreview() {
   youtubeInput,
   instagramInput,
   discordInput,
-  spotifyInput
+  spotifyInput,
+  templateSelect
 ].forEach(input => {
 
   input.addEventListener(
