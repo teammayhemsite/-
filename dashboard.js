@@ -40,6 +40,14 @@ document.getElementById("facebook-input");
 const twitterInput =
 document.getElementById("twitter-input");
 
+const extraCardTextInput =
+document.getElementById("extra-card-text");
+
+const extraCardImageInput =
+document.getElementById("extra-card-image");
+
+const extraCardLinkInput =
+document.getElementById("extra-card-link");
 
 // =========================
 // PREVIEW
