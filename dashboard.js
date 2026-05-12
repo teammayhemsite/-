@@ -25,6 +25,8 @@ const youtubeInput = $("youtube-input");
 const instagramInput = $("instagram-input");
 const discordInput = $("discord-input");
 const spotifyInput = $("spotify-input");
+const tiktokInput = $("tiktok-input");
+const whatsappInput = $("whatsapp-input");
 
 // CARDS
 const cards = [
@@ -47,10 +49,10 @@ function updatePreview() {
 
   $("preview-overlay").innerText = overlayInput.value || "";
 
-  youtubeInput.value && ($("youtube-link").href = youtubeInput.value);
-  instagramInput.value && ($("instagram-link").href = instagramInput.value);
-  discordInput.value && ($("discord-link").href = discordInput.value);
-  spotifyInput.value && ($("spotify-link").href = spotifyInput.value);
+  $("youtube-link").href = youtubeInput.value || "#";
+  $("instagram-link").href = instagramInput.value || "#";
+  $("discord-link").href = discordInput.value || "#";
+  $("spotify-link").href = spotifyInput.value || "#";
 }
 
 // auto update
@@ -95,9 +97,9 @@ document.getElementById("save-btn").addEventListener("click", async () => {
   };
 
   cards.forEach((c, i) => {
-    payload[`extra${i+1}_text`] = c.text.value;
-    payload[`extra${i+1}_img`] = c.img.value;
-    payload[`extra${i+1}_link`] = c.link.value;
+    payload[`extra${i+1}_text`] = c.t.value;
+    payload[`extra${i+1}_img`] = c.i.value;
+    payload[`extra${i+1}_link`] = c.l.value;
   });
 
   const { error } =
@@ -112,7 +114,5 @@ document.getElementById("save-btn").addEventListener("click", async () => {
 
   alert("Perfil salvo!");
 
-  // 👇 ISSO AQUI É O QUE FALTAVA
   window.location.href = profileLink;
-
 });
