@@ -385,3 +385,70 @@ body {
 
   border-radius: 22px;
 }
+
+
+.minimal-theme .cardking {
+
+  background: #0d0d0d;
+
+  border: none;
+
+  backdrop-filter: none;
+
+  box-shadow: none;
+
+  max-width: 430px;
+}
+
+.minimal-theme .topo {
+
+  display: none;
+}
+
+.minimal-theme .embking {
+
+  display: none;
+}
+
+.minimal-theme .top-info {
+
+  margin-top: 40px;
+
+  justify-content: center;
+
+  flex-direction: column;
+}
+
+.minimal-theme .perfilking {
+
+  width: 110px;
+  height: 110px;
+
+  box-shadow: none;
+
+  border: 3px solid white;
+}
+
+.minimal-theme .balao {
+
+  display: none;
+}
+
+.minimal-theme .conteudoking {
+
+  text-align: center;
+
+  padding-top: 20px;
+}
+
+.minimal-theme .socials {
+
+  justify-content: center;
+}
+
+.minimal-theme .extra-card {
+
+  background: #151515;
+
+  border: none;
+}
