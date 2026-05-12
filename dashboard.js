@@ -102,8 +102,10 @@ document.getElementById("save-btn").addEventListener("click", async () => {
     payload[`extra${i+1}_link`] = c.l.value;
   });
 
-  const { error } =
-    await supabaseClient.from("profiles").upsert(payload);
+ const { error } = await supabaseClient
+  .from("profiles")
+  .update(payload)
+  .eq("id", user.id);
 
   if (error) {
     alert(error.message);
