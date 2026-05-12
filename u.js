@@ -1,52 +1,62 @@
 async function loadProfile() {
 
-const username = new URLSearchParams(location.search).get("user");
+  const username = new URLSearchParams(location.search).get("user");
 
-const { data } = await supabaseClient
-.from("profiles")
-.select("*")
-.eq("username", username)
-.single();
+  const { data, error } = await supabaseClient
+    .from("profiles")
+    .select("*")
+    .eq("username", username)
+    .single();
 
-document.getElementById("username").innerText = data.display_name;
-document.getElementById("bio").innerText = data.bio;
+  if (error || !data) {
+    document.body.innerHTML = "<h1>Perfil não encontrado</h1>";
+    return;
+  }
 
-document.getElementById("avatar").src = data.avatar_url;
-document.getElementById("banner").style.backgroundImage = `url(${data.banner_url})`;
-document.getElementById("balao").innerText = data.balao;
+  document.getElementById("username").innerText = data.display_name || "Sem nome";
+  document.getElementById("bio").innerText = data.bio || "";
 
-// REDES
-const socials = document.getElementById("socials");
-socials.innerHTML = "";
+  document.getElementById("avatar").src = data.avatar_url || "";
+  document.getElementById("banner").style.backgroundImage = `url(${data.banner_url || ""})`;
+  document.getElementById("balao").innerText = data.balao || "";
 
-function add(url, icon) {
-if (!url) return;
-socials.innerHTML += `<a href="${url}" target="_blank">${icon}</a>`;
-}
+  // REDES
+  const socials = document.getElementById("socials");
+  socials.innerHTML = "";
 
-add(data.youtube_url, "YT");
-add(data.instagram_url, "IG");
-add(data.discord_url, "DC");
-add(data.spotify_url, "SP");
+  function add(url, icon) {
+    if (!url) return;
+    socials.innerHTML += `<a href="${url}" target="_blank">${icon}</a>`;
+  }
 
-// CARDS EXTRAS (5)
-for (let i = 1; i <= 5; i++) {
+  add(data.youtube_url, "YT");
+  add(data.instagram_url, "IG");
+  add(data.discord_url, "DC");
+  add(data.spotify_url, "SP");
 
-const text = data[`extra${i}_text`];
-const img = data[`extra${i}_img`];
-const link = data[`extra${i}_link`];
+  // CARDS EXTRAS (CORRIGIDO)
+  for (let i = 1; i <= 4; i++) {
 
-if (!text && !img && !link) continue;
+    const text = data[`extra${i}_text`];
+    const img = data[`extra${i}_img`];
+    const link = data[`extra${i}_link`];
 
-document.body.innerHTML += `
-<a class="extra-card" href="${link}" target="_blank">
-<img src="${img}">
-<span>${text}</span>
-</a>
-`;
+    if (!text && !img && !link) continue;
 
-}
+    const card = document.createElement("a");
+    card.className = "extra-card";
+    card.href = link || "#";
+    card.target = "_blank";
 
+    card.innerHTML = `
+      <div class="extra-card-icon">
+        <img src="${img || ''}">
+      </div>
+      <span>${text || ''}</span>
+    `;
+
+    document.querySelector(".cardking").appendChild(card);
+  }
 }
 
 loadProfile();
