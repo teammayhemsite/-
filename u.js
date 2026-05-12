@@ -59,20 +59,24 @@ async function loadProfile() {
 
   }
 
-  // =========================
-  // TITLE
-  // =========================
+ // =========================
+ // TITLE
+ // =========================
 
   document.title =
   `@${data.username}`;
 
+  // =========================
+  // TEMPLATE
+  // =========================
+
   if (data.template === "minimal") {
 
-  document.body.classList.add(
-    "minimal-theme"
-  );
+    document.body.classList.add(
+      "minimal-theme"
+    );
 
-}
+  }
 
   // =========================
   // TEXTO
