@@ -40,6 +40,11 @@ document.getElementById("facebook-input");
 const twitterInput =
 document.getElementById("twitter-input");
 
+const templateSelect =
+document.getElementById(
+  "template-select"
+);
+
 const extraCardTextInput =
 document.getElementById("extra-card-text");
 
@@ -209,6 +214,9 @@ async function loadDashboard() {
   twitterInput.value =
   data.twitter_url || "";
 
+  templateSelect.value =
+  data.template || "king"
+
   updatePreview();
 
 }
@@ -258,6 +266,9 @@ saveBtn.addEventListener("click", async () => {
 
     username: usernameFinal,
 
+    template:
+    templateSelect.value,
+    
     display_name:
     nameInput.value,
 
