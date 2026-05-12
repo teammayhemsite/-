@@ -25,23 +25,30 @@ if (!username) {
   document.getElementById("balao").innerText = data.balao || "";
 
   // REDES
-  const socials = document.getElementById("socials");
-  socials.innerHTML = "";
+const socials = document.getElementById("socials");
+socials.innerHTML = "";
 
-  function add(url, img) {
+function add(url, icon) {
   if (!url) return;
 
   socials.innerHTML += `
     <a href="${url}" target="_blank">
-      <img src="${img}">
+      <i class="fa-brands ${icon}"></i>
     </a>
   `;
 }
 
-add(data.youtube_url, "https://www.riqueza.life/images/socials/youtube.png");
-add(data.instagram_url, "https://www.riqueza.life/images/socials/instagram.png");
-add(data.discord_url, "https://www.riqueza.life/images/socials/discord.png");
-add(data.spotify_url, "https://www.riqueza.life/images/socials/spotify.png");
+// redes principais
+add(data.youtube_url, "fa-youtube");
+add(data.instagram_url, "fa-instagram");
+add(data.discord_url, "fa-discord");
+add(data.spotify_url, "fa-spotify");
+
+// extras que você TEM no banco
+add(data.tiktok_url, "fa-tiktok");
+add(data.whatsapp_url, "fa-whatsapp");
+add(data.facebook_url, "fa-facebook");
+add(data.twitter_url, "fa-twitter");
 
   // CARDS EXTRAS (CORRIGIDO)
   for (let i = 1; i <= 4; i++) {
