@@ -225,69 +225,70 @@ async function loadProfile() {
   // CARDS EXTRAS
   // =========================
 
-const conteudo =
-document.querySelector(".conteudoking");
+  const conteudo =
+  document.querySelector(".conteudoking");
 
-// remove cards antigos
-document
-.querySelectorAll(".extra-card")
-.forEach(el => el.remove());
+  // remove cards antigos
+  document
+  .querySelectorAll(".extra-card")
+  .forEach(el => el.remove());
 
-for (let i = 1; i <= 4; i++) {
+  for (let i = 1; i <= 4; i++) {
 
-  const text =
-  (data[`extra${i}_text`] || "").trim();
+    const text =
+    (data[`extra${i}_text`] || "").trim();
 
-  const image =
-  (data[`extra${i}_img`] || "").trim();
+    const image =
+    (data[`extra${i}_img`] || "").trim();
 
-  const link =
-  (data[`extra${i}_link`] || "").trim();
+    const link =
+    (data[`extra${i}_link`] || "").trim();
 
-  // se TODOS estiverem vazios
-  // NÃO cria card
-  if (
-    text === "" &&
-    image === "" &&
-    link === ""
-  ) {
-    continue;
-  }
+    // não cria card vazio
+    if (
+      text === "" &&
+      image === "" &&
+      link === ""
+    ) {
+      continue;
+    }
 
-  const card =
-  document.createElement("a");
+    const card =
+    document.createElement("a");
 
-  card.className =
-  "extra-card";
+    card.className =
+    "extra-card";
 
-  card.href =
-  link || "#";
+    card.href =
+    link || "#";
 
-  card.target =
-  "_blank";
+    card.target =
+    "_blank";
 
-  // imagem
-  let imageHTML = "";
+    // imagem opcional
+    let imageHTML = "";
 
-  if (image !== "") {
+    if (image !== "") {
 
-    imageHTML = `
-      <div class="extra-card-icon">
-        <img src="${image}">
-      </div>
+      imageHTML = `
+        <div class="extra-card-icon">
+          <img src="${image}">
+        </div>
+      `;
+
+    }
+
+    card.innerHTML = `
+      ${imageHTML}
+
+      <span>
+        ${text || "Card extra"}
+      </span>
     `;
 
+    conteudo.appendChild(card);
+
   }
-
-  card.innerHTML = `
-    ${imageHTML}
-
-    <span>
-      ${text || "Card extra"}
-    </span>
-  `;
-
-  conteudo.appendChild(card);
 
 }
 
