@@ -44,16 +44,16 @@ function updatePreview() {
   $("preview-avatar").src = avatarInput.value || "";
   $("preview-banner").style.backgroundImage = `url(${bannerInput.value || ""})`;
 
-  // BALÃO preview (some se vazio)
+  // BALÃO (FIX)
   const overlay = overlayInput.value;
-
-  const balaoPreview = $("preview-overlay");
+  const balao = $("preview-overlay");
 
   if (overlay && overlay.trim() !== "") {
-    balaoPreview.innerText = overlay;
-    balaoPreview.style.display = "block";
+    balao.innerText = overlay;
+    balao.style.display = "block";
   } else {
-    balaoPreview.style.display = "none";
+    balao.innerText = "";
+    balao.style.display = "none";
   }
 
   $("youtube-link").href = youtubeInput.value || "#";
@@ -64,8 +64,13 @@ function updatePreview() {
   $("whatsapp-link").href = whatsappInput.value || "#";
 }
 
+// ATUALIZA EM TEMPO REAL
+document.querySelectorAll("input, textarea").forEach(el => {
+  el.addEventListener("input", updatePreview);
+});
+
 // =====================
-// SAVE SUPABASE (FIX PRINCIPAL)
+// SAVE SUPABASE
 // =====================
 document.getElementById("save-btn").addEventListener("click", async () => {
 
@@ -117,6 +122,8 @@ document.getElementById("save-btn").addEventListener("click", async () => {
   const profileLink = `${location.origin}/${usernameFinal}`;
 
   alert("Perfil salvo!");
-
   window.location.href = profileLink;
 });
+
+// inicia preview
+updatePreview();
