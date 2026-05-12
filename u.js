@@ -25,15 +25,12 @@ if (!username) {
   document.getElementById("balao").innerText = data.balao || "";
 
   // REDES
-const socials = document.getElementById("socials");
-socials.innerHTML = "";
-
-function add(url, icon) {
+function add(url, img) {
   if (!url) return;
 
   socials.innerHTML += `
     <a href="${url}" target="_blank">
-      <i class="fa-brands ${icon}"></i>
+      <img src="${img}">
     </a>
   `;
 }
