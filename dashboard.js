@@ -60,6 +60,34 @@ document.getElementById("extra-card-link");
 
 function updatePreview() {
 
+  const previewCard =
+  document.getElementById(
+    "preview-card"
+  );
+
+  // =========================
+  // TEMPLATE
+  // =========================
+
+  previewCard.classList.remove(
+    "minimal"
+  );
+
+  if (
+    templateSelect.value ===
+    "minimal"
+  ) {
+
+    previewCard.classList.add(
+      "minimal"
+    );
+
+  }
+
+  // =========================
+  // TEXTO
+  // =========================
+
   document.getElementById(
     "preview-name"
   ).innerText =
@@ -69,6 +97,10 @@ function updatePreview() {
     "preview-bio"
   ).innerText =
   bioInput.value || "sua bio aqui...";
+
+  // =========================
+  // IMAGENS
+  // =========================
 
   document.getElementById(
     "preview-avatar"
@@ -80,10 +112,18 @@ function updatePreview() {
   ).style.backgroundImage =
   `url(${bannerInput.value || ""})`;
 
+  // =========================
+  // BALÃO
+  // =========================
+
   document.getElementById(
     "preview-overlay"
   ).innerText =
   overlayInput.value || "eu amo Deus";
+
+  // =========================
+  // FUNDO
+  // =========================
 
   if (backgroundInput.value) {
 
@@ -101,8 +141,12 @@ function updatePreview() {
 
     document.body.style.backgroundAttachment =
     "fixed";
-
+    
   }
+
+  // =========================
+  // REDES
+  // =========================
 
   document.getElementById(
     "youtube-link"
@@ -125,27 +169,6 @@ function updatePreview() {
   spotifyInput.value;
 
 }
-
-[
-  nameInput,
-  bioInput,
-  avatarInput,
-  bannerInput,
-  backgroundInput,
-  overlayInput,
-  youtubeInput,
-  instagramInput,
-  discordInput,
-  spotifyInput,
-  templateSelect
-].forEach(input => {
-
-  input.addEventListener(
-    "input",
-    updatePreview
-  );
-
-});
 
 
 // =========================
