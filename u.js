@@ -1,6 +1,10 @@
 async function loadProfile() {
 
-  const username = new URLSearchParams(location.search).get("user");
+  let username = new URLSearchParams(location.search).get("user");
+
+if (!username) {
+  username = location.pathname.split("/").filter(Boolean).pop();
+}
 
   const { data, error } = await supabaseClient
     .from("profiles")
