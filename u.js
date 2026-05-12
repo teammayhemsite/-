@@ -213,10 +213,16 @@ if (
   ).innerText =
   data.extra_card_text;
 
-  document.getElementById(
-    "extra-card-img"
-  ).src =
-  data.extra_card_image || "";
+  const extraImg =
+document.getElementById(
+  "extra-card-img"
+);
+
+extraImg.src =
+data.extra_card_image;
+
+extraImg.style.display =
+"block";
 
 }
 
