@@ -66,6 +66,14 @@ async function loadProfile() {
   document.title =
   `@${data.username}`;
 
+  if (data.template === "minimal") {
+
+  document.body.classList.add(
+    "minimal-theme"
+  );
+
+}
+
   // =========================
   // TEXTO
   // =========================
