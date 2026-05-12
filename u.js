@@ -10,8 +10,7 @@ async function loadProfile() {
     .from("profiles")
     .select("*")
     .eq("username", username)
-    .limit(1)
-    .single();
+    .maybeSingle(); // <- CORREÇÃO IMPORTANTE
 
   if (error || !data) {
     document.body.innerHTML = "<h1>Perfil não encontrado</h1>";
@@ -23,7 +22,15 @@ async function loadProfile() {
 
   document.getElementById("avatar").src = data.avatar_url || "";
   document.getElementById("banner").style.backgroundImage = `url(${data.banner_url || ""})`;
-  document.getElementById("balao").innerText = data.balao || "";
+
+  // 🔥 BALÃO SUMIR SE VAZIO (CORREÇÃO)
+  const balao = document.getElementById("balao");
+  if (data.balao && data.balao.trim() !== "") {
+    balao.innerText = data.balao;
+    balao.style.display = "block";
+  } else {
+    balao.style.display = "none";
+  }
 
   const socials = document.getElementById("socials");
   socials.innerHTML = "";
