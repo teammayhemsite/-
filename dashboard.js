@@ -401,3 +401,9 @@ const inputs = [
 inputs.forEach(input => {
   input.addEventListener("input", updatePreview);
 });
+
+document.querySelectorAll(".toggle").forEach(btn => {
+  btn.addEventListener("click", () => {
+    btn.parentElement.classList.toggle("active");
+  });
+});
