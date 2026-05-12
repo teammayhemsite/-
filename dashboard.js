@@ -1,63 +1,49 @@
-const nameInput =
-document.getElementById("name-input");
+// =========================
+// TOGGLE SEÇÕES
+// =========================
 
-const bioInput =
-document.getElementById("bio-input");
-
-const avatarInput =
-document.getElementById("avatar-input");
-
-const bannerInput =
-document.getElementById("banner-input");
-
-const backgroundInput =
-document.getElementById("background-input");
-
-const overlayInput =
-document.getElementById("overlay-input");
-
-const youtubeInput =
-document.getElementById("youtube-input");
-
-const instagramInput =
-document.getElementById("instagram-input");
-
-const discordInput =
-document.getElementById("discord-input");
-
-const spotifyInput =
-document.getElementById("spotify-input");
-
-const tiktokInput =
-document.getElementById("tiktok-input");
-
-const whatsappInput =
-document.getElementById("whatsapp-input");
-
-const facebookInput =
-document.getElementById("facebook-input");
-
-const twitterInput =
-document.getElementById("twitter-input");
-
-const templateSelect =
-document.getElementById(
-  "template-select"
-);
-
-templateSelect.addEventListener("change", () => {
-  updatePreview();
-  // opcional: auto salvar ou marcar como "não salvo"
+document.querySelectorAll(".toggle").forEach(btn => {
+  btn.addEventListener("click", () => {
+    btn.parentElement.classList.toggle("active");
+  });
 });
 
-const extraCardTextInput =
-document.getElementById("extra-card-text");
+const $ = (id) => document.getElementById(id);
 
-const extraCardImageInput =
-document.getElementById("extra-card-image");
+// =========================
+// INPUTS PERFIL
+// =========================
 
-const extraCardLinkInput =
-document.getElementById("extra-card-link");
+const nameInput = $("name-input");
+const bioInput = $("bio-input");
+const avatarInput = $("avatar-input");
+const bannerInput = $("banner-input");
+const backgroundInput = $("background-input");
+const overlayInput = $("overlay-input");
+
+// =========================
+// REDES
+// =========================
+
+const youtubeInput = $("youtube-input");
+const instagramInput = $("instagram-input");
+const discordInput = $("discord-input");
+const spotifyInput = $("spotify-input");
+const tiktokInput = $("tiktok-input");
+const whatsappInput = $("whatsapp-input");
+const twitterInput = $("twitter-input");
+const facebookInput = $("facebook-input");
+
+// =========================
+// CARDS EXTRAS (4)
+// =========================
+
+const cards = [
+  { t: $("extra1-text"), i: $("extra1-img"), l: $("extra1-link") },
+  { t: $("extra2-text"), i: $("extra2-img"), l: $("extra2-link") },
+  { t: $("extra3-text"), i: $("extra3-img"), l: $("extra3-link") },
+  { t: $("extra4-text"), i: $("extra4-img"), l: $("extra4-link") }
+];
 
 // =========================
 // PREVIEW
@@ -65,116 +51,76 @@ document.getElementById("extra-card-link");
 
 function updatePreview() {
 
-  const previewCard =
-  document.getElementById(
-    "preview-card"
-  );
+  $("preview-name").innerText =
+    nameInput.value || "Nome";
 
-  // =========================
-  // TEMPLATE
-  // =========================
+  $("preview-bio").innerText =
+    bioInput.value || "Bio";
 
-  previewCard.classList.remove(
-    "minimal"
-  );
+  $("preview-avatar").src =
+    avatarInput.value || "";
 
-  if (
-    templateSelect.value ===
-    "minimal"
-  ) {
+  $("preview-banner").style.backgroundImage =
+    `url(${bannerInput.value || ""})`;
 
-    previewCard.classList.add(
-      "minimal"
-    );
-
-  }
-
-  // =========================
-  // TEXTO
-  // =========================
-
-  document.getElementById(
-    "preview-name"
-  ).innerText =
-  nameInput.value || "usuário";
-
-  document.getElementById(
-    "preview-bio"
-  ).innerText =
-  bioInput.value || "sua bio aqui...";
-
-  // =========================
-  // IMAGENS
-  // =========================
-
-  document.getElementById(
-    "preview-avatar"
-  ).src =
-  avatarInput.value || "";
-
-  document.getElementById(
-    "preview-banner"
-  ).style.backgroundImage =
-  `url(${bannerInput.value || ""})`;
-
-  // =========================
   // BALÃO
-  // =========================
+  const balao = $("preview-overlay");
 
-  document.getElementById(
-    "preview-overlay"
-  ).innerText =
-  overlayInput.value || "eu amo Deus";
-
-  // =========================
-  // FUNDO
-  // =========================
-
-  if (backgroundInput.value) {
-
-    document.body.style.backgroundImage =
-    `url(${backgroundInput.value})`;
-
-    document.body.style.backgroundSize =
-    "cover";
-
-    document.body.style.backgroundPosition =
-    "center";
-
-    document.body.style.backgroundRepeat =
-    "no-repeat";
-
-    document.body.style.backgroundAttachment =
-    "fixed";
-    
+  if (overlayInput.value && overlayInput.value.trim() !== "") {
+    balao.innerText = overlayInput.value;
+    balao.style.display = "block";
+  } else {
+    balao.style.display = "none";
   }
 
-  // =========================
-  // REDES
-  // =========================
+  // REDES PREVIEW
+  const socials = {
+    youtube: youtubeInput.value,
+    instagram: instagramInput.value,
+    discord: discordInput.value,
+    spotify: spotifyInput.value,
+    tiktok: tiktokInput.value,
+    whatsapp: whatsappInput.value,
+    twitter: twitterInput.value,
+    facebook: facebookInput.value
+  };
 
-  document.getElementById(
-    "youtube-link"
-  ).href =
-  youtubeInput.value;
+  Object.entries(socials).forEach(([key, value]) => {
+    const el = document.getElementById(key + "-link");
+    if (el) el.href = value || "#";
+  });
 
-  document.getElementById(
-    "instagram-link"
-  ).href =
-  instagramInput.value;
+  // CARDS PREVIEW
+  const container = $("extras-container");
+  container.innerHTML = "";
 
-  document.getElementById(
-    "discord-link"
-  ).href =
-  discordInput.value;
+  cards.forEach(c => {
 
-  document.getElementById(
-    "spotify-link"
-  ).href =
-  spotifyInput.value;
+    if (!c.t.value && !c.i.value && !c.l.value) return;
 
+    const card = document.createElement("a");
+    card.className = "extra-card";
+    card.href = c.l.value || "#";
+    card.target = "_blank";
+
+    card.innerHTML = `
+      <div class="extra-card-icon">
+        <img src="${c.i.value || ""}">
+      </div>
+      <span>${c.t.value || ""}</span>
+    `;
+
+    container.appendChild(card);
+  });
 }
 
+// =========================
+// LISTENERS LIVE
+// =========================
+
+document.querySelectorAll("input, textarea").forEach(el => {
+  el.addEventListener("input", updatePreview);
+});
 
 // =========================
 // CARREGAR PERFIL
@@ -182,198 +128,101 @@ function updatePreview() {
 
 async function loadDashboard() {
 
-  const {
-    data: { user }
-  } =
-  await supabaseClient.auth.getUser();
+  const { data: { user } } =
+    await supabaseClient.auth.getUser();
 
   if (!user) return;
 
-  const { data, error } =
-  await supabaseClient
-  .from("profiles")
-  .select("*")
-  .eq("id", user.id)
-  .single();
-
-  console.log("PROFILE:", data);
-  console.log("ERROR:", error);
+  const { data } = await supabaseClient
+    .from("profiles")
+    .select("*")
+    .eq("id", user.id)
+    .single();
 
   if (!data) return;
 
-  nameInput.value =
-  data.display_name || "";
+  nameInput.value = data.display_name || "";
+  bioInput.value = data.bio || "";
+  avatarInput.value = data.avatar_url || "";
+  bannerInput.value = data.banner_url || "";
+  backgroundInput.value = data.background_url || "";
+  overlayInput.value = data.balao || "";
 
-  bioInput.value =
-  data.bio || "";
+  youtubeInput.value = data.youtube_url || "";
+  instagramInput.value = data.instagram_url || "";
+  discordInput.value = data.discord_url || "";
+  spotifyInput.value = data.spotify_url || "";
+  tiktokInput.value = data.tiktok_url || "";
+  whatsappInput.value = data.whatsapp_url || "";
+  twitterInput.value = data.twitter_url || "";
+  facebookInput.value = data.facebook_url || "";
 
-  avatarInput.value =
-  data.avatar_url || "";
-
-  bannerInput.value =
-  data.banner_url || "";
-
-  backgroundInput.value =
-  data.background_url || "";
-
-  overlayInput.value =
-  data.balao || "";
-
-  youtubeInput.value =
-  data.youtube_url || "";
-
-  instagramInput.value =
-  data.instagram_url || "";
-
-  discordInput.value =
-  data.discord_url || "";
-
-  spotifyInput.value =
-  data.spotify_url || "";
-
-  tiktokInput.value =
-  data.tiktok_url || "";
-
-  whatsappInput.value =
-  data.whatsapp_url || "";
-
-  facebookInput.value =
-  data.facebook_url || "";
-
-  twitterInput.value =
-  data.twitter_url || "";
-
-  templateSelect.value =
-  data.template || "king"
+  cards.forEach((c, i) => {
+    c.t.value = data[`extra${i+1}_text`] || "";
+    c.i.value = data[`extra${i+1}_img`] || "";
+    c.l.value = data[`extra${i+1}_link`] || "";
+  });
 
   updatePreview();
-
 }
 
 loadDashboard();
 
-
 // =========================
-// SALVAR
+// SALVAR PERFIL
 // =========================
 
-const saveBtn =
-document.getElementById("save-btn");
+document.getElementById("save-btn").addEventListener("click", async () => {
 
-saveBtn.addEventListener("click", async () => {
-
-  const {
-    data: { user }
-  } =
-  await supabaseClient.auth.getUser();
+  const { data: { user } } =
+    await supabaseClient.auth.getUser();
 
   if (!user) {
-
     alert("Usuário não logado");
     return;
-
   }
 
-  const usernameFinal =
-  user.email
-  .split("@")[0]
-  .toLowerCase()
-  .trim();
+  const username =
+    user.email.split("@")[0].toLowerCase().trim();
 
-  console.log(
-    "USERNAME FINAL:",
-    usernameFinal
-  );
-
-  const { error } =
-
-  await supabaseClient
-  .from("profiles")
-  .upsert({
-
+  const payload = {
     id: user.id,
+    username,
 
-    username: usernameFinal,
+    display_name: nameInput.value,
+    bio: bioInput.value,
 
-    template:
-    templateSelect.value,
-    
-    display_name:
-    nameInput.value,
+    avatar_url: avatarInput.value,
+    banner_url: bannerInput.value,
+    background_url: backgroundInput.value,
+    balao: overlayInput.value,
 
-    bio:
-    bioInput.value,
+    youtube_url: youtubeInput.value,
+    instagram_url: instagramInput.value,
+    discord_url: discordInput.value,
+    spotify_url: spotifyInput.value,
+    tiktok_url: tiktokInput.value,
+    whatsapp_url: whatsappInput.value,
+    twitter_url: twitterInput.value,
+    facebook_url: facebookInput.value
+  };
 
-    extra_card_text:
-   extraCardTextInput.value,
-
-    extra_card_image:
-    extraCardImageInput.value,
-
-    extra_card_link:
-    extraCardLinkInput.value,
-
-    balao:
-    overlayInput.value,
-
-    avatar_url:
-    avatarInput.value,
-
-    banner_url:
-    bannerInput.value,
-
-    background_url:
-    backgroundInput.value,
-
-    youtube_url:
-    youtubeInput.value,
-
-    instagram_url:
-    instagramInput.value,
-
-    discord_url:
-    discordInput.value,
-
-    spotify_url:
-    spotifyInput.value,
-
-    tiktok_url:
-    tiktokInput.value,
-
-    whatsapp_url:
-    whatsappInput.value,
-
-    facebook_url:
-    facebookInput.value,
-
-    twitter_url:
-    twitterInput.value
-
+  cards.forEach((c, i) => {
+    payload[`extra${i+1}_text`] = c.t.value;
+    payload[`extra${i+1}_img`] = c.i.value;
+    payload[`extra${i+1}_link`] = c.l.value;
   });
 
+  const { error } = await supabaseClient
+    .from("profiles")
+    .upsert(payload);
+
   if (error) {
-
-    console.log(error);
-
     alert(error.message);
-
     return;
-
   }
 
-  const profileLink =
-  `${location.origin}/${usernameFinal}`;
+  alert("Perfil salvo com sucesso!");
 
-  console.log(
-    "PROFILE LINK:",
-    profileLink
-  );
-
-  alert(
-    `Perfil salvo!\n\n${profileLink}`
-  );
-
-  window.location.href =
-  profileLink;
-
+  window.location.href = `/${username}`;
 });
