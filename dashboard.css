@@ -342,3 +342,86 @@ MINIMAL
 
   display: none;
 }
+
+
+/* =======================
+MINIMAL VIDRO
+======================= */
+
+.cardking.minimal {
+
+  max-width: 420px;
+
+  background:
+    rgba(255,255,255,0.06);
+
+  backdrop-filter:
+    blur(22px);
+
+  -webkit-backdrop-filter:
+    blur(22px);
+
+  border:
+    1px solid rgba(255,255,255,0.1);
+
+  box-shadow:
+    0 0 40px rgba(0,0,0,0.4);
+
+  padding-top: 35px;
+}
+
+.cardking.minimal .topo {
+
+  display: none;
+}
+
+.cardking.minimal .perfilking {
+
+  position: static;
+
+  transform: none;
+
+  width: 110px;
+  height: 110px;
+
+  margin: 0 auto;
+
+  display: block;
+
+  border:
+    3px solid rgba(255,255,255,0.4);
+
+  box-shadow:
+    0 0 25px rgba(255,255,255,0.3);
+}
+
+.cardking.minimal .balao {
+
+  display: none;
+}
+
+.cardking.minimal .conteudoking {
+
+  padding: 25px;
+
+  text-align: center;
+}
+
+.cardking.minimal .conteudoking h2 {
+
+  font-size: 42px;
+
+  margin-top: 15px;
+}
+
+.cardking.minimal .socials {
+
+  justify-content: center;
+
+  margin-top: 25px;
+}
+
+.cardking.minimal .embking {
+
+  display: none;
+}
