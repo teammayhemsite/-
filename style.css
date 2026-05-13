@@ -13,7 +13,7 @@
   align-items: center;
 
   background:
-  url(https://i.pinimg.com/736x/f1/03/cb/f103cb89846f9bb7b3af7b3de2ed91b2.jpg)
+  url(https://i.pinimg.com/736x/6d/af/52/6daf523af03b74d469098e3f11f22a40.jpg)
   center/cover;
 
   overflow: hidden;
@@ -36,7 +36,7 @@
   box-shadow:
   0 0 40px rgba(0, 0, 0, 0.014);
 
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
 }
 
 .auth-card h1 {
@@ -66,7 +66,7 @@
 }
 
 .auth-card input::placeholder {
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .auth-card button {
