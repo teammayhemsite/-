@@ -39,6 +39,9 @@ $("background-input");
 const overlayInput =
 $("overlay-input");
 
+const templateInput =
+$("template-input");
+
 // =========================
 // REDES
 // =========================
@@ -104,6 +107,35 @@ const cards = [
 // =========================
 
 function updatePreview() {
+
+  // =========================
+  // TEMPLATE
+  // =========================
+
+  const previewCard =
+  document.querySelector(".cardking");
+
+  previewCard.classList.remove(
+    "cardking-preview",
+    "cardkingdois-preview"
+  );
+
+  if (
+    templateInput.value ===
+    "cardkingdois"
+  ) {
+
+    previewCard.classList.add(
+      "cardkingdois-preview"
+    );
+
+  } else {
+
+    previewCard.classList.add(
+      "cardking-preview"
+    );
+
+  }
 
   // =========================
   // TEXTO
@@ -279,7 +311,7 @@ function updatePreview() {
 // =========================
 
 document
-.querySelectorAll("input, textarea")
+.querySelectorAll("input, textarea, select")
 .forEach((el) => {
 
   el.addEventListener(
@@ -344,6 +376,13 @@ async function loadDashboard() {
 
   overlayInput.value =
   data.balao || "";
+
+  // =========================
+  // TEMPLATE
+  // =========================
+
+  templateInput.value =
+  data.template || "cardking";
 
   // =========================
   // REDES
@@ -454,6 +493,9 @@ document
 
       balao:
       overlayInput.value,
+
+      template:
+      templateInput.value,
 
       // REDES
 
