@@ -457,3 +457,46 @@ body {
 
   border: none;
 }
+
+
+/* Visual dois*/
+
+.cardkingdois-theme .cardking{
+
+  background:#0f0f0f;
+
+  border:
+    1px solid rgba(255,255,255,0.12);
+
+  box-shadow:
+    0 0 40px rgba(255,255,255,0.08);
+
+  max-width:520px;
+}
+
+.cardkingdois-theme .perfilking{
+
+  border-radius:25px;
+
+  box-shadow:
+    0 0 25px rgba(255,255,255,0.25);
+}
+
+.cardkingdois-theme .conteudoking{
+
+  text-align:center;
+}
+
+.cardkingdois-theme .socials{
+
+  justify-content:center;
+}
+
+.cardkingdois-theme .extra-card{
+
+  background:
+    rgba(255,255,255,0.02);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+}
