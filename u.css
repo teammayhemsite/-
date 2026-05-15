@@ -70,17 +70,19 @@ body {
 
   background:
     linear-gradient(145deg,
-      #fff8dc 0%,
-      #ffd700 20%,
-      #f0b00f 35%,
-      #ffd700 50%,
-      #fff2cc 65%,
-      #f5c21a 80%,
-      #fff8dc 100%);
+      #e5e9ee 0%,
+      #cfd6dc 20%,
+      #aeb6bf 40%,
+      #dfe5ea 60%,
+      #f8fafcab 80%,
+      #c7ced6 100%);
 
   color: black;
 
-  font-size: 10px;
+  box-shadow:
+    0 0 20px rgb(255 255 255);
+
+  font-size: 13px;
   font-weight: bold;
 
   z-index: 10;
