@@ -463,13 +463,13 @@ body {
 
 .cardkingdois-theme .cardking{
 
-  background:#0f0f0f;
+  background:#0f0f0f00;
 
   border:
-    1px solid rgba(255,255,255,0.12);
+    1px solid rgb(255 255 255 / 0%);
 
   box-shadow:
-    0 0 40px rgba(255,255,255,0.08);
+    0 0 40px rgb(255 255 255 / 59%);
 
   max-width:520px;
 }
