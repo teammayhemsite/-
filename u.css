@@ -480,6 +480,10 @@ body {
 
   box-shadow:
     0 0 25px rgba(255,255,255,0.25);
+
+  position: relative;
+  top: -10px;
+  left: 21vh;
 }
 
 .cardkingdois-theme .balao {
