@@ -70,10 +70,24 @@ async function loadProfile() {
   // TEMPLATE
   // =========================
 
-  if (data.template === "minimal") {
+  document.body.classList.remove(
+    "cardking-theme",
+    "cardkingdois-theme"
+  );
+
+  if (
+    data.template ===
+    "cardkingdois"
+  ) {
 
     document.body.classList.add(
-      "minimal-theme"
+      "cardkingdois-theme"
+    );
+
+  } else {
+
+    document.body.classList.add(
+      "cardking-theme"
     );
 
   }
@@ -228,7 +242,6 @@ async function loadProfile() {
   const conteudo =
   document.querySelector(".conteudoking");
 
-  // remove cards antigos
   document
   .querySelectorAll(".extra-card")
   .forEach(el => el.remove());
@@ -244,7 +257,6 @@ async function loadProfile() {
     const link =
     (data[`extra${i}_link`] || "").trim();
 
-    // não cria card vazio
     if (
       text === "" &&
       image === "" &&
@@ -265,7 +277,6 @@ async function loadProfile() {
     card.target =
     "_blank";
 
-    // imagem opcional
     let imageHTML = "";
 
     if (image !== "") {
