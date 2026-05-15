@@ -480,6 +480,16 @@ body {
 
   box-shadow:
     0 0 25px rgba(255,255,255,0.25);
+
+  position: relative;
+  top: -10px;
+  left: 185px;
+}
+
+.cardkingdois-theme .balao {
+ position: relative;
+  top: 100000px;
+  left: 100000px;
 }
 
 .cardkingdois-theme .conteudoking{
@@ -500,3 +510,4 @@ body {
   border:
     1px solid rgba(255,255,255,0.08);
 }
+
