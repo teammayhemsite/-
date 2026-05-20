@@ -507,3 +507,42 @@ body {
     1px solid rgba(255,255,255,0.08);
 }
 
+/* 
+---------------------
+MOBILE - CARDKINGDOIS 
+---------------------
+*/
+
+@media (max-width: 600px) {
+
+  .cardkingdois-theme .top-info {
+
+    justify-content: center;
+
+    padding: 0;
+
+    margin-top: -45px;
+  }
+
+  .cardkingdois-theme .perfilking {
+
+    width: 82px;
+    height: 82px;
+
+    position: relative;
+
+    left: 0;
+    top: 0;
+  }
+
+  .cardkingdois-theme .conteudoking {
+
+    padding-top: 15px;
+  }
+
+  .cardkingdois-theme .socials {
+
+    justify-content: center;
+  }
+
+}
