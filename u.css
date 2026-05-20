@@ -49,6 +49,8 @@ body {
     0 0 40px rgba(0, 0, 0, 0.5);
 
   padding-bottom: 25px;
+
+  color: var(--text-color, white);
 }
 
 /* BADGE */
