@@ -516,12 +516,13 @@ MOBILE - CARDKINGDOIS
 @media (max-width: 600px) {
 
   .cardkingdois-theme .top-info {
-
+   display: flex;
     justify-content: center;
-
-    padding: 0;
-
+    align-items: center;
+    flex-direction: column;
     margin-top: -45px;
+    padding: 0;
+    gap: 0;
   }
 
   .cardkingdois-theme .perfilking {
@@ -533,6 +534,9 @@ MOBILE - CARDKINGDOIS
 
     left: 0;
     top: 0;
+    margin: 0 auto;
+    display: block;
+    
   }
 
   .cardkingdois-theme .conteudoking {
