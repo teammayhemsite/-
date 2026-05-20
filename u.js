@@ -7,17 +7,17 @@ async function loadProfile() {
   // =========================
 
   const params =
-  new URLSearchParams(window.location.search);
+    new URLSearchParams(window.location.search);
 
   username =
-  params.get("user");
+    params.get("user");
 
   if (!username) {
 
     username =
-    window.location.pathname
-    .replace("/", "")
-    .trim();
+      window.location.pathname
+        .replace("/", "")
+        .trim();
 
   }
 
@@ -29,7 +29,7 @@ async function loadProfile() {
   ) {
 
     document.body.innerHTML =
-    "<h1>Usuário não encontrado</h1>";
+      "<h1>Usuário não encontrado</h1>";
 
     return;
 
@@ -41,11 +41,11 @@ async function loadProfile() {
 
   const { data, error } =
 
-  await supabaseClient
-  .from("profiles")
-  .select("*")
-  .eq("username", username)
-  .single();
+    await supabaseClient
+      .from("profiles")
+      .select("*")
+      .eq("username", username)
+      .single();
 
   console.log(data);
   console.log(error);
@@ -53,7 +53,7 @@ async function loadProfile() {
   if (error || !data) {
 
     document.body.innerHTML =
-    "<h1>Perfil não encontrado</h1>";
+      "<h1>Perfil não encontrado</h1>";
 
     return;
 
@@ -64,7 +64,7 @@ async function loadProfile() {
   // =========================
 
   document.title =
-  `@${data.username}`;
+    `@${data.username}`;
 
   // =========================
   // TEMPLATE
@@ -96,22 +96,29 @@ async function loadProfile() {
   // TEXTO
   // =========================
 
+  document
+    .querySelector(".cardking")
+    .style.setProperty(
+      "--text-color",
+      data.text_color || "white"
+    );
+
   document.getElementById(
     "username"
   ).innerText =
-  data.display_name || data.username;
+    data.display_name || data.username;
 
   document.getElementById(
     "bio"
   ).innerText =
-  data.bio || "";
+    data.bio || "";
 
   // =========================
   // BALÃO
   // =========================
 
   const balao =
-  document.getElementById("balao");
+    document.getElementById("balao");
 
   if (
     !data.balao ||
@@ -119,15 +126,15 @@ async function loadProfile() {
   ) {
 
     balao.style.display =
-    "none";
+      "none";
 
   } else {
 
     balao.style.display =
-    "block";
+      "block";
 
     balao.innerText =
-    data.balao;
+      data.balao;
 
   }
 
@@ -138,12 +145,12 @@ async function loadProfile() {
   document.getElementById(
     "avatar"
   ).src =
-  data.avatar_url || "";
+    data.avatar_url || "";
 
   document.getElementById(
     "banner"
   ).style.backgroundImage =
-  `url(${data.banner_url || ""})`;
+    `url(${data.banner_url || ""})`;
 
   // =========================
   // FUNDO
@@ -152,19 +159,19 @@ async function loadProfile() {
   if (data.background_url) {
 
     document.body.style.backgroundImage =
-    `url(${data.background_url})`;
+      `url(${data.background_url})`;
 
     document.body.style.backgroundSize =
-    "cover";
+      "cover";
 
     document.body.style.backgroundPosition =
-    "center";
+      "center";
 
     document.body.style.backgroundRepeat =
-    "no-repeat";
+      "no-repeat";
 
     document.body.style.backgroundAttachment =
-    "fixed";
+      "fixed";
 
   }
 
@@ -173,7 +180,7 @@ async function loadProfile() {
   // =========================
 
   const socials =
-  document.getElementById("socials");
+    document.getElementById("socials");
 
   socials.innerHTML = "";
 
@@ -240,22 +247,22 @@ async function loadProfile() {
   // =========================
 
   const conteudo =
-  document.querySelector(".conteudoking");
+    document.querySelector(".conteudoking");
 
   document
-  .querySelectorAll(".extra-card")
-  .forEach(el => el.remove());
+    .querySelectorAll(".extra-card")
+    .forEach(el => el.remove());
 
   for (let i = 1; i <= 4; i++) {
 
     const text =
-    (data[`extra${i}_text`] || "").trim();
+      (data[`extra${i}_text`] || "").trim();
 
     const image =
-    (data[`extra${i}_img`] || "").trim();
+      (data[`extra${i}_img`] || "").trim();
 
     const link =
-    (data[`extra${i}_link`] || "").trim();
+      (data[`extra${i}_link`] || "").trim();
 
     if (
       text === "" &&
@@ -266,16 +273,16 @@ async function loadProfile() {
     }
 
     const card =
-    document.createElement("a");
+      document.createElement("a");
 
     card.className =
-    "extra-card";
+      "extra-card";
 
     card.href =
-    link || "#";
+      link || "#";
 
     card.target =
-    "_blank";
+      "_blank";
 
     let imageHTML = "";
 
