@@ -475,11 +475,15 @@ body {
 }
 
 .cardkingdois-theme .perfilking{
+  width: 82px;
+    height: 82px;
 
-  border-radius:25px;
+    position: relative;
 
-  box-shadow:
-    0 0 25px rgba(255,255,255,0.25);  
+    left: 0;
+    top: 0;
+    margin: 0 auto;
+    display: block;
 }
 
 .cardkingdois-theme .balao {
@@ -506,6 +510,15 @@ body {
   border:
     1px solid rgba(255,255,255,0.08);
 }
+  .cardkingdois-theme .top-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: -45px;
+    padding: 0;
+    gap: 0;
+  }
 
 /* 
 ---------------------
