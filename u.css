@@ -315,9 +315,7 @@ body {
   border:
     1px solid rgba(255,255,255,0.06);
 
-  display: flex;
-
-  color: var(--text-color, white);
+  display: flex;  
 
   align-items: center;
 
