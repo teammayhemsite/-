@@ -317,6 +317,8 @@ body {
 
   display: flex;
 
+  color: var(--text-color, white);
+
   align-items: center;
 
   gap: 22px;
