@@ -115,6 +115,13 @@ const cards = [
 function updatePreview() {
 
   // =========================
+  // TEMPLATE
+  // =========================
+
+  const previewCard =
+    document.querySelector(".cardking");
+
+  // =========================
   // ESTILO DA BOX
   // =========================
 
@@ -137,15 +144,8 @@ function updatePreview() {
     previewCard.style.webkitBackdropFilter =
       "blur(18px)";
 
-  }
-
-  // =========================
-  // TEMPLATE
-  // =========================
-
-  const previewCard =
-    document.querySelector(".cardking");
-
+  }  
+  
   previewCard.style.setProperty(
     "--text-color",
     textColorInput.value
