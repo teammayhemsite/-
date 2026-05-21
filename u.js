@@ -92,6 +92,35 @@ async function loadProfile() {
 
   }
 
+  if (
+    data.box_style ===
+    "transparent"
+  ) {
+
+    document
+      .querySelector(".cardking")
+      .style.backdropFilter =
+      "blur(1px)";
+
+    document
+      .querySelector(".cardking")
+      .style.webkitBackdropFilter =
+      "blur(1px)";
+
+  } else {
+
+    document
+      .querySelector(".cardking")
+      .style.backdropFilter =
+      "blur(18px)";
+
+    document
+      .querySelector(".cardking")
+      .style.webkitBackdropFilter =
+      "blur(18px)";
+
+  }
+
   // =========================
   // TEXTO
   // =========================
