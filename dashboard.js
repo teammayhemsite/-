@@ -45,6 +45,9 @@ const templateInput =
 const textColorInput =
   $("text-color-input");
 
+const boxStyleInput =
+  $("box-style-input");
+
 // =========================
 // REDES
 // =========================
@@ -110,6 +113,31 @@ const cards = [
 // =========================
 
 function updatePreview() {
+
+  // =========================
+  // ESTILO DA BOX
+  // =========================
+
+  if (
+    boxStyleInput.value ===
+    "transparent"
+  ) {
+
+    previewCard.style.backdropFilter =
+      "blur(1px)";
+
+    previewCard.style.webkitBackdropFilter =
+      "blur(1px)";
+
+  } else {
+
+    previewCard.style.backdropFilter =
+      "blur(18px)";
+
+    previewCard.style.webkitBackdropFilter =
+      "blur(18px)";
+
+  }
 
   // =========================
   // TEMPLATE
@@ -393,6 +421,9 @@ async function loadDashboard() {
   templateInput.value =
     data.template || "cardking";
 
+  boxStyleInput.value =
+    data.box_style || "blur";
+
   // =========================
   // REDES
   // =========================
@@ -508,6 +539,9 @@ document
 
         template:
           templateInput.value,
+
+        box_style:
+          boxStyleInput.value,
 
         // REDES
 
