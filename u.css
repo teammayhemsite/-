@@ -369,8 +369,7 @@ body {
 
   font-size: 17px;
 
-  color:
-    rgba(255,255,255,0.92);
+  color:  var(--text-color, white);
 
   line-height: 1.5;
 
