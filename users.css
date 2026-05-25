@@ -1,0 +1,70 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:sans-serif;
+}
+
+body{
+  background:#0f0f0f;
+  color:white;
+  padding:30px;
+}
+
+h1{
+  margin-bottom:25px;
+}
+
+#users-container{
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+  gap:20px;
+}
+
+.user-card{
+  background:
+    rgba(255,255,255,0.05);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  border-radius:22px;
+
+  padding:20px;
+
+  text-decoration:none;
+
+  color:white;
+
+  transition:0.25s;
+}
+
+.user-card:hover{
+  transform:translateY(-3px);
+
+  background:
+    rgba(255,255,255,0.08);
+}
+
+.user-card img{
+  width:70px;
+  height:70px;
+
+  border-radius:50%;
+
+  object-fit:cover;
+
+  margin-bottom:15px;
+}
+
+.user-card h2{
+  margin-bottom:8px;
+}
+
+.user-card p{
+  opacity:0.8;
+  line-height:1.5;
+}
