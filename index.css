@@ -1,0 +1,645 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:sans-serif;
+}
+
+body{
+
+  min-height:100vh;
+
+  color:white;
+
+  background:
+
+    linear-gradient(
+      rgba(0,0,0,0.7),
+      rgba(0,0,0,0.8)
+    ),
+
+    url(https://i.pinimg.com/736x/7c/4a/72/7c4a72d36620fb374836ed28d5969794.jpg)
+
+    center/cover no-repeat fixed;
+
+}
+
+/* =========================
+HERO
+========================= */
+
+.hero{
+
+  min-height:100vh;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  gap:80px;
+
+  padding:40px;
+
+  flex-wrap:wrap;
+}
+
+/* =========================
+TEXTO
+========================= */
+
+.hero-left{
+
+  max-width:520px;
+
+  animation:
+    fadeUp 0.7s ease;
+}
+
+.hero-left h1{
+
+  font-size:
+    clamp(40px,7vw,70px);
+
+  line-height:1.1;
+
+  margin-bottom:20px;
+}
+
+.hero-left p{
+
+  font-size:18px;
+
+  line-height:1.7;
+
+  opacity:0.85;
+
+  margin-bottom:30px;
+}
+
+/* =========================
+BOTÕES
+========================= */
+
+.buttons{
+
+  display:flex;
+
+  gap:15px;
+
+  flex-wrap:wrap;
+}
+
+.buttons a{
+
+  padding:
+    15px 24px;
+
+  border-radius:18px;
+
+  text-decoration:none;
+
+  color:rgb(0, 0, 0);
+
+  font-weight:bold;
+
+  transition:0.25s;
+}
+
+.btn-primary{
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #cfcfcf
+    );
+
+  color:black;
+}
+
+.btn-secondary{
+
+  background:
+    rgba(255,255,255,0.08);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+}
+
+.buttons a:hover{
+
+  transform:
+    translateY(-3px);
+}
+
+/* =========================
+RECENTES
+========================= */
+
+.recent-section{
+
+  padding:40px;
+}
+
+/* =========================
+TOPO
+========================= */
+
+.section-top{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:20px;
+
+  align-items:center;
+
+  flex-wrap:wrap;
+
+  margin-bottom:30px;
+}
+
+.section-top h2{
+
+  font-size:35px;
+}
+
+.section-top input{
+
+  width:280px;
+
+  padding:15px;
+
+  border:none;
+  outline:none;
+
+  border-radius:16px;
+
+  background:
+    rgba(255,255,255,0.06);
+
+  color:white;
+}
+
+/* =========================
+USUÁRIOS
+========================= */
+
+#recent-users{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+  gap:22px;
+}
+
+.user-box{
+
+  background:
+    rgba(255,255,255,0.05);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  border-radius:24px;
+
+  padding:20px;
+
+  text-decoration:none;
+
+  color:white;
+
+  transition:0.25s;
+
+  animation:
+    fadeUp 0.7s ease;
+}
+
+.user-box:hover{
+
+  transform:
+    translateY(-4px);
+
+  background:
+    rgba(255,255,255,0.08);
+}
+
+.user-box img{
+
+  width:75px;
+  height:75px;
+
+  border-radius:50%;
+
+  object-fit:cover;
+
+  margin-bottom:15px;
+}
+
+.user-box h3{
+
+  margin-bottom:5px;
+
+  font-size:22px;
+}
+
+.user-box span{
+
+  opacity:0.6;
+
+  display:block;
+
+  margin-bottom:12px;
+}
+
+.user-box p{
+
+  line-height:1.6;
+
+  opacity:0.85;
+}
+
+/* =========================
+ANIMAÇÃO
+========================= */
+
+@keyframes fadeUp{
+
+  from{
+
+    opacity:0;
+
+    transform:
+      translateY(25px);
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:
+      translateY(0);
+  }
+
+}
+
+/* =========================
+RESPONSIVO
+========================= */
+
+@media(max-width:700px){
+
+  .hero{
+    padding:25px;
+  }
+
+  .recent-section{
+    padding:25px;
+  }
+
+  .hero-left h1{
+
+    font-size:48px;
+  }
+
+  .section-top h2{
+
+    font-size:28px;
+  }
+
+  .section-top input{
+
+    width:100%;
+  }
+
+  .demo-card{
+
+    width:100%;
+    max-width:400px;
+  }
+
+}
+
+/* =========================
+PREVIEW REAL
+========================= */
+
+.preview-card{
+
+  width: 100%;
+  max-width: 550px;
+
+  overflow:hidden;
+
+  border-radius:30px;
+
+  background:
+    rgba(255,255,255,0.05);
+
+  backdrop-filter:blur(18px);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+    0 0 40px rgba(0,0,0,0.3);
+
+  animation:
+    fadeUp 0.7s ease;
+}
+
+/* =========================
+BANNER
+========================= */
+
+.preview-banner{
+
+  width:100%;
+  height:150px;
+
+  background-size:cover;
+  background-position:center;
+}
+
+/* =========================
+TOPO
+========================= */
+
+.preview-top{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:15px;
+
+  padding:
+    0 25px;
+
+  margin-top:-45px;
+
+  position:relative;
+
+  z-index:5;
+}
+
+/* =========================
+AVATAR
+========================= */
+
+.preview-avatar{
+
+  width:95px;
+  height:95px;
+
+  border-radius:50%;
+
+  object-fit:cover;
+
+  border:
+    4px solid rgba(255,255,255,0.12);
+
+  background:#111;
+
+  flex-shrink:0;
+}
+
+/* =========================
+BALÃO
+========================= */
+
+.preview-balao{
+
+  position:relative;
+
+  top:25px;
+
+  background:#191919;
+
+  padding:
+    11px 16px;
+
+  border-radius:20px;
+
+  font-size:14px;
+
+  max-width:230px;
+
+  word-break:break-word;
+}
+
+.preview-balao::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:10px;
+  height:10px;
+
+  border-radius:50%;
+
+  background:#191919;
+
+  top:-15px;
+  left:5px;
+}
+
+.preview-balao::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:22px;
+  height:14px;
+
+  border-radius:50%;
+
+  background:#191919;
+
+  top:-5px;
+  left:12px;
+}
+
+/* =========================
+CONTEÚDO
+========================= */
+
+.preview-content{
+
+  padding:
+    15px 25px 25px;
+}
+
+.preview-content h2{
+
+  font-size:38px;
+
+  margin-bottom:12px;
+}
+
+.preview-content p{
+
+  line-height:1.6;
+
+  opacity:0.9;
+}
+
+/* =========================
+SOCIALS
+========================= */
+
+.preview-socials{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:15px;
+
+  margin-top:25px;
+}
+
+.preview-socials a{
+
+  width:48px;
+  height:48px;
+
+  border-radius:14px;
+
+  display:flex;
+
+  justify-content:center;
+  align-items:center;
+
+  background:
+    rgba(255,255,255,0.06);
+
+  transition:0.25s;
+}
+
+.preview-socials a:hover{
+
+  transform:
+    translateY(-2px);
+
+  background:
+    rgba(255,255,255,0.12);
+}
+
+.preview-socials img{
+
+  width:24px;
+  height:24px;
+
+  object-fit:contain;
+}
+
+/* =========================
+CARD EXTRA
+========================= */
+
+.preview-extra{
+
+  width:100%;
+
+  margin-top:25px;
+
+  padding:14px;
+
+  border-radius:22px;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:15px;
+
+  text-decoration:none;
+
+  color:white;
+
+  background:
+    rgba(255,255,255,0.04);
+
+  border:
+    1px solid rgba(255,255,255,0.06);
+
+  transition:0.25s;
+}
+
+.preview-extra:hover{
+
+  transform:
+    translateY(-2px);
+
+  background:
+    rgba(255,255,255,0.08);
+}
+
+/* =========================
+ICON
+========================= */
+
+.preview-extra-icon{
+
+  width:60px;
+  height:60px;
+
+  border-radius:18px;
+
+  overflow:hidden;
+
+  flex-shrink:0;
+}
+
+.preview-extra-icon img{
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+}
+
+.preview-extra span{
+
+  font-size:16px;
+
+  line-height:1.5;
+}
+
+/* =========================
+RESPONSIVO
+========================= */
+
+@media(max-width:700px){
+
+  .preview-content h2{
+
+    font-size:30px;
+  }
+
+  .preview-banner{
+
+    height:120px;
+  }
+
+  .preview-avatar{
+
+    width:82px;
+    height:82px;
+  }
+
+  .preview-balao{
+
+    font-size:13px;
+
+    max-width:180px;
+  }
+
+}
