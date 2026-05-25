@@ -370,7 +370,7 @@ body {
   font-size: 17px;
 
   color:
-    color: var(--text-color, white);
+    rgba(255,255,255,0.92);
 
   line-height: 1.5;
 
