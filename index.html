@@ -1,111 +1,142 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-   <link rel="icon" href="https://cdn.discordapp.com/emojis/1380340818224877710.webp?size=96">
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>teammayhem</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+  <link rel="icon" href="https://cdn.discordapp.com/emojis/1380340818224877710.webp?size=96">
 
-    body {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;      
-      background: url(https://i.pinimg.com/736x/7c/4a/72/7c4a72d36620fb374836ed28d5969794.jpg) center/cover no-repeat;
-      color: #f1f5f9;
-      text-align: center;
-      padding: 20px;
-    }
+  <link rel="stylesheet" href="index.css">
 
-    .container {
-      max-width: 500px;
-      width: 100%;
-    }
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    h1 {
-      font-size: 1.6rem;
-      margin-bottom: 15px;
-      font-weight: 600;
-    }
+  <script src="supabase.js"></script>
 
-    p {
-      font-size: 1rem;
-      line-height: 1.5;
-      color: #ffffff;
-      margin-bottom: 30px;
-    }
-
-    .buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    a {
-      display: block;
-      padding: 14px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-
-    .btn-login {
-      background: transparent;
-      border: 2px solid #303030;
-      color: #f50000;
-    }
-
-    .btn-login:hover {
-      background: #797676;
-      color: #666262;
-    }
-
-    .btn-cadastro {
-      background: #af0c0c;
-      color: #252525;
-      border: 2px solid #000000;
-    }
-
-    .btn-cadastro:hover {
-      opacity: 0.85;
-    }
-
-    /* melhora no celular */
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.3rem;
-      }
-
-      p {
-        font-size: 0.95rem;
-      }
-    }
-  </style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Olá.</h1>
 
-    <p>
-      Este site é uma página que reúne, em um único endereço, todas as suas informações importantes, como redes sociais, contatos, links e biografia. Isso facilita o acesso ao seu conteúdo de forma prática, organizada e profissional.
-      Além de centralizar suas informações, a página proporciona uma apresentação mais limpa, moderna e visualmente agradável, fortalecendo sua presença digital e facilitando a divulgação do seu perfil na internet.
-      AINDA em fase de desenvolvimento (Não use informações verdadeiras. Ex: email, senha).       
-    </p>
+  <!-- HERO -->
 
-    <div class="buttons">
-      <a href="login.html" class="btn-login">Fazer Login</a>
-      <a href="cadastro.html" class="btn-cadastro">Criar Conta</a>
+  <section class="hero">
+
+    <!-- TEXTO -->
+
+    <div class="hero-left">
+
+      <h1>
+        Crie sua identidade digital
+      </h1>
+
+      <p>
+        Todos os seus links,
+        redes sociais e informações
+        em uma única página.
+      </p>
+
+      <div class="buttons">
+
+        <a href="cadastro.html" class="btn-primary">
+          Criar Conta
+        </a>
+
+        
+        <a href="login.html" class="btn-secondary" style="color: white;">
+          Login
+        </a>
+
+        <a href="users.html" class="btn-secondary" style="color: white;">
+          Explorar Usuários
+        </a>
+
+      </div>
+
     </div>
-  </div>
+
+    <!-- PREVIEW -->
+
+    <div class="preview-card">
+
+      <!-- BANNER -->
+
+      <div class="preview-banner" style="
+      background-image:
+      url('https://i.pinimg.com/1200x/d8/c6/4b/d8c64bff57acfb48572939240f478099.jpg');
+    "></div>
+
+      <!-- FOTO + BALÃO -->
+
+      <div class="preview-top">
+
+        <img class="preview-avatar" src="https://i.pinimg.com/736x/ed/60/6b/ed606ba7199a2b8c9c9b50dacfb1bbcb.jpg">
+
+        <div class="preview-balao">
+          Olá visitante.
+        </div>
+
+      </div>
+
+      <!-- CONTEÚDO -->
+
+      <div class="preview-content">
+
+        <h2>
+          mayhem
+        </h2>
+
+        <p>
+          editor • designer • gamer
+        </p>
+
+        <!-- REDES -->
+
+        <div class="preview-socials">
+
+          <a href="#">
+            <img src="https://www.riqueza.life/images/socials/instagram.png">
+          </a>
+
+          <a href="#">
+            <img src="https://www.riqueza.life/images/socials/discord.png">
+          </a>
+
+          <a href="#">
+            <img src="https://www.riqueza.life/images/socials/youtube.png">
+          </a>
+
+          <a href="#">
+            <img src="https://www.riqueza.life/images/socials/spotify.png">
+          </a>
+
+        </div>
+
+        <!-- CARD EXTRA -->
+
+        <a href="https://discord.com/invite/utdzwnmBCn" class="preview-extra">
+
+          <div class="preview-extra-icon">
+
+            <img src="https://i.pinimg.com/736x/ff/a1/e7/ffa1e733a82e5ab37794e7011eaab90b.jpg">
+
+          </div>
+
+          <span>
+            Meu servidor no Discord
+          </span>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
 </body>
+
 </html>
