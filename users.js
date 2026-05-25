@@ -11,7 +11,7 @@ async function loadUsers() {
       .from("profiles")
       .select("*")
       .order("created_at", {
-        ascending: false
+        ascending: true
       });
 
   console.log(data);
