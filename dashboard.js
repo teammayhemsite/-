@@ -150,27 +150,38 @@ function updatePreview() {
     "--text-color",
     textColorInput.value
   );
-  previewCard.classList.remove(
-    "cardking-preview",
-    "cardkingdois-preview"
+
+  document.body.classList.remove(
+  "cardking-theme",
+  "cardkingdois-theme",
+  "template3-theme"
+);
+
+if (
+  templateInput.value ===
+  "cardkingdois"
+) {
+
+  document.body.classList.add(
+    "cardkingdois-theme"
   );
 
-  if (
-    templateInput.value ===
-    "cardkingdois"
-  ) {
+} else if (
+  templateInput.value ===
+  "template3"
+) {
 
-    previewCard.classList.add(
-      "cardkingdois-preview"
-    );
+  document.body.classList.add(
+    "template3-theme"
+  );
 
-  } else {
+} else {
 
-    previewCard.classList.add(
-      "cardking-preview"
-    );
+  document.body.classList.add(
+    "cardking-theme"
+  );
 
-  }
+}
 
   // =========================
   // TEXTO
