@@ -259,49 +259,49 @@ if (
   addSocial(
     data.youtube_url,
     `<img src="https://www.riqueza.life/images/socials/youtube.png">`,
-    "Youtube", 
+    " Youtube", 
   );
 
   addSocial(
     data.instagram_url,
     `<img src="https://www.riqueza.life/images/socials/instagram.png">`,
-    "Instagram",     
+    " Instagram",     
   );
 
   addSocial(
   data.discord_url,
   `<img src="https://www.riqueza.life/images/socials/discord.png">`,
-  "Discord",  
+  " Discord",  
 );
 
   addSocial(
     data.spotify_url,
     `<img src="https://www.riqueza.life/images/socials/spotify.png">`,
-    "Spotify", 
+    " Spotify", 
   );
 
   addSocial(
     data.tiktok_url,
     `<img src="https://www.riqueza.life/images/socials/tiktok.png">`,
-    "Tiktok", 
+    " Tiktok", 
   );
 
   addSocial(
     data.whatsapp_url,
     `<img src="https://www.riqueza.life/images/socials/whatsapp.png">`,
-    "Whatsapp", 
+    " Whatsapp", 
   );
 
   addSocial(
     data.facebook_url,
     `<img src="https://www.riqueza.life/images/socials/twitch.png">`,
-    "Twitch", 
+    " Twitch", 
   );
 
   addSocial(
     data.twitter_url,
     `<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg">`,
-    "Twiter", 
+    " Twiter", 
   );
 
   // =========================
