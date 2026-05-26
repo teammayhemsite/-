@@ -225,22 +225,36 @@ if (
   socials.innerHTML = "";
 
   function addSocial(
-    url,
-    iconHTML
-  ) {
+  url,
+  iconHTML,
+  title,
+  user
+) {
 
-    if (
-      !url ||
-      url.trim() === ""
-    ) return;
+  if (
+    !url ||
+    url.trim() === ""
+  ) return;
 
-    socials.innerHTML += `
-      <a href="${url}" target="_blank">
-        ${iconHTML}
-      </a>
-    `;
+  socials.innerHTML += `
 
-  }
+    <a href="${url}" target="_blank">
+
+      ${iconHTML}
+
+      <div class="social-text">
+
+        <strong>${title}</strong>
+
+        <span>${user || ""}</span>
+
+      </div>
+
+    </a>
+
+  `;
+
+}
 
   addSocial(
     data.youtube_url,
