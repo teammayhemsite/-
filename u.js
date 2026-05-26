@@ -171,10 +171,11 @@ async function loadProfile() {
   // IMAGENS
   // =========================
 
-  document.getElementById(
-    "avatar"
-  ).src =
-    data.avatar_url || "";
+ document.getElementById(
+  "avatar"
+).src =
+  data.avatar_url ||
+  "https://i.pinimg.com/736x/bd/c7/81/bdc781b471ebd825a6ab5a40e36e0f8e.jpg";
 
   document.getElementById(
     "banner"
