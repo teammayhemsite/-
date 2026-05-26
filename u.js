@@ -258,42 +258,50 @@ if (
 
   addSocial(
     data.youtube_url,
-    `<img src="https://www.riqueza.life/images/socials/youtube.png">`
+    `<img src="https://www.riqueza.life/images/socials/youtube.png">`,
+    "Youtube", 
   );
 
   addSocial(
     data.instagram_url,
-    `<img src="https://www.riqueza.life/images/socials/instagram.png">`
+    `<img src="https://www.riqueza.life/images/socials/instagram.png">`,
+    "Instagram",     
   );
 
   addSocial(
-    data.discord_url,
-    `<img src="https://www.riqueza.life/images/socials/discord.png">`
-  );
+  data.discord_url,
+  `<img src="https://www.riqueza.life/images/socials/discord.png">`,
+  "Discord",  
+);
 
   addSocial(
     data.spotify_url,
-    `<img src="https://www.riqueza.life/images/socials/spotify.png">`
+    `<img src="https://www.riqueza.life/images/socials/spotify.png">`,
+    "Spotify", 
   );
 
   addSocial(
     data.tiktok_url,
-    `<img src="https://www.riqueza.life/images/socials/tiktok.png">`
+    `<img src="https://www.riqueza.life/images/socials/tiktok.png">`,
+    "Tiktok", 
   );
 
   addSocial(
     data.whatsapp_url,
-    `<img src="https://www.riqueza.life/images/socials/whatsapp.png">`
+    `<img src="https://www.riqueza.life/images/socials/whatsapp.png">`,
+    "Whatsapp", 
   );
 
   addSocial(
     data.facebook_url,
-    `<img src="https://www.riqueza.life/images/socials/twitch.png">`
+    `<img src="https://www.riqueza.life/images/socials/twitch.png">`,
+    "Twitch", 
   );
 
   addSocial(
     data.twitter_url,
-    `<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg">`
+    `<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg">`,
+    "Twiter", 
   );
 
   // =========================
