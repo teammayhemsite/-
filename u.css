@@ -667,6 +667,7 @@ TEMPLATE 3
   margin-top: 0;
 
   min-height: 90px;
+  width: 204%;
 }
 
 @media(max-width:700px) {
@@ -680,4 +681,11 @@ TEMPLATE 3
 
     grid-template-columns: 1fr;
   }
+  .template3-theme .extra-card {
+
+  margin-top: 0;
+
+  min-height: 90px;
+  width: 100%;
+}
 }
