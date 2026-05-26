@@ -1,153 +1,211 @@
-const $ = (id) =>
-  document.getElementById(id);
+// =========================
+// TEMPLATE 3
+// =========================
 
-/* inputs */
+// dashboard.js
 
-const nameInput =
-  $("name-input");
+function updatePreview() {
 
-const bioInput =
-  $("bio-input");
+  const previewArea =
+    document.querySelector(".preview-area");
 
-const avatarInput =
-  $("avatar-input");
+  const previewCard =
+    document.querySelector(".cardking");
 
-const bannerInput =
-  $("banner-input");
+  // =========================
+  // REMOVE TODOS OS TEMAS
+  // =========================
 
-const backgroundInput =
-  $("background-input");
+  previewArea.classList.remove(
+    "cardking-preview",
+    "cardkingdois-preview",
+    "cardkingtres-preview"
+  );
 
-const discordInput =
-  $("discord-input");
+  // =========================
+  // TEMPLATE
+  // =========================
 
-const instagramInput =
-  $("instagram-input");
+  if (
+    templateInput.value ===
+    "cardkingdois"
+  ) {
 
-const spotifyInput =
-  $("spotify-input");
+    previewArea.classList.add(
+      "cardkingdois-preview"
+    );
 
-const tiktokInput =
-  $("tiktok-input");
+  }
 
-const twitterInput =
-  $("twitter-input");
+  else if (
+    templateInput.value ===
+    "cardkingtres"
+  ) {
 
-const youtubeInput =
-  $("youtube-input");
+    previewArea.classList.add(
+      "cardkingtres-preview"
+    );
 
-/* preview */
+  }
 
-function updatePreview(){
+  else {
+
+    previewArea.classList.add(
+      "cardking-preview"
+    );
+
+  }
+
+  // =========================
+  // BOX STYLE
+  // =========================
+
+  if (
+    boxStyleInput.value ===
+    "transparent"
+  ) {
+
+    previewCard.style.backdropFilter =
+      "blur(1px)";
+
+    previewCard.style.webkitBackdropFilter =
+      "blur(1px)";
+
+  } else {
+
+    previewCard.style.backdropFilter =
+      "blur(18px)";
+
+    previewCard.style.webkitBackdropFilter =
+      "blur(18px)";
+
+  }
+
+  // =========================
+  // TEXT COLOR
+  // =========================
+
+  previewCard.style.setProperty(
+    "--text-color",
+    textColorInput.value
+  );
+
+  // =========================
+  // TEXTO
+  // =========================
 
   $("preview-name").innerText =
-    nameInput.value || "usuário";
+    nameInput.value || "Nome";
 
   $("preview-bio").innerText =
-    bioInput.value || "bio";
+    bioInput.value || "Bio";
+
+  // =========================
+  // IMAGENS
+  // =========================
 
   $("preview-avatar").src =
-
-    avatarInput.value ||
-
-    "https://i.pinimg.com/736x/bd/c7/81/bdc781b471ebd825a6ab5a40e36e0f8e.jpg";
+    avatarInput.value || "";
 
   $("preview-banner").style.backgroundImage =
-
     `url(${bannerInput.value || ""})`;
 
-  if(backgroundInput.value){
+  // =========================
+  // BALÃO
+  // =========================
+
+  const balao =
+    $("preview-overlay");
+
+  if (
+    overlayInput.value &&
+    overlayInput.value.trim() !== ""
+  ) {
+
+    balao.innerText =
+      overlayInput.value;
+
+    balao.style.display =
+      "block";
+
+  } else {
+
+    balao.style.display =
+      "none";
+
+  }
+
+  // =========================
+  // FUNDO
+  // =========================
+
+  if (backgroundInput.value) {
 
     document.body.style.backgroundImage =
-
       `url(${backgroundInput.value})`;
 
+    document.body.style.backgroundSize =
+      "cover";
+
+    document.body.style.backgroundPosition =
+      "center";
+
+    document.body.style.backgroundRepeat =
+      "no-repeat";
+
+    document.body.style.backgroundAttachment =
+      "fixed";
+
   }
 
-  const socials =
-    $("socials");
+  // =========================
+  // CARDS
+  // =========================
 
-  socials.innerHTML = "";
+  const container =
+    $("extras-container");
 
-  function addSocial(
-    url,
-    icon,
-    name
-  ){
+  container.innerHTML = "";
 
-    if(!url) return;
+  cards.forEach((c) => {
 
-    socials.innerHTML += `
+    if (
+      !c.t.value &&
+      !c.i.value &&
+      !c.l.value
+    ) return;
 
-      <a href="${url}" target="_blank">
+    const card =
+      document.createElement("a");
 
-        <img src="${icon}">
+    card.className =
+      "extra-card";
 
-        <div class="social-text">
+    card.href =
+      c.l.value || "#";
 
-          <div class="social-name">
-            ${name}
-          </div>
+    card.target =
+      "_blank";
 
-          <div class="social-user">
-            ${nameInput.value || "usuário"}
-          </div>
+    card.innerHTML = `
+      <div class="extra-card-icon">
 
-        </div>
+        <img
+          src="${
+            c.i.value ||
+            "https://via.placeholder.com/55"
+          }"
+        >
 
-      </a>
+      </div>
 
+      <span>
+        ${c.t.value || ""}
+      </span>
     `;
 
-  }
-
-  addSocial(
-    discordInput.value,
-    "https://www.riqueza.life/images/socials/discord.png",
-    "Discord"
-  );
-
-  addSocial(
-    instagramInput.value,
-    "https://www.riqueza.life/images/socials/instagram.png",
-    "Instagram"
-  );
-
-  addSocial(
-    spotifyInput.value,
-    "https://www.riqueza.life/images/socials/spotify.png",
-    "Spotify"
-  );
-
-  addSocial(
-    tiktokInput.value,
-    "https://www.riqueza.life/images/socials/tiktok.png",
-    "TikTok"
-  );
-
-  addSocial(
-    twitterInput.value,
-    "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg",
-    "Twitter/X"
-  );
-
-  addSocial(
-    youtubeInput.value,
-    "https://www.riqueza.life/images/socials/youtube.png",
-    "YouTube"
-  );
-
-}
-
-document
-  .querySelectorAll("input, textarea")
-  .forEach(el => {
-
-    el.addEventListener(
-      "input",
-      updatePreview
-    );
+    container.appendChild(card);
 
   });
 
-updatePreview();
+}
