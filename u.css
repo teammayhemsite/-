@@ -978,14 +978,7 @@ SOCIAL BOX
 NÃO AFETA OUTROS TEMPLATES
 ======================== */
 
-.social-box {
-
-  display: contents;
-} 
-
 .template3-theme .social-box {
-
-  display: block;
 
   width: calc(100% - 76px);
 
