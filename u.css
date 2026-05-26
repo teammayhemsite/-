@@ -840,7 +840,7 @@ EXTRA CARDS
 
 .template3-theme .extra-card {
 
-  margin-top: 18px;
+  margin-top: 0;
 
   background:
     rgba(255,255,255,0.03);
@@ -950,4 +950,25 @@ MOBILE
   color: rgba(255,255,255,0.45);
 
   font-weight: 600;
+}
+
+.template3-theme #extras-container {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 16px;
+
+  margin-top: 16px;
+}
+
+@media(max-width: 700px) {
+
+  .template3-theme #extras-container {
+
+    grid-template-columns: 1fr;
+  }
+
 }
