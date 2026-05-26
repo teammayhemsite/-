@@ -24,7 +24,7 @@
         <button class="toggle">Template</button>
 
         <div class="content hidden">
-             
+
           <select id="box-style-input">
 
             <option value="blur">
@@ -47,9 +47,9 @@
               template 2
             </option>
 
-             <option value="template3">
+            <option value="template3">
               template 3
-             </option>
+            </option>
 
           </select>
 
@@ -68,14 +68,27 @@
           <label>Bio</label>
           <textarea id="bio-input"></textarea>
 
-          <label>Avatar</label>          
-          <input type="file" id="avatar-file" accept="image/*">
+          <div class="upload-box" onclick="document.getElementById('avatar-file').click()">            
+            <p>Escolher foto de perfil</p>
+            <span>PNG, JPG até 5MB</span>
+            <input type="file" id="avatar-file" class="file-input" accept="image/*">
+          </div>
 
-          <label>Banner</label>
-          <input type="file" id="banner-file" accept="image/*">
+          <br>
 
-          <label>Fundo</label>
-          <input type="file" id="background-file" accept="image/*">
+          <div class="upload-box" onclick="document.getElementById('avatar-file').click()">            
+            <p>Escolher Banner</p>
+            <span>PNG, JPG até 5MB</span>
+            <input type="file" id="banner-file" class="file-input" accept="image/*">
+          </div>
+
+          <br>
+          
+          <div class="upload-box" onclick="document.getElementById('avatar-file').click()">            
+            <p>Escolher Wallpaper</p>
+            <span>PNG, JPG até 5MB</span>
+            <input type="file" id="background-file" class="file-input" accept="image/*">
+          </div>
 
           <label>Balão</label>
           <input id="overlay-input">
@@ -147,7 +160,9 @@
         </div>
       </div>
 
-      <p>Aviso: links temporários, como os do Discord, podem expirar ou alterar a URL da imagem automaticamente. Isso pode fazer a foto de perfil não aparecer corretamente no site. Recomenda-se utilizar links direto como os do pinterest </p>
+      <p>Aviso: links temporários, como os do Discord, podem expirar ou alterar a URL da imagem automaticamente. Isso
+        pode fazer a foto de perfil não aparecer corretamente no site. Recomenda-se utilizar links direto como os do
+        pinterest </p>
       <button id="save-btn">SALVAR PERFIL</button>
 
     </div>
