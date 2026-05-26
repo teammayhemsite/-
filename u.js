@@ -340,16 +340,10 @@ if (
   // CARDS EXTRAS
   // =========================
 
-  const conteudo =
-  document.body.classList.contains(
-    "template3-theme"
-  )
-    ? document.getElementById(
-        "extras-container"
-      )
-    : document.querySelector(
-        ".conteudoking"
-      );
+const conteudo =
+  document.getElementById(
+    "extras-container"
+  );
 
   document
     .querySelectorAll(".extra-card")
