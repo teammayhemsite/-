@@ -85,7 +85,7 @@ h1{
 }
 
 .back-btn:hover {
-  color: #f7cf57;
+  color: #c9c9c9;
 
   transform: translateX(-3px);
 }
@@ -121,13 +121,13 @@ h1{
 }
 
 #search:focus{
-  border-color:#f7cf57;
+  border-color:#c7c7c7;
 
   box-shadow:
     0 0 12px rgba(247,207,87,0.2);
 }
 
-@media (max-width: 768px){
+@media (max-width: 990px){
 
   body{
     padding:20px 15px;
