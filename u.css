@@ -26,6 +26,10 @@ body {
   font-family: sans-serif;
 }
 
+/* =========================
+CARD BASE
+========================= */
+
 .cardking {
 
   width: 95%;
@@ -37,23 +41,25 @@ body {
 
   position: relative;
 
-  background: rgba(255, 255, 255, 0);
+  background: rgba(255,255,255,0);
 
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 
   border:
-    1px solid rgba(255, 255, 255, 0);
+    1px solid rgba(255,255,255,0);
 
   box-shadow:
-    0 0 40px rgba(0, 0, 0, 0.2);
+    0 0 40px rgba(0,0,0,0.2);
 
   padding-bottom: 25px;
 
   color: var(--text-color, white);
 }
 
-/* BADGE */
+/* =========================
+BADGE
+========================= */
 
 .embking {
 
@@ -65,19 +71,20 @@ body {
 
   transform: translateX(-50%);
 
-  padding:
-    5px 15px;
+  padding: 5px 15px;
 
   border-radius: 999px;
 
   background:
-    linear-gradient(145deg,
+    linear-gradient(
+      145deg,
       #e5e9ee 0%,
       #cfd6dc 20%,
       #aeb6bf 40%,
       #dfe5ea 60%,
       #f8fafcab 80%,
-      #c7ced6 100%);
+      #c7ced6 100%
+    );
 
   color: black;
 
@@ -90,7 +97,9 @@ body {
   z-index: 10;
 }
 
-/* BANNER */
+/* =========================
+BANNER
+========================= */
 
 .topo {
 
@@ -102,7 +111,9 @@ body {
   background-position: center;
 }
 
-/* FOTO + BALÃO */
+/* =========================
+TOP INFO
+========================= */
 
 .top-info {
 
@@ -112,8 +123,7 @@ body {
 
   gap: 1px;
 
-  padding:
-    0 25px;
+  padding: 0 25px;
 
   margin-top: -45px;
 
@@ -121,6 +131,10 @@ body {
 
   z-index: 5;
 }
+
+/* =========================
+AVATAR
+========================= */
 
 .perfilking {
 
@@ -131,14 +145,15 @@ body {
 
   object-fit: cover;
 
-  border:
-    -1px solid rgba(255, 255, 255, 0);
-
   box-shadow:
-    0 0 20px rgb(255, 255, 255);
+    0 0 20px rgb(255,255,255);
 
   flex-shrink: 0;
 }
+
+/* =========================
+BALÃO
+========================= */
 
 .balao {
 
@@ -146,11 +161,10 @@ body {
 
   top: 27px;
   left: 5px;
-  background:
-    rgb(25, 25, 25);
 
-  padding:
-    11px 16px;
+  background: rgb(25,25,25);
+
+  padding: 11px 16px;
 
   border-radius: 20px;
 
@@ -161,11 +175,7 @@ body {
   max-width: 220px;
 
   word-break: break-word;
-
-  position: relative;
 }
-
-/* bolinha */
 
 .balao::before {
 
@@ -178,14 +188,11 @@ body {
 
   border-radius: 50%;
 
-  background:
-    rgb(25, 25, 25);
+  background: rgb(25,25,25);
 
   top: -16px;
   left: 4px;
 }
-
-/* pontinha */
 
 .balao::after {
 
@@ -201,19 +208,19 @@ body {
 
   border-radius: 50%;
 
-  background:
-    rgb(25, 25, 25);
+  background: rgb(25,25,25);
 }
 
-/* CONTEÚDO */
+/* =========================
+CONTEÚDO
+========================= */
 
 .conteudoking {
 
-  padding:
-    5px 25px 10px;
+  padding: 5px 25px 10px;
 }
 
-.conteudoking h2 {
+.conteudoking h1 {
 
   font-size:
     clamp(28px, 5vw, 38px);
@@ -233,27 +240,32 @@ body {
   opacity: 0.9;
 }
 
-/* REDES */
+/* =========================
+SOCIALS PADRÃO
+========================= */
 
 .socials {
+
   display: flex;
+
   flex-wrap: wrap;
+
   gap: 18px;
+
   align-items: center;
 }
 
 .socials a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-}
 
-.socials img {
-  display: block;
-  width: 25px;
-  height: 25px;
-  object-fit: contain;
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-decoration: none;
+
+  transition: 0.2s;
 }
 
 .socials a:hover {
@@ -261,43 +273,19 @@ body {
   transform: scale(1.15);
 }
 
-/* MOBILE */
+.socials img {
 
-@media(max-width: 600px) {
+  width: 25px;
+  height: 25px;
 
-  .top-info {
+  object-fit: contain;
 
-    gap: 14px;
-
-    padding: 0 18px;
-  }
-
-  .perfilking {
-
-    width: 82px;
-    height: 82px;
-  }
-
-  .balao {
-
-    font-size: 13px;
-
-    padding:
-      10px 14px;
-  }
-
-  .conteudoking {
-
-    padding:
-      20px 18px 10px;
-  }
-
-  .socials a {
-
-    font-size: 23px;
-  }
-
+  display: block;
 }
+
+/* =========================
+EXTRA CARD
+========================= */
 
 .extra-card {
 
@@ -315,13 +303,13 @@ body {
   border:
     1px solid rgba(255,255,255,0.06);
 
-  display: flex;  
+  display: flex;
 
   align-items: center;
 
   gap: 22px;
 
-  text-decoration: none;  
+  text-decoration: none;
 
   backdrop-filter: blur(18px);
 
@@ -333,8 +321,7 @@ body {
 
 .extra-card:hover {
 
-  transform:
-    translateY(-2px);
+  transform: translateY(-2px);
 
   background:
     rgba(255,255,255,0.04);
@@ -359,24 +346,6 @@ body {
 }
 
 .extra-card-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 0;
-}
-
-.extra-card span {
-
-  font-size: 17px;
-
-  color:  var(--text-color, white);
-
-  line-height: 1.5;
-
-  font-weight: 500;
-}
-
-.extra-card-icon img {
 
   width: 100%;
   height: 100%;
@@ -386,83 +355,56 @@ body {
   border-radius: 22px;
 }
 
+.extra-card span {
 
-.minimal-theme .cardking {
+  font-size: 17px;
 
-  background:
-    rgba(255,255,255,0.05);
+  color: var(--text-color, white);
 
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  line-height: 1.5;
 
-  border:
-    1px solid rgba(255,255,255,0.08);
-
-  box-shadow:
-    0 0 40px rgba(0,0,0,0.35);
-
-  max-width: 430px;
+  font-weight: 500;
 }
 
-.minimal-theme .topo {
+/* =========================
+MOBILE
+========================= */
 
-  display: none;
+@media(max-width:600px) {
+
+  .top-info {
+
+    gap: 14px;
+
+    padding: 0 18px;
+  }
+
+  .perfilking {
+
+    width: 82px;
+    height: 82px;
+  }
+
+  .balao {
+
+    font-size: 13px;
+
+    padding: 10px 14px;
+  }
+
+  .conteudoking {
+
+    padding: 20px 18px 10px;
+  }
 }
 
-.minimal-theme .embking {
+/* ========================================================
+TEMPLATE 2
+======================================================== */
 
-  display: none;
-}
+.cardkingdois-theme .cardking {
 
-.minimal-theme .top-info {
-
-  margin-top: 40px;
-
-  justify-content: center;
-
-  flex-direction: column;
-}
-
-.minimal-theme .perfilking {
-
-  width: 110px;
-  height: 110px;
-
-  box-shadow: none;
-
-  border: 3px solid white;
-}
-
-.minimal-theme .balao {
-
-  display: none;
-}
-
-.minimal-theme .conteudoking {
-
-  text-align: center;
-
-  padding-top: 20px;
-}
-
-.minimal-theme .socials {
-
-  justify-content: center;
-}
-
-.minimal-theme .extra-card {
-
-  background: #151515;
-
-  border: none;
-}
-
-
-/* Visual dois*/
-
-.cardkingdois-theme .cardking{
-
-  background:#0f0f0f00;
+  background: #0f0f0f00;
 
   border:
     1px solid rgb(255 255 255 / 0%);
@@ -470,38 +412,53 @@ body {
   box-shadow:
     0 0 40px rgb(255 255 255 / 9%);
 
-  max-width:520px;
+  max-width: 520px;
 }
 
-.cardkingdois-theme .perfilking{
-    width: 100px;
-    height: 100px;
+.cardkingdois-theme .top-info {
 
-    position: relative;
+  display: flex;
 
-    left: 0;
-    top: 0;
-    margin: 0 auto;
-    display: block;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+
+  margin-top: -45px;
+
+  padding: 0;
+
+  gap: 0;
+}
+
+.cardkingdois-theme .perfilking {
+
+  width: 100px;
+  height: 100px;
+
+  margin: 0 auto;
+
+  display: block;
 }
 
 .cardkingdois-theme .balao {
- position: relative;
-  top: 100000px;
-  left: 100000px;
+
+  position: absolute;
+
+  left: -99999px;
 }
 
-.cardkingdois-theme .conteudoking{
+.cardkingdois-theme .conteudoking {
 
-  text-align:center;
+  text-align: center;
 }
 
-.cardkingdois-theme .socials{
+.cardkingdois-theme .socials {
 
-  justify-content:center;
+  justify-content: center;
 }
 
-.cardkingdois-theme .extra-card{
+.cardkingdois-theme .extra-card {
 
   background:
     rgba(255,255,255,0.02);
@@ -509,66 +466,10 @@ body {
   border:
     1px solid rgba(255,255,255,0.08);
 }
-  .cardkingdois-theme .top-info {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: -45px;
-    padding: 0;
-    gap: 0;
-  }
 
-/* 
----------------------
-MOBILE - CARDKINGDOIS 
----------------------
-*/
-
-@media (max-width: 600px) {
-
-  .cardkingdois-theme .top-info {
-   display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: -45px;
-    padding: 0;
-    gap: 0;
-  }
-
-  .cardkingdois-theme .perfilking {
-
-    width: 100px;
-    height: 100px;
-
-    position: relative;
-
-    left: 0;
-    top: 0;
-    margin: 0 auto;
-    display: block;
-    
-  }
-
-  .cardkingdois-theme .conteudoking {
-
-    padding-top: 15px;
-  }
-
-  .cardkingdois-theme .socials {
-
-    justify-content: center;
-  }
-
-}
-
-/* 
-========================================
+/* ========================================================
 TEMPLATE 3
-ADICIONA SEM ALTERAR OS OUTROS
-========================================
-*/
+======================================================== */
 
 .template3-theme .cardking {
 
@@ -582,8 +483,8 @@ ADICIONA SEM ALTERAR OS OUTROS
   background:
     linear-gradient(
       135deg,
-      rgba(33, 41, 39, 0.82),
-      rgba(18, 23, 22, 0.88)
+      rgba(33,41,39,0.82),
+      rgba(18,23,22,0.88)
     );
 
   border:
@@ -596,9 +497,7 @@ ADICIONA SEM ALTERAR OS OUTROS
   -webkit-backdrop-filter: blur(25px);
 }
 
-/* ========================
-BANNER
-======================== */
+/* banner */
 
 .template3-theme .topo {
 
@@ -628,9 +527,7 @@ BANNER
     );
 }
 
-/* ========================
-INFO TOPO
-======================== */
+/* top */
 
 .template3-theme .top-info {
 
@@ -638,15 +535,12 @@ INFO TOPO
 
   gap: 22px;
 
-  padding:
-    0 38px;
+  padding: 0 38px;
 
   margin-top: -70px;
 }
 
-/* ========================
-AVATAR
-======================== */
+/* avatar */
 
 .template3-theme .perfilking {
 
@@ -662,9 +556,7 @@ AVATAR
   background: #111;
 }
 
-/* ========================
-BALÃO
-======================== */
+/* balao */
 
 .template3-theme .balao {
 
@@ -688,19 +580,14 @@ BALÃO
     rgba(23,23,23,0.92);
 }
 
-/* ========================
-CONTEÚDO
-======================== */
+/* conteudo */
 
 .template3-theme .conteudoking {
 
-  padding:
-    22px 38px 10px;
+  padding: 22px 38px 10px;
 }
 
-/* nome */
-
-.template3-theme .conteudoking h2 {
+.template3-theme .conteudoking h1 {
 
   font-size:
     clamp(34px, 4vw, 48px);
@@ -715,8 +602,6 @@ CONTEÚDO
     0 0 18px rgba(255,255,255,0.45);
 }
 
-/* bio */
-
 .template3-theme .conteudoking p {
 
   color:
@@ -729,23 +614,38 @@ CONTEÚDO
   margin-bottom: 30px;
 }
 
-/* ========================
-SOCIALS
-======================== */
+/* social box */
+
+.template3-theme .social-box {
+
+  width: calc(100% - 76px);
+
+  margin: 22px auto 0;
+
+  padding: 28px;
+
+  border-radius: 28px;
+
+  background:
+    rgba(255,255,255,0.03);
+
+  border:
+    1px solid rgba(255,255,255,0.06);
+
+  backdrop-filter: blur(18px);
+}
+
+/* socials */
 
 .template3-theme .socials {
 
   display: grid;
 
   grid-template-columns:
-    repeat(2, 1fr);
+    repeat(2,1fr);
 
   gap: 16px;
-
-  margin-top: 10px;
 }
-
-/* card social */
 
 .template3-theme .socials a {
 
@@ -755,8 +655,7 @@ SOCIALS
 
   border-radius: 20px;
 
-  padding:
-    16px 20px;
+  padding: 16px 20px;
 
   background:
     rgba(255,255,255,0.03);
@@ -788,20 +687,6 @@ SOCIALS
     rgba(255,255,255,0.05);
 }
 
-/* ícone */
-
-.template3-theme .socials img {
-
-  width: 26px;
-  height: 26px;
-
-  object-fit: contain;
-
-  opacity: 0.9;
-}
-
-/* fundo do ícone */
-
 .template3-theme .socials a::before {
 
   content: "";
@@ -823,101 +708,21 @@ SOCIALS
   transform: translateY(-50%);
 }
 
-/* garante ícone na frente */
-
 .template3-theme .socials img {
+
+  width: 26px;
+  height: 26px;
 
   position: relative;
 
   z-index: 2;
 
   margin-left: 14px;
+
+  opacity: 0.9;
 }
 
-/* ========================
-EXTRA CARDS
-======================== */
-
-.template3-theme .extra-card {
-
-  margin-top: 0;
-
-  background:
-    rgba(255,255,255,0.03);
-
-  border:
-    1px solid rgba(255,255,255,0.06);
-
-  border-radius: 22px;
-
-  min-height: 90px;
-}
-
-.template3-theme .extra-card:hover {
-
-  background:
-    rgba(255,255,255,0.05);
-}
-
-.template3-theme .extra-card-icon {
-
-  width: 60px;
-  height: 60px;
-
-  border-radius: 18px;
-
-  background:
-    rgba(255,255,255,0.05);
-}
-
-/* ========================
-MOBILE
-======================== */
-
-@media(max-width: 700px) {
-
-  .template3-theme .cardking {
-
-    max-width: 100%;
-  }
-
-  .template3-theme .topo {
-
-    height: 180px;
-  }
-
-  .template3-theme .top-info {
-
-    flex-direction: column;
-
-    align-items: flex-start;
-
-    gap: 12px;
-
-    padding:
-      0 20px;
-
-    margin-top: -55px;
-  }
-
-  .template3-theme .perfilking {
-
-    width: 110px;
-    height: 110px;
-  }
-
-  .template3-theme .conteudoking {
-
-    padding:
-      18px 20px 10px;
-  }
-
-  .template3-theme .socials {
-
-    grid-template-columns: 1fr;
-  }
-
-}
+/* text */
 
 .template3-theme .social-text {
 
@@ -931,7 +736,7 @@ MOBILE
 
   z-index: 2;
 
-   margin-left: 12px;
+  margin-left: 12px;
 }
 
 .template3-theme .social-text strong {
@@ -952,41 +757,23 @@ MOBILE
   font-weight: 600;
 }
 
+/* extras */
+
 .template3-theme #extras-container {
 
   display: grid;
 
   grid-template-columns:
-    repeat(2, 1fr);
+    repeat(2,1fr);
 
   gap: 16px;
 
   margin-top: 16px;
 }
 
-@media(max-width: 700px) {
+.template3-theme .extra-card {
 
-  .template3-theme #extras-container {
-
-    grid-template-columns: 1fr;
-  }
-
-}
-
-/* ========================
-SOCIAL BOX
-NÃO AFETA OUTROS TEMPLATES
-======================== */
-
-.template3-theme .social-box {
-
-  width: calc(100% - 76px);
-
-  margin: 22px auto 0;
-
-  padding: 28px;
-
-  border-radius: 28px;
+  margin-top: 0;
 
   background:
     rgba(255,255,255,0.03);
@@ -994,5 +781,67 @@ NÃO AFETA OUTROS TEMPLATES
   border:
     1px solid rgba(255,255,255,0.06);
 
-  backdrop-filter: blur(18px);
+  min-height: 90px;
+}
+
+.template3-theme .extra-card:hover {
+
+  background:
+    rgba(255,255,255,0.05);
+}
+
+/* mobile */
+
+@media(max-width:700px) {
+
+  .template3-theme .cardking {
+
+    max-width: 100%;
+  }
+
+  .template3-theme .topo {
+
+    height: 180px;
+  }
+
+  .template3-theme .top-info {
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    padding: 0 20px;
+
+    margin-top: -55px;
+  }
+
+  .template3-theme .perfilking {
+
+    width: 110px;
+    height: 110px;
+  }
+
+  .template3-theme .conteudoking {
+
+    padding: 18px 20px 10px;
+  }
+
+  .template3-theme .social-box {
+
+    width: calc(100% - 40px);
+
+    padding: 20px;
+  }
+
+  .template3-theme .socials {
+
+    grid-template-columns: 1fr;
+  }
+
+  .template3-theme #extras-container {
+
+    grid-template-columns: 1fr;
+  }
 }
