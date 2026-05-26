@@ -1,153 +1,174 @@
-const $ = (id) =>
-  document.getElementById(id);
+<!DOCTYPE html>
+<html lang="pt-br">
 
-/* inputs */
+<head>
 
-const nameInput =
-  $("name-input");
+  <meta charset="UTF-8">
 
-const bioInput =
-  $("bio-input");
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-const avatarInput =
-  $("avatar-input");
+  <title>Dashboard</title>
 
-const bannerInput =
-  $("banner-input");
+  <link rel="stylesheet" href="dashboard.css">
 
-const backgroundInput =
-  $("background-input");
+  <script
+    src="https://kit.fontawesome.com/eb9af641fe.js"
+    crossorigin="anonymous">
+  </script>
 
-const discordInput =
-  $("discord-input");
+</head>
 
-const instagramInput =
-  $("instagram-input");
+<body>
 
-const spotifyInput =
-  $("spotify-input");
+  <div class="dashboard">
 
-const tiktokInput =
-  $("tiktok-input");
+    <!-- editor -->
 
-const twitterInput =
-  $("twitter-input");
+    <div class="editor">
 
-const youtubeInput =
-  $("youtube-input");
+      <h2>EDITOR</h2>
 
-/* preview */
+      <!-- perfil -->
 
-function updatePreview(){
+      <div class="section active">
 
-  $("preview-name").innerText =
-    nameInput.value || "usuário";
+        <button class="toggle">
+          Perfil
+        </button>
 
-  $("preview-bio").innerText =
-    bioInput.value || "bio";
+        <div class="content">
 
-  $("preview-avatar").src =
+          <input
+            id="name-input"
+            placeholder="Nome"
+          >
 
-    avatarInput.value ||
+          <textarea
+            id="bio-input"
+            placeholder="Bio">
+          </textarea>
 
-    "https://i.pinimg.com/736x/bd/c7/81/bdc781b471ebd825a6ab5a40e36e0f8e.jpg";
+          <input
+            id="avatar-input"
+            placeholder="Avatar URL"
+          >
 
-  $("preview-banner").style.backgroundImage =
+          <input
+            id="banner-input"
+            placeholder="Banner URL"
+          >
 
-    `url(${bannerInput.value || ""})`;
-
-  if(backgroundInput.value){
-
-    document.body.style.backgroundImage =
-
-      `url(${backgroundInput.value})`;
-
-  }
-
-  const socials =
-    $("socials");
-
-  socials.innerHTML = "";
-
-  function addSocial(
-    url,
-    icon,
-    name
-  ){
-
-    if(!url) return;
-
-    socials.innerHTML += `
-
-      <a href="${url}" target="_blank">
-
-        <img src="${icon}">
-
-        <div class="social-text">
-
-          <div class="social-name">
-            ${name}
-          </div>
-
-          <div class="social-user">
-            ${nameInput.value || "usuário"}
-          </div>
+          <input
+            id="background-input"
+            placeholder="Background URL"
+          >
 
         </div>
 
-      </a>
+      </div>
 
-    `;
+      <!-- redes -->
 
-  }
+      <div class="section active">
 
-  addSocial(
-    discordInput.value,
-    "https://www.riqueza.life/images/socials/discord.png",
-    "Discord"
-  );
+        <button class="toggle">
+          Redes
+        </button>
 
-  addSocial(
-    instagramInput.value,
-    "https://www.riqueza.life/images/socials/instagram.png",
-    "Instagram"
-  );
+        <div class="content">
 
-  addSocial(
-    spotifyInput.value,
-    "https://www.riqueza.life/images/socials/spotify.png",
-    "Spotify"
-  );
+          <input id="discord-input" placeholder="Discord">
 
-  addSocial(
-    tiktokInput.value,
-    "https://www.riqueza.life/images/socials/tiktok.png",
-    "TikTok"
-  );
+          <input id="instagram-input" placeholder="Instagram">
 
-  addSocial(
-    twitterInput.value,
-    "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg",
-    "Twitter/X"
-  );
+          <input id="spotify-input" placeholder="Spotify">
 
-  addSocial(
-    youtubeInput.value,
-    "https://www.riqueza.life/images/socials/youtube.png",
-    "YouTube"
-  );
+          <input id="tiktok-input" placeholder="TikTok">
 
-}
+          <input id="twitter-input" placeholder="Twitter/X">
 
-document
-  .querySelectorAll("input, textarea")
-  .forEach(el => {
+          <input id="youtube-input" placeholder="YouTube">
 
-    el.addEventListener(
-      "input",
-      updatePreview
-    );
+        </div>
 
-  });
+      </div>
 
-updatePreview();
+      <!-- extras -->
+
+      <div class="section active">
+
+        <button class="toggle">
+          Extras
+        </button>
+
+        <div class="content">
+
+          <input id="extra1-text" placeholder="Texto">
+
+          <input id="extra1-img" placeholder="Imagem">
+
+          <input id="extra1-link" placeholder="Link">
+
+        </div>
+
+      </div>
+
+      <button id="save-btn">
+        SALVAR
+      </button>
+
+    </div>
+
+    <!-- preview -->
+
+    <div class="preview-area">
+
+      <div class="cardking">
+
+        <div
+          class="topo"
+          id="preview-banner">
+        </div>
+
+        <img
+          id="preview-avatar"
+          class="perfilking"
+        >
+
+        <div class="conteudoking">
+
+          <h2 id="preview-name">
+            usuário
+          </h2>
+
+          <p id="preview-bio">
+            bio
+          </p>
+
+          <div
+            class="socials"
+            id="socials">
+          </div>
+
+          <div id="extras-container"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="supabase.js"></script>
+
+  <script src="dashboard.js"></script>
+
+</body>
+
+</html>
