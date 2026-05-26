@@ -918,3 +918,34 @@ MOBILE
   }
 
 }
+
+.template3-theme .social-text {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+.template3-theme .social-text strong {
+
+  font-size: 15px;
+
+  color: white;
+
+  font-weight: 700;
+}
+
+.template3-theme .social-text span {
+
+  font-size: 14px;
+
+  color: rgba(255,255,255,0.45);
+
+  font-weight: 600;
+}
