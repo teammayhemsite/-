@@ -6,28 +6,27 @@
 }
 
 body{
-
   min-height:100vh;
-
   background:#0f0f0f;
-
   color:white;
-
-  padding:25px;
 }
 
 /* =========================
-LAYOUT
+DASHBOARD
 ========================= */
 
 .dashboard{
+  width:100%;
 
   display:grid;
 
   grid-template-columns:
-    340px 1fr;
+    340px
+    1fr;
 
   gap:25px;
+
+  padding:25px;
 }
 
 /* =========================
@@ -35,12 +34,11 @@ EDITOR
 ========================= */
 
 .editor{
-
   background:
-    rgba(255,255,255,0.04);
+    rgb(107 107 107);
 
   border:
-    1px solid rgba(255,255,255,0.06);
+    1px solid rgba(255,255,255,0.08);
 
   border-radius:25px;
 
@@ -50,12 +48,9 @@ EDITOR
 
   position:sticky;
   top:20px;
-
-  backdrop-filter:blur(18px);
 }
 
 .editor h2{
-
   margin-bottom:20px;
 }
 
@@ -64,49 +59,53 @@ SECTIONS
 ========================= */
 
 .section{
-
-  margin-bottom:16px;
+  margin-bottom:18px;
 
   border-radius:18px;
 
   overflow:hidden;
 
-  border:
-    1px solid rgba(255,255,255,0.05);
-
   background:
     rgba(255,255,255,0.03);
+
+  border:
+    1px solid rgba(255,255,255,0.05);
 }
 
 .toggle{
-
   width:100%;
+
+  padding:16px;
 
   border:none;
 
   background:
-    rgba(255,255,255,0.05);
+    rgba(255,255,255,0.04);
 
   color:white;
 
-  padding:16px;
-
-  text-align:left;
-
+  font-size:15px;
   font-weight:bold;
 
   cursor:pointer;
+
+  text-align:left;
+
+  transition:0.25s;
+}
+
+.toggle:hover{
+  background:
+    rgba(255,255,255,0.08);
 }
 
 .content{
-
   display:none;
 
   padding:15px;
 }
 
 .section.active .content{
-
   display:block;
 }
 
@@ -114,10 +113,19 @@ SECTIONS
 INPUTS
 ========================= */
 
-.editor input,
-.editor textarea,
-.editor select{
+.editor label{
+  display:block;
 
+  margin-bottom:8px;
+  margin-top:12px;
+
+  font-size:14px;
+
+  opacity:0.8;
+}
+
+.editor input,
+.editor textarea{
   width:100%;
 
   padding:14px;
@@ -136,19 +144,29 @@ INPUTS
 }
 
 .editor textarea{
-
   resize:none;
+  height:110px;
+}
 
-  height:100px;
+.editor hr{
+  border:none;
+
+  height:1px;
+
+  background:
+    rgba(255,255,255,0.08);
+
+  margin:18px 0;
 }
 
 /* =========================
-BUTTON
+BOTÃO
 ========================= */
 
 #save-btn{
-
   width:100%;
+
+  margin-top:10px;
 
   padding:16px;
 
@@ -156,15 +174,24 @@ BUTTON
 
   border-radius:16px;
 
-  cursor:pointer;
-
-  background:white;
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #cfcfcf
+    );
 
   color:black;
 
   font-weight:bold;
 
-  margin-top:10px;
+  cursor:pointer;
+
+  transition:0.25s;
+}
+
+#save-btn:hover{
+  transform:translateY(-2px);
 }
 
 /* =========================
@@ -172,10 +199,11 @@ PREVIEW
 ========================= */
 
 .preview-area{
-
   display:flex;
 
   justify-content:center;
+
+  align-items:flex-start;
 }
 
 /* =========================
@@ -183,42 +211,47 @@ CARD
 ========================= */
 
 .cardking{
-
   width:100%;
-  max-width:780px;
-
-  border-radius:30px;
+  max-width:560px;
 
   overflow:hidden;
 
+  border-radius:28px;
+
   background:
-    rgba(15,15,15,0.6);
+    rgba(255,255,255,0.06);
 
   border:
     1px solid rgba(255,255,255,0.08);
 
-  backdrop-filter:blur(20px);
+  backdrop-filter:blur(18px);
 
   position:relative;
+
+  padding-bottom:25px;  
+
+  color: var(--text-color, white);
 }
 
-/* banner */
+/* =========================
+BANNER
+========================= */
 
 .topo{
-
   width:100%;
-  height:220px;
+  height:150px;
 
   background-size:cover;
   background-position:center;
 }
 
-/* avatar */
+/* =========================
+AVATAR + BALÃO
+========================= */
 
 .perfilking{
-
-  width:115px;
-  height:115px;
+  width:95px;
+  height:95px;
 
   border-radius:50%;
 
@@ -226,70 +259,118 @@ CARD
 
   position:absolute;
 
-  top:160px;
-  left:30px;
+  top:100px;
+  left:25px;
 
   border:
-    4px solid #0f0f0f;
+    3px solid rgba(255,255,255,0.15);
+
+  background:#111;
 }
 
-/* conteúdo */
+.balao{
+  position:absolute;
+
+  top:159px;
+  left:130px;
+
+  background:#191919;
+
+  padding:11px 16px;
+
+  border-radius:18px;
+
+  max-width:240px;
+
+  font-size:14px;
+
+  word-break:break-word;
+}
+
+.balao::before{
+  content:"";
+
+  position:absolute;
+
+  width:10px;
+  height:10px;
+
+  border-radius:50%;
+
+  background:#191919;
+
+  top:-15px;
+  left:5px;
+}
+
+.balao::after{
+  content:"";
+
+  position:absolute;
+
+  width:22px;
+  height:14px;
+
+  border-radius:50%;
+
+  background:#191919;
+
+  top:-5px;
+  left:12px;
+}
+
+/* =========================
+CONTEÚDO
+========================= */
 
 .conteudoking{
-
   padding:
-    75px 30px 30px;
+    70px 25px 10px;
 }
 
 .conteudoking h2{
+  font-size:38px;
 
-  font-size:36px;
+  margin-bottom:12px;
 
-  margin-bottom:10px;
+  word-break:break-word;
 }
 
 .conteudoking p{
-
-  opacity:0.7;
-
   line-height:1.6;
 
-  margin-bottom:25px;
+  opacity:0.9;
+
+  word-break:break-word;
 }
 
-/* socials */
+/* =========================
+SOCIALS
+========================= */
 
 .socials{
+  display:flex;
 
-  display:grid;
+  flex-wrap:wrap;
 
-  grid-template-columns:
-    1fr 1fr;
+  gap:15px;
 
-  gap:16px;
+  margin-top:25px;
 }
 
 .socials a{
+  width:48px;
+  height:48px;
 
-  width:100%;
-
-  min-height:78px;
-
-  border-radius:20px;
-
-  background:
-    rgba(255,255,255,0.04);
-
-  border:
-    1px solid rgba(255,255,255,0.06);
-
-  padding:16px;
+  border-radius:14px;
 
   display:flex;
 
   align-items:center;
+  justify-content:center;
 
-  gap:16px;
+  background:
+    rgba(255,255,255,0.06);
 
   text-decoration:none;
 
@@ -297,48 +378,24 @@ CARD
 }
 
 .socials a:hover{
-
   transform:translateY(-2px);
+
+  background:
+    rgba(255,255,255,0.12);
 }
 
-.socials img{
-
-  width:30px;
-  height:30px;
-
-  object-fit:contain;
-}
-
-.social-text{
-
-  display:flex;
-
-  flex-direction:column;
-}
-
-.social-name{
-
+.socials i{
   color:white;
 
-  font-weight:bold;
-
-  font-size:18px;
+  font-size:22px;
 }
 
-.social-user{
-
-  color:white;
-
-  opacity:0.55;
-
-  font-size:14px;
-}
-
-/* extras */
+/* =========================
+CARDS EXTRAS
+========================= */
 
 #extras-container{
-
-  margin-top:20px;
+  margin-top:25px;
 
   display:flex;
 
@@ -348,10 +405,15 @@ CARD
 }
 
 .extra-card{
-
   width:100%;
 
-  padding:15px;
+  display:flex;
+
+  align-items:center;
+
+  gap:15px;
+
+  padding:14px;
 
   border-radius:20px;
 
@@ -361,80 +423,126 @@ CARD
   border:
     1px solid rgba(255,255,255,0.06);
 
-  display:flex;
-
-  align-items:center;
-
-  gap:15px;
-
   text-decoration:none;
 
   color:white;
+
+  transition:0.25s;
+}
+
+.extra-card:hover{
+  transform:translateY(-2px);
+
+  background:
+    rgba(255,255,255,0.08);
 }
 
 .extra-card-icon{
-
   width:60px;
   height:60px;
 
   border-radius:18px;
 
   overflow:hidden;
+
+  flex-shrink:0;
+
+  background:
+    rgba(255,255,255,0.08);
 }
 
 .extra-card-icon img{
-
   width:100%;
   height:100%;
 
   object-fit:cover;
 }
 
-/* responsive */
+.extra-card span{
+  font-size:16px;
+
+  line-height:1.5;
+
+  word-break:break-word;
+}
+
+/* =========================
+RESPONSIVO
+========================= */
 
 @media(max-width:1000px){
 
   .dashboard{
-
     grid-template-columns:1fr;
   }
 
   .editor{
-
     position:static;
   }
 
+  .preview-area{
+    justify-content:center;
+  }
+
 }
 
-@media(max-width:700px){
+@media(max-width:600px){
 
-  body{
-
+  .dashboard{
     padding:15px;
   }
 
-  .topo{
+  .cardking{
+    border-radius:22px;
+  }
 
-    height:170px;
+  .topo{
+    height:120px;
   }
 
   .perfilking{
+    width:82px;
+    height:82px;
 
-    width:95px;
-    height:95px;
+    top:78px;
+    left:18px;
+  }
 
-    top:120px;
+  .balao{
+    left:105px;
+    top:88px;
+
+    max-width:180px;
+
+    font-size:13px;
   }
 
   .conteudoking{
-
     padding:
-      65px 20px 25px;
+      55px 18px 10px;
   }
 
-  .socials{
-
-    grid-template-columns:1fr;
+  .conteudoking h2{
+    font-size:30px;
   }
 
 }
+
+.editor select{
+  width:100%;
+
+  padding:14px;
+
+  border:none;
+  outline:none;
+
+  border-radius:14px;
+
+  background:
+    rgba(255,255,255,0.07);
+
+  color:rgb(0, 0, 0);
+
+  margin-bottom:12px;
+}
+
