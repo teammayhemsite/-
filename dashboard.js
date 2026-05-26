@@ -1,25 +1,7 @@
-// =========================
-// TOGGLE SEÇÕES
-// =========================
-
-document.querySelectorAll(".toggle").forEach(btn => {
-
-  btn.addEventListener("click", () => {
-
-    btn.parentElement.classList.toggle(
-      "active"
-    );
-
-  });
-
-});
-
 const $ = (id) =>
   document.getElementById(id);
 
-// =========================
-// INPUTS PERFIL
-// =========================
+/* inputs */
 
 const nameInput =
   $("name-input");
@@ -36,30 +18,11 @@ const bannerInput =
 const backgroundInput =
   $("background-input");
 
-const overlayInput =
-  $("overlay-input");
-
-const templateInput =
-  $("template-input");
-
-const textColorInput =
-  $("text-color-input");
-
-const boxStyleInput =
-  $("box-style-input");
-
-// =========================
-// REDES
-// =========================
-
-const youtubeInput =
-  $("youtube-input");
+const discordInput =
+  $("discord-input");
 
 const instagramInput =
   $("instagram-input");
-
-const discordInput =
-  $("discord-input");
 
 const spotifyInput =
   $("spotify-input");
@@ -67,286 +30,118 @@ const spotifyInput =
 const tiktokInput =
   $("tiktok-input");
 
-const whatsappInput =
-  $("whatsapp-input");
-
 const twitterInput =
   $("twitter-input");
 
-const facebookInput =
-  $("facebook-input");
+const youtubeInput =
+  $("youtube-input");
 
-// =========================
-// CARDS EXTRAS
-// =========================
+/* preview */
 
-const cards = [
-
-  {
-    t: $("extra1-text"),
-    i: $("extra1-img"),
-    l: $("extra1-link")
-  },
-
-  {
-    t: $("extra2-text"),
-    i: $("extra2-img"),
-    l: $("extra2-link")
-  },
-
-  {
-    t: $("extra3-text"),
-    i: $("extra3-img"),
-    l: $("extra3-link")
-  },
-
-  {
-    t: $("extra4-text"),
-    i: $("extra4-img"),
-    l: $("extra4-link")
-  }
-
-];
-
-// =========================
-// PREVIEW
-// =========================
-
-function updatePreview() {
-
-  // =========================
-  // TEMPLATE
-  // =========================
-
-  const previewCard =
-    document.querySelector(".cardking");
-
-  // =========================
-  // ESTILO DA BOX
-  // =========================
-
-  if (
-    boxStyleInput.value ===
-    "transparent"
-  ) {
-
-    previewCard.style.backdropFilter =
-      "blur(1px)";
-
-    previewCard.style.webkitBackdropFilter =
-      "blur(1px)";
-
-  } else {
-
-    previewCard.style.backdropFilter =
-      "blur(18px)";
-
-    previewCard.style.webkitBackdropFilter =
-      "blur(18px)";
-
-  }  
-  
-  previewCard.style.setProperty(
-    "--text-color",
-    textColorInput.value
-  );
-  previewCard.classList.remove(
-    "cardking-preview",
-    "cardkingdois-preview"
-  );
-
-  if (
-    templateInput.value ===
-    "cardkingdois"
-  ) {
-
-    previewCard.classList.add(
-      "cardkingdois-preview"
-    );
-
-  } else {
-
-    previewCard.classList.add(
-      "cardking-preview"
-    );
-
-  }
-
-  // =========================
-  // TEXTO
-  // =========================
+function updatePreview(){
 
   $("preview-name").innerText =
-    nameInput.value || "Nome";
+    nameInput.value || "usuário";
 
   $("preview-bio").innerText =
-    bioInput.value || "Bio";
-
-  // =========================
-  // IMAGENS
-  // =========================
+    bioInput.value || "bio";
 
   $("preview-avatar").src =
-    avatarInput.value || "";
+
+    avatarInput.value ||
+
+    "https://i.pinimg.com/736x/bd/c7/81/bdc781b471ebd825a6ab5a40e36e0f8e.jpg";
 
   $("preview-banner").style.backgroundImage =
+
     `url(${bannerInput.value || ""})`;
 
-  // =========================
-  // BALÃO
-  // =========================
-
-  const balao =
-    $("preview-overlay");
-
-  if (
-    overlayInput.value &&
-    overlayInput.value.trim() !== ""
-  ) {
-
-    balao.innerText =
-      overlayInput.value;
-
-    balao.style.display =
-      "block";
-
-  } else {
-
-    balao.style.display =
-      "none";
-
-  }
-
-  // =========================
-  // FUNDO
-  // =========================
-
-  if (backgroundInput.value) {
+  if(backgroundInput.value){
 
     document.body.style.backgroundImage =
+
       `url(${backgroundInput.value})`;
-
-    document.body.style.backgroundSize =
-      "cover";
-
-    document.body.style.backgroundPosition =
-      "center";
-
-    document.body.style.backgroundRepeat =
-      "no-repeat";
-
-    document.body.style.backgroundAttachment =
-      "fixed";
 
   }
 
-  // =========================
-  // REDES
-  // =========================
+  const socials =
+    $("socials");
 
-  const socials = {
+  socials.innerHTML = "";
 
-    youtube:
-      youtubeInput.value,
+  function addSocial(
+    url,
+    icon,
+    name
+  ){
 
-    instagram:
-      instagramInput.value,
+    if(!url) return;
 
-    discord:
-      discordInput.value,
+    socials.innerHTML += `
 
-    spotify:
-      spotifyInput.value,
+      <a href="${url}" target="_blank">
 
-    tiktok:
-      tiktokInput.value,
+        <img src="${icon}">
 
-    whatsapp:
-      whatsappInput.value,
+        <div class="social-text">
 
-    twitter:
-      twitterInput.value,
+          <div class="social-name">
+            ${name}
+          </div>
 
-    facebook:
-      facebookInput.value
+          <div class="social-user">
+            ${nameInput.value || "usuário"}
+          </div>
 
-  };
+        </div>
 
-  Object.entries(socials)
-    .forEach(([key, value]) => {
+      </a>
 
-      const el =
-        document.getElementById(
-          key + "-link"
-        );
-
-      if (!el) return;
-
-      el.href =
-        value || "#";
-
-    });
-
-  // =========================
-  // CARDS PREVIEW
-  // =========================
-
-  const container =
-    $("extras-container");
-
-  if (!container) return;
-
-  container.innerHTML = "";
-
-  cards.forEach((c) => {
-
-    if (
-      !c.t.value &&
-      !c.i.value &&
-      !c.l.value
-    ) return;
-
-    const card =
-      document.createElement("a");
-
-    card.className =
-      "extra-card";
-
-    card.href =
-      c.l.value || "#";
-
-    card.target =
-      "_blank";
-
-    card.innerHTML = `
-      <div class="extra-card-icon">
-
-        <img
-          src="${c.i.value ||
-      "https://via.placeholder.com/55"
-      }"
-        >
-
-      </div>
-
-      <span>
-        ${c.t.value || ""}
-      </span>
     `;
 
-    container.appendChild(card);
+  }
 
-  });
+  addSocial(
+    discordInput.value,
+    "https://www.riqueza.life/images/socials/discord.png",
+    "Discord"
+  );
+
+  addSocial(
+    instagramInput.value,
+    "https://www.riqueza.life/images/socials/instagram.png",
+    "Instagram"
+  );
+
+  addSocial(
+    spotifyInput.value,
+    "https://www.riqueza.life/images/socials/spotify.png",
+    "Spotify"
+  );
+
+  addSocial(
+    tiktokInput.value,
+    "https://www.riqueza.life/images/socials/tiktok.png",
+    "TikTok"
+  );
+
+  addSocial(
+    twitterInput.value,
+    "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg",
+    "Twitter/X"
+  );
+
+  addSocial(
+    youtubeInput.value,
+    "https://www.riqueza.life/images/socials/youtube.png",
+    "YouTube"
+  );
 
 }
 
-// =========================
-// LISTENERS LIVE
-// =========================
-
 document
-  .querySelectorAll("input, textarea, select")
-  .forEach((el) => {
+  .querySelectorAll("input, textarea")
+  .forEach(el => {
 
     el.addEventListener(
       "input",
@@ -355,262 +150,4 @@ document
 
   });
 
-// =========================
-// CARREGAR PERFIL
-// =========================
-
-async function loadDashboard() {
-
-  const {
-    data: { user }
-  } =
-    await supabaseClient.auth.getUser();
-
-  if (!user) return;
-
-  const { data, error } =
-
-    await supabaseClient
-      .from("profiles")
-      .select("*")
-      .eq("id", user.id)
-      .single();
-
-  console.log(data);
-  console.log(error);
-
-  if (!data) return;
-
-  // =========================
-  // TEXTO
-  // =========================
-
-  textColorInput.value =
-    data.text_color || "white";
-
-  nameInput.value =
-    data.display_name || "";
-
-  bioInput.value =
-    data.bio || "";
-
-  // =========================
-  // IMAGENS
-  // =========================
-
-  avatarInput.value =
-    data.avatar_url || "";
-
-  bannerInput.value =
-    data.banner_url || "";
-
-  backgroundInput.value =
-    data.background_url || "";
-
-  // =========================
-  // BALÃO
-  // =========================
-
-  overlayInput.value =
-    data.balao || "";
-
-  // =========================
-  // TEMPLATE
-  // =========================
-
-  templateInput.value =
-    data.template || "cardking";
-
-  boxStyleInput.value =
-    data.box_style || "blur";
-
-  // =========================
-  // REDES
-  // =========================
-
-  youtubeInput.value =
-    data.youtube_url || "";
-
-  instagramInput.value =
-    data.instagram_url || "";
-
-  discordInput.value =
-    data.discord_url || "";
-
-  spotifyInput.value =
-    data.spotify_url || "";
-
-  tiktokInput.value =
-    data.tiktok_url || "";
-
-  whatsappInput.value =
-    data.whatsapp_url || "";
-
-  twitterInput.value =
-    data.twitter_url || "";
-
-  facebookInput.value =
-    data.facebook_url || "";
-
-  // =========================
-  // CARDS
-  // =========================
-
-  cards.forEach((c, i) => {
-
-    c.t.value =
-      data[`extra${i + 1}_text`] || "";
-
-    c.i.value =
-      data[`extra${i + 1}_img`] || "";
-
-    c.l.value =
-      data[`extra${i + 1}_link`] || "";
-
-  });
-
-  updatePreview();
-
-}
-
-loadDashboard();
-
-// =========================
-// SALVAR PERFIL
-// =========================
-
-document
-  .getElementById("save-btn")
-  .addEventListener(
-    "click",
-    async () => {
-
-      const {
-        data: { user }
-      } =
-        await supabaseClient.auth.getUser();
-
-      if (!user) {
-
-        alert(
-          "Usuário não logado"
-        );
-
-        return;
-
-      }
-
-      const username =
-
-        user.email
-          .split("@")[0]
-          .toLowerCase()
-          .trim();
-
-      const payload = {
-
-        id:
-          user.id,
-
-        username,
-
-        // PERFIL
-
-        display_name:
-          nameInput.value,
-
-        bio:
-          bioInput.value,
-
-        avatar_url:
-          avatarInput.value,
-
-        banner_url:
-          bannerInput.value,
-
-        background_url:
-          backgroundInput.value,
-
-        balao:
-          overlayInput.value,
-
-        text_color:
-          textColorInput.value,
-
-        template:
-          templateInput.value,
-
-        box_style:
-          boxStyleInput.value,
-
-        // REDES
-
-        youtube_url:
-          youtubeInput.value,
-
-        instagram_url:
-          instagramInput.value,
-
-        discord_url:
-          discordInput.value,
-
-        spotify_url:
-          spotifyInput.value,
-
-        tiktok_url:
-          tiktokInput.value,
-
-        whatsapp_url:
-          whatsappInput.value,
-
-        twitter_url:
-          twitterInput.value,
-
-        facebook_url:
-          facebookInput.value
-
-      };
-
-      // =========================
-      // CARDS EXTRAS
-      // =========================
-
-      cards.forEach((c, i) => {
-
-        payload[`extra${i + 1}_text`] =
-          c.t.value;
-
-        payload[`extra${i + 1}_img`] =
-          c.i.value;
-
-        payload[`extra${i + 1}_link`] =
-          c.l.value;
-
-      });
-
-      console.log(payload);
-
-      const { error } =
-
-        await supabaseClient
-          .from("profiles")
-          .upsert(payload);
-
-      if (error) {
-
-        console.log(error);
-
-        alert(error.message);
-
-        return;
-
-      }
-
-      alert(
-        "Perfil salvo com sucesso!"
-      );
-
-      window.location.href =
-        `/${username}`;
-
-    });
+updatePreview();
