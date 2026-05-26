@@ -1,9 +1,18 @@
-async function loadUsers() {
+const container =
+document.getElementById(
+  "users-container"
+);
 
-  const container =
-    document.getElementById(
-      "users-container"
-    );
+const searchInput =
+document.getElementById(
+  "search"
+);
+
+let allUsers = [];
+
+/* CARREGAR USERS */
+
+async function loadUsers() {
 
   const { data, error } =
 
@@ -23,10 +32,20 @@ async function loadUsers() {
       "<p>Erro ao carregar usuários</p>";
 
     return;
-
   }
 
-  data.forEach(user => {
+  allUsers = data;
+
+  renderUsers(data);
+}
+
+/* RENDER USERS */
+
+function renderUsers(users) {
+
+  container.innerHTML = "";
+
+  users.forEach(user => {
 
     const card =
       document.createElement("a");
@@ -39,7 +58,7 @@ async function loadUsers() {
 
     card.innerHTML = `
 
-     <img src="
+      <img src="
         ${user.avatar_url ||
         "https://i.pinimg.com/736x/bd/c7/81/bdc781b471ebd825a6ab5a40e36e0f8e.jpg"}
       ">
@@ -56,9 +75,35 @@ async function loadUsers() {
     `;
 
     container.appendChild(card);
-
   });
-
 }
+
+/* PESQUISA */
+
+searchInput.addEventListener(
+  "input",
+  () => {
+
+    const value =
+      searchInput.value
+      .toLowerCase();
+
+    const filteredUsers =
+      allUsers.filter(user =>
+
+        (user.display_name || "")
+        .toLowerCase()
+        .includes(value)
+
+        ||
+
+        (user.username || "")
+        .toLowerCase()
+        .includes(value)
+      );
+
+    renderUsers(filteredUsers);
+  }
+);
 
 loadUsers();
