@@ -503,8 +503,8 @@ TEMPLATE 3
   background:
     linear-gradient(
       135deg,
-      rgba(33,41,39,0.82),
-      rgba(18,23,22,0.88)
+      rgb(255 255 255 / 23%),
+      rgb(255 255 255 / 21%)
     );
 
   border:
