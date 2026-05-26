@@ -7,8 +7,13 @@
 
 body{
   min-height:100vh;
-  background:#0f0f0f;
   color:white;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto;
+
+  background:
+    radial-gradient(circle at 10% 10%, #1a1a1a, transparent 40%),
+    radial-gradient(circle at 90% 20%, #111827, transparent 40%),
+    #0b0b0b;
 }
 
 /* =========================
@@ -34,12 +39,11 @@ EDITOR
 ========================= */
 
 .editor{
-  background:
-    rgb(107 107 107);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(18px);
 
-  border:
-    1px solid rgba(255,255,255,0.08);
-
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
   border-radius:25px;
 
   padding:20px;
@@ -158,6 +162,7 @@ INPUTS
 
   margin:18px 0;
 }
+
 
 /* =========================
 BOTÃO
@@ -546,3 +551,36 @@ RESPONSIVO
   margin-bottom:12px;
 }
 
+.file-input {
+  display: none;
+}
+
+.upload-box {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 18px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.upload-box:hover {
+  background: rgba(255,255,255,0.08);
+  transform: translateY(-2px);
+}
+
+.upload-box i {
+  font-size: 20px;
+}
+
+.upload-box p {
+  font-weight: bold;
+}
+
+.upload-box span {
+  font-size: 12px;
+  opacity: 0.6;
+}
