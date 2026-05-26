@@ -972,3 +972,34 @@ MOBILE
   }
 
 }
+
+/* ========================
+SOCIAL BOX
+NÃO AFETA OUTROS TEMPLATES
+======================== */
+
+.social-box {
+
+  display: contents;
+} 
+
+.template3-theme .social-box {
+
+  display: block;
+
+  width: calc(100% - 76px);
+
+  margin: 22px auto 0;
+
+  padding: 28px;
+
+  border-radius: 28px;
+
+  background:
+    rgba(255,255,255,0.03);
+
+  border:
+    1px solid rgba(255,255,255,0.06);
+
+  backdrop-filter: blur(18px);
+}
