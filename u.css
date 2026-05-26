@@ -930,6 +930,8 @@ MOBILE
   position: relative;
 
   z-index: 2;
+
+   margin-left: 6px;
 }
 
 .template3-theme .social-text strong {
