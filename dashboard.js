@@ -241,32 +241,38 @@ document.getElementById("save-btn")
   let backgroundUrl = old?.background_url;
 
   if (avatarFile.files[0]) {
-    avatarUrl = await uploadImage(
-      avatarFile.files[0],
-      user.id,
-      "avatar",
-      old?.avatar_url
-    );
-  }
+  const uploaded = await uploadImage(
+    avatarFile.files[0],
+    user.id,
+    "avatar",
+    old?.avatar_url
+  );
+
+  if (uploaded) avatarUrl = uploaded;
+}
 
   if (bannerFile.files[0]) {
-    bannerUrl = await uploadImage(
-      bannerFile.files[0],
-      user.id,
-      "banner",
-      old?.banner_url
-    );
-  }
+  const uploaded = await uploadImage(
+    bannerFile.files[0],
+    user.id,
+    "banner",
+    old?.banner_url
+  );
 
+  if (uploaded) bannerUrl = uploaded;
+}
+  
   if (backgroundFile.files[0]) {
-    backgroundUrl = await uploadImage(
-      backgroundFile.files[0],
-      user.id,
-      "background",
-      old?.background_url
-    );
-  }
+  const uploaded = await uploadImage(
+    backgroundFile.files[0],
+    user.id,
+    "background",
+    old?.background_url
+  );
 
+  if (uploaded) backgroundUrl = uploaded;
+}
+  
   const payload = {
     id: user.id,
     username,
