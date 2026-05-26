@@ -224,7 +224,7 @@ if (
 
   socials.innerHTML = "";
 
-  function addSocial(
+ function addSocial(
   url,
   iconHTML,
   title,
@@ -236,23 +236,47 @@ if (
     url.trim() === ""
   ) return;
 
-  socials.innerHTML += `
+  // TEMPLATE 3
+  if (
+    document.body.classList.contains(
+      "template3-theme"
+    )
+  ) {
 
-    <a href="${url}" target="_blank">
+    socials.innerHTML += `
 
-      ${iconHTML}
+      <a href="${url}" target="_blank">
 
-      <div class="social-text">
+        ${iconHTML}
 
-        <strong>${title}</strong>
+        <div class="social-text">
 
-        <span>${user || ""}</span>
+          <strong>${title}</strong>
 
-      </div>
+          <span>${user || ""}</span>
 
-    </a>
+        </div>
 
-  `;
+      </a>
+
+    `;
+
+  }
+
+  // TEMPLATE 1 E 2
+  else {
+
+    socials.innerHTML += `
+
+      <a href="${url}" target="_blank">
+
+        ${iconHTML}
+
+      </a>
+
+    `;
+
+  }
 
 }
 
@@ -317,7 +341,15 @@ if (
   // =========================
 
   const conteudo =
-    document.querySelector(".conteudoking");
+  document.body.classList.contains(
+    "template3-theme"
+  )
+    ? document.getElementById(
+        "extras-container"
+      )
+    : document.querySelector(
+        ".conteudoking"
+      );
 
   document
     .querySelectorAll(".extra-card")
