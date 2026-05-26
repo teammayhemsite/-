@@ -39,9 +39,9 @@ async function loadUsers() {
 
     card.innerHTML = `
 
-      <img src="
+     <img src="
         ${user.avatar_url ||
-        "https://via.placeholder.com/70"}
+        "https://i.pinimg.com/736x/bd/c7/81/bdc781b471ebd825a6ab5a40e36e0f8e.jpg"}
       ">
 
       <h2>
