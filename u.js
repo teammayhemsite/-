@@ -71,26 +71,36 @@ async function loadProfile() {
   // =========================
 
   document.body.classList.remove(
-    "cardking-theme",
+  "cardking-theme",
+  "cardkingdois-theme",
+  "template3-theme"
+);
+
+if (
+  data.template ===
+  "cardkingdois"
+) {
+
+  document.body.classList.add(
     "cardkingdois-theme"
   );
 
-  if (
-    data.template ===
-    "cardkingdois"
-  ) {
+} else if (
+  data.template ===
+  "template3"
+) {
 
-    document.body.classList.add(
-      "cardkingdois-theme"
-    );
+  document.body.classList.add(
+    "template3-theme"
+  );
 
-  } else {
+} else {
 
-    document.body.classList.add(
-      "cardking-theme"
-    );
+  document.body.classList.add(
+    "cardking-theme"
+  );
 
-  }
+}
 
   if (
     data.box_style ===
