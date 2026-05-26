@@ -68,3 +68,110 @@ h1{
   opacity:0.8;
   line-height:1.5;
 }
+
+.back-btn {
+  position: absolute;
+
+  top: 30px;
+  left: 30px;
+
+  color: rgba(255,255,255,0.7);
+
+  text-decoration: none;
+
+  font-size: 16px;
+
+  transition: 0.2s;
+}
+
+.back-btn:hover {
+  color: #f7cf57;
+
+  transform: translateX(-3px);
+}
+
+#search{
+  width:100%;
+
+  max-width:400px;
+
+  padding:15px 18px;
+
+  margin:70px 0 30px;
+
+  border:none;
+
+  outline:none;
+
+  border-radius:16px;
+
+  background:
+    rgba(255,255,255,0.06);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  color:white;
+
+  font-size:15px;
+}
+
+#search::placeholder{
+  color:rgba(255,255,255,0.45);
+}
+
+#search:focus{
+  border-color:#f7cf57;
+
+  box-shadow:
+    0 0 12px rgba(247,207,87,0.2);
+}
+
+@media (max-width: 768px){
+
+  body{
+    padding:20px 15px;
+  }
+
+  .back-btn{
+    position:relative;
+
+    top:0;
+    left:0;
+
+    display:inline-block;
+
+    margin-bottom:20px;
+  }
+
+  #search{
+    max-width:100%;
+
+    margin:0 0 25px;
+  }
+
+  #users-container{
+
+    grid-template-columns:
+    1fr;
+
+    gap:15px;
+  }
+
+  .user-card{
+    padding:18px;
+  }
+
+  .user-card img{
+    width:60px;
+    height:60px;
+  }
+
+  .user-card h2{
+    font-size:18px;
+  }
+
+  .user-card p{
+    font-size:14px;
+  }
+}
