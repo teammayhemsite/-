@@ -56,6 +56,7 @@ const cards = [
 // =========================
 
 async function uploadImage(file, userId, type, oldUrl = null) {
+
   const filePath = `users/${userId}/${type}.png`;
 
   const { error } = await supabaseClient
@@ -69,11 +70,12 @@ async function uploadImage(file, userId, type, oldUrl = null) {
   }
 
   const { data } = supabaseClient
-  .storage
-  .from("images")
-  .getPublicUrl(filePath);
+    .storage
+    .from("images")
+    .getPublicUrl(filePath);
 
   return `${data.publicUrl}?v=${Date.now()}`;
+}
 
   if (oldUrl && oldUrl.includes("/images/")) {
     const oldPath = oldUrl.split("/images/")[1];
