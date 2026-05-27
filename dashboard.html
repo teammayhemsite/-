@@ -68,20 +68,27 @@
           <label>Bio</label>
           <textarea id="bio-input"></textarea>
 
-          <label>Avatar</label>          
-          <input type="file" id="avatar-file" accept="image/*">
-         
+          <div class="upload-box" onclick="document.getElementById('avatar-file').click()">            
+            <p>Escolher foto de perfil</p>
+            <span>PNG, JPG até 5MB</span>
+            <input type="file" id="avatar-file" class="file-input" accept="image/*">
+          </div>
 
           <br>
 
-          <label>Banner</label>
-          <input type="file" id="banner-file" accept="image/*">
-        
+          <div class="upload-box" onclick="document.getElementById('banner-file').click()">            
+            <p>Escolher Banner</p>
+            <span>PNG, JPG até 5MB</span>
+            <input type="file" id="banner-file" class="file-input" accept="image/*">
+          </div>
 
-          <label>Fundo</label>
-          <input type="file" id="background-file" accept="image/*">
           <br>
-         
+          
+          <div class="upload-box" onclick="document.getElementById('background-file').click()">            
+            <p>Escolher Wallpaper</p>
+            <span>PNG, JPG até 5MB</span>
+            <input type="file" id="background-file" class="file-input" accept="image/*">
+          </div>
 
           <label>Balão</label>
           <input id="overlay-input">
@@ -151,7 +158,11 @@
           <input id="extra4-link" placeholder="Link 4">
 
         </div>
-      </div>      
+      </div>
+
+      <p>Aviso: links temporários, como os do Discord, podem expirar ou alterar a URL da imagem automaticamente. Isso
+        pode fazer a foto de perfil não aparecer corretamente no site. Recomenda-se utilizar links direto como os do
+        pinterest </p>
       <button id="save-btn">SALVAR PERFIL</button>
 
     </div>
