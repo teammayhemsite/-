@@ -55,38 +55,35 @@ const cards = [
 // UPLOAD SUPABASE
 // =========================
 
-async function uploadImage(file, userId, type, oldUrl = null) {
+async function uploadImage(file, userId, type) {
 
-  const filePath = `users/${userId}/${type}.png`;
+  const filePath =
+    `users/${userId}/${type}.png`;
 
-  const { error } = await supabaseClient
-    .storage
-    .from("images")
-    .upload(filePath, file, { upsert: true });
-
-  if (error) {
-    console.log(error);
-    return null;
-  }
-
-  const { data } = supabaseClient
-    .storage
-    .from("images")
-    .getPublicUrl(filePath);
-
-  return `${data.publicUrl}?v=${Date.now()}`;
-}
-
-  if (oldUrl && oldUrl.includes("/images/")) {
-    const oldPath = oldUrl.split("/images/")[1];
-
+  const { error } =
     await supabaseClient
       .storage
       .from("images")
-      .remove([oldPath]);
+      .upload(filePath, file, {
+        upsert: true
+      });
+
+  if (error) {
+
+    console.log(error);
+    return null;
+
   }
 
-  return data.publicUrl;
+  const { data } =
+    supabaseClient
+      .storage
+      .from("images")
+      .getPublicUrl(filePath);
+
+  // força atualizar imagem nova
+  return `${data.publicUrl}?v=${Date.now()}`;
+
 }
 
 // =========================
@@ -94,15 +91,29 @@ async function uploadImage(file, userId, type, oldUrl = null) {
 // =========================
 
 function updatePreview() {
-  const previewCard = document.querySelector(".cardking");
 
-  if (boxStyleInput.value === "transparent") {
-    previewCard.style.backdropFilter = "blur(1px)";
+  const previewCard =
+    document.querySelector(".cardking");
+
+  if (
+    boxStyleInput.value ===
+    "transparent"
+  ) {
+
+    previewCard.style.backdropFilter =
+      "blur(1px)";
+
   } else {
-    previewCard.style.backdropFilter = "blur(18px)";
+
+    previewCard.style.backdropFilter =
+      "blur(18px)";
+
   }
 
-  previewCard.style.setProperty("--text-color", textColorInput.value);
+  previewCard.style.setProperty(
+    "--text-color",
+    textColorInput.value
+  );
 
   document.body.classList.remove(
     "cardking-theme",
@@ -111,110 +122,234 @@ function updatePreview() {
   );
 
   document.body.classList.add(
-    templateInput.value === "cardkingdois"
-      ? "cardkingdois-theme"
-      : templateInput.value === "template3"
-      ? "template3-theme"
-      : "cardking-theme"
+
+    templateInput.value ===
+    "cardkingdois"
+
+    ? "cardkingdois-theme"
+
+    : templateInput.value ===
+      "template3"
+
+    ? "template3-theme"
+
+    : "cardking-theme"
+
   );
 
-  $("preview-name").innerText = nameInput.value || "Nome";
-  $("preview-bio").innerText = bioInput.value || "Bio";
+  $("preview-name").innerText =
+    nameInput.value || "Nome";
 
-  // imagens preview (LOCAL FILE)
+  $("preview-bio").innerText =
+    bioInput.value || "Bio";
+
+  // avatar
   if (avatarFile.files[0]) {
-    $("preview-avatar").src = URL.createObjectURL(avatarFile.files[0]);
+
+    $("preview-avatar").src =
+      URL.createObjectURL(
+        avatarFile.files[0]
+      );
+
   }
 
+  // banner
   if (bannerFile.files[0]) {
-    $("preview-banner").style.backgroundImage =
-      `url(${URL.createObjectURL(bannerFile.files[0])})`;
+
+    $("preview-banner")
+      .style.backgroundImage =
+
+      `url(${
+        URL.createObjectURL(
+          bannerFile.files[0]
+        )
+      })`;
+
   }
 
+  // fundo
   if (backgroundFile.files[0]) {
+
     document.body.style.backgroundImage =
-      `url(${URL.createObjectURL(backgroundFile.files[0])})`;
-    document.body.style.backgroundSize = "cover";
+
+      `url(${
+        URL.createObjectURL(
+          backgroundFile.files[0]
+        )
+      })`;
+
+    document.body.style.backgroundSize =
+      "cover";
+
   }
 
-  const balao = $("preview-overlay");
+  // balão
+  const balao =
+    $("preview-overlay");
 
-  if (overlayInput.value.trim()) {
-    balao.style.display = "block";
-    balao.innerText = overlayInput.value;
+  if (
+    overlayInput.value.trim()
+  ) {
+
+    balao.style.display =
+      "block";
+
+    balao.innerText =
+      overlayInput.value;
+
   } else {
-    balao.style.display = "none";
+
+    balao.style.display =
+      "none";
+
   }
 
   // extras
-  const container = $("extras-container");
+  const container =
+    $("extras-container");
+
   container.innerHTML = "";
 
   cards.forEach(c => {
-    if (!c.t.value && !c.i.value && !c.l.value) return;
 
-    const card = document.createElement("a");
-    card.className = "extra-card";
-    card.href = c.l.value || "#";
-    card.target = "_blank";
+    if (
+      !c.t.value &&
+      !c.i.value &&
+      !c.l.value
+    ) return;
+
+    const card =
+      document.createElement("a");
+
+    card.className =
+      "extra-card";
+
+    card.href =
+      c.l.value || "#";
+
+    card.target =
+      "_blank";
 
     card.innerHTML = `
+
       <div class="extra-card-icon">
-        <img src="${c.i.value || "https://via.placeholder.com/55"}">
+
+        <img src="${
+          c.i.value ||
+          "https://via.placeholder.com/55"
+        }">
+
       </div>
-      <span>${c.t.value || ""}</span>
+
+      <span>
+        ${c.t.value || ""}
+      </span>
+
     `;
 
     container.appendChild(card);
+
   });
+
 }
 
-// inputs live
-document.querySelectorAll("input, textarea, select")
-  .forEach(el => el.addEventListener("input", updatePreview));
+// =========================
+// LIVE PREVIEW
+// =========================
+
+document
+  .querySelectorAll(
+    "input, textarea, select"
+  )
+  .forEach(el => {
+
+    el.addEventListener(
+      "input",
+      updatePreview
+    );
+
+  });
 
 // =========================
 // CARREGAR
 // =========================
 
 async function loadDashboard() {
-  const { data: { user } } =
-    await supabaseClient.auth.getUser();
+
+  const {
+    data: { user }
+  } = await supabaseClient
+    .auth
+    .getUser();
 
   if (!user) return;
 
-  const { data } = await supabaseClient
-    .from("profiles")
-    .select("*")
-    .eq("id", user.id)
-    .single();
+  const { data } =
+    await supabaseClient
+      .from("profiles")
+      .select("*")
+      .eq("id", user.id)
+      .single();
 
   if (!data) return;
 
-  nameInput.value = data.display_name || "";
-  bioInput.value = data.bio || "";
+  nameInput.value =
+    data.display_name || "";
 
-  overlayInput.value = data.balao || "";
-  templateInput.value = data.template || "cardking";
-  boxStyleInput.value = data.box_style || "blur";
-  textColorInput.value = data.text_color || "white";
+  bioInput.value =
+    data.bio || "";
 
-  youtubeInput.value = data.youtube_url || "";
-  instagramInput.value = data.instagram_url || "";
-  discordInput.value = data.discord_url || "";
-  spotifyInput.value = data.spotify_url || "";
-  tiktokInput.value = data.tiktok_url || "";
-  whatsappInput.value = data.whatsapp_url || "";
-  twitterInput.value = data.twitter_url || "";
-  facebookInput.value = data.facebook_url || "";
+  overlayInput.value =
+    data.balao || "";
+
+  templateInput.value =
+    data.template || "cardking";
+
+  boxStyleInput.value =
+    data.box_style || "blur";
+
+  textColorInput.value =
+    data.text_color || "white";
+
+  youtubeInput.value =
+    data.youtube_url || "";
+
+  instagramInput.value =
+    data.instagram_url || "";
+
+  discordInput.value =
+    data.discord_url || "";
+
+  spotifyInput.value =
+    data.spotify_url || "";
+
+  tiktokInput.value =
+    data.tiktok_url || "";
+
+  whatsappInput.value =
+    data.whatsapp_url || "";
+
+  twitterInput.value =
+    data.twitter_url || "";
+
+  facebookInput.value =
+    data.facebook_url || "";
 
   cards.forEach((c, i) => {
-    c.t.value = data[`extra${i + 1}_text`] || "";
-    c.i.value = data[`extra${i + 1}_img`] || "";
-    c.l.value = data[`extra${i + 1}_link`] || "";
+
+    c.t.value =
+      data[`extra${i + 1}_text`] || "";
+
+    c.i.value =
+      data[`extra${i + 1}_img`] || "";
+
+    c.l.value =
+      data[`extra${i + 1}_link`] || "";
+
   });
 
   updatePreview();
+
 }
 
 loadDashboard();
@@ -223,101 +358,176 @@ loadDashboard();
 // SALVAR PERFIL
 // =========================
 
-document.getElementById("save-btn")
-.addEventListener("click", async () => {
+$("save-btn")
+.addEventListener(
+  "click",
+  async () => {
 
-  const { data: { user } } =
-    await supabaseClient.auth.getUser();
+  const {
+    data: { user }
+  } = await supabaseClient
+    .auth
+    .getUser();
 
   if (!user) return;
 
-  const username = user.email.split("@")[0].toLowerCase();
+  const username =
+    user.email
+      .split("@")[0]
+      .toLowerCase();
 
-  const { data: old } = await supabaseClient
-    .from("profiles")
-    .select("avatar_url, banner_url, background_url")
-    .eq("id", user.id)
-    .single();
+  const { data: old } =
+    await supabaseClient
+      .from("profiles")
+      .select("*")
+      .eq("id", user.id)
+      .single();
 
-  // uploads
-  let avatarUrl = old?.avatar_url;
-  let bannerUrl = old?.banner_url;
-  let backgroundUrl = old?.background_url;
+  let avatarUrl =
+    old?.avatar_url || "";
 
+  let bannerUrl =
+    old?.banner_url || "";
+
+  let backgroundUrl =
+    old?.background_url || "";
+
+  // avatar
   if (avatarFile.files[0]) {
-  const uploaded = await uploadImage(
-    avatarFile.files[0],
-    user.id,
-    "avatar",
-    old?.avatar_url
-  );
 
-  if (uploaded) avatarUrl = uploaded;
-}
+    const uploaded =
+      await uploadImage(
+        avatarFile.files[0],
+        user.id,
+        "avatar"
+      );
 
+    if (uploaded)
+      avatarUrl = uploaded;
+
+  }
+
+  // banner
   if (bannerFile.files[0]) {
-  const uploaded = await uploadImage(
-    bannerFile.files[0],
-    user.id,
-    "banner",
-    old?.banner_url
-  );
 
-  if (uploaded) bannerUrl = uploaded;
-}
-  
+    const uploaded =
+      await uploadImage(
+        bannerFile.files[0],
+        user.id,
+        "banner"
+      );
+
+    if (uploaded)
+      bannerUrl = uploaded;
+
+  }
+
+  // fundo
   if (backgroundFile.files[0]) {
-  const uploaded = await uploadImage(
-    backgroundFile.files[0],
-    user.id,
-    "background",
-    old?.background_url
-  );
 
-  if (uploaded) backgroundUrl = uploaded;
-}
-  
+    const uploaded =
+      await uploadImage(
+        backgroundFile.files[0],
+        user.id,
+        "background"
+      );
+
+    if (uploaded)
+      backgroundUrl = uploaded;
+
+  }
+
   const payload = {
+
     id: user.id,
     username,
 
-    display_name: nameInput.value,
-    bio: bioInput.value,
+    display_name:
+      nameInput.value,
 
-    avatar_url: avatarUrl,
-    banner_url: bannerUrl,
-    background_url: backgroundUrl,
+    bio:
+      bioInput.value,
 
-    balao: overlayInput.value,
-    text_color: textColorInput.value,
-    template: templateInput.value,
-    box_style: boxStyleInput.value,
+    avatar_url:
+      avatarUrl,
 
-    youtube_url: youtubeInput.value,
-    instagram_url: instagramInput.value,
-    discord_url: discordInput.value,
-    spotify_url: spotifyInput.value,
-    tiktok_url: tiktokInput.value,
-    whatsapp_url: whatsappInput.value,
-    twitter_url: twitterInput.value,
-    facebook_url: facebookInput.value
+    banner_url:
+      bannerUrl,
+
+    background_url:
+      backgroundUrl,
+
+    balao:
+      overlayInput.value,
+
+    text_color:
+      textColorInput.value,
+
+    template:
+      templateInput.value,
+
+    box_style:
+      boxStyleInput.value,
+
+    youtube_url:
+      youtubeInput.value,
+
+    instagram_url:
+      instagramInput.value,
+
+    discord_url:
+      discordInput.value,
+
+    spotify_url:
+      spotifyInput.value,
+
+    tiktok_url:
+      tiktokInput.value,
+
+    whatsapp_url:
+      whatsappInput.value,
+
+    twitter_url:
+      twitterInput.value,
+
+    facebook_url:
+      facebookInput.value
+
   };
 
   cards.forEach((c, i) => {
-    payload[`extra${i + 1}_text`] = c.t.value;
-    payload[`extra${i + 1}_img`] = c.i.value;
-    payload[`extra${i + 1}_link`] = c.l.value;
+
+    payload[
+      `extra${i + 1}_text`
+    ] = c.t.value;
+
+    payload[
+      `extra${i + 1}_img`
+    ] = c.i.value;
+
+    payload[
+      `extra${i + 1}_link`
+    ] = c.l.value;
+
   });
 
-  const { error } = await supabaseClient
-    .from("profiles")
-    .upsert(payload);
+  const { error } =
+    await supabaseClient
+      .from("profiles")
+      .upsert(payload);
 
   if (error) {
+
     alert(error.message);
     return;
+
   }
 
-  alert("Perfil salvo com sucesso!");
-  window.location.href = `/${username}`;
+  alert(
+    "Perfil salvo com sucesso!"
+  );
+
+  window.location.href =
+    `/${username}`;
+
 });
