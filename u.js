@@ -71,36 +71,40 @@ async function loadProfile() {
   // =========================
 
   document.body.classList.remove(
-  "cardking-theme",
-  "cardkingdois-theme",
-  "template3-theme"
-);
-
-if (
-  data.template ===
-  "cardkingdois"
-) {
-
-  document.body.classList.add(
-    "cardkingdois-theme"
-  );
-
-} else if (
-  data.template ===
-  "template3"
-) {
-
-  document.body.classList.add(
+    "cardking-theme",
+    "cardkingdois-theme",
     "template3-theme"
   );
 
-} else {
+  if (
+    data.template ===
+    "cardkingdois"
+  ) {
 
-  document.body.classList.add(
-    "cardking-theme"
-  );
+    document.body.classList.add(
+      "cardkingdois-theme"
+    );
 
-}
+  } else if (
+    data.template ===
+    "template3"
+  ) {
+
+    document.body.classList.add(
+      "template3-theme"
+    );
+
+  } else {
+
+    document.body.classList.add(
+      "cardking-theme"
+    );
+
+  }
+
+  // =========================
+  // BOX STYLE
+  // =========================
 
   if (
     data.box_style ===
@@ -181,16 +185,25 @@ if (
   // IMAGENS
   // =========================
 
- document.getElementById(
-  "avatar"
-).src =
-  data.avatar_url ||
-  "https://i.pinimg.com/736x/bd/c7/81/bdc781b471ebd825a6ab5a40e36e0f8e.jpg";
+  document.getElementById(
+    "avatar"
+  ).src =
+
+    data.avatar_url
+
+    ? `${data.avatar_url}?v=${Date.now()}`
+
+    : "https://i.pinimg.com/736x/bd/c7/81/bdc781b471ebd825a6ab5a40e36e0f8e.jpg";
 
   document.getElementById(
     "banner"
   ).style.backgroundImage =
-    `url(${data.banner_url || ""})`;
+
+    data.banner_url
+
+    ? `url(${data.banner_url}?v=${Date.now()})`
+
+    : "";
 
   // =========================
   // FUNDO
@@ -199,7 +212,8 @@ if (
   if (data.background_url) {
 
     document.body.style.backgroundImage =
-      `url(${data.background_url})`;
+
+      `url(${data.background_url}?v=${Date.now()})`;
 
     document.body.style.backgroundSize =
       "cover";
@@ -224,61 +238,61 @@ if (
 
   socials.innerHTML = "";
 
- function addSocial(
-  url,
-  iconHTML,
-  title,
-  user
-) {
-
-  if (
-    !url ||
-    url.trim() === ""
-  ) return;
-
-  // TEMPLATE 3
-  if (
-    document.body.classList.contains(
-      "template3-theme"
-    )
+  function addSocial(
+    url,
+    iconHTML,
+    title,
+    user
   ) {
 
-    socials.innerHTML += `
+    if (
+      !url ||
+      url.trim() === ""
+    ) return;
 
-      <a href="${url}" target="_blank">
+    // TEMPLATE 3
+    if (
+      document.body.classList.contains(
+        "template3-theme"
+      )
+    ) {
 
-        ${iconHTML}
+      socials.innerHTML += `
 
-        <div class="social-text">
+        <a href="${url}" target="_blank">
 
-          <strong>${title}</strong>
+          ${iconHTML}
 
-          <span>${user || ""}</span>
+          <div class="social-text">
 
-        </div>
+            <strong>${title}</strong>
 
-      </a>
+            <span>${user || ""}</span>
 
-    `;
+          </div>
+
+        </a>
+
+      `;
+
+    }
+
+    // TEMPLATE 1 E 2
+    else {
+
+      socials.innerHTML += `
+
+        <a href="${url}" target="_blank">
+
+          ${iconHTML}
+
+        </a>
+
+      `;
+
+    }
 
   }
-
-  // TEMPLATE 1 E 2
-  else {
-
-    socials.innerHTML += `
-
-      <a href="${url}" target="_blank">
-
-        ${iconHTML}
-
-      </a>
-
-    `;
-
-  }
-
-}
 
   addSocial(
     data.youtube_url,
@@ -290,49 +304,49 @@ if (
   addSocial(
     data.instagram_url,
     `<img src="https://www.riqueza.life/images/socials/instagram.png">`,
-    "Instagram", 
+    "Instagram",
     data.username
   );
 
   addSocial(
-  data.discord_url,
-  `<img src="https://www.riqueza.life/images/socials/discord.png">`,
-  "Discord", 
-  data.username
-);
+    data.discord_url,
+    `<img src="https://www.riqueza.life/images/socials/discord.png">`,
+    "Discord",
+    data.username
+  );
 
   addSocial(
     data.spotify_url,
     `<img src="https://www.riqueza.life/images/socials/spotify.png">`,
-    "Spotify", 
+    "Spotify",
     data.username
   );
 
   addSocial(
     data.tiktok_url,
     `<img src="https://www.riqueza.life/images/socials/tiktok.png">`,
-    "Tiktok", 
+    "Tiktok",
     data.username
   );
 
   addSocial(
     data.whatsapp_url,
     `<img src="https://www.riqueza.life/images/socials/whatsapp.png">`,
-    "Whatsapp", 
+    "Whatsapp",
     data.username
   );
 
   addSocial(
     data.facebook_url,
     `<img src="https://www.riqueza.life/images/socials/twitch.png">`,
-    "Twitch", 
+    "Twitch",
     data.username
   );
 
   addSocial(
     data.twitter_url,
     `<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg">`,
-    "Twiter", 
+    "Twitter",
     data.username
   );
 
@@ -340,14 +354,12 @@ if (
   // CARDS EXTRAS
   // =========================
 
-const conteudo =
-  document.getElementById(
-    "extras-container"
-  );
+  const conteudo =
+    document.getElementById(
+      "extras-container"
+    );
 
-  document
-    .querySelectorAll(".extra-card")
-    .forEach(el => el.remove());
+  conteudo.innerHTML = "";
 
   for (let i = 1; i <= 4; i++) {
 
@@ -393,11 +405,13 @@ const conteudo =
     }
 
     card.innerHTML = `
+
       ${imageHTML}
 
       <span>
         ${text || "Card extra"}
       </span>
+
     `;
 
     conteudo.appendChild(card);
