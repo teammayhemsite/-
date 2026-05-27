@@ -3,70 +3,160 @@
 // =========================
 
 document.querySelectorAll(".toggle").forEach(btn => {
+
   btn.addEventListener("click", () => {
+
     btn.parentElement.classList.toggle("active");
+
   });
+
 });
 
-const $ = (id) => document.getElementById(id);
+const $ = (id) =>
+  document.getElementById(id);
 
 // =========================
 // INPUTS PERFIL
 // =========================
 
-const nameInput = $("name-input");
-const bioInput = $("bio-input");
+const nameInput =
+  $("name-input");
 
-const avatarFile = $("avatar-file");
-const bannerFile = $("banner-file");
-const backgroundFile = $("background-file");
+const bioInput =
+  $("bio-input");
 
-const overlayInput = $("overlay-input");
+const avatarFile =
+  $("avatar-file");
 
-const templateInput = $("template-input");
-const textColorInput = $("text-color-input");
-const boxStyleInput = $("box-style-input");
+const bannerFile =
+  $("banner-file");
+
+const backgroundFile =
+  $("background-file");
+
+const overlayInput =
+  $("overlay-input");
+
+const templateInput =
+  $("template-input");
+
+const textColorInput =
+  $("text-color-input");
+
+const boxStyleInput =
+  $("box-style-input");
 
 // =========================
 // REDES
 // =========================
 
-const youtubeInput = $("youtube-input");
-const instagramInput = $("instagram-input");
-const discordInput = $("discord-input");
-const spotifyInput = $("spotify-input");
-const tiktokInput = $("tiktok-input");
-const whatsappInput = $("whatsapp-input");
-const twitterInput = $("twitter-input");
-const facebookInput = $("facebook-input");
+const youtubeInput =
+  $("youtube-input");
+
+const instagramInput =
+  $("instagram-input");
+
+const discordInput =
+  $("discord-input");
+
+const spotifyInput =
+  $("spotify-input");
+
+const tiktokInput =
+  $("tiktok-input");
+
+const whatsappInput =
+  $("whatsapp-input");
+
+const twitterInput =
+  $("twitter-input");
+
+const facebookInput =
+  $("facebook-input");
 
 // =========================
 // CARDS EXTRAS
 // =========================
 
 const cards = [
-  { t: $("extra1-text"), i: $("extra1-img"), l: $("extra1-link") },
-  { t: $("extra2-text"), i: $("extra2-img"), l: $("extra2-link") },
-  { t: $("extra3-text"), i: $("extra3-img"), l: $("extra3-link") },
-  { t: $("extra4-text"), i: $("extra4-img"), l: $("extra4-link") }
+
+  {
+    t: $("extra1-text"),
+    i: $("extra1-img"),
+    l: $("extra1-link")
+  },
+
+  {
+    t: $("extra2-text"),
+    i: $("extra2-img"),
+    l: $("extra2-link")
+  },
+
+  {
+    t: $("extra3-text"),
+    i: $("extra3-img"),
+    l: $("extra3-link")
+  },
+
+  {
+    t: $("extra4-text"),
+    i: $("extra4-img"),
+    l: $("extra4-link")
+  }
+
 ];
 
 // =========================
 // UPLOAD SUPABASE
 // =========================
 
-async function uploadImage(file, userId, type) {
+async function uploadImage(
+  file,
+  userId,
+  type,
+  oldUrl = null
+) {
 
+  // REMOVE IMAGEM ANTIGA
+  if (oldUrl) {
+
+    try {
+
+      const oldPath =
+        oldUrl
+          .split("/storage/v1/object/public/images/")[1]
+          ?.split("?")[0];
+
+      if (oldPath) {
+
+        await supabaseClient
+          .storage
+          .from("images")
+          .remove([oldPath]);
+
+      }
+
+    } catch (e) {
+
+      console.log(
+        "Erro removendo antiga:",
+        e
+      );
+
+    }
+
+  }
+
+  // NOVO NOME
   const filePath =
-  `users/${userId}/${type}-${Date.now()}.png`;
+    `users/${userId}/${type}-${Date.now()}.png`;
 
+  // UPLOAD
   const { error } =
     await supabaseClient
       .storage
       .from("images")
-      .upload(filePath, file, {
-        upsert: true
-      });
+      .upload(filePath, file);
 
   if (error) {
 
@@ -75,13 +165,13 @@ async function uploadImage(file, userId, type) {
 
   }
 
+  // URL
   const { data } =
     supabaseClient
       .storage
       .from("images")
       .getPublicUrl(filePath);
 
-  // força atualizar imagem nova
   return `${data.publicUrl}?v=${Date.now()}`;
 
 }
@@ -143,7 +233,7 @@ function updatePreview() {
   $("preview-bio").innerText =
     bioInput.value || "Bio";
 
-  // avatar
+  // AVATAR
   if (avatarFile.files[0]) {
 
     $("preview-avatar").src =
@@ -153,7 +243,7 @@ function updatePreview() {
 
   }
 
-  // banner
+  // BANNER
   if (bannerFile.files[0]) {
 
     $("preview-banner")
@@ -167,7 +257,7 @@ function updatePreview() {
 
   }
 
-  // fundo
+  // BACKGROUND
   if (backgroundFile.files[0]) {
 
     document.body.style.backgroundImage =
@@ -183,7 +273,7 @@ function updatePreview() {
 
   }
 
-  // balão
+  // BALÃO
   const balao =
     $("preview-overlay");
 
@@ -204,7 +294,7 @@ function updatePreview() {
 
   }
 
-  // extras
+  // EXTRAS
   const container =
     $("extras-container");
 
@@ -363,171 +453,175 @@ $("save-btn")
   "click",
   async () => {
 
-  const {
-    data: { user }
-  } = await supabaseClient
-    .auth
-    .getUser();
+    const {
+      data: { user }
+    } = await supabaseClient
+      .auth
+      .getUser();
 
-  if (!user) return;
+    if (!user) return;
 
-  const username =
-    user.email
-      .split("@")[0]
-      .toLowerCase();
+    const username =
+      user.email
+        .split("@")[0]
+        .toLowerCase();
 
-  const { data: old } =
-    await supabaseClient
-      .from("profiles")
-      .select("*")
-      .eq("id", user.id)
-      .single();
+    const { data: old } =
+      await supabaseClient
+        .from("profiles")
+        .select("*")
+        .eq("id", user.id)
+        .single();
 
-  let avatarUrl =
-    old?.avatar_url || "";
+    let avatarUrl =
+      old?.avatar_url || "";
 
-  let bannerUrl =
-    old?.banner_url || "";
+    let bannerUrl =
+      old?.banner_url || "";
 
-  let backgroundUrl =
-    old?.background_url || "";
+    let backgroundUrl =
+      old?.background_url || "";
 
-  // avatar
-  if (avatarFile.files[0]) {
+    // AVATAR
+    if (avatarFile.files[0]) {
 
-    const uploaded =
-      await uploadImage(
-        avatarFile.files[0],
-        user.id,
-        "avatar"
-      );
+      const uploaded =
+        await uploadImage(
+          avatarFile.files[0],
+          user.id,
+          "avatar",
+          old?.avatar_url
+        );
 
-    if (uploaded)
-      avatarUrl = uploaded;
+      if (uploaded)
+        avatarUrl = uploaded;
+
+    }
+
+    // BANNER
+    if (bannerFile.files[0]) {
+
+      const uploaded =
+        await uploadImage(
+          bannerFile.files[0],
+          user.id,
+          "banner",
+          old?.banner_url
+        );
+
+      if (uploaded)
+        bannerUrl = uploaded;
+
+    }
+
+    // BACKGROUND
+    if (backgroundFile.files[0]) {
+
+      const uploaded =
+        await uploadImage(
+          backgroundFile.files[0],
+          user.id,
+          "background",
+          old?.background_url
+        );
+
+      if (uploaded)
+        backgroundUrl = uploaded;
+
+    }
+
+    const payload = {
+
+      id: user.id,
+      username,
+
+      display_name:
+        nameInput.value,
+
+      bio:
+        bioInput.value,
+
+      avatar_url:
+        avatarUrl,
+
+      banner_url:
+        bannerUrl,
+
+      background_url:
+        backgroundUrl,
+
+      balao:
+        overlayInput.value,
+
+      text_color:
+        textColorInput.value,
+
+      template:
+        templateInput.value,
+
+      box_style:
+        boxStyleInput.value,
+
+      youtube_url:
+        youtubeInput.value,
+
+      instagram_url:
+        instagramInput.value,
+
+      discord_url:
+        discordInput.value,
+
+      spotify_url:
+        spotifyInput.value,
+
+      tiktok_url:
+        tiktokInput.value,
+
+      whatsapp_url:
+        whatsappInput.value,
+
+      twitter_url:
+        twitterInput.value,
+
+      facebook_url:
+        facebookInput.value
+
+    };
+
+    cards.forEach((c, i) => {
+
+      payload[
+        `extra${i + 1}_text`
+      ] = c.t.value;
+
+      payload[
+        `extra${i + 1}_img`
+      ] = c.i.value;
+
+      payload[
+        `extra${i + 1}_link`
+      ] = c.l.value;
+
+    });
+
+    const { error } =
+      await supabaseClient
+        .from("profiles")
+        .upsert(payload);
+
+    if (error) {
+
+      alert(error.message);
+      return;
+
+    }
+
+    alert(
+      "Perfil salvo com sucesso!"
+    );
+
+    window.location.href =
+      `/${username}`;
 
   }
-
-  // banner
-  if (bannerFile.files[0]) {
-
-    const uploaded =
-      await uploadImage(
-        bannerFile.files[0],
-        user.id,
-        "banner"
-      );
-
-    if (uploaded)
-      bannerUrl = uploaded;
-
-  }
-
-  // fundo
-  if (backgroundFile.files[0]) {
-
-    const uploaded =
-      await uploadImage(
-        backgroundFile.files[0],
-        user.id,
-        "background"
-      );
-
-    if (uploaded)
-      backgroundUrl = uploaded;
-
-  }
-
-  const payload = {
-
-    id: user.id,
-    username,
-
-    display_name:
-      nameInput.value,
-
-    bio:
-      bioInput.value,
-
-    avatar_url:
-      avatarUrl,
-
-    banner_url:
-      bannerUrl,
-
-    background_url:
-      backgroundUrl,
-
-    balao:
-      overlayInput.value,
-
-    text_color:
-      textColorInput.value,
-
-    template:
-      templateInput.value,
-
-    box_style:
-      boxStyleInput.value,
-
-    youtube_url:
-      youtubeInput.value,
-
-    instagram_url:
-      instagramInput.value,
-
-    discord_url:
-      discordInput.value,
-
-    spotify_url:
-      spotifyInput.value,
-
-    tiktok_url:
-      tiktokInput.value,
-
-    whatsapp_url:
-      whatsappInput.value,
-
-    twitter_url:
-      twitterInput.value,
-
-    facebook_url:
-      facebookInput.value
-
-  };
-
-  cards.forEach((c, i) => {
-
-    payload[
-      `extra${i + 1}_text`
-    ] = c.t.value;
-
-    payload[
-      `extra${i + 1}_img`
-    ] = c.i.value;
-
-    payload[
-      `extra${i + 1}_link`
-    ] = c.l.value;
-
-  });
-
-  const { error } =
-    await supabaseClient
-      .from("profiles")
-      .upsert(payload);
-
-  if (error) {
-
-    alert(error.message);
-    return;
-
-  }
-
-  alert(
-    "Perfil salvo com sucesso!"
-  );
-
-  window.location.href =
-    `/${username}`;
-
-});
+);
