@@ -117,17 +117,24 @@ async function uploadImage(
   oldUrl = null
 ) {
 
-  // REMOVE IMAGEM ANTIGA
+  // REMOVE ANTIGA
   if (oldUrl) {
 
     try {
 
-      const oldPath =
-        oldUrl
-          .split("/storage/v1/object/public/images/")[1]
-          ?.split("?")[0];
+      const parts =
+        oldUrl.split("/images/");
 
-      if (oldPath) {
+      if (parts[1]) {
+
+        const oldPath =
+          parts[1]
+            .split("?")[0];
+
+        console.log(
+          "REMOVENDO:",
+          oldPath
+        );
 
         await supabaseClient
           .storage
@@ -139,7 +146,7 @@ async function uploadImage(
     } catch (e) {
 
       console.log(
-        "Erro removendo antiga:",
+        "Erro removendo:",
         e
       );
 
@@ -147,9 +154,15 @@ async function uploadImage(
 
   }
 
-  // NOVO NOME
+  // EXTENSÃO
+  const fileExt =
+    file.name
+      .split(".")
+      .pop();
+
+  // NOVO CAMINHO
   const filePath =
-    `users/${userId}/${type}-${Date.now()}.png`;
+    `users/${userId}/${type}-${Date.now()}.${fileExt}`;
 
   // UPLOAD
   const { error } =
@@ -257,7 +270,7 @@ function updatePreview() {
 
   }
 
-  // BACKGROUND
+  // FUNDO
   if (backgroundFile.files[0]) {
 
     document.body.style.backgroundImage =
@@ -361,7 +374,7 @@ document
   });
 
 // =========================
-// CARREGAR
+// CARREGAR DASHBOARD
 // =========================
 
 async function loadDashboard() {
