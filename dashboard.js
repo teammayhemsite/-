@@ -58,7 +58,7 @@ const cards = [
 async function uploadImage(file, userId, type) {
 
   const filePath =
-    `users/${userId}/${type}.png`;
+  `users/${userId}/${type}-${Date.now()}.png`;
 
   const { error } =
     await supabaseClient
