@@ -53,6 +53,20 @@
 
           </select>
 
+          <label>Cor do texto</label>
+
+          <select id="text-color-input">
+
+            <option value="white">
+              Branco
+            </option>
+
+            <option value="black">
+              Preto
+            </option>
+
+          </select>
+
         </div>
       </div>
 
@@ -68,44 +82,39 @@
           <label>Bio</label>
           <textarea id="bio-input"></textarea>
 
-          <div class="upload-box" onclick="document.getElementById('avatar-file').click()">            
+          <label>Balão</label>
+          <input id="overlay-input">
+
+          <div class="upload-box" onclick="document.getElementById('avatar-file').click()">
             <p>Escolher foto de perfil</p>
             <span>PNG, JPG até 5MB</span>
             <input type="file" id="avatar-file" class="file-input" accept="image/*">
-          </div>
+          </div>          
 
           <br>
 
-          <div class="upload-box" onclick="document.getElementById('banner-file').click()">            
+          <div class="upload-box" onclick="document.getElementById('banner-file').click()">
             <p>Escolher Banner</p>
             <span>PNG, JPG até 5MB</span>
             <input type="file" id="banner-file" class="file-input" accept="image/*">
           </div>
 
           <br>
-          
-          <div class="upload-box" onclick="document.getElementById('background-file').click()">            
+
+          <div class="upload-box" onclick="document.getElementById('background-file').click()">
             <p>Escolher Wallpaper</p>
             <span>PNG, JPG até 5MB</span>
             <input type="file" id="background-file" class="file-input" accept="image/*">
           </div>
 
-          <label>Balão</label>
-          <input id="overlay-input">
+          <br>
 
-          <label>Cor do texto</label>
+          <div class="upload-box" onclick="document.getElementById('music-file').click()">
+            <p>Escolher Música</p>
+            <span>MP3 até 10MB</span>
 
-          <select id="text-color-input">
-
-            <option value="white">
-              Branco
-            </option>
-
-            <option value="black">
-              Preto
-            </option>
-
-          </select>
+            <input type="file" id="music-file" class="file-input" accept="audio/mp3,audio/mpeg">
+          </div>
 
         </div>
       </div>
