@@ -144,7 +144,7 @@ AVATAR
   object-fit: cover;
 
   box-shadow:
-    0 0 20px rgb(255, 255, 255);
+    0 0 13px rgb(255, 255, 255);
 
   flex-shrink: 0;
 }
