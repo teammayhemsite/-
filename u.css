@@ -687,11 +687,6 @@ TEMPLATE 3
   }
 }
 
-body {
-  background-color: #555;
-
-}
-
 /* ── TRIGGER ── */
 .ac2-trigger {
   position: fixed;
