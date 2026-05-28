@@ -191,9 +191,9 @@ async function loadProfile() {
 
     data.avatar_url
 
-    ? `${data.avatar_url}?v=${Date.now()}`
+      ? `${data.avatar_url}?v=${Date.now()}`
 
-    : "https://i.pinimg.com/736x/bd/c7/81/bdc781b471ebd825a6ab5a40e36e0f8e.jpg";
+      : "https://i.pinimg.com/736x/bd/c7/81/bdc781b471ebd825a6ab5a40e36e0f8e.jpg";
 
   document.getElementById(
     "banner"
@@ -201,9 +201,9 @@ async function loadProfile() {
 
     data.banner_url
 
-    ? `url(${data.banner_url}?v=${Date.now()})`
+      ? `url(${data.banner_url}?v=${Date.now()})`
 
-    : "";
+      : "";
 
   // =========================
   // FUNDO
@@ -226,6 +226,102 @@ async function loadProfile() {
 
     document.body.style.backgroundAttachment =
       "fixed";
+
+  }
+
+  // =========================
+  // MUSIC PLAYER
+  // =========================
+
+  if (data.music_url) {
+
+    const audio =
+      document.getElementById(
+        "profile-music"
+      );
+
+    const pill =
+      document.querySelector(
+        ".ac2-pill"
+      );
+
+    const playBtn =
+      document.querySelector(
+        ".play-btn"
+      );
+
+    const trigger =
+      document.querySelector(
+        ".ac2-trigger"
+      );
+
+    const volume =
+      document.querySelector(
+        ".ac2-volume"
+      );
+
+    pill.classList.add("show");
+
+    audio.src =
+      data.music_url;
+
+    audio.volume = 0.7;
+
+    // autoplay
+    audio.play()
+      .catch(() => {
+
+        console.log(
+          "Autoplay bloqueado"
+        );
+
+      });
+
+    // PLAY / PAUSE
+    function toggleMusic() {
+
+      if (audio.paused) {
+
+        audio.play();
+
+        trigger.classList.add(
+          "playing"
+        );
+
+        playBtn.innerHTML =
+          `<i class="fas fa-pause"></i>`;
+
+      } else {
+
+        audio.pause();
+
+        trigger.classList.remove(
+          "playing"
+        );
+
+        playBtn.innerHTML =
+          `<i class="fas fa-play"></i>`;
+
+      }
+
+    }
+
+    trigger.onclick =
+      toggleMusic;
+
+    playBtn.onclick =
+      toggleMusic;
+
+    // volume
+    volume.addEventListener(
+      "input",
+      () => {
+
+        audio.volume =
+          volume.value / 100;
+
+      }
+    );
 
   }
 
