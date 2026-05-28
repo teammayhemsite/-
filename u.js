@@ -265,7 +265,7 @@ async function loadProfile() {
     audio.src =
       data.music_url;
 
-    audio.volume = 0.7;
+    audio.volume = 0.1;
 
     // autoplay
     audio.play()
