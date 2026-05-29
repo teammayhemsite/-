@@ -1,3 +1,48 @@
+function showNotFound() {
+
+  document.body.innerHTML = `
+
+    <div class="notfound-page">
+
+      <div class="notfound-overlay"></div>
+
+      <div class="notfound-content">
+
+        <img
+          class="astronaut"
+          src="https://i.pinimg.com/originals/42/c6/2a/42c62a68fa0154599d1da42a43ac6dcd.gif"
+        >
+
+        <div class="notfound-text">
+
+          <h2>Oops!</h2>
+
+          <h1>404</h1>
+
+          <p>
+            Perfil não encontrado<br>
+            ou inexistente.
+          </p>
+
+          <a href="https://teammayhem.vercel.app" class="back-home">
+            Voltar ao início
+          </a>
+          <br>
+          <br>
+          <br>
+          <a href="https://teammayhem.vercel.app" class="back-home">
+            Criar perfil
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
 async function loadProfile() {
 
   let username = null;
@@ -28,8 +73,7 @@ async function loadProfile() {
     username === "u.html"
   ) {
 
-    document.body.innerHTML =
-      "<h1>Usuário não encontrado</h1>";
+    showNotFound();
 
     return;
 
@@ -52,8 +96,7 @@ async function loadProfile() {
 
   if (error || !data) {
 
-    document.body.innerHTML =
-      "<h1>Perfil não encontrado</h1>";
+   showNotFound();
 
     return;
 
