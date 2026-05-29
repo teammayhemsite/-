@@ -30,7 +30,7 @@ function showNotFound() {
           <br>
           <br>
           <br>
-          <a href="https://teammayhem.vercel.app" class="back-home">
+          <a href="https://teammayhem.vercel.app/cadastro.html" class="back-home">
             Criar perfil
           </a>
         </div>
