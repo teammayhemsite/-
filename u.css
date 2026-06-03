@@ -1189,7 +1189,9 @@ TEMPLATE 4
 
 .template4-theme .balao {
 
-  display:none;
+   position: absolute;
+
+  left: -99999px;
 
 }
 
@@ -1197,7 +1199,7 @@ TEMPLATE 4
 
 .template4-theme .top-info {
 
-  margin:0;
+  margin: 1;
 
   padding:0;
 
@@ -1211,8 +1213,8 @@ TEMPLATE 4
 
   left:25px;
 
-  width:90px;
-  height:90px;
+  width: 120px;
+  height: 120px;
 
   border-radius:20px;
 
@@ -1226,15 +1228,15 @@ TEMPLATE 4
 
 .template4-theme .conteudoking {
 
-  padding-top:45px;
+  padding-top:95px;
 
-  padding-left:0;
+  padding-left: 0;
 
 }
 
 .template4-theme .conteudoking h1 {
 
-  margin-left:120px;
+  margin-left:20px;
 
   font-size:42px;
 
@@ -1244,7 +1246,7 @@ TEMPLATE 4
 
 .template4-theme .conteudoking p {
 
-  margin-left:120px;
+  margin-left:20px;
 
   opacity:.9;
 
@@ -1258,13 +1260,13 @@ TEMPLATE 4
 
   padding:0;
 
-  margin-top:30px;
+  margin-top: 1;
 
 }
 
 .template4-theme .socials {
 
-  margin-left:120px;
+  margin-left:20px;
 
   gap:18px;
 
