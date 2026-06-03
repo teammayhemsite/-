@@ -290,7 +290,8 @@ function updatePreview() {
   document.body.classList.remove(
     "cardking-theme",
     "cardkingdois-theme",
-    "template3-theme"
+    "template3-theme",
+    "template4-theme"
   );
 
   document.body.classList.add(
@@ -300,12 +301,11 @@ function updatePreview() {
 
       ? "cardkingdois-theme"
 
-      : templateInput.value ===
-        "template3"
-
+      : templateInput.value === "template3"
         ? "template3-theme"
-
-        : "cardking-theme"
+        : templateInput.value === "template4"
+          ? "template4-theme"
+          : "cardking-theme"
 
   );
 
