@@ -96,7 +96,7 @@ async function loadProfile() {
 
   if (error || !data) {
 
-   showNotFound();
+    showNotFound();
 
     return;
 
@@ -116,7 +116,8 @@ async function loadProfile() {
   document.body.classList.remove(
     "cardking-theme",
     "cardkingdois-theme",
-    "template3-theme"
+    "template3-theme",
+    "template4-theme"
   );
 
   if (
@@ -137,7 +138,19 @@ async function loadProfile() {
       "template3-theme"
     );
 
-  } else {
+  }
+  
+  else if (
+    data.template ===
+    "template4"
+  ) {
+
+    document.body.classList.add(
+      "template4-theme"
+    );
+
+  }
+  else {
 
     document.body.classList.add(
       "cardking-theme"
