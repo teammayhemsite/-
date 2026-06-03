@@ -1142,3 +1142,145 @@ TEMPLATE 3
   }
 
 }
+
+/* ========================================================
+TEMPLATE 4
+======================================================== */
+
+.template4-theme .cardking {
+
+  max-width: 700px;
+
+  min-height: 260px;
+
+  border-radius: 24px;
+
+  overflow: visible;
+
+  background:
+    rgba(0,0,0,.25);
+
+  border:
+    2px solid rgba(255,255,255,.25);
+
+  backdrop-filter: blur(15px);
+
+  padding: 30px;
+
+}
+
+/* remove banner */
+
+.template4-theme .topo {
+
+  display:none;
+
+}
+
+/* remove badge */
+
+.template4-theme .embking {
+
+  display:none;
+
+}
+
+/* remove balão */
+
+.template4-theme .balao {
+
+  display:none;
+
+}
+
+/* avatar solto */
+
+.template4-theme .top-info {
+
+  margin:0;
+
+  padding:0;
+
+}
+
+.template4-theme .perfilking {
+
+  position:absolute;
+
+  top:-35px;
+
+  left:25px;
+
+  width:90px;
+  height:90px;
+
+  border-radius:20px;
+
+  box-shadow:none;
+
+  border:none;
+
+}
+
+/* conteúdo */
+
+.template4-theme .conteudoking {
+
+  padding-top:45px;
+
+  padding-left:0;
+
+}
+
+.template4-theme .conteudoking h1 {
+
+  margin-left:120px;
+
+  font-size:42px;
+
+  margin-bottom:8px;
+
+}
+
+.template4-theme .conteudoking p {
+
+  margin-left:120px;
+
+  opacity:.9;
+
+  font-size:20px;
+
+}
+
+/* redes */
+
+.template4-theme .social-box {
+
+  padding:0;
+
+  margin-top:30px;
+
+}
+
+.template4-theme .socials {
+
+  margin-left:120px;
+
+  gap:18px;
+
+}
+
+.template4-theme .socials img {
+
+  width:32px;
+  height:32px;
+
+}
+
+/* extras escondidos */
+
+.template4-theme #extras-container {
+
+  display:none;
+
+}
