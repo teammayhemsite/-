@@ -369,14 +369,7 @@ async function loadProfile() {
     audio.volume = 0.1;
 
     // autoplay
-    audio.play()
-      .catch(() => {
 
-        console.log(
-          "Autoplay bloqueado"
-        );
-
-      });
 
     // PLAY / PAUSE
     function toggleMusic() {
