@@ -102,6 +102,35 @@ async function loadProfile() {
 
   }
 
+  const entrance =
+    document.getElementById(
+      "entrance-screen"
+    );
+
+  if (!data.entrance_enabled) {
+
+    entrance.style.display =
+      "none";
+
+  }
+  else {
+
+    document.getElementById(
+      "entrance-title"
+    ).innerText =
+
+      data.entrance_text?.trim()
+
+      ||
+
+      data.display_name
+
+      ||
+
+      data.username;
+
+  }
+
   // =========================
   // TITLE
   // =========================
@@ -139,7 +168,7 @@ async function loadProfile() {
     );
 
   }
-  
+
   else if (
     data.template ===
     "template4"
