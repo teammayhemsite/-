@@ -1286,3 +1286,61 @@ TEMPLATE 4
   display:none;
 
 }
+
+.watermark-card {
+
+  position: fixed;
+
+  top: 20px;
+  right: 20px;
+
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 8px 14px;
+
+  border-radius: 999px;
+
+  text-decoration: none;
+
+  color: white;
+
+  background: rgba(0, 0, 0, 0.4);
+
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  border: 1px solid rgba(255,255,255,.08);
+
+  transition: .25s;
+
+}
+
+.watermark-card:hover {
+
+  transform: scale(1.05);
+
+  background: rgba(255,255,255,.08);
+
+}
+
+.watermark-card img {
+
+  width: 28px;
+  height: 28px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+}
+
+.watermark-card span {
+
+  font-size: 13px;
+  font-weight: 600;
+
+}
