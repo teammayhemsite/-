@@ -49,6 +49,12 @@ const boxStyleInput =
 const musicFile =
   $("music-file");
 
+const entranceEnabled =
+  $("entrance-enabled");
+
+const entranceText =
+  $("entrance-text");
+
 // =========================
 // REDES
 // =========================
