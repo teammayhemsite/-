@@ -5,23 +5,15 @@
 
   <meta charset="UTF-8">
 
-  <link
-    rel="icon"
-    href="https://cdn.discordapp.com/emojis/1380340818224877710.webp?size=96"
-  >
+  <link rel="icon" href="https://cdn.discordapp.com/emojis/1380340818224877710.webp?size=96">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Perfil</title>
 
   <link rel="stylesheet" href="u.css">
 
-  <script
-    src="https://kit.fontawesome.com/eb9af641fe.js"
-    crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/eb9af641fe.js" crossorigin="anonymous">
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -31,27 +23,34 @@
 </head>
 
 <body>
+  <div id="entrance-screen">
+
+    <div class="entrance-content">
+
+      <h1 id="entrance-title">
+        Nome
+      </h1>
+
+      <p id="entrance-subtitle">
+        Toque para entrar
+      </p>
+
+    </div>
+
+  </div>
 
   <div class="cardking">
 
     <!-- BANNER -->
-    <div
-      class="topo"
-      id="banner">
+    <div class="topo" id="banner">
     </div>
 
     <!-- FOTO + BALÃO -->
     <div class="top-info">
 
-      <img
-        src=""
-        class="perfilking"
-        id="avatar"
-      >
+      <img src="" class="perfilking" id="avatar">
 
-      <div
-        class="balao"
-        id="balao">
+      <div class="balao" id="balao">
         texto
       </div>
 
@@ -74,9 +73,7 @@
     <div class="social-box">
 
       <!-- REDES -->
-      <div
-        class="socials"
-        id="socials">
+      <div class="socials" id="socials">
       </div>
 
       <!-- EXTRAS -->
@@ -89,77 +86,62 @@
   <script src="u.js"></script>
 
   <!-- PLAYER -->
-<audio id="profile-music"></audio>
+  <audio id="profile-music"></audio>
 
-<button class="ac2-trigger playing" aria-label="Toggle player">
+  <button class="ac2-trigger playing" aria-label="Toggle player">
 
-  <div class="ac2-bars">
+    <div class="ac2-bars">
 
-    <div class="ac2-bar"></div>
-    <div class="ac2-bar"></div>
-    <div class="ac2-bar"></div>
-    <div class="ac2-bar"></div>
-    <div class="ac2-bar"></div>
+      <div class="ac2-bar"></div>
+      <div class="ac2-bar"></div>
+      <div class="ac2-bar"></div>
+      <div class="ac2-bar"></div>
+      <div class="ac2-bar"></div>
 
-  </div>
-
-</button>
-
-<div class="ac2-pill">
-  <img
-    alt=""
-    class="ac2-thumb"
-    draggable="false"
-    src="https://i.pinimg.com/736x/ab/84/3d/ab843d407747b7c5aabab0093d6085b6.jpg">
-
-  <div class="ac2-info">
-
-    <span class="ac2-song">
-      Mix de música
-    </span>
-
-    <span class="ac2-artist">
-      tocando agora
-    </span>
-
-  </div>
-
-  <div class="ac2-sep"></div>
-
-  <button class="ac2-btn play-btn">
-
-    <i class="fas fa-pause"></i>
+    </div>
 
   </button>
 
-  <div class="ac2-sep"></div>
+  <div class="ac2-pill">
+    <img alt="" class="ac2-thumb" draggable="false"
+      src="https://i.pinimg.com/736x/ab/84/3d/ab843d407747b7c5aabab0093d6085b6.jpg">
 
-  <div class="ac2-volume-wrap">
-    -
-    <input
-      class="ac2-range ac2-volume"
-      min="0"
-      max="100"
-      value="10"
-      type="range"
-    >
-    +
+    <div class="ac2-info">
+
+      <span class="ac2-song">
+        Mix de música
+      </span>
+
+      <span class="ac2-artist">
+        tocando agora
+      </span>
+
+    </div>
+
+    <div class="ac2-sep"></div>
+
+    <button class="ac2-btn play-btn">
+
+      <i class="fas fa-pause"></i>
+
+    </button>
+
+    <div class="ac2-sep"></div>
+
+    <div class="ac2-volume-wrap">
+      -
+      <input class="ac2-range ac2-volume" min="0" max="100" value="10" type="range">
+      +
+    </div>
+
   </div>
 
-</div>
+  <a href="https://teammayhem.vercel.app/" target="_blank" class="watermark-card">
+    <img src="https://i.pinimg.com/1200x/85/87/c7/8587c78900ad427b2e7bfdf7210c1146.jpg" alt="">
 
-  <a
-  href="https://teammayhem.vercel.app/"
-  target="_blank"
-  class="watermark-card"
->
-  <img
-    src="https://i.pinimg.com/1200x/85/87/c7/8587c78900ad427b2e7bfdf7210c1146.jpg"
-    alt=""
-  >
-
-  <span>TEAM MAYHEM</span>
-</a>
+    <span>TEAM MAYHEM</span>
+  </a>
 
 </body>
+
 </html>
