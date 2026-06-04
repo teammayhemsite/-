@@ -113,6 +113,8 @@ async function loadProfile() {
       "none";
 
   }
+
+    
   else {
 
     document.getElementById(
@@ -133,7 +135,29 @@ async function loadProfile() {
 
   if (data.entrance_enabled) {
 
-  entrance.addEventListener("click", () => {
+  entrance.onclick = async () => {
+
+    const audio =
+      document.getElementById(
+        "profile-music"
+      );
+
+    if (audio && data.music_url) {
+
+      try {
+
+        await audio.play();
+
+      } catch (err) {
+
+        console.log(
+          "Erro ao tocar:",
+          err
+        );
+
+      }
+
+    }
 
     entrance.style.opacity = "0";
     entrance.style.pointerEvents = "none";
@@ -144,7 +168,7 @@ async function loadProfile() {
 
     }, 500);
 
-  });
+  };
 
 }
   // =========================
@@ -370,6 +394,23 @@ async function loadProfile() {
 
     // autoplay
 
+    audio.addEventListener("play", () => {
+
+  trigger.classList.add("playing");
+
+  playBtn.innerHTML =
+    `<i class="fas fa-pause"></i>`;
+
+});
+
+audio.addEventListener("pause", () => {
+
+  trigger.classList.remove("playing");
+
+  playBtn.innerHTML =
+    `<i class="fas fa-play"></i>`;
+
+});
 
     // PLAY / PAUSE
     function toggleMusic() {
