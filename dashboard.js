@@ -504,6 +504,14 @@ async function loadDashboard() {
   facebookInput.value =
     data.facebook_url || "";
 
+  entranceEnabled.value =
+    data.entrance_enabled
+      ? "true"
+      : "false";
+
+  entranceText.value =
+    data.entrance_text || "";
+
   cards.forEach((c, i) => {
 
     c.t.value =
@@ -684,7 +692,13 @@ $("save-btn")
           twitterInput.value,
 
         facebook_url:
-          facebookInput.value
+          facebookInput.value,
+
+        entrance_enabled:
+          entranceEnabled.value === "true",
+
+        entrance_text:
+          entranceText.value
 
       };
 
