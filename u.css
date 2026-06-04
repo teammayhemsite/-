@@ -1287,6 +1287,10 @@ TEMPLATE 4
 
 }
 
+/* ========================================================
+Marca d agua
+======================================================== */
+
 .watermark-card {
 
   position: fixed;
@@ -1300,9 +1304,9 @@ TEMPLATE 4
   align-items: center;
   gap: 10px;
 
-  padding: 8px 14px;
+  padding: 6px 14px;
 
-  border-radius: 999px;
+  border-radius: 10px;
 
   text-decoration: none;
 
