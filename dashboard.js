@@ -698,7 +698,7 @@ $("save-btn")
           entranceEnabled.value === "true",
 
         entrance_text:
-          entranceText.value
+          entranceText.value,
 
       };
 
