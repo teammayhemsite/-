@@ -1348,3 +1348,68 @@ Marca d agua
   font-weight: 600;
 
 }
+#entrance-screen {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 999999;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0,0,0,.75);
+
+  backdrop-filter: blur(25px);
+
+  cursor: pointer;
+
+  transition: .5s;
+
+}
+
+.entrance-content {
+
+  text-align: center;
+
+}
+
+.entrance-content h1 {
+
+  font-size:
+    clamp(35px, 7vw, 80px);
+
+  margin-bottom: 15px;
+
+}
+
+.entrance-content p {
+
+  font-size:
+    clamp(14px, 2vw, 20px);
+
+  opacity: .7;
+
+  animation:
+    pulse 1.8s infinite;
+
+}
+
+@keyframes pulse {
+
+  0%,100% {
+
+    opacity: .4;
+
+  }
+
+  50% {
+
+    opacity: 1;
+
+  }
+
+}
