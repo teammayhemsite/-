@@ -131,6 +131,22 @@ async function loadProfile() {
 
   }
 
+  if (data.entrance_enabled) {
+
+  entrance.addEventListener("click", () => {
+
+    entrance.style.opacity = "0";
+    entrance.style.pointerEvents = "none";
+
+    setTimeout(() => {
+
+      entrance.remove();
+
+    }, 500);
+
+  });
+
+}
   // =========================
   // TITLE
   // =========================
