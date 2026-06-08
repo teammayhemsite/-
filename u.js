@@ -45,6 +45,23 @@ function showNotFound() {
 
 async function loadProfile() {
 
+  let visitorId =
+    localStorage.getItem(
+      "visitor_id"
+    );
+
+  if (!visitorId) {
+
+    visitorId =
+      crypto.randomUUID();
+
+    localStorage.setItem(
+      "visitor_id",
+      visitorId
+    );
+
+  }
+
   let username = null;
 
   // =========================
@@ -102,6 +119,16 @@ async function loadProfile() {
 
   }
 
+  const likeBtn =
+    document.getElementById(
+      "like-btn"
+    );
+
+  const likeCount =
+    document.getElementById(
+      "like-count"
+    );
+
   const entrance =
     document.getElementById(
       "entrance-screen"
@@ -114,7 +141,7 @@ async function loadProfile() {
 
   }
 
-    
+
   else {
 
     document.getElementById(
@@ -135,42 +162,42 @@ async function loadProfile() {
 
   if (data.entrance_enabled) {
 
-  entrance.onclick = async () => {
+    entrance.onclick = async () => {
 
-    const audio =
-      document.getElementById(
-        "profile-music"
-      );
-
-    if (audio && data.music_url) {
-
-      try {
-
-        await audio.play();
-
-      } catch (err) {
-
-        console.log(
-          "Erro ao tocar:",
-          err
+      const audio =
+        document.getElementById(
+          "profile-music"
         );
+
+      if (audio && data.music_url) {
+
+        try {
+
+          await audio.play();
+
+        } catch (err) {
+
+          console.log(
+            "Erro ao tocar:",
+            err
+          );
+
+        }
 
       }
 
-    }
+      entrance.style.opacity = "0";
+      entrance.style.pointerEvents = "none";
 
-    entrance.style.opacity = "0";
-    entrance.style.pointerEvents = "none";
+      setTimeout(() => {
 
-    setTimeout(() => {
+        entrance.remove();
 
-      entrance.remove();
+      }, 500);
 
-    }, 500);
+    };
 
-  };
-
-}
+  }
   // =========================
   // TITLE
   // =========================
@@ -396,21 +423,21 @@ async function loadProfile() {
 
     audio.addEventListener("play", () => {
 
-  trigger.classList.add("playing");
+      trigger.classList.add("playing");
 
-  playBtn.innerHTML =
-    `<i class="fas fa-pause"></i>`;
+      playBtn.innerHTML =
+        `<i class="fas fa-pause"></i>`;
 
-});
+    });
 
-audio.addEventListener("pause", () => {
+    audio.addEventListener("pause", () => {
 
-  trigger.classList.remove("playing");
+      trigger.classList.remove("playing");
 
-  playBtn.innerHTML =
-    `<i class="fas fa-play"></i>`;
+      playBtn.innerHTML =
+        `<i class="fas fa-play"></i>`;
 
-});
+    });
 
     // PLAY / PAUSE
     function toggleMusic() {
