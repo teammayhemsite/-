@@ -145,6 +145,72 @@ async function loadProfile() {
   likeCount.textContent =
     count || 0;
 
+  // =========================
+  // VERIFICA SE JÁ CURTIU
+  // =========================
+
+  const { data: alreadyLiked } =
+    await supabaseClient
+      .from("profile_likes")
+      .select("id")
+      .eq("profile_id", data.id)
+      .eq("visitor_id", visitorId)
+      .maybeSingle();
+
+  if (alreadyLiked) {
+
+    likeBtn.classList.add(
+      "liked"
+    );
+
+  }
+
+  // =========================
+  // CURTIR
+  // =========================
+
+  likeBtn.onclick =
+    async () => {
+
+      if (
+        likeBtn.classList.contains(
+          "liked"
+        )
+      ) {
+        return;
+      }
+
+      const { error } =
+        await supabaseClient
+          .from("profile_likes")
+          .insert({
+
+            profile_id: data.id,
+
+            visitor_id:
+              visitorId
+
+          });
+
+      if (error) {
+
+        console.error(error);
+
+        return;
+
+      }
+
+      likeBtn.classList.add(
+        "liked"
+      );
+
+      likeCount.textContent =
+        Number(
+          likeCount.textContent
+        ) + 1;
+
+    };
+
   const entrance =
     document.getElementById(
       "entrance-screen"
