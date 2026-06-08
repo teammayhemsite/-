@@ -1413,3 +1413,54 @@ Marca d agua
   }
 
 }
+
+.like-box {
+
+  position: absolute;
+
+  top: 15px;
+  right: 15px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 8px 12px;
+
+  border-radius: 999px;
+
+  background: rgba(0,0,0,.35);
+
+  backdrop-filter: blur(10px);
+
+  z-index: 1000;
+
+}
+
+#like-btn {
+
+  font-size: 18px;
+
+  color: white;
+
+  cursor: pointer;
+
+  transition: .2s;
+
+}
+
+#like-btn.liked {
+
+  color: #ff2d55;
+
+}
+
+#like-count {
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+}
