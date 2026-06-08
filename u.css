@@ -1425,11 +1425,11 @@ Marca d agua
 
   align-items: center;
 
-  gap: 8px;
+  gap: 11px;
 
-  padding: 8px 12px;
+  padding: 5px 12px;
 
-  border-radius: 999px;
+  border-radius: 9px;
 
   background: rgba(0,0,0,.35);
 
@@ -1441,7 +1441,7 @@ Marca d agua
 
 #like-btn {
 
-  font-size: 18px;
+  font-size: 15px;
 
   color: white;
 
