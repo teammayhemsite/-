@@ -465,7 +465,7 @@ async function loadDashboard() {
       .toLowerCase();
 
   $("profile-url").value =
-    `${window.location.origin}/${username}`;
+    `${window.location.host}/${username}`;
 
   const { data } =
     await supabaseClient
@@ -759,22 +759,29 @@ $("copy-profile-url")
     "click",
     async () => {
 
-      const url =
-        $("profile-url").value;
+      const {
+        data: { user }
+      } = await supabaseClient.auth.getUser();
 
-      await navigator.clipboard.writeText(url);
+      if (!user) return;
+
+      const username =
+        user.email
+          .split("@")[0]
+          .toLowerCase();
+
+      const fullUrl =
+        `${window.location.origin}/${username}`;
+
+      await navigator.clipboard.writeText(fullUrl);
 
       const btn =
         $("copy-profile-url");
 
-      btn.textContent =
-        "Copiado!";
+      btn.textContent = "Copiado!";
 
       setTimeout(() => {
-
-        btn.textContent =
-          "Copiar";
-
+        btn.textContent = "Copiar";
       }, 2000);
 
     }
