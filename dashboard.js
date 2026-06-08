@@ -459,6 +459,14 @@ async function loadDashboard() {
 
   if (!user) return;
 
+  const username =
+    user.email
+      .split("@")[0]
+      .toLowerCase();
+
+  $("profile-url").value =
+    `${window.location.origin}/${username}`;
+
   const { data } =
     await supabaseClient
       .from("profiles")
@@ -742,6 +750,32 @@ $("save-btn")
 
       window.location.href =
         `/${username}`;
+
+    }
+  );
+
+$("copy-profile-url")
+  ?.addEventListener(
+    "click",
+    async () => {
+
+      const url =
+        $("profile-url").value;
+
+      await navigator.clipboard.writeText(url);
+
+      const btn =
+        $("copy-profile-url");
+
+      btn.textContent =
+        "Copiado!";
+
+      setTimeout(() => {
+
+        btn.textContent =
+          "Copiar";
+
+      }, 2000);
 
     }
   );
