@@ -129,6 +129,22 @@ async function loadProfile() {
       "like-count"
     );
 
+  // =========================
+  // CURTIDAS
+  // =========================
+
+  const { count } =
+    await supabaseClient
+      .from("profile_likes")
+      .select("*", {
+        count: "exact",
+        head: true
+      })
+      .eq("profile_id", data.id);
+
+  likeCount.textContent =
+    count || 0;
+
   const entrance =
     document.getElementById(
       "entrance-screen"
