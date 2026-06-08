@@ -182,17 +182,15 @@ async function loadProfile() {
         return;
       }
 
-      const { error } =
-        await supabaseClient
-          .from("profile_likes")
-          .insert({
+     const result =
+  await supabaseClient
+    .from("profile_likes")
+    .insert({
+      profile_id: data.id,
+      visitor_id: visitorId
+    });
 
-            profile_id: data.id,
-
-            visitor_id:
-              visitorId
-
-          });
+console.log(result);
 
       if (error) {
 
