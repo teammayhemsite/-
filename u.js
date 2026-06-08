@@ -172,6 +172,8 @@ async function loadProfile() {
   likeBtn.onclick =
     async () => {
 
+      console.log("CLICOU");
+      
       if (
         likeBtn.classList.contains(
           "liked"
