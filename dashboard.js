@@ -83,6 +83,57 @@ const twitterInput =
 const facebookInput =
   $("facebook-input");
 
+const telegramInput =
+  $("telegram-input");
+
+const githubInput =
+  $("github-input");
+
+const linkedinInput =
+  $("linkedin-input");
+
+const kickInput =
+  $("kick-input");
+
+const robloxInput =
+  $("roblox-input");
+
+const steamInput =
+  $("steam-input");
+
+const xboxInput =
+  $("xbox-input");
+
+const twitchInput =
+  $("twitch-input");
+
+const privacyInput =
+  $("privacy-input");
+
+const onlyfansInput =
+  $("onlyfans-input");
+
+const fivemInput =
+  $("fivem-input");
+
+const pinterestInput =
+  $("pinterest-input");
+
+const emailInput =
+  $("email-input");
+
+const threadsInput =
+  $("threads-input");
+
+const bskyInput =
+  $("bsky-input");
+
+const vscoInput =
+  $("vsco-input");
+
+const pixInput =
+  $("pix-input");
+
 // =========================
 // CARDS EXTRAS
 // =========================
@@ -518,6 +569,59 @@ async function loadDashboard() {
   facebookInput.value =
     data.facebook_url || "";
 
+  telegramInput.value =
+    data.telegram_url || "";
+
+  githubInput.value =
+    data.github_url || "";
+
+  linkedinInput.value =
+    data.linkedin_url || "";
+
+  kickInput.value =
+    data.kick_url || "";
+
+  robloxInput.value =
+    data.roblox_url || "";
+
+  steamInput.value =
+    data.steam_url || "";
+
+  xboxInput.value =
+    data.xbox_url || "";
+
+  twitchInput.value =
+    data.twitch_url || "";
+
+  privacyInput.value =
+    data.privacy_url || "";
+
+  onlyfansInput.value =
+    data.onlyfans_url || "";
+
+  fivemInput.value =
+    data.fivem_url || "";
+
+  pinterestInput.value =
+    data.pinterest_url || "";
+
+  emailInput.value =
+    data.email_url || "";
+
+  threadsInput.value =
+    data.threads_url || "";
+
+  bskyInput.value =
+    data.bsky_url || "";
+
+  vscoInput.value =
+    data.vsco_url || "";
+
+  pixInput.value =
+    data.pix_url || "";
+
+
+
   entranceEnabled.value =
     data.entrance_enabled
       ? "true"
@@ -707,6 +811,59 @@ $("save-btn")
 
         facebook_url:
           facebookInput.value,
+
+        telegram_url:
+          telegramInput.value,
+
+        github_url:
+          githubInput.value,
+
+        linkedin_url:
+          linkedinInput.value,
+
+        kick_url:
+          kickInput.value,
+
+        roblox_url:
+          robloxInput.value,
+
+        steam_url:
+          steamInput.value,
+
+        //---
+
+        xbox_url:
+          xboxInput.value,
+
+        twitch_url:
+          twitchInput.value,
+
+        privacy_url:
+          privacyInput.value,
+
+        onlyfans_url:
+          onlyfansInput.value,
+
+        fivem_url:
+          fivemInput.value,
+
+        pinterest_url:
+          pinterestInput.value,
+
+        email_url:
+          emailInput.value,
+
+        threads_url:
+          threadsInput.value,
+
+        bsky_url:
+          bskyInput.value,
+
+        vsco_url:
+          vscoInput.value,
+
+        pix_url:
+          pixInput.value,
 
         entrance_enabled:
           entranceEnabled.value === "true",
