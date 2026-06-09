@@ -636,14 +636,14 @@ async function loadProfile() {
 
   addSocial(
     data.youtube_url,
-    `<img src="https://cdn.simpleicons.org/youtube">`,
+    `<img src="https://www.riqueza.life/images/socials/youtube.png">`,
     "Youtube",
     data.username
   );
 
   addSocial(
     data.instagram_url,
-    `<img src="https://cdn.simpleicons.org/instagram">`,
+    `<img src="https://www.riqueza.life/images/socials/instagram.png">`,
     "Instagram",
     data.username
   );
