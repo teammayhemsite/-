@@ -119,6 +119,22 @@ async function loadProfile() {
 
   }
 
+const card =
+  document.querySelector(".cardking");
+
+if (data.username === "krpris") {
+
+  card.insertAdjacentHTML(
+    "afterbegin",
+    `
+    <div class="embking">
+      👑 Owner
+    </div>
+    `
+  );
+
+}
+  
   const likeBtn =
     document.getElementById(
       "like-btn"
