@@ -65,7 +65,7 @@ BADGE
 
   position: absolute;
 
-  top: 10px;
+  top: 5px;
   left: 50%;
 
   transform: translateX(-50%);
@@ -74,7 +74,7 @@ BADGE
   align-items: center;
   gap: 6px;
 
-  padding: 7px 15px;
+  padding: 7px 14px;
 
   background: #ffffff;
 
@@ -91,7 +91,6 @@ BADGE
   z-index: 1000;
 
 }
-
 
 /* =========================
 BANNER
