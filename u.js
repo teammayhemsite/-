@@ -122,7 +122,7 @@ async function loadProfile() {
 const card =
   document.querySelector(".cardking");
 
-if (data.username === "krpris") {
+if (data.username === "krpris" || data.username === "kaio") {
 
   card.insertAdjacentHTML(
     "afterbegin",
