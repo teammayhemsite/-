@@ -706,7 +706,7 @@ async function loadProfile() {
 
   addSocial(
     data.linkedin_url,
-    `<img src="https://cdn.simpleicons.org/linkedin">`,
+    `<img src="https://img.icons8.com/color/48/linkedin.png">`,
     "LinkedIn",
     data.username
   );
@@ -734,7 +734,7 @@ async function loadProfile() {
 
   addSocial(
     data.xbox_url,
-    `<img src="https://cdn.simpleicons.org/xbox">`,
+    `<img src="https://img.icons8.com/color/48/xbox.png">`,
     "Xbox",
     data.username
   );
@@ -748,7 +748,7 @@ async function loadProfile() {
 
   addSocial(
     data.privacy_url,
-    `<img src="https://cdn.simpleicons.org/privacy">`,
+    `<img src="https://www.riqueza.life/images/socials/privacy.png">`,
     "Privacy",
     data.username
   );
