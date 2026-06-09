@@ -173,7 +173,7 @@ async function loadProfile() {
     async () => {
 
       console.log("CLICOU");
-      
+
       if (
         likeBtn.classList.contains(
           "liked"
@@ -182,15 +182,15 @@ async function loadProfile() {
         return;
       }
 
-     const result =
-  await supabaseClient
-    .from("profile_likes")
-    .insert({
-      profile_id: data.id,
-      visitor_id: visitorId
-    });
+      const result =
+        await supabaseClient
+          .from("profile_likes")
+          .insert({
+            profile_id: data.id,
+            visitor_id: visitorId
+          });
 
-console.log(result);
+      console.log(result);
 
       if (error) {
 
@@ -636,59 +636,180 @@ console.log(result);
 
   addSocial(
     data.youtube_url,
-    `<img src="https://www.riqueza.life/images/socials/youtube.png">`,
+    `<img src="https://cdn.simpleicons.org/youtube">`,
     "Youtube",
     data.username
   );
 
   addSocial(
     data.instagram_url,
-    `<img src="https://www.riqueza.life/images/socials/instagram.png">`,
+    `<img src="https://cdn.simpleicons.org/instagram">`,
     "Instagram",
     data.username
   );
 
   addSocial(
     data.discord_url,
-    `<img src="https://www.riqueza.life/images/socials/discord.png">`,
+    `<img src="https://cdn.simpleicons.org/discord">`,
     "Discord",
     data.username
   );
 
   addSocial(
     data.spotify_url,
-    `<img src="https://www.riqueza.life/images/socials/spotify.png">`,
+    `<img src="https://cdn.simpleicons.org/spotify">`,
     "Spotify",
     data.username
   );
 
   addSocial(
     data.tiktok_url,
-    `<img src="https://www.riqueza.life/images/socials/tiktok.png">`,
-    "Tiktok",
+    `<img src="https://cdn.simpleicons.org/tiktok">`,
+    "TikTok",
     data.username
   );
 
   addSocial(
     data.whatsapp_url,
-    `<img src="https://www.riqueza.life/images/socials/whatsapp.png">`,
-    "Whatsapp",
-    data.username
-  );
-
-  addSocial(
-    data.facebook_url,
-    `<img src="https://www.riqueza.life/images/socials/twitch.png">`,
-    "Twitch",
+    `<img src="https://cdn.simpleicons.org/whatsapp">`,
+    "WhatsApp",
     data.username
   );
 
   addSocial(
     data.twitter_url,
-    `<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg">`,
-    "Twitter",
+    `<img src="https://cdn.simpleicons.org/x">`,
+    "Twitter/X",
     data.username
   );
+
+  addSocial(
+    data.facebook_url,
+    `<img src="https://cdn.simpleicons.org/facebook">`,
+    "Facebook",
+    data.username
+  );
+
+  addSocial(
+    data.telegram_url,
+    `<img src="https://cdn.simpleicons.org/telegram">`,
+    "Telegram",
+    data.username
+  );
+
+  addSocial(
+    data.github_url,
+    `<img src="https://cdn.simpleicons.org/github">`,
+    "GitHub",
+    data.username
+  );
+
+  addSocial(
+    data.linkedin_url,
+    `<img src="https://cdn.simpleicons.org/linkedin">`,
+    "LinkedIn",
+    data.username
+  );
+
+  addSocial(
+    data.kick_url,
+    `<img src="https://cdn.simpleicons.org/kick">`,
+    "Kick",
+    data.username
+  );
+
+  addSocial(
+    data.roblox_url,
+    `<img src="https://cdn.simpleicons.org/roblox">`,
+    "Roblox",
+    data.username
+  );
+
+  addSocial(
+    data.steam_url,
+    `<img src="https://cdn.simpleicons.org/steam">`,
+    "Steam",
+    data.username
+  );
+
+  addSocial(
+    data.xbox_url,
+    `<img src="https://cdn.simpleicons.org/xbox">`,
+    "Xbox",
+    data.username
+  );
+
+  addSocial(
+    data.twitch_url,
+    `<img src="https://cdn.simpleicons.org/twitch">`,
+    "Twitch",
+    data.username
+  );
+
+  addSocial(
+    data.privacy_url,
+    `<img src="https://cdn.simpleicons.org/privacy">`,
+    "Privacy",
+    data.username
+  );
+
+  addSocial(
+    data.onlyfans_url,
+    `<img src="https://cdn.simpleicons.org/onlyfans">`,
+    "OnlyFans",
+    data.username
+  );
+
+  addSocial(
+    data.fivem_url,
+    `<img src="https://cdn.simpleicons.org/fivem">`,
+    "FiveM",
+    data.username
+  );
+
+  addSocial(
+    data.pinterest_url,
+    `<img src="https://cdn.simpleicons.org/pinterest">`,
+    "Pinterest",
+    data.username
+  );
+
+  addSocial(
+    data.email_url,
+    `<img src="https://cdn.simpleicons.org/maildotru">`,
+    "Email",
+    data.username
+  );
+
+  addSocial(
+    data.threads_url,
+    `<img src="https://cdn.simpleicons.org/threads">`,
+    "Threads",
+    data.username
+  );
+
+  addSocial(
+    data.bsky_url,
+    `<img src="https://cdn.simpleicons.org/bluesky">`,
+    "Bluesky",
+    data.username
+  );
+
+  addSocial(
+    data.vsco_url,
+    `<img src="https://cdn.simpleicons.org/vsco">`,
+    "VSCO",
+    data.username
+  );
+
+  addSocial(
+    data.pix_url,
+    `<img src="https://cdn.simpleicons.org/pix">`,
+    "Pix",
+    data.username
+  );
+
+
 
   // =========================
   // CARDS EXTRAS
