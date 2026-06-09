@@ -65,34 +65,31 @@ BADGE
 
   position: absolute;
 
-  top: 10px;
-
+  top: 18px;
   left: 50%;
 
   transform: translateX(-50%);
 
-  padding: 5px 15px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 8px 18px;
+
+  background: #ffffff;
+
+  color: #333;
 
   border-radius: 999px;
 
-  background:
-    linear-gradient(145deg,
-      #e5e9ee 0%,
-      #cfd6dc 20%,
-      #aeb6bf 40%,
-      #dfe5ea 60%,
-      #f8fafcab 80%,
-      #c7ced6 100%);
-
-  color: black;
+  font-size: 14px;
+  font-weight: 600;
 
   box-shadow:
-    0 0 20px rgb(255 255 255);
+    0 4px 12px rgba(0,0,0,.18);
 
-  font-size: 13px;
-  font-weight: bold;
+  z-index: 1000;
 
-  z-index: 10;
 }
 
 /* =========================
