@@ -664,7 +664,7 @@ async function loadProfile() {
 
   addSocial(
     data.tiktok_url,
-    `<img src="https://cdn.simpleicons.org/tiktok">`,
+    `<img src="https://www.riqueza.life/images/socials/tiktok.png">`,
     "TikTok",
     data.username
   );
