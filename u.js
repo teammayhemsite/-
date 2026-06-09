@@ -128,7 +128,7 @@ if (data.username === "krpris") {
     "afterbegin",
     `
     <div class="embking">
-      👑 Owner
+      KING
     </div>
     `
   );
