@@ -92,6 +92,15 @@ BADGE
 
 }
 
+.badge-icon {
+
+  width: 14px;
+  height: 14px;
+
+  object-fit: contain;
+
+}
+
 /* =========================
 BANNER
 ========================= */
