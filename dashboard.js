@@ -57,6 +57,8 @@ const entranceText =
 
 const viewProfileBtn = $("view-profile-btn");
 
+let selectedFrame = "";
+
 document.querySelectorAll(".frame-card")
   .forEach(card => {
 
@@ -821,8 +823,6 @@ $("save-btn")
 
       let musicUrl =
         old?.music_url || "";
-
-      let selectedFrame = "";
 
       // REMOÇÕES
 
