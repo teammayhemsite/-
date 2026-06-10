@@ -1054,17 +1054,16 @@ $("save-btn")
 
       }
 
-      alert(
-        "Perfil salvo com sucesso!"
-      );
+      saveBtn.textContent = "Perfil salvo com sucesso!";
+
+      setTimeout(() => {
+        saveBtn.textContent = "SALVAR PERFIL";
+      }, 2000);
 
       removeAvatar = false;
       removeBanner = false;
       removeBackground = false;
       removeMusic = false;
-
-      window.location.href =
-        `/${username}`;
 
     }
   );
@@ -1101,3 +1100,17 @@ $("copy-profile-url")
 
     }
   );
+
+viewProfileBtn.addEventListener("click", async () => {
+
+  const { data: { user } } =
+    await supabaseClient.auth.getUser();
+
+  if (!user) return;
+
+  const username =
+    user.email.split("@")[0].toLowerCase();
+
+  window.open(`/${username}`, "_blank");
+
+});
