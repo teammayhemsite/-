@@ -17,19 +17,7 @@
     <p>teammayhem</p>
     <h1>Entrar</h1>
     
-    <input type="text" id="login-user" maxlength="15" placeholder="👤 Usuário">
-
-    <div class="url-preview">
-
-      <span class="domain">
-        teammayhem.vercel.app/
-      </span>
-
-      <span id="preview-user">
-        👤 Usuário
-      </span>
-
-    </div>
+    <input type="text" id="login-user" placeholder="👤 Usuário">
 
     <input type="password" placeholder="🔒 Senha" id="login-pass">
 
@@ -52,25 +40,6 @@
 
   <script src="auth.js"></script>
 
-  <script>
-    const userInput =
-      document.getElementById("login-user");
-
-    const previewUser =
-      document.getElementById("preview-user");
-
-    userInput.addEventListener("input", () => {
-
-      let username =
-        userInput.value
-          .toLowerCase()
-          .replace(/\s+/g, "");
-
-      previewUser.textContent =
-        username || "?";
-
-    });
-  </script>
 </body>
 
 </html>
