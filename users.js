@@ -60,7 +60,7 @@ function renderUsers(users) {
 
       <img src="
         ${user.avatar_url ||
-        "https://i.pinimg.com/736x/bd/c7/81/bdc781b471ebd825a6ab5a40e36e0f8e.jpg"}
+        "https://i.pinimg.com/736x/b8/77/85/b8778585aab18dca3f09ad853b5bff2b.jpg"}
       ">
 
       <h2>
