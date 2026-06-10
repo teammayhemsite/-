@@ -55,6 +55,8 @@ const entranceEnabled =
 const entranceText =
   $("entrance-text");
 
+const viewProfileBtn = $("view-profile-btn");
+
 // =========================
 // REDES
 // =========================
