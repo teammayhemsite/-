@@ -119,14 +119,14 @@ async function loadProfile() {
 
   }
 
-const card =
-  document.querySelector(".cardking");
+  const card =
+    document.querySelector(".cardking");
 
-if (data.username === "krpris" || data.username === "kaio") {
+  if (data.username === "krpris" || data.username === "kaio") {
 
-  card.insertAdjacentHTML(
-    "afterbegin",
-    `
+    card.insertAdjacentHTML(
+      "afterbegin",
+      `
     <div class="embking">
       <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -142,10 +142,10 @@ if (data.username === "krpris" || data.username === "kaio") {
     </svg> OWNER
     </div>
     `
-  );
+    );
 
-}
-  
+  }
+
   const likeBtn =
     document.getElementById(
       "like-btn"
@@ -455,6 +455,20 @@ if (data.username === "krpris" || data.username === "kaio") {
       ? `${data.avatar_url}?v=${Date.now()}`
 
       : "https://i.pinimg.com/736x/b8/77/85/b8778585aab18dca3f09ad853b5bff2b.jpg";
+
+  const frame =
+    document.getElementById("avatar-frame");
+
+  if (data.frame_url) {
+
+    frame.src = data.frame_url;
+    frame.style.display = "block";
+
+  } else {
+
+    frame.style.display = "none";
+
+  }
 
   document.getElementById(
     "banner"
