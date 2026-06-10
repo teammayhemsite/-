@@ -16,16 +16,22 @@
   <div class="auth-card">
     <p>teammayhem</p>
     <h1>Entrar</h1>
+    
+    <input type="text" id="login-user" maxlength="15" placeholder="👤 Usuário">
 
-    <input
-      type="text"
-      placeholder="👤 Usuário"
-      id="login-user">
+    <div class="url-preview">
 
-    <input
-      type="password"
-      placeholder="🔒 Senha"
-      id="login-pass">
+      <span class="domain">
+        teammayhem.vercel.app/
+      </span>
+
+      <span id="preview-user">
+        👤 Usuário
+      </span>
+
+    </div>
+
+    <input type="password" placeholder="🔒 Senha" id="login-pass">
 
     <button id="login-btn">
       ENTRAR
@@ -46,5 +52,25 @@
 
   <script src="auth.js"></script>
 
+  <script>
+    const userInput =
+      document.getElementById("login-user");
+
+    const previewUser =
+      document.getElementById("preview-user");
+
+    userInput.addEventListener("input", () => {
+
+      let username =
+        userInput.value
+          .toLowerCase()
+          .replace(/\s+/g, "");
+
+      previewUser.textContent =
+        username || "?";
+
+    });
+  </script>
 </body>
+
 </html>
