@@ -55,6 +55,8 @@ const entranceEnabled =
 const entranceText =
   $("entrance-text");
 
+const viewProfileBtn = $("view-profile-btn");
+
 // =========================
 // REDES
 // =========================
@@ -1101,9 +1103,8 @@ $("copy-profile-url")
     }
   );
 
-const viewProfileBtn = $("view-profile-btn");
+viewProfileBtn.addEventListener("click", async () => {
 
-viewProfileBtn?.addEventListener("click", async () => {
   const { data: { user } } =
     await supabaseClient.auth.getUser();
 
@@ -1113,4 +1114,5 @@ viewProfileBtn?.addEventListener("click", async () => {
     user.email.split("@")[0].toLowerCase();
 
   window.open(`/${username}`, "_blank");
+
 });
