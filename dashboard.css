@@ -606,3 +606,25 @@ RESPONSIVO
   cursor:pointer;
   font-weight:bold;
 }
+
+.upload-box{
+  position:relative;
+}
+
+.remove-upload{
+  position:absolute;
+  top:12px;
+  right:12px;
+
+  color:#ff4d4d;
+  cursor:pointer;
+
+  font-size:15px;
+
+  transition:.2s;
+}
+
+.remove-upload:hover{
+  transform:scale(1.1);
+  color:#ff6666;
+}
