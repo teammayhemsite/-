@@ -666,6 +666,8 @@ $("remove-avatar")?.addEventListener(
 
     removeAvatar = true;
 
+    updatePreview();
+
   }
 );
 
@@ -678,6 +680,8 @@ $("remove-banner")?.addEventListener(
     $("preview-banner").style.backgroundImage = "";
 
     removeBanner = true;
+
+    updatePreview();
 
   }
 );
@@ -692,6 +696,8 @@ $("remove-background")?.addEventListener(
 
     removeBackground = true;
 
+    updatePreview();
+
   }
 );
 
@@ -702,6 +708,8 @@ $("remove-music")?.addEventListener(
     musicFile.value = "";
 
     removeMusic = true;
+
+    updatePreview();
 
   }
 );
@@ -962,6 +970,78 @@ $("save-btn")
 
       });
 
+
+      if (removeAvatar && old?.avatar_url) {
+        try {
+          const oldPath = old.avatar_url
+            .split("/images/")[1]
+            ?.split("?")[0];
+
+          if (oldPath) {
+            await supabaseClient
+              .storage
+              .from("images")
+              .remove([oldPath]);
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      }
+
+      if (removeBanner && old?.banner_url) {
+        try {
+          const oldPath = old.banner_url
+            .split("/images/")[1]
+            ?.split("?")[0];
+
+          if (oldPath) {
+            await supabaseClient
+              .storage
+              .from("images")
+              .remove([oldPath]);
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      }
+
+      if (removeBackground && old?.background_url) {
+        try {
+          const oldPath = old.background_url
+            .split("/images/")[1]
+            ?.split("?")[0];
+
+          if (oldPath) {
+            await supabaseClient
+              .storage
+              .from("images")
+              .remove([oldPath]);
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      }
+
+
+
+      if (removeMusic && old?.music_url) {
+        try {
+          const oldPath = old.music_url
+            .split("/images/")[1]
+            ?.split("?")[0];
+
+          if (oldPath) {
+            await supabaseClient
+              .storage
+              .from("images")
+              .remove([oldPath]);
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      }
+
+
       const { error } =
         await supabaseClient
           .from("profiles")
@@ -977,6 +1057,11 @@ $("save-btn")
       alert(
         "Perfil salvo com sucesso!"
       );
+
+      removeAvatar = false;
+      removeBanner = false;
+      removeBackground = false;
+      removeMusic = false;
 
       window.location.href =
         `/${username}`;
