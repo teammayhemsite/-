@@ -1,21 +1,30 @@
-console.log("AUTH CARREGOU");
+console.log("VOCE NAO VAI GANHAR NADA FAZENDO ISSO");
 
 // =========================
 // CADASTRO
 // =========================
 
 const registerBtn =
-document.getElementById("register-btn");
+  document.getElementById("register-btn");
 
 if (registerBtn) {
 
   registerBtn.addEventListener("click", async () => {
 
     const user =
-    document.getElementById("register-user").value;
+      document.getElementById("register-user").value;
 
     const pass =
-    document.getElementById("register-pass").value;
+      document.getElementById("register-pass").value;
+
+    const usernameRegex = /^[a-z0-9_]{3,20}$/;
+
+    if (!usernameRegex.test(user)) {
+      alert(
+        "O usuário deve ter entre 3 e 20 caracteres e conter apenas letras, números e _"
+      );
+      return;
+    }
 
     if (!user || !pass) {
 
@@ -25,12 +34,12 @@ if (registerBtn) {
     }
 
     const { data, error } =
-    await supabaseClient.auth.signUp({
+      await supabaseClient.auth.signUp({
 
-      email: `${user}@fake.com`,
-      password: pass
+        email: `${user}@fake.com`,
+        password: pass
 
-    });
+      });
 
     console.log(data);
     console.log(error);
@@ -45,7 +54,7 @@ if (registerBtn) {
     alert("Conta criada!");
 
     window.location.href =
-    "login.html";
+      "login.html";
 
   });
 
@@ -56,25 +65,25 @@ if (registerBtn) {
 // =========================
 
 const loginBtn =
-document.getElementById("login-btn");
+  document.getElementById("login-btn");
 
 if (loginBtn) {
 
   loginBtn.addEventListener("click", async () => {
 
     const user =
-    document.getElementById("login-user").value;
+      document.getElementById("login-user").value;
 
     const pass =
-    document.getElementById("login-pass").value;
+      document.getElementById("login-pass").value;
 
     const { data, error } =
-    await supabaseClient.auth.signInWithPassword({
+      await supabaseClient.auth.signInWithPassword({
 
-      email: `${user}@fake.com`,
-      password: pass
+        email: `${user}@fake.com`,
+        password: pass
 
-    });
+      });
 
     console.log(data);
     console.log(error);
@@ -84,10 +93,10 @@ if (loginBtn) {
       alert("Usuário ou senha incorretos");
       return;
 
-    }  
+    }
     // REDIRECIONA PARA O DASHBOARD
     window.location.href =
-    "dashboard.html";
+      "dashboard.html";
 
   });
 
