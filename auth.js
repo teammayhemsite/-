@@ -33,6 +33,18 @@ if (registerBtn) {
 
     }
 
+    const { data: existing } = await supabaseClient
+      .from("profiles")
+      .select("id")
+      .eq("username", user)
+      .maybeSingle();
+
+    if (existing) {
+      document.getElementById("register-error").textContent =
+        "*nome de usuário em uso";
+      return;
+    }
+
     const { data, error } =
       await supabaseClient.auth.signUp({
 
@@ -90,7 +102,8 @@ if (loginBtn) {
 
     if (error) {
 
-      alert("Usuário ou senha incorretos");
+      const errBox = document.getElementById("login-error");
+      errBox.textContent = "*usuário ou senha incorreto!";
       return;
 
     }
