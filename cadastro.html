@@ -17,7 +17,19 @@
     <p>teammayhem</p>
     <h1>Criar sua conta</h1>
 
-    <input type="text" placeholder="＠ Usuário" id="register-user">
+    <input type="text" maxlength="15" placeholder="＠ Usuário" id="register-user">
+
+    <div class="url-preview">
+
+      <span class="domain">
+        teammayhem.vercel.app/
+      </span>
+
+      <span id="preview-user">
+         ＠ Usuário
+      </span>
+
+    </div>
 
     <input type="password" placeholder="🔒 Senha" id="register-pass">
 
@@ -44,6 +56,26 @@
   <script src="supabase.js"></script>
 
   <script src="auth.js"></script>
+  
+  <script>
+    const userInput =
+      document.getElementById("login-user");
+
+    const previewUser =
+      document.getElementById("preview-user");
+
+    userInput.addEventListener("input", () => {
+
+      let username =
+        userInput.value
+          .toLowerCase()
+          .replace(/\s+/g, "");
+
+      previewUser.textContent =
+        username || "?";
+
+    });
+  </script>
 
 </body>
 
