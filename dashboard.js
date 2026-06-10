@@ -57,6 +57,33 @@ const entranceText =
 
 const viewProfileBtn = $("view-profile-btn");
 
+document.querySelectorAll(".frame-card")
+  .forEach(card => {
+
+    card.addEventListener("click", () => {
+
+      document
+        .querySelectorAll(".frame-card")
+        .forEach(c =>
+          c.classList.remove("selected")
+        );
+
+      card.classList.add("selected");
+
+      selectedFrame =
+        card.dataset.frame;
+
+      updatePreview();
+
+      console.log(
+        "Moldura selecionada:",
+        selectedFrame
+      );
+
+    });
+
+  });
+
 // =========================
 // REDES
 // =========================
@@ -479,6 +506,24 @@ function updatePreview() {
 
   });
 
+  const framePreview =
+    $("preview-frame");
+
+  if (selectedFrame) {
+
+    framePreview.src =
+      selectedFrame;
+
+    framePreview.style.display =
+      "block";
+
+  } else {
+
+    framePreview.style.display =
+      "none";
+
+  }
+
 }
 
 // =========================
@@ -622,7 +667,25 @@ async function loadDashboard() {
   pixInput.value =
     data.pix_url || "";
 
+  selectedFrame =
+    data.frame_url || "";
 
+  document
+    .querySelectorAll(".frame-card")
+    .forEach(card => {
+
+      card.classList.remove("selected");
+
+      if (
+        card.dataset.frame ===
+        selectedFrame
+      ) {
+
+        card.classList.add("selected");
+
+      }
+
+    });
 
   entranceEnabled.value =
     data.entrance_enabled
@@ -759,6 +822,8 @@ $("save-btn")
       let musicUrl =
         old?.music_url || "";
 
+      let selectedFrame = "";
+
       // REMOÇÕES
 
       if (removeAvatar)
@@ -843,6 +908,9 @@ $("save-btn")
 
         display_name:
           nameInput.value,
+
+        frame_url:
+          selectedFrame,
 
         bio:
           bioInput.value,
@@ -1056,13 +1124,13 @@ $("save-btn")
 
       }
 
-     const btn = $("save-btn");
+      const btn = $("save-btn");
 
-       btn.textContent = "Perfil salvo com sucesso!";
+      btn.textContent = "Perfil salvo com sucesso!";
 
-     setTimeout(() => {
-      btn.textContent = "SALVAR PERFIL";
-    }, 2000);
+      setTimeout(() => {
+        btn.textContent = "SALVAR PERFIL";
+      }, 2000);
 
       removeAvatar = false;
       removeBanner = false;
