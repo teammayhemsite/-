@@ -1103,7 +1103,16 @@ $("copy-profile-url")
     }
   );
 
-viewProfileBtn.addEventListener("click", () => {
-  alert("clicou");
-  window.open("https://google.com", "_blank");
+viewProfileBtn.addEventListener("click", async () => {
+
+  const { data: { user } } =
+    await supabaseClient.auth.getUser();
+
+  if (!user) return;
+
+  const username =
+    user.email.split("@")[0].toLowerCase();
+
+  window.location.href = `/${username}`;
+
 });
