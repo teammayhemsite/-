@@ -160,3 +160,39 @@
     font-size: 30px;
   }
 }
+
+.url-preview {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-top: -8px;
+  margin-bottom: 18px;
+
+  padding: 12px;
+
+  border-radius: 12px;
+
+  background: rgba(255,255,255,0.04);
+
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.domain {
+  padding: 6px 10px;
+
+  border-radius: 8px;
+
+  background: rgba(255,255,255,0.08);
+
+  color: rgba(255,255,255,0.7);
+
+  font-size: 15px;
+}
+
+#preview-user {
+  color: #fff;
+
+  font-size: 14px;
+  font-weight: 700;
+}
