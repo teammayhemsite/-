@@ -1497,9 +1497,9 @@ Marca d agua
 
   position: absolute;
 
-  inset: -13%;
+  inset: -10%;
 
-  width: 125%;
+  width: 130%;
   height: 125%;
 
   pointer-events: none;
