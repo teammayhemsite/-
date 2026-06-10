@@ -1330,6 +1330,34 @@ TEMPLATE 4
 
 }
 
+.template4-theme .avatar-wrapper {
+
+  position: relative;
+
+  width: 95px;
+  height: 95px;
+
+  flex-shrink: 0;
+
+}
+
+.template4-theme .avatar-frame {
+
+  position: absolute;
+
+  inset: -60%;
+
+  width: 300%;
+  height: 150%;
+
+  pointer-events: none;
+
+  object-fit: contain;
+
+  z-index: 10;
+
+}
+
 /* conteúdo */
 
 .template4-theme .conteudoking {
