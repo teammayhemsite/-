@@ -628,3 +628,20 @@ RESPONSIVO
   transform:scale(1.1);
   color:#ff6666;
 }
+
+#view-profile-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 16px;
+  border: none;
+  border-radius: 16px;
+  background: #cfcfcf;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#view-profile-btn:hover {
+  transform: translateY(-2px);
+}
