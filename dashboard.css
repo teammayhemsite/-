@@ -645,3 +645,84 @@ RESPONSIVO
 #view-profile-btn:hover {
   transform: translateY(-2px);
 }
+
+.frame-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:12px;
+
+  margin-top:10px;
+}
+
+.frame-card{
+  background:
+    rgba(255,255,255,.05);
+
+  border:
+    2px solid transparent;
+
+  border-radius:16px;
+
+  padding:10px;
+
+  cursor:pointer;
+
+  text-align:center;
+
+  transition:.2s;
+}
+
+.frame-card:hover{
+  transform:translateY(-2px);
+}
+
+.frame-card.selected{
+  border-color:white;
+}
+
+.frame-card img{
+  width: 100%;
+  border-radius:12px;
+}
+
+.frame-card span{
+  display:block;
+  margin-top:8px;
+  font-size:13px;
+}
+
+.avatar-wrapper{
+  position:absolute;
+
+  top:100px;
+  left:25px;
+
+  width:95px;
+  height:95px;
+}
+
+.avatar-wrapper .perfilking{
+  position:absolute;
+
+  top:0;
+  left:0;
+
+  width:100%;
+  height:100%;
+}
+
+.avatar-frame{
+  position:absolute;
+
+  top:-12px;
+  left:-12px;
+
+  width:120px;
+  height:120px;
+
+  pointer-events:none;
+  z-index:10;
+}
