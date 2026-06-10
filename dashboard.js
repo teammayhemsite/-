@@ -1109,7 +1109,7 @@ viewProfileBtn.addEventListener("click", async () => {
   if (!user) return;
 
   const username =
-    user.email.split("@")[0].toLowerCase();
+    user.email.split("")[0].toLowerCase();
 
   window.open(`/${username}`, "_blank");
 
