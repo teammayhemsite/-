@@ -1056,11 +1056,13 @@ $("save-btn")
 
       }
 
-      saveBtn.textContent = "Perfil salvo com sucesso!";
+     const btn = $("save-btn");
 
-      setTimeout(() => {
-        saveBtn.textContent = "SALVAR PERFIL";
-      }, 2000);
+       btn.textContent = "Perfil salvo com sucesso!";
+
+     setTimeout(() => {
+      btn.textContent = "SALVAR PERFIL";
+    }, 2000);
 
       removeAvatar = false;
       removeBanner = false;
