@@ -647,6 +647,65 @@ async function loadDashboard() {
 
 }
 
+// =========================
+// REMOVER ARQUIVOS
+// =========================
+
+let removeAvatar = false;
+let removeBanner = false;
+let removeBackground = false;
+let removeMusic = false;
+
+$("remove-avatar")?.addEventListener(
+  "click",
+  () => {
+
+    avatarFile.value = "";
+
+    $("preview-avatar").src = "";
+
+    removeAvatar = true;
+
+  }
+);
+
+$("remove-banner")?.addEventListener(
+  "click",
+  () => {
+
+    bannerFile.value = "";
+
+    $("preview-banner").style.backgroundImage = "";
+
+    removeBanner = true;
+
+  }
+);
+
+$("remove-background")?.addEventListener(
+  "click",
+  () => {
+
+    backgroundFile.value = "";
+
+    document.body.style.backgroundImage = "";
+
+    removeBackground = true;
+
+  }
+);
+
+$("remove-music")?.addEventListener(
+  "click",
+  () => {
+
+    musicFile.value = "";
+
+    removeMusic = true;
+
+  }
+);
+
 loadDashboard();
 
 // =========================
@@ -689,6 +748,20 @@ $("save-btn")
 
       let musicUrl =
         old?.music_url || "";
+
+      // REMOÇÕES
+
+      if (removeAvatar)
+        avatarUrl = "";
+
+      if (removeBanner)
+        bannerUrl = "";
+
+      if (removeBackground)
+        backgroundUrl = "";
+
+      if (removeMusic)
+        musicUrl = "";
 
       // AVATAR
       if (avatarFile.files[0]) {
