@@ -34,6 +34,9 @@ const bannerFile =
 const backgroundFile =
   $("background-file");
 
+const cardBackgroundFile =
+  $("card-background-file");
+
 const overlayInput =
   $("overlay-input");
 
@@ -441,6 +444,7 @@ function updatePreview() {
 
   }
 
+
   // BALÃO
   const balao =
     $("preview-overlay");
@@ -523,6 +527,21 @@ function updatePreview() {
 
     framePreview.style.display =
       "none";
+
+  }
+
+  if (cardBackgroundFile.files[0]) {
+
+    previewCard.style.backgroundImage =
+      `url(${URL.createObjectURL(
+        cardBackgroundFile.files[0]
+      )})`;
+
+    previewCard.style.backgroundSize =
+      "cover";
+
+    previewCard.style.backgroundPosition =
+      "center";
 
   }
 
@@ -710,6 +729,14 @@ async function loadDashboard() {
 
   });
 
+  if (data.card_background_url) {
+
+    document.querySelector(".cardking")
+      .style.backgroundImage =
+      `url(${data.card_background_url})`;
+
+  }
+
   updatePreview();
 
 }
@@ -722,6 +749,7 @@ let removeAvatar = false;
 let removeBanner = false;
 let removeBackground = false;
 let removeMusic = false;
+let removeCardBackground = false;
 
 $("remove-avatar")?.addEventListener(
   "click",
@@ -762,6 +790,22 @@ $("remove-background")?.addEventListener(
     document.body.style.backgroundImage = "";
 
     removeBackground = true;
+
+    updatePreview();
+
+  }
+);
+
+$("remove-card-background")?.addEventListener(
+  "click",
+  () => {
+
+    cardBackgroundFile.value = "";
+
+    document.querySelector(".cardking")
+      .style.backgroundImage = "";
+
+    removeCardBackground = true;
 
     updatePreview();
 
@@ -821,6 +865,9 @@ $("save-btn")
       let backgroundUrl =
         old?.background_url || "";
 
+      let cardBackgroundUrl =
+        old?.card_background_url || "";
+
       let musicUrl =
         old?.music_url || "";
 
@@ -834,6 +881,9 @@ $("save-btn")
 
       if (removeBackground)
         backgroundUrl = "";
+
+      if (removeCardBackground)
+        cardBackgroundUrl = "";
 
       if (removeMusic)
         musicUrl = "";
@@ -886,6 +936,22 @@ $("save-btn")
 
       }
 
+      // CARD BACKGROUND
+      if (cardBackgroundFile.files[0]) {
+
+        const uploaded =
+          await uploadImage(
+            cardBackgroundFile.files[0],
+            user.id,
+            "cardbackground",
+            old?.card_background_url
+          );
+
+        if (uploaded)
+          cardBackgroundUrl = uploaded;
+
+      }
+
       // MUSIC
       if (musicFile.files[0]) {
 
@@ -923,6 +989,9 @@ $("save-btn")
 
         background_url:
           backgroundUrl,
+
+        card_background_url:
+          cardBackgroundUrl,
 
         music_url:
           musicUrl,
@@ -1092,7 +1161,22 @@ $("save-btn")
         }
       }
 
+      if (removeCardBackground && old?.card_background_url) {
+        try {
+          const oldPath = old.card_background_url
+            .split("/images/")[1]
+            ?.split("?")[0];
 
+          if (oldPath) {
+            await supabaseClient
+              .storage
+              .from("images")
+              .remove([oldPath]);
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      }
 
       if (removeMusic && old?.music_url) {
         try {
@@ -1135,6 +1219,7 @@ $("save-btn")
       removeAvatar = false;
       removeBanner = false;
       removeBackground = false;
+      removeCardBackground = false;
       removeMusic = false;
 
     }
