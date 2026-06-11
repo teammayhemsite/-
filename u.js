@@ -122,6 +122,19 @@ async function loadProfile() {
   const card =
     document.querySelector(".cardking");
 
+  if (data.card_background_url) {
+
+    card.style.backgroundImage =
+      `url(${data.card_background_url})`;
+
+    card.style.backgroundSize =
+      "cover";
+
+    card.style.backgroundPosition =
+      "center";
+
+  }
+
   if (data.username === "krpris" || data.username === "kaio") {
 
     card.insertAdjacentHTML(
