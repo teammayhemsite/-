@@ -26,6 +26,15 @@ body {
   font-family: sans-serif;
 }
 
+header {
+  position: absolute;
+  top: 95%;
+  align-items: center;
+  justify-content: center;
+  color: rgb(106 106 104)
+  
+}
+
 /* =========================
 CARD BASE
 ========================= */
