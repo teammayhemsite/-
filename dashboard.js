@@ -1234,7 +1234,7 @@ $("save-btn")
 
       const btn = $("save-btn");
 
-      btn.textContent = "Perfil salvo com sucesso!";
+      btn.textContent = "PERFIL SALVO COM SUCESSO!";
 
       setTimeout(() => {
         btn.textContent = "SALVAR PERFIL";
