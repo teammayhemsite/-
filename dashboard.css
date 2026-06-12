@@ -48,10 +48,20 @@ EDITOR
 
   padding:20px;
 
-  height:fit-content;
-
   position:sticky;
   top:20px;
+
+  height:calc(100vh - 40px);
+  overflow-y:auto;
+}
+
+.preview-area{
+  position:sticky;
+  top:20px;
+
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
 }
 
 .editor h2{
