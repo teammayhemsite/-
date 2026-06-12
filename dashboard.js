@@ -407,6 +407,7 @@ function updatePreview() {
     bioInput.value || "Bio";
 
   // AVATAR
+
   if (avatarFile.files[0]) {
 
     $("preview-avatar").src =
@@ -414,6 +415,10 @@ function updatePreview() {
         avatarFile.files[0]
       );
 
+  }
+
+  else if (!$("preview-avatar").src) {
+    $("preview-avatar").src = "";
   }
 
   // BANNER
@@ -443,7 +448,6 @@ function updatePreview() {
       "cover";
 
   }
-
 
   // BALÃO
   const balao =
@@ -735,6 +739,26 @@ async function loadDashboard() {
       .style.backgroundImage =
       `url(${data.card_background_url})`;
 
+  }
+
+  if (data.avatar_url) {
+    $("preview-avatar").src = data.avatar_url;
+  }
+
+  if (data.banner_url) {
+    $("preview-banner").style.backgroundImage =
+      `url(${data.banner_url})`;
+  }
+
+  if (data.background_url) {
+    document.body.style.backgroundImage =
+      `url(${data.background_url})`;
+    document.body.style.backgroundSize = "cover";
+  }
+
+  if (data.card_background_url) {
+    document.querySelector(".cardking").style.backgroundImage =
+      `url(${data.card_background_url})`;
   }
 
   updatePreview();
