@@ -159,14 +159,14 @@ async function loadProfile() {
 
   }
 
-  if (data.username === "krpris" || data.username === "phz_062") {
+  if (data.username === "vtzadas_021" || data.username === "phz_062") {
 
     card.insertAdjacentHTML(
       "afterbegin",
       `
     <div class="embboost">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" class="stroke-theme drop-shadow-theme fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m12 3-2 5.8a2 2 0 0 1-1.2 1.3L3 12l5.8 2a2 2 0 0 1 1.3 1.2L12 21l2-5.8a2 2 0 0 1 1.2-1.3L21 12l-5.8-2a2 2 0 0 1-1.3-1.2zM5 3v4m14 10v4M3 5h4m10 14h4"></path></svg>
-    </svg> boost
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" class="fill-theme drop-shadow-theme"><path d="M11.3598 1.23178C11.7307 0.92274 12.2693 0.92274 12.6402 1.23178L18.6402 6.23178C18.8682 6.42177 19 6.70322 19 7V17C19 17.2968 18.8682 17.5782 18.6402 17.7682L12.6402 22.7682C12.2693 23.0773 11.7307 23.0773 11.3598 22.7682L5.35982 17.7682C5.13182 17.5782 5 17.2968 5 17V7C5 6.70322 5.13182 6.42177 5.35982 6.23178L11.3598 1.23178ZM12.6757 5.26285C12.2934 4.91238 11.7066 4.91238 11.3243 5.26285L8.32428 8.01285C8.11765 8.20226 8 8.46969 8 8.75V15.25C8 15.5303 8.11765 15.7977 8.32428 15.9872L11.3243 18.7372C11.7066 19.0876 12.2934 19.0876 12.6757 18.7372L15.6757 15.9872C15.8824 15.7977 16 15.5303 16 15.25V8.75C16 8.46969 15.8824 8.20226 15.6757 8.01285L12.6757 5.26285ZM10 14.8101V9.1899L12 7.35657L14 9.1899V14.8101L12 16.6434L10 14.8101Z"></path></svg>
+      booster
     </div>
     `
     );
