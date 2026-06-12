@@ -736,3 +736,66 @@ RESPONSIVO
   pointer-events:none;
   z-index:10;
 }
+
+.support-card{
+  margin-top:20px;
+
+  padding:18px;
+
+  border-radius:18px;
+
+  background:
+    rgba(255,255,255,0.04);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  text-align:center;
+}
+
+.support-card h3{
+  margin-bottom:10px;
+
+  font-size:18px;
+}
+
+.support-card p{
+  font-size:14px;
+
+  opacity:.8;
+
+  line-height:1.5;
+
+  margin-bottom:15px;
+}
+
+.support-btn{
+  display:block;
+
+  width:100%;
+
+  padding:14px;
+
+  border-radius:14px;
+
+  text-decoration:none;
+
+  font-weight:bold;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #5865F2,
+      #7289DA
+    );
+
+  transition:.2s;
+}
+
+.support-btn:hover{
+  transform:translateY(-2px);
+
+  filter:brightness(1.08);
+}
