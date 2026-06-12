@@ -159,6 +159,20 @@ async function loadProfile() {
 
   }
 
+  if (data.username === "krpris" || data.username === "phz_062") {
+
+    card.insertAdjacentHTML(
+      "afterbegin",
+      `
+    <div class="embboost">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" class="stroke-theme drop-shadow-theme fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m12 3-2 5.8a2 2 0 0 1-1.2 1.3L3 12l5.8 2a2 2 0 0 1 1.3 1.2L12 21l2-5.8a2 2 0 0 1 1.2-1.3L21 12l-5.8-2a2 2 0 0 1-1.3-1.2zM5 3v4m14 10v4M3 5h4m10 14h4"></path></svg>
+    </svg> boost
+    </div>
+    `
+    );
+
+  }
+
   const likeBtn =
     document.getElementById(
       "like-btn"
