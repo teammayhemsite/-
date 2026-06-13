@@ -204,49 +204,425 @@ const cards = [
 // UPLOAD SUPABASE
 // =========================
 
+let saving = false;
+
+$("save-btn")
+  .addEventListener(
+    "click",
+    async () => {
+
+      if (saving) return;
+
+      saving = true;
+
+      const btn = $("save-btn");
+      btn.disabled = true;
+
+      try {
+
+        const {
+          data: { user }
+        } = await supabaseClient
+          .auth
+          .getUser();
+
+        if (!user) throw new Error("Usuário não encontrado");
+
+        const username =
+          user.email
+            .split("@")[0]
+            .toLowerCase();
+
+        const { data: old } =
+          await supabaseClient
+            .from("profiles")
+            .select("*")
+            .eq("id", user.id)
+            .single();
+
+        let avatarUrl =
+          old?.avatar_url || "";
+
+        let bannerUrl =
+          old?.banner_url || "";
+
+        let backgroundUrl =
+          old?.background_url || "";
+
+        let cardBackgroundUrl =
+          old?.card_background_url || "";
+
+        let musicUrl =
+          old?.music_url || "";
+
+        // REMOÇÕES
+
+        if (removeAvatar)
+          avatarUrl = "";
+
+        if (removeBanner)
+          bannerUrl = "";
+
+        if (removeBackground)
+          backgroundUrl = "";
+
+        if (removeCardBackground)
+          cardBackgroundUrl = "";
+
+        if (removeMusic)
+          musicUrl = "";
+
+        // AVATAR
+        if (avatarFile.files[0]) {
+
+          const uploaded =
+            await uploadImage(
+              avatarFile.files[0],
+              user.id,
+              "avatar",
+              old?.avatar_url
+            );
+
+          if (uploaded)
+            avatarUrl = uploaded;
+
+        }
+
+        // BANNER
+        if (bannerFile.files[0]) {
+
+          const uploaded =
+            await uploadImage(
+              bannerFile.files[0],
+              user.id,
+              "banner",
+              old?.banner_url
+            );
+
+          if (uploaded)
+            bannerUrl = uploaded;
+
+        }
+
+        // BACKGROUND
+        if (backgroundFile.files[0]) {
+
+          const uploaded =
+            await uploadImage(
+              backgroundFile.files[0],
+              user.id,
+              "background",
+              old?.background_url
+            );
+
+          if (uploaded)
+            backgroundUrl = uploaded;
+
+        }
+
+        // CARD BACKGROUND
+        if (cardBackgroundFile.files[0]) {
+
+          const uploaded =
+            await uploadImage(
+              cardBackgroundFile.files[0],
+              user.id,
+              "cardbackground",
+              old?.card_background_url
+            );
+
+          if (uploaded)
+            cardBackgroundUrl = uploaded;
+
+        }
+
+        // MUSIC
+        if (musicFile.files[0]) {
+
+          const uploaded =
+            await uploadMusic(
+              musicFile.files[0],
+              user.id,
+              old?.music_url
+            );
+
+          if (uploaded)
+            musicUrl = uploaded;
+
+        }
+
+        const payload = {
+
+          id: user.id,
+          username,
+
+          display_name:
+            nameInput.value,
+
+          frame_url:
+            selectedFrame,
+
+          bio:
+            bioInput.value,
+
+          avatar_url:
+            avatarUrl,
+
+          banner_url:
+            bannerUrl,
+
+          background_url:
+            backgroundUrl,
+
+          card_background_url:
+            cardBackgroundUrl,
+
+          music_url:
+            musicUrl,
+
+          balao:
+            overlayInput.value,
+
+          text_color:
+            textColorInput.value,
+
+          template:
+            templateInput.value,
+
+          box_style:
+            boxStyleInput.value,
+
+          youtube_url:
+            youtubeInput.value,
+
+          instagram_url:
+            instagramInput.value,
+
+          discord_url:
+            discordInput.value,
+
+          spotify_url:
+            spotifyInput.value,
+
+          tiktok_url:
+            tiktokInput.value,
+
+          whatsapp_url:
+            whatsappInput.value,
+
+          twitter_url:
+            twitterInput.value,
+
+          facebook_url:
+            facebookInput.value,
+
+          telegram_url:
+            telegramInput.value,
+
+          github_url:
+            githubInput.value,
+
+          linkedin_url:
+            linkedinInput.value,
+
+          kick_url:
+            kickInput.value,
+
+          roblox_url:
+            robloxInput.value,
+
+          steam_url:
+            steamInput.value,
+
+          //---
+
+          xbox_url:
+            xboxInput.value,
+
+          twitch_url:
+            twitchInput.value,
+
+          privacy_url:
+            privacyInput.value,
+
+          onlyfans_url:
+            onlyfansInput.value,
+
+          fivem_url:
+            fivemInput.value,
+
+          pinterest_url:
+            pinterestInput.value,
+
+          email_url:
+            emailInput.value,
+
+          threads_url:
+            threadsInput.value,
+
+          bsky_url:
+            bskyInput.value,
+
+          vsco_url:
+            vscoInput.value,
+
+          pix_url:
+            pixInput.value,
+
+          entrance_enabled:
+            entranceEnabled.value === "true",
+
+          entrance_text:
+            entranceText.value,
+
+        };
+
+        cards.forEach((c, i) => {
+
+          payload[
+            `extra${i + 1}_text`
+          ] = c.t.value;
+
+          payload[
+            `extra${i + 1}_img`
+          ] = c.i.value;
+
+          payload[
+            `extra${i + 1}_link`
+          ] = c.l.value;
+
+        });
+
+
+        if (removeAvatar && old?.avatar_url) {
+          try {
+            const oldPath = old.avatar_url
+              .split("/images/")[1]
+              ?.split("?")[0];
+
+            if (oldPath) {
+              await supabaseClient
+                .storage
+                .from("images")
+                .remove([oldPath]);
+            }
+          } catch (e) {
+            console.log(e);
+          }
+        }
+
+        if (removeBanner && old?.banner_url) {
+          try {
+            const oldPath = old.banner_url
+              .split("/images/")[1]
+              ?.split("?")[0];
+
+            if (oldPath) {
+              await supabaseClient
+                .storage
+                .from("images")
+                .remove([oldPath]);
+            }
+          } catch (e) {
+            console.log(e);
+          }
+        }
+
+        if (removeBackground && old?.background_url) {
+          try {
+            const oldPath = old.background_url
+              .split("/images/")[1]
+              ?.split("?")[0];
+
+            if (oldPath) {
+              await supabaseClient
+                .storage
+                .from("images")
+                .remove([oldPath]);
+            }
+          } catch (e) {
+            console.log(e);
+          }
+        }
+
+        if (removeCardBackground && old?.card_background_url) {
+          try {
+            const oldPath = old.card_background_url
+              .split("/images/")[1]
+              ?.split("?")[0];
+
+            if (oldPath) {
+              await supabaseClient
+                .storage
+                .from("images")
+                .remove([oldPath]);
+            }
+          } catch (e) {
+            console.log(e);
+          }
+        }
+
+        if (removeMusic && old?.music_url) {
+          try {
+            const oldPath = old.music_url
+              .split("/images/")[1]
+              ?.split("?")[0];
+
+            if (oldPath) {
+              await supabaseClient
+                .storage
+                .from("images")
+                .remove([oldPath]);
+            }
+          } catch (e) {
+            console.log(e);
+          }
+        }
+
+
+        const { error } =
+          await supabaseClient
+            .from("profiles")
+            .upsert(payload);
+
+        if (error) {
+
+          alert(error.message);
+          return;
+
+        }
+
+        btn.textContent = "PERFIL SALVO COM SUCESSO!";
+
+        setTimeout(() => {
+          btn.textContent = "SALVAR PERFIL";
+        }, 2000);
+
+        removeAvatar = false;
+        removeBanner = false;
+        removeBackground = false;
+        removeCardBackground = false;
+        removeMusic = false;
+
+      } catch (error) {
+
+        console.error(error);
+        alert(error.message);
+        
+      } finally {
+        saving = false;
+        btn.disabled = false;
+      }
+
+    }
+  );
+
 async function uploadImage(
   file,
   userId,
   type,
   oldUrl = null
 ) {
-
-  // REMOVE ANTIGA
-  if (oldUrl) {
-
-    try {
-
-      const parts =
-        oldUrl.split("/images/");
-
-      if (parts[1]) {
-
-        const oldPath =
-          parts[1]
-            .split("?")[0];
-
-        console.log(
-          "REMOVENDO:",
-          oldPath
-        );
-
-        await supabaseClient
-          .storage
-          .from("images")
-          .remove([oldPath]);
-
-      }
-
-    } catch (e) {
-
-      console.log(
-        "Erro removendo:",
-        e
-      );
-
-    }
-
-  }
 
   // EXTENSÃO
   const fileExt =
@@ -256,14 +632,16 @@ async function uploadImage(
 
   // NOVO CAMINHO
   const filePath =
-    `users/${userId}/${type}-${Date.now()}.${fileExt}`;
+    `users/${userId}/${type}.${fileExt}`;
 
   // UPLOAD
   const { error } =
     await supabaseClient
       .storage
       .from("images")
-      .upload(filePath, file);
+      .upload(filePath, file, {
+        upsert: true
+      });
 
   if (error) {
 
@@ -289,48 +667,21 @@ async function uploadMusic(
   oldUrl = null
 ) {
 
-  // REMOVE ANTIGA
-  if (oldUrl) {
-
-    try {
-
-      const parts =
-        oldUrl.split("/images/");
-
-      if (parts[1]) {
-
-        const oldPath =
-          parts[1]
-            .split("?")[0];
-
-        await supabaseClient
-          .storage
-          .from("images")
-          .remove([oldPath]);
-
-      }
-
-    } catch (e) {
-
-      console.log(e);
-
-    }
-
-  }
-
   const fileExt =
     file.name
       .split(".")
       .pop();
 
   const filePath =
-    `users/${userId}/music-${Date.now()}.${fileExt}`;
+    `users/${userId}/music.${fileExt}`;
 
   const { error } =
     await supabaseClient
       .storage
       .from("images")
-      .upload(filePath, file);
+      .upload(filePath, file, {
+        upsert: true
+      });
 
   if (error) {
 
@@ -851,403 +1202,6 @@ $("remove-music")?.addEventListener(
 
 loadDashboard();
 
-// =========================
-// SALVAR PERFIL
-// =========================
-
-$("save-btn")
-  .addEventListener(
-    "click",
-    async () => {
-
-      const {
-        data: { user }
-      } = await supabaseClient
-        .auth
-        .getUser();
-
-      if (!user) return;
-
-      const username =
-        user.email
-          .split("@")[0]
-          .toLowerCase();
-
-      const { data: old } =
-        await supabaseClient
-          .from("profiles")
-          .select("*")
-          .eq("id", user.id)
-          .single();
-
-      let avatarUrl =
-        old?.avatar_url || "";
-
-      let bannerUrl =
-        old?.banner_url || "";
-
-      let backgroundUrl =
-        old?.background_url || "";
-
-      let cardBackgroundUrl =
-        old?.card_background_url || "";
-
-      let musicUrl =
-        old?.music_url || "";
-
-      // REMOÇÕES
-
-      if (removeAvatar)
-        avatarUrl = "";
-
-      if (removeBanner)
-        bannerUrl = "";
-
-      if (removeBackground)
-        backgroundUrl = "";
-
-      if (removeCardBackground)
-        cardBackgroundUrl = "";
-
-      if (removeMusic)
-        musicUrl = "";
-
-      // AVATAR
-      if (avatarFile.files[0]) {
-
-        const uploaded =
-          await uploadImage(
-            avatarFile.files[0],
-            user.id,
-            "avatar",
-            old?.avatar_url
-          );
-
-        if (uploaded)
-          avatarUrl = uploaded;
-
-      }
-
-      // BANNER
-      if (bannerFile.files[0]) {
-
-        const uploaded =
-          await uploadImage(
-            bannerFile.files[0],
-            user.id,
-            "banner",
-            old?.banner_url
-          );
-
-        if (uploaded)
-          bannerUrl = uploaded;
-
-      }
-
-      // BACKGROUND
-      if (backgroundFile.files[0]) {
-
-        const uploaded =
-          await uploadImage(
-            backgroundFile.files[0],
-            user.id,
-            "background",
-            old?.background_url
-          );
-
-        if (uploaded)
-          backgroundUrl = uploaded;
-
-      }
-
-      // CARD BACKGROUND
-      if (cardBackgroundFile.files[0]) {
-
-        const uploaded =
-          await uploadImage(
-            cardBackgroundFile.files[0],
-            user.id,
-            "cardbackground",
-            old?.card_background_url
-          );
-
-        if (uploaded)
-          cardBackgroundUrl = uploaded;
-
-      }
-
-      // MUSIC
-      if (musicFile.files[0]) {
-
-        const uploaded =
-          await uploadMusic(
-            musicFile.files[0],
-            user.id,
-            old?.music_url
-          );
-
-        if (uploaded)
-          musicUrl = uploaded;
-
-      }
-
-      const payload = {
-
-        id: user.id,
-        username,
-
-        display_name:
-          nameInput.value,
-
-        frame_url:
-          selectedFrame,
-
-        bio:
-          bioInput.value,
-
-        avatar_url:
-          avatarUrl,
-
-        banner_url:
-          bannerUrl,
-
-        background_url:
-          backgroundUrl,
-
-        card_background_url:
-          cardBackgroundUrl,
-
-        music_url:
-          musicUrl,
-
-        balao:
-          overlayInput.value,
-
-        text_color:
-          textColorInput.value,
-
-        template:
-          templateInput.value,
-
-        box_style:
-          boxStyleInput.value,
-
-        youtube_url:
-          youtubeInput.value,
-
-        instagram_url:
-          instagramInput.value,
-
-        discord_url:
-          discordInput.value,
-
-        spotify_url:
-          spotifyInput.value,
-
-        tiktok_url:
-          tiktokInput.value,
-
-        whatsapp_url:
-          whatsappInput.value,
-
-        twitter_url:
-          twitterInput.value,
-
-        facebook_url:
-          facebookInput.value,
-
-        telegram_url:
-          telegramInput.value,
-
-        github_url:
-          githubInput.value,
-
-        linkedin_url:
-          linkedinInput.value,
-
-        kick_url:
-          kickInput.value,
-
-        roblox_url:
-          robloxInput.value,
-
-        steam_url:
-          steamInput.value,
-
-        //---
-
-        xbox_url:
-          xboxInput.value,
-
-        twitch_url:
-          twitchInput.value,
-
-        privacy_url:
-          privacyInput.value,
-
-        onlyfans_url:
-          onlyfansInput.value,
-
-        fivem_url:
-          fivemInput.value,
-
-        pinterest_url:
-          pinterestInput.value,
-
-        email_url:
-          emailInput.value,
-
-        threads_url:
-          threadsInput.value,
-
-        bsky_url:
-          bskyInput.value,
-
-        vsco_url:
-          vscoInput.value,
-
-        pix_url:
-          pixInput.value,
-
-        entrance_enabled:
-          entranceEnabled.value === "true",
-
-        entrance_text:
-          entranceText.value,
-
-      };
-
-      cards.forEach((c, i) => {
-
-        payload[
-          `extra${i + 1}_text`
-        ] = c.t.value;
-
-        payload[
-          `extra${i + 1}_img`
-        ] = c.i.value;
-
-        payload[
-          `extra${i + 1}_link`
-        ] = c.l.value;
-
-      });
-
-
-      if (removeAvatar && old?.avatar_url) {
-        try {
-          const oldPath = old.avatar_url
-            .split("/images/")[1]
-            ?.split("?")[0];
-
-          if (oldPath) {
-            await supabaseClient
-              .storage
-              .from("images")
-              .remove([oldPath]);
-          }
-        } catch (e) {
-          console.log(e);
-        }
-      }
-
-      if (removeBanner && old?.banner_url) {
-        try {
-          const oldPath = old.banner_url
-            .split("/images/")[1]
-            ?.split("?")[0];
-
-          if (oldPath) {
-            await supabaseClient
-              .storage
-              .from("images")
-              .remove([oldPath]);
-          }
-        } catch (e) {
-          console.log(e);
-        }
-      }
-
-      if (removeBackground && old?.background_url) {
-        try {
-          const oldPath = old.background_url
-            .split("/images/")[1]
-            ?.split("?")[0];
-
-          if (oldPath) {
-            await supabaseClient
-              .storage
-              .from("images")
-              .remove([oldPath]);
-          }
-        } catch (e) {
-          console.log(e);
-        }
-      }
-
-      if (removeCardBackground && old?.card_background_url) {
-        try {
-          const oldPath = old.card_background_url
-            .split("/images/")[1]
-            ?.split("?")[0];
-
-          if (oldPath) {
-            await supabaseClient
-              .storage
-              .from("images")
-              .remove([oldPath]);
-          }
-        } catch (e) {
-          console.log(e);
-        }
-      }
-
-      if (removeMusic && old?.music_url) {
-        try {
-          const oldPath = old.music_url
-            .split("/images/")[1]
-            ?.split("?")[0];
-
-          if (oldPath) {
-            await supabaseClient
-              .storage
-              .from("images")
-              .remove([oldPath]);
-          }
-        } catch (e) {
-          console.log(e);
-        }
-      }
-
-
-      const { error } =
-        await supabaseClient
-          .from("profiles")
-          .upsert(payload);
-
-      if (error) {
-
-        alert(error.message);
-        return;
-
-      }
-
-      const btn = $("save-btn");
-
-      btn.textContent = "PERFIL SALVO COM SUCESSO!";
-
-      setTimeout(() => {
-        btn.textContent = "SALVAR PERFIL";
-      }, 2000);
-
-      removeAvatar = false;
-      removeBanner = false;
-      removeBackground = false;
-      removeCardBackground = false;
-      removeMusic = false;
-
-    }
-  );
 
 $("copy-profile-url")
   ?.addEventListener(
