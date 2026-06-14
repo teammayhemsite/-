@@ -608,7 +608,7 @@ $("save-btn")
 
         console.error(error);
         alert(error.message);
-        
+
       } finally {
         saving = false;
         btn.disabled = false;
@@ -623,6 +623,19 @@ async function uploadImage(
   type,
   oldUrl = null
 ) {
+
+  // Remove versões antigas
+
+  await supabaseClient
+    .storage
+    .from("images")
+    .remove([
+      `users/${userId}/${type}.jpg`,
+      `users/${userId}/${type}.jpeg`,
+      `users/${userId}/${type}.png`,
+      `users/${userId}/${type}.gif`,
+      `users/${userId}/${type}.webp`
+    ]);
 
   // EXTENSÃO
   const fileExt =
@@ -666,6 +679,16 @@ async function uploadMusic(
   userId,
   oldUrl = null
 ) {
+
+  await supabaseClient
+    .storage
+    .from("images")
+    .remove([
+      `users/${userId}/music.mp3`,
+      `users/${userId}/music.wav`,
+      `users/${userId}/music.ogg`,
+      `users/${userId}/music.m4a`
+    ]);
 
   const fileExt =
     file.name
