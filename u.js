@@ -974,7 +974,7 @@ async function loadProfile() {
       ${imageHTML}
 
       <span>
-        ${text || "Card extra"}
+        ${text || ""}
       </span>
 
     `;
