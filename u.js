@@ -740,14 +740,14 @@ async function loadProfile() {
 
   addSocial(
     data.youtube_url,
-    `<img src="https://www.riqueza.life/images/socials/youtube.png">`,
+    `<img src="https://cdn.simpleicons.org/youtube">`,
     "Youtube",
     data.username
   );
 
   addSocial(
     data.instagram_url,
-    `<img src="https://www.riqueza.life/images/socials/instagram.png">`,
+    `<img src="https://cdn.simpleicons.org/instagram">`,
     "Instagram",
     data.username
   );
@@ -768,7 +768,7 @@ async function loadProfile() {
 
   addSocial(
     data.tiktok_url,
-    `<img src="https://www.riqueza.life/images/socials/tiktok.png">`,
+    `<img src="https://cdn.simpleicons.org/tiktok">`,
     "TikTok",
     data.username
   );
