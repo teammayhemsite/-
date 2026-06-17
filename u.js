@@ -852,7 +852,7 @@ async function loadProfile() {
 
   addSocial(
     data.privacy_url,
-    `<img src="https://www.riqueza.life/images/socials/privacy.png">`,
+    `<img src="https://img.icons8.com/color/48/privacy.png">`,
     "Privacy",
     data.username
   );
