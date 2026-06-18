@@ -1601,6 +1601,24 @@ Marca d agua
 
 }
 
+.entrance-avatar{
+
+  width: 95px;
+  height: 95px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  margin-bottom: 20px;
+
+  border: 2px solid rgba(255,255,255,.15);
+
+  box-shadow:
+    0 0 20px rgba(255,255,255,.15);
+
+}
+
 #entrance-screen {
 
   position: fixed;
