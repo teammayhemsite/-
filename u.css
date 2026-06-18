@@ -29,6 +29,7 @@ body {
 header {
   position: absolute;
   top: 95%;
+  font-size: 14px;
   align-items: center;
   justify-content: center;
   color: rgb(106 106 104)
