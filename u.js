@@ -810,7 +810,7 @@ async function loadProfile() {
 
   addSocial(
     data.linkedin_url,
-    `<img src="https://img.icons8.com/color/48/linkedin.png">`,
+    `<img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/linkedin.png">`,
     "LinkedIn",
     data.username
   );
@@ -824,7 +824,7 @@ async function loadProfile() {
 
   addSocial(
     data.roblox_url,
-    `<img src="https://cdn.simpleicons.org/roblox">`,
+    `<img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/roblox.png">`,
     "Roblox",
     data.username
   );
@@ -866,7 +866,7 @@ async function loadProfile() {
 
   addSocial(
     data.fivem_url,
-    `<img src="https://cdn.simpleicons.org/fivem">`,
+    `<img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/fivem.png">`,
     "FiveM",
     data.username
   );
@@ -880,7 +880,7 @@ async function loadProfile() {
 
   addSocial(
     data.email_url,
-    `<img src="https://cdn.simpleicons.org/maildotru">`,
+    `<img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/email.png">`,
     "Email",
     data.username
   );
