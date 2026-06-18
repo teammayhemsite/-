@@ -740,70 +740,70 @@ async function loadProfile() {
 
   addSocial(
     data.youtube_url,
-    `<img src="https://cdn.simpleicons.org/youtube">`,
+    `<img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/youtube.png">`,
     "Youtube",
     data.username
   );
 
   addSocial(
     data.instagram_url,
-    `<img src="https://cdn.simpleicons.org/instagram">`,
+    `<img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/instagram.png">`,
     "Instagram",
     data.username
   );
 
   addSocial(
     data.discord_url,
-    `<img src="https://cdn.simpleicons.org/discord">`,
+    `<img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/discord.png">`,
     "Discord",
     data.username
   );
 
   addSocial(
     data.spotify_url,
-    `<img src="https://cdn.simpleicons.org/spotify">`,
+    `<img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/spotify.png">`,
     "Spotify",
     data.username
   );
 
   addSocial(
     data.tiktok_url,
-    `<img src="https://cdn.simpleicons.org/tiktok">`,
+    `<img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/tiktok.png">`,
     "TikTok",
     data.username
   );
 
   addSocial(
     data.whatsapp_url,
-    `<img src="https://cdn.simpleicons.org/whatsapp">`,
+    `<img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/whatsapp.png">`,
     "WhatsApp",
     data.username
   );
 
   addSocial(
     data.twitter_url,
-    `<img src="https://cdn.simpleicons.org/x">`,
+    `<img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/x.png">`,
     "Twitter/X",
     data.username
   );
 
   addSocial(
     data.facebook_url,
-    `<img src="https://cdn.simpleicons.org/facebook">`,
+    `<img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/facebook.png">`,
     "Facebook",
     data.username
   );
 
   addSocial(
     data.telegram_url,
-    `<img src="https://cdn.simpleicons.org/telegram">`,
+    `<img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/telegram.png">`,
     "Telegram",
     data.username
   );
 
   addSocial(
     data.github_url,
-    `<img src="https://cdn.simpleicons.org/github">`,
+    `<img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/github.png">`,
     "GitHub",
     data.username
   );
@@ -831,35 +831,35 @@ async function loadProfile() {
 
   addSocial(
     data.steam_url,
-    `<img src="https://cdn.simpleicons.org/steam">`,
+    `<img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/steam.png">`,
     "Steam",
     data.username
   );
 
   addSocial(
     data.xbox_url,
-    `<img src="https://img.icons8.com/color/48/xbox.png">`,
+    `<img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/xbox.png">`,
     "Xbox",
     data.username
   );
 
   addSocial(
     data.twitch_url,
-    `<img src="https://cdn.simpleicons.org/twitch">`,
+    `<img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/twitch.png">`,
     "Twitch",
     data.username
   );
 
   addSocial(
     data.privacy_url,
-    `<img src="https://img.icons8.com/color/48/privacy.png">`,
+    `<img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/privacy.png">`,
     "Privacy",
     data.username
   );
 
   addSocial(
     data.onlyfans_url,
-    `<img src="https://cdn.simpleicons.org/onlyfans">`,
+    `<img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/onlyfans.png">`,
     "OnlyFans",
     data.username
   );
@@ -873,7 +873,7 @@ async function loadProfile() {
 
   addSocial(
     data.pinterest_url,
-    `<img src="https://cdn.simpleicons.org/pinterest">`,
+    `<img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/pinterest.png">`,
     "Pinterest",
     data.username
   );
