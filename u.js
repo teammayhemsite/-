@@ -517,7 +517,7 @@ async function loadProfile() {
 
       ? `${data.avatar_url}?v=${Date.now()}`
 
-      : "https://i.pinimg.com/736x/b8/77/85/b8778585aab18dca3f09ad853b5bff2b.jpg";
+      : "https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/semfotodeperfil.jpg";
 
   const frame =
     document.getElementById("avatar-frame");
