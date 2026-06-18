@@ -1610,7 +1610,7 @@ Marca d agua
 
   object-fit: cover;
 
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 
   border: 2px solid rgba(255,255,255,.15);
 
@@ -1651,7 +1651,7 @@ Marca d agua
 .entrance-content h1 {
 
   font-size:
-    clamp(35px, 7vw, 60px);
+    clamp(35px, 3vw, 60px);
 
   margin-bottom: 15px;
 
