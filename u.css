@@ -102,43 +102,6 @@ BADGE
 
 }
 
-.embboost {
-
-  position: absolute;
-
-  top: 5px;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  display: flex;
-  align-items: center;
-  gap: 6px;
-
-  padding: 7px 14px;
-
- background: linear-gradient(145deg,
-      #ffe5f0 0%,
-      #ffb3d1 20%,
-      #ff80b3 40%,
-      #ff99c2 60%,
-      #ffcce0 80%,
-      #ff66a3 100%);
-
-  color: #333;
-
-  border-radius: 999px;
-
-  font-size: 12px;
-  font-weight: 500;
-
-  box-shadow:
-    0 4px 12px rgba(0, 0, 0, .18);
-
-  z-index: 1000;
-
-}
-
 .embblack {
 
   position: absolute;
