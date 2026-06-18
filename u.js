@@ -119,6 +119,19 @@ async function loadProfile() {
 
   }
 
+  const entranceAvatar =
+  document.getElementById(
+    "entrance-avatar"
+  );
+
+if (entranceAvatar) {
+
+  entranceAvatar.src =
+    data.avatar_url ||
+    "https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/defaults/avatar.png";
+
+}
+
   const card =
     document.querySelector(".cardking");
 
