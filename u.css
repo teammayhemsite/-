@@ -1770,4 +1770,9 @@ Marca d agua
 
   z-index: 1000;
 
+  width: 35px;
+  height: 35px;
+
+  border-radius: 100px;
+
 }
