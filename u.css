@@ -1753,13 +1753,19 @@ Marca d agua
 .album-grid img{
 
   width:100%;
-  height:300px;
+  height:400px;
 
   object-fit:cover;
 
   border-radius:20px;
 
   display:block;
+}
+
+@media (max-width: 768px) {
+  .album-grid img {
+    height: 300px;
+  }
 }
 
 .album-btn {
