@@ -1699,3 +1699,40 @@ Marca d agua
   font-weight: 600;
 
 }
+
+.album-page{
+  position:fixed;
+  inset:0;
+  background:black;
+  z-index:9999;
+
+  display:none;
+
+  justify-content:center;
+  align-items:center;
+}
+
+.album-page.active{
+  display:flex;
+}
+
+.album-grid{
+  width:90%;
+  max-width:700px;
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(2,1fr);
+
+  gap:15px;
+}
+
+.album-grid img{
+  width:100%;
+  aspect-ratio:1;
+
+  object-fit:cover;
+
+  border-radius:20px;
+}
