@@ -1,22 +1,6 @@
 {
   "rewrites": [
     {
-      "source": "/login",
-      "destination": "/login.html"
-    },
-    {
-      "source": "/cadastro",
-      "destination": "/cadastro.html"
-    },
-    {
-      "source": "/dashboard",
-      "destination": "/dashboard.html"
-    },
-    {
-      "source": "/users",
-      "destination": "/users.html"
-    },
-    {
       "source": "/:user",
       "destination": "/u.html?user=:user"
     }
