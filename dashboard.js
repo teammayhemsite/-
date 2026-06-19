@@ -286,6 +286,18 @@ $("save-btn")
         if (removeMusic)
           musicUrl = "";
 
+        if (removeAlbum1)
+          album1Url = "";
+
+        if (removeAlbum2)
+          album2Url = "";
+
+        if (removeAlbum3)
+          album3Url = "";
+
+        if (removeAlbum4)
+          album4Url = "";
+
         // AVATAR
         if (avatarFile.files[0]) {
 
@@ -638,6 +650,90 @@ $("save-btn")
           }
         }
 
+        if (removeAlbum1 && old?.album1_url) {
+          try {
+
+            const oldPath = old.album1_url
+              .split("/images/")[1]
+              ?.split("?")[0];
+
+            if (oldPath) {
+
+              await supabaseClient
+                .storage
+                .from("images")
+                .remove([oldPath]);
+
+            }
+
+          } catch (e) {
+            console.log(e);
+          }
+        }
+
+        if (removeAlbum2 && old?.album2_url) {
+          try {
+
+            const oldPath = old.album2_url
+              .split("/images/")[1]
+              ?.split("?")[0];
+
+            if (oldPath) {
+
+              await supabaseClient
+                .storage
+                .from("images")
+                .remove([oldPath]);
+
+            }
+
+          } catch (e) {
+            console.log(e);
+          }
+        }
+
+        if (removeAlbum3 && old?.album3_url) {
+          try {
+
+            const oldPath = old.album3_url
+              .split("/images/")[1]
+              ?.split("?")[0];
+
+            if (oldPath) {
+
+              await supabaseClient
+                .storage
+                .from("images")
+                .remove([oldPath]);
+
+            }
+
+          } catch (e) {
+            console.log(e);
+          }
+        }
+
+        if (removeAlbum4 && old?.album4_url) {
+          try {
+
+            const oldPath = old.album4_url
+              .split("/images/")[1]
+              ?.split("?")[0];
+
+            if (oldPath) {
+
+              await supabaseClient
+                .storage
+                .from("images")
+                .remove([oldPath]);
+
+            }
+
+          } catch (e) {
+            console.log(e);
+          }
+        }
+
 
         const { error } =
           await supabaseClient
@@ -662,6 +758,11 @@ $("save-btn")
         removeBackground = false;
         removeCardBackground = false;
         removeMusic = false;
+
+        removeAlbum1 = false;
+        removeAlbum2 = false;
+        removeAlbum3 = false;
+        removeAlbum4 = false;
 
       } catch (error) {
 
@@ -1207,6 +1308,10 @@ let removeBanner = false;
 let removeBackground = false;
 let removeMusic = false;
 let removeCardBackground = false;
+let removeAlbum1 = false;
+let removeAlbum2 = false;
+let removeAlbum3 = false;
+let removeAlbum4 = false;
 
 $("remove-avatar")?.addEventListener(
   "click",
@@ -1281,6 +1386,34 @@ $("remove-music")?.addEventListener(
 
   }
 );
+
+$("remove-album1")?.addEventListener("click", () => {
+
+  album1File.value = "";
+  removeAlbum1 = true;
+
+});
+
+$("remove-album2")?.addEventListener("click", () => {
+
+  album2File.value = "";
+  removeAlbum2 = true;
+
+});
+
+$("remove-album3")?.addEventListener("click", () => {
+
+  album3File.value = "";
+  removeAlbum3 = true;
+
+});
+
+$("remove-album4")?.addEventListener("click", () => {
+
+  album4File.value = "";
+  removeAlbum4 = true;
+
+});
 
 loadDashboard();
 
