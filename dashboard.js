@@ -58,6 +58,15 @@ const entranceEnabled =
 const entranceText =
   $("entrance-text");
 
+const album1File =
+  $("album1-file");
+const album2File =
+  $("album2-file");
+const album3File =
+  $("album3-file");
+const album4File =
+  $("album4-file");
+
 const viewProfileBtn = $("view-profile-btn");
 
 let selectedFrame = "";
@@ -255,6 +264,11 @@ $("save-btn")
         let musicUrl =
           old?.music_url || "";
 
+        let album1Url = old?.album1_url || "";
+        let album2Url = old?.album2_url || "";
+        let album3Url = old?.album3_url || "";
+        let album4Url = old?.album4_url || "";
+
         // REMOÇÕES
 
         if (removeAvatar)
@@ -351,6 +365,46 @@ $("save-btn")
 
         }
 
+        if (album1File.files[0]) {
+          const uploaded = await uploadImage(
+            album1File.files[0],
+            user.id,
+            "album1"
+          );
+
+          if (uploaded) album1Url = uploaded;
+        }
+
+        if (album2File.files[0]) {
+          const uploaded = await uploadImage(
+            album2File.files[0],
+            user.id,
+            "album2"
+          );
+
+          if (uploaded) album2Url = uploaded;
+        }
+
+        if (album3File.files[0]) {
+          const uploaded = await uploadImage(
+            album3File.files[0],
+            user.id,
+            "album3"
+          );
+
+          if (uploaded) album3Url = uploaded;
+        }
+
+        if (album4File.files[0]) {
+          const uploaded = await uploadImage(
+            album4File.files[0],
+            user.id,
+            "album4"
+          );
+
+          if (uploaded) album4Url = uploaded;
+        }
+
         const payload = {
 
           id: user.id,
@@ -379,6 +433,11 @@ $("save-btn")
 
           music_url:
             musicUrl,
+
+          album1_url: album1Url,
+          album2_url: album2Url,
+          album3_url: album3Url,
+          album4_url: album4Url,
 
           balao:
             overlayInput.value,
@@ -595,7 +654,7 @@ $("save-btn")
         btn.textContent = "PERFIL SALVO COM SUCESSO!";
 
         setTimeout(() => {
-          btn.textContent = "SALVAR PERFIL";
+          btn.textContent = "SALVAR PERFIL NOVAMENTE";
         }, 2000);
 
         removeAvatar = false;
