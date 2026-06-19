@@ -222,6 +222,38 @@ async function loadProfile() {
   if (album3) album3.src = data.album3_url || "";
   if (album4) album4.src = data.album4_url || "";
 
+  [album1, album2, album3, album4].forEach(img => {
+
+    if (!img.src || img.src.endsWith("/")) {
+
+      img.style.display = "none";
+
+    }
+
+  });
+
+
+  const visiblePhotos = [
+
+    album1,
+    album2,
+    album3,
+    album4
+
+  ].filter(img => img.style.display !== "none");
+
+  const hasAlbum = visiblePhotos.length > 0;
+
+  const albumGrid =
+    document.querySelector(".album-grid");
+
+  if (visiblePhotos.length === 1) {
+
+    albumGrid.style.gridTemplateColumns =
+      "1fr";
+
+  }
+
   //=================
   // Final Album
   //=================
