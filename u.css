@@ -1761,17 +1761,12 @@ Marca d agua
   display:block;
 }
 
-.profile-actions {
+.album-btn {
 
   position: absolute;
 
   top: 15px;
-  right: 15px;
-
-  display: flex;
-  flex-direction: column;
-
-  gap: 8px;
+  left: 15px;
 
   z-index: 1000;
 
