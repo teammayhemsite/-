@@ -208,23 +208,29 @@ async function loadProfile() {
   // Final Emblemas
   //================
 
-  //=================
-  // Album
-  //=================
+//=================
+// Album
+//=================
 
-  const album1 = document.getElementById("album1");
-  const album2 = document.getElementById("album2");
-  const album3 = document.getElementById("album3");
-  const album4 = document.getElementById("album4");
+const albumImages = [
+  data.album1_url,
+  data.album2_url,
+  data.album3_url,
+  data.album4_url
+];
 
-  if (album1) album1.src = data.album1_url || "";
-  if (album2) album2.src = data.album2_url || "";
-  if (album3) album3.src = data.album3_url || "";
-  if (album4) album4.src = data.album4_url || "";
+document
+  .querySelectorAll(".album-grid img")
+  .forEach((img, index) => {
 
-  [album1, album2, album3, album4].forEach(img => {
+    const url = albumImages[index];
 
-    if (!img.src || img.src.endsWith("/")) {
+    if (url) {
+
+      img.src = url;
+      img.style.display = "block";
+
+    } else {
 
       img.style.display = "none";
 
@@ -232,31 +238,29 @@ async function loadProfile() {
 
   });
 
+const visiblePhotos = [
+  ...document.querySelectorAll(".album-grid img")
+].filter(img => img.style.display !== "none");
 
-  const visiblePhotos = [
+const hasAlbum =
+  visiblePhotos.length > 0;
 
-    album1,
-    album2,
-    album3,
-    album4
+const albumGrid =
+  document.querySelector(".album-grid");
 
-  ].filter(img => img.style.display !== "none");
+if (
+  albumGrid &&
+  visiblePhotos.length === 1
+) {
 
-  const hasAlbum = visiblePhotos.length > 0;
+  albumGrid.style.gridTemplateColumns =
+    "1fr";
 
-  const albumGrid =
-    document.querySelector(".album-grid");
+}
 
-  if (visiblePhotos.length === 1) {
-
-    albumGrid.style.gridTemplateColumns =
-      "1fr";
-
-  }
-
-  //=================
-  // Final Album
-  //=================
+//=================
+// Final Album
+//=================
 
   const likeBtn =
     document.getElementById(
