@@ -120,17 +120,17 @@ async function loadProfile() {
   }
 
   const entranceAvatar =
-  document.getElementById(
-    "entrance-avatar"
-  );
+    document.getElementById(
+      "entrance-avatar"
+    );
 
-if (entranceAvatar) {
+  if (entranceAvatar) {
 
-  entranceAvatar.src =
-    data.avatar_url ||
-    "https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/defaults/avatar.png";
+    entranceAvatar.src =
+      data.avatar_url ||
+      "https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/defaults/avatar.png";
 
-}
+  }
 
   const card =
     document.querySelector(".cardking");
@@ -174,7 +174,7 @@ if (entranceAvatar) {
     );
 
   }
-  
+
   if (data.username === "szn" || data.username === "phz_062") {
 
     card.insertAdjacentHTML(
@@ -203,10 +203,28 @@ if (entranceAvatar) {
 
   }
 
-  
+
   //=================
   // Final Emblemas
   //================
+
+  //=================
+  // Album
+  //=================
+
+  const album1 = document.getElementById("album1");
+  const album2 = document.getElementById("album2");
+  const album3 = document.getElementById("album3");
+  const album4 = document.getElementById("album4");
+
+  if (album1) album1.src = data.album1_url || "";
+  if (album2) album2.src = data.album2_url || "";
+  if (album3) album3.src = data.album3_url || "";
+  if (album4) album4.src = data.album4_url || "";
+
+  //=================
+  // Final Album
+  //=================
 
   const likeBtn =
     document.getElementById(
@@ -979,6 +997,48 @@ if (entranceAvatar) {
     `;
 
     conteudo.appendChild(card);
+
+  }
+
+  const albumPage =
+    document.getElementById("album-page");
+
+  const albumBtn =
+    document.getElementById("album-btn");
+
+  const closeAlbum =
+    document.getElementById("close-album");
+
+  if (albumBtn && albumPage) {
+
+    albumBtn.onclick = () => {
+
+      albumPage.classList.add("active");
+
+    };
+
+  }
+
+  if (closeAlbum && albumPage) {
+
+    closeAlbum.onclick = () => {
+
+      albumPage.classList.remove("active");
+
+    };
+
+  }
+
+  if (!hasAlbum) {
+
+    const albumBtn =
+      document.getElementById("album-btn");
+
+    if (albumBtn) {
+
+      albumBtn.style.display = "none";
+
+    }
 
   }
 
