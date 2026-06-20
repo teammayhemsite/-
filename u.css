@@ -232,10 +232,10 @@ MOLDURA
 
   position: absolute;
 
-  inset: -12%;
+  inset: -9%;
 
-  width: 125%;
-  height: 125%;
+  width: 120%;
+  height: 120%;
 
   pointer-events: none;
 
