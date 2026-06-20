@@ -15,7 +15,7 @@
   padding: 20px;
 
   background:
-    linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.92)),
+    linear-gradient(rgb(17 17 17 / 0%), rgb(0 0 0 / 92%)),
     url("https://i.pinimg.com/736x/7c/4a/72/7c4a72d36620fb374836ed28d5969794.jpg")
     center/cover no-repeat;
 
