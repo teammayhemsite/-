@@ -968,21 +968,6 @@ function updatePreview() {
 
   }
 
-  // FUNDO
-  if (backgroundFile.files[0]) {
-
-    document.body.style.backgroundImage =
-
-      `url(${URL.createObjectURL(
-        backgroundFile.files[0]
-      )
-      })`;
-
-    document.body.style.backgroundSize =
-      "cover";
-
-  }
-
   // BALÃO
   const balao =
     $("preview-overlay");
@@ -1282,12 +1267,6 @@ async function loadDashboard() {
   if (data.banner_url) {
     $("preview-banner").style.backgroundImage =
       `url(${data.banner_url})`;
-  }
-
-  if (data.background_url) {
-    document.body.style.backgroundImage =
-      `url(${data.background_url})`;
-    document.body.style.backgroundSize = "cover";
   }
 
   if (data.card_background_url) {
