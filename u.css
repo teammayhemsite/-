@@ -1610,12 +1610,7 @@ Marca d agua
 }
 
 .entrance-content h1 {
-
-  font-size:
-    clamp(35px, 3vw, 60px);
-
-  margin-bottom: 15px;
-
+  margin-bottom: 5px;
 }
 
 .entrance-content p {
