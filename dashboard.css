@@ -1,14 +1,3 @@
-/* =========================================================
-   DESIGN TOKENS
-   riqueza.life — monochrome palette: pure charcoal ground,
-   white as the single accent. Fraunces for identity moments,
-   Manrope for interface text, JetBrains Mono for data.
-
-   --gold / --emerald variable names are kept so the rest of
-   this file doesn't need touching — both now resolve to the
-   same white accent, just at different opacities for texture.
-========================================================= */
-
 :root{
   --bg:            #0A0A0A;
   --bg-elevated:   #101010;
