@@ -4,7 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
+  <title>TeamMayhem™</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="dashboard.css">
   <script src="https://kit.fontawesome.com/eb9af641fe.js" crossorigin="anonymous"></script>
@@ -12,789 +16,741 @@
 
 <body>
 
-  <div class="dashboard">
+  <div class="app">
 
-    <!-- EDITOR -->
-    <div class="editor">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
 
-      <h2>EDITOR</h2>
+      <div class="brand">
+        <span class="brand-mark"><img src="https://images-ext-1.discordapp.net/external/itkbdymdG7mFktvlbLs5aWP4UZ0aEt1niehWMtUX05Y/https/i.pinimg.com/originals/b9/ff/bb/b9ffbbda3c77daefa8fc76b1d13f9903.gif?width=550&height=306" alt="" width="60"></span>
+        <span class="brand-name">TeamMayhem™</span>
+      </div>
 
-      <!-- TEMPLATE -->
-      <div class="section">
-        <button class="toggle">Template</button>
+      <div class="user-card">
+        <span class="user-avatar"><i class="fa-solid fa-user"></i></span>
+        <div class="user-meta">
+          <span class="user-name" id="sidebar-username">Carregando…</span>
+          <span class="user-plan">Plano gratuito</span>
+        </div>
+      </div>
 
-        <div class="content hidden">
-          <label>Box/Card</label>
-          <select id="box-style-input">
+      <nav class="nav">
 
-            <option value="blur">
-              Vidro borrado
-            </option>
+        <div class="nav-group">
+          <span class="nav-group-label">Perfil</span>
 
-            <option value="transparent">
-              Vidro Transparente
-            </option>
+          <button class="nav-item active" data-page="perfil">
+            <i class="fa-solid fa-user"></i>
+            <span>Identidade</span>
+          </button>
 
-          </select>
-          <label>Layout</label>
-          <select id="template-input">
+          <button class="nav-item" data-page="album">
+            <i class="fa-solid fa-images"></i>
+            <span>Álbum</span>
+          </button>
 
-            <option value="cardking">
-              Normal
-            </option>
+          <button class="nav-item" data-page="moldura">
+            <i class="fa-solid fa-crown"></i>
+            <span>Moldura</span>
+          </button>
 
-            <option value="cardkingdois">
-              Centralizado
-            </option>
+          <button class="nav-item" data-page="template">
+            <i class="fa-solid fa-palette"></i>
+            <span>Aparência</span>
+          </button>
+        </div>
 
-            <option value="template3">
-              Grande
-            </option>
+        <div class="nav-group">
+          <span class="nav-group-label">Conteúdo</span>
 
-            <option value="template4">
-              MInimalista
-            </option>
+          <button class="nav-item" data-page="redes">
+            <i class="fa-solid fa-share-nodes"></i>
+            <span>Redes sociais</span>
+          </button>
 
-          </select>
+          <button class="nav-item" data-page="extras">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Cards extras</span>
+          </button>
+        </div>
 
-          <label>Cor do texto</label>
+      </nav>
 
-          <select id="text-color-input">
+      <div class="sidebar-footer">
 
-            <option value="white">
-              Branco
-            </option>
+        <div class="support-card">
+          <h3><i class="fa-solid fa-headset"></i> Precisa de ajuda?</h3>
+          <p>Encontrou algum problema ou tem dúvidas sobre como personalizar seu perfil? Fale direto no Discord.</p>
+          <a href="https://discord.gg/utdzwnmBCn" target="_blank" class="support-btn">Abrir Discord</a>
+        </div>
 
-            <option value="black">
-              Preto
-            </option>
+      </div>
 
-          </select>
+    </aside>
 
-          <!-- TELA DE ENTRADA -->
-          <hr>
-          <div class="section">
-            <button class="toggle">Tela de Entrada</button>
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main">
 
-            <div class="content hidden">
+      <header class="main-header">
+
+        <div class="breadcrumb">
+          <span>Painel</span>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span id="page-title">Identidade</span>
+        </div>
+
+        <div class="header-actions">
+          <button id="view-profile-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ver perfil</button>
+          <button id="save-btn"><i class="fa-solid fa-check"></i> Salvar perfil</button>
+        </div>
+
+      </header>
+
+      <div class="content-scroll" id="content-scroll">
+
+        <!-- PÁGINA: IDENTIDADE -->
+        <div class="page active" data-page="perfil">
+
+          <div class="field-card">
+            <div class="field-card-header">
+              <span class="field-card-icon"><i class="fa-solid fa-signature"></i></span>
+              <div>
+                <h3>Nome e bio</h3>
+                <p>Como seu perfil se apresenta para quem visita</p>
+              </div>
+            </div>
+            <div class="field-card-body">
+              <label>Nome</label>
+              <input id="name-input" placeholder="Seu nome ou apelido">
+
+              <label>Bio</label>
+              <textarea id="bio-input" placeholder="Conte um pouco sobre você"></textarea>
+            </div>
+          </div>
+
+          <div class="field-card">
+            <div class="field-card-header">
+              <span class="field-card-icon"><i class="fa-solid fa-comment"></i></span>
+              <div>
+                <h3>Balão de fala</h3>
+                <p>Uma frase curta que aparece ao lado do seu avatar</p>
+              </div>
+            </div>
+            <div class="field-card-body">
+              <label>Texto do balão</label>
+              <input id="overlay-input" placeholder="Ex: online agora">
+            </div>
+          </div>
+
+          <div class="field-card">
+            <div class="field-card-header">
+              <span class="field-card-icon"><i class="fa-solid fa-image"></i></span>
+              <div>
+                <h3>Imagens do perfil</h3>
+                <p>Avatar, banner e papéis de parede</p>
+              </div>
+            </div>
+            <div class="field-card-body upload-grid">
+
+              <div class="upload-box">
+                <i class="fa-solid fa-trash remove-upload" id="remove-avatar"></i>
+                <div onclick="document.getElementById('avatar-file').click()">
+                  <i class="fa-solid fa-circle-user upload-icon"></i>
+                  <p>Foto de perfil</p>
+                  <span>PNG, JPG até 5MB</span>
+                </div>
+                <input type="file" id="avatar-file" class="file-input" accept="image/*">
+              </div>
+
+              <div class="upload-box">
+                <i class="fa-solid fa-trash remove-upload" id="remove-banner"></i>
+                <div onclick="document.getElementById('banner-file').click()">
+                  <i class="fa-solid fa-panorama upload-icon"></i>
+                  <p>Banner</p>
+                  <span>PNG, JPG até 5MB</span>
+                </div>
+                <input type="file" id="banner-file" class="file-input" accept="image/*">
+              </div>
+
+              <div class="upload-box">
+                <i class="fa-solid fa-trash remove-upload" id="remove-background"></i>
+                <div onclick="document.getElementById('background-file').click()">
+                  <i class="fa-solid fa-swatchbook upload-icon"></i>
+                  <p>Wallpaper</p>
+                  <span>PNG, JPG até 5MB</span>
+                </div>
+                <input type="file" id="background-file" class="file-input" accept="image/*">
+              </div>
+
+              <div class="upload-box">
+                <i class="fa-solid fa-trash remove-upload" id="remove-card-background"></i>
+                <div onclick="document.getElementById('card-background-file').click()">
+                  <i class="fa-solid fa-layer-group upload-icon"></i>
+                  <p>Wallpaper do card</p>
+                  <span>PNG, JPG até 5MB</span>
+                </div>
+                <input type="file" id="card-background-file" class="file-input" accept="image/*">
+              </div>
+
+            </div>
+          </div>
+
+          <div class="field-card">
+            <div class="field-card-header">
+              <span class="field-card-icon"><i class="fa-solid fa-music"></i></span>
+              <div>
+                <h3>Música</h3>
+                <p>Toca automaticamente quando alguém abre seu perfil</p>
+              </div>
+            </div>
+            <div class="field-card-body">
+              <div class="upload-box">
+                <i class="fa-solid fa-trash remove-upload" id="remove-music"></i>
+                <div onclick="document.getElementById('music-file').click()">
+                  <i class="fa-solid fa-compact-disc upload-icon"></i>
+                  <p>Escolher música</p>
+                  <span>MP3 até 50MB</span>
+                </div>
+                <input type="file" id="music-file" class="file-input" accept="audio/mp3,audio/mpeg">
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- PÁGINA: ÁLBUM -->
+        <div class="page" data-page="album">
+
+          <div class="field-card">
+            <div class="field-card-header">
+              <span class="field-card-icon"><i class="fa-solid fa-images"></i></span>
+              <div>
+                <h3>Fotos do álbum</h3>
+                <p>Até quatro imagens exibidas no seu perfil</p>
+              </div>
+            </div>
+            <div class="field-card-body upload-grid">
+
+              <div class="upload-box">
+                <i class="fa-solid fa-trash remove-upload" id="remove-album1"></i>
+                <div onclick="document.getElementById('album1-file').click()">
+                  <i class="fa-solid fa-image upload-icon"></i>
+                  <p>Foto 1</p>
+                  <span>PNG, JPG, GIF até 5MB</span>
+                </div>
+                <input type="file" id="album1-file" class="file-input" accept="image/*">
+              </div>
+
+              <div class="upload-box">
+                <i class="fa-solid fa-trash remove-upload" id="remove-album2"></i>
+                <div onclick="document.getElementById('album2-file').click()">
+                  <i class="fa-solid fa-image upload-icon"></i>
+                  <p>Foto 2</p>
+                  <span>PNG, JPG, GIF até 5MB</span>
+                </div>
+                <input type="file" id="album2-file" class="file-input" accept="image/*">
+              </div>
+
+              <div class="upload-box">
+                <i class="fa-solid fa-trash remove-upload" id="remove-album3"></i>
+                <div onclick="document.getElementById('album3-file').click()">
+                  <i class="fa-solid fa-image upload-icon"></i>
+                  <p>Foto 3</p>
+                  <span>PNG, JPG, GIF até 5MB</span>
+                </div>
+                <input type="file" id="album3-file" class="file-input" accept="image/*">
+              </div>
+
+              <div class="upload-box">
+                <i class="fa-solid fa-trash remove-upload" id="remove-album4"></i>
+                <div onclick="document.getElementById('album4-file').click()">
+                  <i class="fa-solid fa-image upload-icon"></i>
+                  <p>Foto 4</p>
+                  <span>PNG, JPG, GIF até 5MB</span>
+                </div>
+                <input type="file" id="album4-file" class="file-input" accept="image/*">
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- PÁGINA: MOLDURA -->
+        <div class="page" data-page="moldura">
+
+          <div class="field-card">
+            <div class="field-card-header">
+              <span class="field-card-icon"><i class="fa-solid fa-crown"></i></span>
+              <div>
+                <h3>Escolha uma moldura</h3>
+                <p>Um detalhe animado ao redor do seu avatar</p>
+              </div>
+            </div>
+            <div class="field-card-body">
+
+              <div class="frame-grid">
+
+                <div class="frame-card selected" data-frame="">
+                  <div class="frame-empty"><i class="fa-solid fa-ban"></i></div>
+                  <span>Nenhuma</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Ghost-5l5A16PiUDmaUITRqWTM4tr9tgr27q.gif">
+                  <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Ghost-5l5A16PiUDmaUITRqWTM4tr9tgr27q.gif">
+                  <span>Ghost</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Zumbi-zfsLdajRx8q60BGsd5kslxQC8H4VRb.gif">
+                  <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Zumbi-zfsLdajRx8q60BGsd5kslxQC8H4VRb.gif">
+                  <span>Zumbi</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Fantastic%20Four-AZ70KyKmVld40qLg3GnAWtA5eFxPDJ.gif">
+                  <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Fantastic%20Four-AZ70KyKmVld40qLg3GnAWtA5eFxPDJ.gif">
+                  <span>Fantastico</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Spooky%20Night-R795ZHLYNAkTyuwU05MYgLZ8fwa4gs.gif">
+                  <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Spooky%20Night-R795ZHLYNAkTyuwU05MYgLZ8fwa4gs.gif">
+                  <span>Vampiro</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Angry-10c5ydxFWuSttGhsj6MlxGKwS0enid.gif">
+                  <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Angry-10c5ydxFWuSttGhsj6MlxGKwS0enid.gif">
+                  <span>Raiva</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Angry%203-sKcJKNRXq4KryaRoWLdF6PpJILQrFU.gif">
+                  <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Angry%203-sKcJKNRXq4KryaRoWLdF6PpJILQrFU.gif">
+                  <span>Raiva 2</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Midnight%202-16oj4xtqHyPwGpOuBPM55RQYymUsOc.gif">
+                  <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Midnight%202-16oj4xtqHyPwGpOuBPM55RQYymUsOc.gif">
+                  <span>Mindight</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Zumbi%202-LpU5ClipOz9AZsMX81p5fuw2juydP2.gif">
+                  <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Zumbi%202-LpU5ClipOz9AZsMX81p5fuw2juydP2.gif">
+                  <span>Zumbi 2</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Valetines3-dV023sPuxm2v8YHpm77w4r58VbRYM4.gif">
+                  <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Valetines3-dV023sPuxm2v8YHpm77w4r58VbRYM4.gif">
+                  <span>Valetines</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Elements%201-xiqlAMermsnRimRR0OBCYc1bXP48mP.gif">
+                  <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Elements%201-xiqlAMermsnRimRR0OBCYc1bXP48mP.gif">
+                  <span>Elements</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Elements%202-DaxrB0rJYOqV7SnICTaHcIOUWAkX7n.gif">
+                  <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Elements%202-DaxrB0rJYOqV7SnICTaHcIOUWAkX7n.gif">
+                  <span>Daxr</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Zen%20Protocol-PVYVwvCikTDbYVrMKxriHxN55vV7J9.gif">
+                  <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Zen%20Protocol-PVYVwvCikTDbYVrMKxriHxN55vV7J9.gif">
+                  <span>Protocol</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Dark%20Fantasy%20Water-N9BCwSVx7K526MtWLy3KRYEAjGcgAY.gif">
+                  <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Dark%20Fantasy%20Water-N9BCwSVx7K526MtWLy3KRYEAjGcgAY.gif">
+                  <span>Dark</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Anime%20Water%201-NFuVCa7ZhWW8O1GV8EQtN0lkiHndnr.gif">
+                  <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Anime%20Water%201-NFuVCa7ZhWW8O1GV8EQtN0lkiHndnr.gif">
+                  <span>Anime</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Elements%203-YXCjhgBcdVPfumCev0RFnmLgURJnqG.gif">
+                  <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Elements%203-YXCjhgBcdVPfumCev0RFnmLgURJnqG.gif">
+                  <span>Fire</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Valetines5-QFn7bjpG7NTNlnO491v00iKBsHILDM.gif">
+                  <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Valetines5-QFn7bjpG7NTNlnO491v00iKBsHILDM.gif">
+                  <span>Cupido</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Valetines-KMVZN5x6E8F0lWCPeAZqjRhjJb7LDi.gif">
+                  <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Valetines-KMVZN5x6E8F0lWCPeAZqjRhjJb7LDi.gif">
+                  <span>Urso</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Insomnia%203-copaPuVrl2T9Jx6ucdyvduhHgfI480.gif">
+                  <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Insomnia%203-copaPuVrl2T9Jx6ucdyvduhHgfI480.gif">
+                  <span>Aurora roxo</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Insomnia%202-GI6U1UP4cgzUa7wELcPpq6Hcex6HxI.gif">
+                  <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Insomnia%202-GI6U1UP4cgzUa7wELcPpq6Hcex6HxI.gif">
+                  <span>Aurora azul</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Insomnia%204-tHeW4MriZ8HJLzfRh002OfiWM6A9uG.gif">
+                  <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Insomnia%204-tHeW4MriZ8HJLzfRh002OfiWM6A9uG.gif">
+                  <span>Aurora roza</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://r2.fakecrime.bio/assets/decorations/glitch.gif">
+                  <img src="https://r2.fakecrime.bio/assets/decorations/glitch.gif">
+                  <span>Cyber</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://r2.fakecrime.bio/assets/decorations/butterflies.gif">
+                  <img src="https://r2.fakecrime.bio/assets/decorations/butterflies.gif">
+                  <span>Borboleta</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://r2.fakecrime.bio/assets/decorations/cat-ears.gif">
+                  <img src="https://r2.fakecrime.bio/assets/decorations/cat-ears.gif">
+                  <span>Cat</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://r2.fakecrime.bio/assets/decorations/reynas-leer.gif">
+                  <img src="https://r2.fakecrime.bio/assets/decorations/reynas-leer.gif">
+                  <span>Valorant</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://r2.fakecrime.bio/assets/decorations/sparkle-ring.gif">
+                  <img src="https://r2.fakecrime.bio/assets/decorations/sparkle-ring.gif">
+                  <span>Globo roxo</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://r2.fakecrime.bio/assets/decorations/a-hint-of-clove.gif">
+                  <img src="https://r2.fakecrime.bio/assets/decorations/a-hint-of-clove.gif">
+                  <span>Valorant 2</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://r2.fakecrime.bio/assets/decorations/heartbloom.gif">
+                  <img src="https://r2.fakecrime.bio/assets/decorations/heartbloom.gif">
+                  <span>Coração</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://r2.fakecrime.bio/assets/decorations/shocked.gif">
+                  <img src="https://r2.fakecrime.bio/assets/decorations/shocked.gif">
+                  <span>Exclamação</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://r2.fakecrime.bio/assets/decorations/in-love.gif">
+                  <img src="https://r2.fakecrime.bio/assets/decorations/in-love.gif">
+                  <span>Maravilhado</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://r2.fakecrime.bio/assets/decorations/starry-eyed.gif">
+                  <img src="https://r2.fakecrime.bio/assets/decorations/starry-eyed.gif">
+                  <span>Estalo</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://r2.fakecrime.bio/assets/decorations/lightning.gif">
+                  <img src="https://r2.fakecrime.bio/assets/decorations/lightning.gif">
+                  <span>Raio</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1481388474673139855/animated">
+                  <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1481388474673139855/animated">
+                  <span>Venom</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1404558257174876300/animated">
+                  <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1404558257174876300/animated">
+                  <span>Folha</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1462116613661786143/animated">
+                  <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1462116613661786143/animated">
+                  <span>Flor e borboleta</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1481387347642810480/animated">
+                  <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1481387347642810480/animated">
+                  <span>Venom 2</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1400163655194247300/animated">
+                  <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1400163655194247300/animated">
+                  <span>Shenlong</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1428438924669358120/animated">
+                  <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1428438924669358120/animated">
+                  <span>Yuji</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1428438924589662298/animated">
+                  <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1428438924589662298/animated">
+                  <span>Yuji 2</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1483912918616510544/animated">
+                  <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1483912918616510544/animated">
+                  <span>Nerd</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1309668861645426729/animated">
+                  <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1309668861645426729/animated">
+                  <span>Cat fominha</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1471908095251841055/animated">
+                  <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1471908095251841055/animated">
+                  <span>Patinho</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1212570596970467378/animated">
+                  <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1212570596970467378/animated">
+                  <span>Suor 👑</span>
+                </div>
+
+                <div class="frame-card" data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1400163655223607467/animated">
+                  <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1400163655223607467/animated">
+                  <span>Goku</span>
+                </div>
+
+                <!--Final moldura-->
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- PÁGINA: APARÊNCIA -->
+        <div class="page" data-page="template">
+
+          <div class="field-card">
+            <div class="field-card-header">
+              <span class="field-card-icon"><i class="fa-solid fa-swatchbook"></i></span>
+              <div>
+                <h3>Estilo do card</h3>
+                <p>Vidro, layout e cor do texto do seu perfil</p>
+              </div>
+            </div>
+            <div class="field-card-body two-col">
+
+              <div>
+                <label>Box / Card</label>
+                <select id="box-style-input">
+                  <option value="blur">Vidro borrado</option>
+                  <option value="transparent">Vidro transparente</option>
+                </select>
+              </div>
+
+              <div>
+                <label>Layout</label>
+                <select id="template-input">
+                  <option value="cardking">Normal</option>
+                  <option value="cardkingdois">Centralizado</option>
+                  <option value="template3">Grande</option>
+                  <option value="template4">Minimalista</option>
+                </select>
+              </div>
+
+              <div>
+                <label>Cor do texto</label>
+                <select id="text-color-input">
+                  <option value="white">Branco</option>
+                  <option value="black">Preto</option>
+                </select>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="field-card">
+            <div class="field-card-header">
+              <span class="field-card-icon"><i class="fa-solid fa-door-open"></i></span>
+              <div>
+                <h3>Tela de entrada</h3>
+                <p>Personalize a tela que aparece antes do visitante entrar no perfil</p>
+              </div>
+            </div>
+            <div class="field-card-body">
 
               <label>Ativar tela de entrada</label>
-
               <select id="entrance-enabled">
                 <option value="false">Desativada</option>
                 <option value="true">Ativada</option>
               </select>
 
               <label>Mensagem personalizada</label>
-
               <input id="entrance-text" placeholder="Ex: Bem-vindo ao meu perfil">
 
             </div>
           </div>
 
         </div>
-      </div>
 
+        <!-- PÁGINA: REDES SOCIAIS -->
+        <div class="page" data-page="redes">
 
-      <!-- PERFIL -->
-      <div class="section">
-        <button class="toggle">Perfil</button>
-
-        <div class="content hidden">
-
-          <label>Nome</label>
-          <input id="name-input">
-
-          <label>Bio</label>
-          <textarea id="bio-input"></textarea>
-
-          <label>Balão</label>
-          <input id="overlay-input">
-
-          <!----------------->
-
-          <div class="upload-box">
-
-            <i class="fa-solid fa-trash remove-upload" id="remove-avatar"></i>
-
-            <div onclick="document.getElementById('avatar-file').click()">
-              <p>Escolher foto de perfil</p>
-              <span>PNG, JPG até 5MB</span>
+          <div class="field-card">
+            <div class="field-card-header">
+              <span class="field-card-icon"><i class="fa-solid fa-share-nodes"></i></span>
+              <div>
+                <h3>Links e usuários</h3>
+                <p>Conecte suas redes ao seu perfil público</p>
+              </div>
             </div>
+            <div class="field-card-body two-col">
 
-            <input type="file" id="avatar-file" class="file-input" accept="image/*">
+              <input id="youtube-input" placeholder="YouTube">
+              <input id="instagram-input" placeholder="Instagram">
+              <input id="discord-input" placeholder="Discord">
+              <input id="spotify-input" placeholder="Spotify">
+              <input id="tiktok-input" placeholder="TikTok">
+              <input id="whatsapp-input" placeholder="WhatsApp">
+              <input id="twitter-input" placeholder="Twitter/X">
+              <input id="facebook-input" placeholder="Facebook">
+              <input id="telegram-input" placeholder="Telegram">
+              <input id="github-input" placeholder="GitHub">
+              <input id="linkedin-input" placeholder="LinkedIn">
+              <input id="kick-input" placeholder="Kick">
+              <input id="roblox-input" placeholder="Roblox">
+              <input id="steam-input" placeholder="Steam">
+              <input id="xbox-input" placeholder="Xbox">
+              <input id="twitch-input" placeholder="Twitch">
+              <input id="privacy-input" placeholder="Privacy">
+              <input id="onlyfans-input" placeholder="OnlyFans">
+              <input id="fivem-input" placeholder="FiveM">
+              <input id="pinterest-input" placeholder="Pinterest">
+              <input id="email-input" placeholder="Email">
+              <input id="threads-input" placeholder="Threads">
+              <input id="bsky-input" placeholder="Bsky">
+              <input id="vsco-input" placeholder="VSCO">
+              <input id="pix-input" placeholder="Live Pix">
 
-          </div>
-
-          <br>
-
-          <div class="upload-box">
-
-            <i class="fa-solid fa-trash remove-upload" id="remove-banner"></i>
-
-            <div onclick="document.getElementById('banner-file').click()">
-              <p>Escolher Banner</p>
-              <span>PNG, JPG até 5MB</span>
             </div>
-
-            <input type="file" id="banner-file" class="file-input" accept="image/*">
-
-          </div>
-
-          <br>
-
-          <div class="upload-box">
-
-            <i class="fa-solid fa-trash remove-upload" id="remove-background"></i>
-
-            <div onclick="document.getElementById('background-file').click()">
-              <p>Escolher Wallpaper</p>
-              <span>PNG, JPG até 5MB</span>
-            </div>
-
-            <input type="file" id="background-file" class="file-input" accept="image/*">
-
-          </div>
-
-          <br>
-
-          <div class="upload-box">
-
-            <i class="fa-solid fa-trash remove-upload" id="remove-card-background"></i>
-
-            <div onclick="document.getElementById('card-background-file').click()">
-              <p>E's Wallpaper do Card</p>
-              <span>PNG, JPG até 5MB</span>
-            </div>
-
-            <input type="file" id="card-background-file" class="file-input" accept="image/*">
-
-          </div>
-
-          <br>
-
-          <div class="upload-box">
-
-            <i class="fa-solid fa-trash remove-upload" id="remove-music"></i>
-
-            <div onclick="document.getElementById('music-file').click()">
-              <p>Escolher Música</p>
-              <span>MP3 até 50MB</span>
-            </div>
-
-            <input type="file" id="music-file" class="file-input" accept="audio/mp3,audio/mpeg">
-
           </div>
 
         </div>
-      </div>
 
-      <!-- ÁLBUM -->
-      <div class="section">
-        <button class="toggle">Álbum</button>
+        <!-- PÁGINA: CARDS EXTRAS -->
+        <div class="page" data-page="extras">
 
-        <div class="content hidden">
-
-          <div class="upload-box">
-            <i class="fa-solid fa-trash remove-upload" id="remove-album1"></i>
-
-            <div onclick="document.getElementById('album1-file').click()">
-              <p>Foto 1</p>
-              <span>PNG, JPG, GIF até 5MB</span>
+          <div class="field-card">
+            <div class="field-card-header">
+              <span class="field-card-icon"><i class="fa-solid fa-layer-group"></i></span>
+              <div>
+                <h3>Cards extras</h3>
+                <p>Até quatro cards com link, imagem e texto próprios</p>
+              </div>
             </div>
+            <div class="field-card-body">
 
-            <input type="file" id="album1-file" class="file-input" accept="image/*">
-          </div>
+              <label>Card 1</label>
+              <input id="extra1-text" placeholder="Texto">
+              <input id="extra1-img" placeholder="URL da imagem">
+              <input id="extra1-link" placeholder="Link">
+              <hr>
 
-          <br>
+              <label>Card 2</label>
+              <input id="extra2-text" placeholder="Texto">
+              <input id="extra2-img" placeholder="URL da imagem">
+              <input id="extra2-link" placeholder="Link">
+              <hr>
 
-          <div class="upload-box">
-            <i class="fa-solid fa-trash remove-upload" id="remove-album2"></i>
+              <label>Card 3</label>
+              <input id="extra3-text" placeholder="Texto">
+              <input id="extra3-img" placeholder="URL da imagem">
+              <input id="extra3-link" placeholder="Link">
+              <hr>
 
-            <div onclick="document.getElementById('album2-file').click()">
-              <p>Foto 2</p>
-              <span>PNG, JPG, GIF até 5MB</span>
-            </div>
-
-            <input type="file" id="album2-file" class="file-input" accept="image/*">
-          </div>
-
-          <br>
-
-          <div class="upload-box">
-            <i class="fa-solid fa-trash remove-upload" id="remove-album3"></i>
-
-            <div onclick="document.getElementById('album3-file').click()">
-              <p>Foto 3</p>
-              <span>PNG, JPG, GIF até 5MB</span>
-            </div>
-
-            <input type="file" id="album3-file" class="file-input" accept="image/*">
-          </div>
-
-          <br>
-
-          <div class="upload-box">
-            <i class="fa-solid fa-trash remove-upload" id="remove-album4"></i>
-
-            <div onclick="document.getElementById('album4-file').click()">
-              <p>Foto 4</p>
-              <span>PNG, JPG, GIF até 5MB</span>
-            </div>
-
-            <input type="file" id="album4-file" class="file-input" accept="image/*">
-          </div>
-
-        </div>
-      </div>
-
-      <!--MOLDURAS-->
-
-      <div class="section">
-        <button class="toggle">Moldura</button>
-
-        <div class="content hidden">
-
-          <div class="frame-grid">
-
-            <div class="frame-card selected" data-frame="">
-              <span>Nenhuma</span>
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Ghost-5l5A16PiUDmaUITRqWTM4tr9tgr27q.gif">
-
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Ghost-5l5A16PiUDmaUITRqWTM4tr9tgr27q.gif">
-
-              <span>Ghost</span>
+              <label>Card 4</label>
+              <input id="extra4-text" placeholder="Texto">
+              <input id="extra4-img" placeholder="URL da imagem">
+              <input id="extra4-link" placeholder="Link">
 
             </div>
-
-            <div class="frame-card"
-              data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Zumbi-zfsLdajRx8q60BGsd5kslxQC8H4VRb.gif">
-
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Zumbi-zfsLdajRx8q60BGsd5kslxQC8H4VRb.gif">
-
-              <span>Zumbi</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Fantastic%20Four-AZ70KyKmVld40qLg3GnAWtA5eFxPDJ.gif">
-
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Fantastic%20Four-AZ70KyKmVld40qLg3GnAWtA5eFxPDJ.gif">
-
-              <span>Fantastico</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Spooky%20Night-R795ZHLYNAkTyuwU05MYgLZ8fwa4gs.gif">
-
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Spooky%20Night-R795ZHLYNAkTyuwU05MYgLZ8fwa4gs.gif">
-
-              <span>Vampiro</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Angry-10c5ydxFWuSttGhsj6MlxGKwS0enid.gif">
-
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Angry-10c5ydxFWuSttGhsj6MlxGKwS0enid.gif">
-
-              <span>Raiva</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Angry%203-sKcJKNRXq4KryaRoWLdF6PpJILQrFU.gif">
-
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Angry%203-sKcJKNRXq4KryaRoWLdF6PpJILQrFU.gif">
-
-              <span>Raiva 2</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Midnight%202-16oj4xtqHyPwGpOuBPM55RQYymUsOc.gif">
-
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Midnight%202-16oj4xtqHyPwGpOuBPM55RQYymUsOc.gif">
-
-              <span>Mindight</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Zumbi%202-LpU5ClipOz9AZsMX81p5fuw2juydP2.gif">
-
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Zumbi%202-LpU5ClipOz9AZsMX81p5fuw2juydP2.gif">
-
-              <span>Zumbi 2</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Valetines3-dV023sPuxm2v8YHpm77w4r58VbRYM4.gif">
-
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Valetines3-dV023sPuxm2v8YHpm77w4r58VbRYM4.gif">
-
-              <span>Valetines</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Elements%201-xiqlAMermsnRimRR0OBCYc1bXP48mP.gif">
-
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Elements%201-xiqlAMermsnRimRR0OBCYc1bXP48mP.gif">
-
-              <span>Elements</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Elements%202-DaxrB0rJYOqV7SnICTaHcIOUWAkX7n.gif">
-
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Elements%202-DaxrB0rJYOqV7SnICTaHcIOUWAkX7n.gif">
-
-              <span>Daxr</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Zen%20Protocol-PVYVwvCikTDbYVrMKxriHxN55vV7J9.gif">
-
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Zen%20Protocol-PVYVwvCikTDbYVrMKxriHxN55vV7J9.gif">
-
-              <span>Protocol</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Dark%20Fantasy%20Water-N9BCwSVx7K526MtWLy3KRYEAjGcgAY.gif">
-
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Dark%20Fantasy%20Water-N9BCwSVx7K526MtWLy3KRYEAjGcgAY.gif">
-
-              <span>Dark</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Anime%20Water%201-NFuVCa7ZhWW8O1GV8EQtN0lkiHndnr.gif">
-
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Anime%20Water%201-NFuVCa7ZhWW8O1GV8EQtN0lkiHndnr.gif">
-
-              <span>Anime</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Elements%203-YXCjhgBcdVPfumCev0RFnmLgURJnqG.gif">
-
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Elements%203-YXCjhgBcdVPfumCev0RFnmLgURJnqG.gif">
-
-              <span>Fire</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Valetines5-QFn7bjpG7NTNlnO491v00iKBsHILDM.gif">
-
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Valetines5-QFn7bjpG7NTNlnO491v00iKBsHILDM.gif">
-
-              <span>Cupido</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Valetines-KMVZN5x6E8F0lWCPeAZqjRhjJb7LDi.gif">
-
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Valetines-KMVZN5x6E8F0lWCPeAZqjRhjJb7LDi.gif">
-
-              <span>Urso</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Insomnia%203-copaPuVrl2T9Jx6ucdyvduhHgfI480.gif">
-
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Insomnia%203-copaPuVrl2T9Jx6ucdyvduhHgfI480.gif">
-
-              <span>Aurora roxo</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Insomnia%202-GI6U1UP4cgzUa7wELcPpq6Hcex6HxI.gif">
-
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Insomnia%202-GI6U1UP4cgzUa7wELcPpq6Hcex6HxI.gif">
-
-              <span>Aurora azul</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Insomnia%204-tHeW4MriZ8HJLzfRh002OfiWM6A9uG.gif">
-
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Insomnia%204-tHeW4MriZ8HJLzfRh002OfiWM6A9uG.gif">
-
-              <span>Aurora roza</span>
-
-            </div>
-
-            <div class="frame-card" data-frame="https://r2.fakecrime.bio/assets/decorations/glitch.gif">
-
-              <img src="https://r2.fakecrime.bio/assets/decorations/glitch.gif">
-
-              <span>Cyber</span>
-
-            </div>
-
-            <div class="frame-card" data-frame="https://r2.fakecrime.bio/assets/decorations/butterflies.gif">
-
-              <img src="https://r2.fakecrime.bio/assets/decorations/butterflies.gif">
-
-              <span>Borboleta</span>
-
-            </div>
-
-            <div class="frame-card" data-frame="https://r2.fakecrime.bio/assets/decorations/cat-ears.gif">
-
-              <img src="https://r2.fakecrime.bio/assets/decorations/cat-ears.gif">
-
-              <span>Cat</span>
-
-            </div>
-
-            <div class="frame-card" data-frame="https://r2.fakecrime.bio/assets/decorations/reynas-leer.gif">
-
-              <img src="https://r2.fakecrime.bio/assets/decorations/reynas-leer.gif">
-
-              <span>Valorant</span>
-
-            </div>
-
-            <div class="frame-card" data-frame="https://r2.fakecrime.bio/assets/decorations/sparkle-ring.gif">
-
-              <img src="https://r2.fakecrime.bio/assets/decorations/sparkle-ring.gif">
-
-              <span>Globo roxo</span>
-
-            </div>
-
-            <div class="frame-card" data-frame="https://r2.fakecrime.bio/assets/decorations/a-hint-of-clove.gif">
-
-              <img src="https://r2.fakecrime.bio/assets/decorations/a-hint-of-clove.gif">
-
-              <span>Valorant 2</span>
-
-            </div>
-
-            <div class="frame-card" data-frame="https://r2.fakecrime.bio/assets/decorations/heartbloom.gif">
-
-              <img src="https://r2.fakecrime.bio/assets/decorations/heartbloom.gif">
-
-              <span>Coração</span>
-
-            </div>
-
-            <div class="frame-card" data-frame="https://r2.fakecrime.bio/assets/decorations/shocked.gif">
-
-              <img src="https://r2.fakecrime.bio/assets/decorations/shocked.gif">
-
-              <span>Exclamação</span>
-
-            </div>
-
-            <div class="frame-card" data-frame="https://r2.fakecrime.bio/assets/decorations/in-love.gif">
-
-              <img src="https://r2.fakecrime.bio/assets/decorations/in-love.gif">
-
-              <span>Maravilhado</span>
-
-            </div>
-
-            <div class="frame-card" data-frame="https://r2.fakecrime.bio/assets/decorations/starry-eyed.gif">
-
-              <img src="https://r2.fakecrime.bio/assets/decorations/starry-eyed.gif">
-
-              <span>Estalo</span>
-
-            </div>
-
-            <div class="frame-card" data-frame="https://r2.fakecrime.bio/assets/decorations/lightning.gif">
-
-              <img src="https://r2.fakecrime.bio/assets/decorations/lightning.gif">
-
-              <span>Raio</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1481388474673139855/animated">
-
-              <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1481388474673139855/animated">
-
-              <span>Venom</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1404558257174876300/animated">
-
-              <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1404558257174876300/animated">
-
-              <span>Folha</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1462116613661786143/animated">
-
-              <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1462116613661786143/animated">
-
-              <span>Flor e borboleta</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1481387347642810480/animated">
-
-              <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1481387347642810480/animated">
-
-              <span>Venom 2</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1400163655194247300/animated">
-
-              <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1400163655194247300/animated">
-
-              <span>Shenlong</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1428438924669358120/animated">
-
-              <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1428438924669358120/animated">
-
-              <span>Yuji</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1428438924589662298/animated">
-
-              <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1428438924589662298/animated">
-
-              <span>Yuji 2</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1483912918616510544/animated">
-
-              <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1483912918616510544/animated">
-
-              <span>Nerd</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1309668861645426729/animated">
-
-              <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1309668861645426729/animated">
-
-              <span>Cat fominha</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1471908095251841055/animated">
-
-              <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1471908095251841055/animated">
-
-              <span>Patinho</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1212570596970467378/animated">
-
-              <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1212570596970467378/animated">
-
-              <span>Suor 👑</span>
-
-            </div>
-
-            <div class="frame-card"
-              data-frame="https://cdn.discordapp.com/media/v1/collectibles-shop/1400163655223607467/animated">
-
-              <img src="https://cdn.discordapp.com/media/v1/collectibles-shop/1400163655223607467/animated">
-
-              <span>Goku</span>
-
-            </div>
-
-            <!--Final moldura-->
           </div>
 
         </div>
 
       </div>
 
-      <!-- REDES -->
-      <div class="section">
-        <button class="toggle">Redes</button>
+    </main>
 
-        <div class="content hidden">
+    <!-- PREVIEW + RESUMO -->
+    <aside class="preview-panel">
 
-          <input id="youtube-input" placeholder="YouTube">
-          <input id="instagram-input" placeholder="Instagram">
-          <input id="discord-input" placeholder="Discord">
-          <input id="spotify-input" placeholder="Spotify">
-          <input id="tiktok-input" placeholder="TikTok">
-          <input id="whatsapp-input" placeholder="WhatsApp">
-          <input id="twitter-input" placeholder="Twitter/X">
-          <input id="facebook-input" placeholder="facebook">
-          <input id="telegram-input" placeholder="Telegram">
-          <input id="github-input" placeholder="GitHub">
-          <input id="linkedin-input" placeholder="LinkedIn">
-          <input id="kick-input" placeholder="Kick">
-          <input id="roblox-input" placeholder="Roblox">
-          <input id="steam-input" placeholder="Steam">
-          <input id="xbox-input" placeholder="Xbox">
-          <input id="twitch-input" placeholder="Twitch">
-          <input id="privacy-input" placeholder="Privacy">
-          <input id="onlyfans-input" placeholder="OnlyFans">
-          <input id="fivem-input" placeholder="Fivem">
-          <input id="pinterest-input" placeholder="Pinterest">
-          <input id="email-input" placeholder="Email">
-          <input id="threads-input" placeholder="Threads">
-          <input id="bsky-input" placeholder="Bsky">
-          <input id="vsco-input" placeholder="VSCO">
-          <input id="pix-input" placeholder="Live Pix">
+      <div class="preview-area">
+
+        <div class="cardking">
+
+          <div class="topo" id="preview-banner"></div>
+
+          <div class="avatar-wrapper">
+            <img id="preview-avatar" class="perfilking">
+            <img id="preview-frame" class="avatar-frame" src="" style="display:none;">
+          </div>
+
+          <div class="balao" id="preview-overlay"></div>
+
+          <div class="conteudoking">
+
+            <h2 id="preview-name"></h2>
+            <p id="preview-bio"></p>
+
+            <div class="socials" id="socials"></div>
+
+            <div id="extras-container"></div>
+
+          </div>
 
         </div>
+
       </div>
 
-      <!-- CARDS EXTRAS -->
-      <div class="section">
-        <button class="toggle">Cards Extras</button>
+      <div class="summary-card">
 
-        <div class="content hidden">
+        <h3>Resumo</h3>
 
-          <!-- CARD 1 -->
-          <input id="extra1-text" placeholder="Texto 1">
-          <input id="extra1-img" placeholder="Imagem 1">
-          <input id="extra1-link" placeholder="Link 1">
-          <hr>
-
-          <!-- CARD 2 -->
-          <input id="extra2-text" placeholder="Texto 2">
-          <input id="extra2-img" placeholder="Imagem 2">
-          <input id="extra2-link" placeholder="Link 2">
-          <hr>
-
-          <!-- CARD 3 -->
-          <input id="extra3-text" placeholder="Texto 3">
-          <input id="extra3-img" placeholder="Imagem 3">
-          <input id="extra3-link" placeholder="Link 3">
-          <hr>
-
-          <!-- CARD 4 -->
-          <input id="extra4-text" placeholder="Texto 4">
-          <input id="extra4-img" placeholder="Imagem 4">
-          <input id="extra4-link" placeholder="Link 4">
-
+        <div class="summary-row">
+          <span>Nome</span>
+          <span class="mono" id="summary-name">—</span>
         </div>
-      </div>
 
-      <div class="profile-link-box">
+        <div class="summary-row">
+          <span>Layout</span>
+          <span class="mono" id="summary-template">—</span>
+        </div>
+
+        <div class="summary-row">
+          <span>Moldura</span>
+          <span class="mono" id="summary-frame">Nenhuma</span>
+        </div>
+
+        <div class="summary-row">
+          <span>Cor do texto</span>
+          <span class="mono" id="summary-color">—</span>
+        </div>
+
+        <div class="summary-row">
+          <span>Redes</span>
+          <span class="mono" id="summary-socials">0 conectadas</span>
+        </div>
+
+        <div class="summary-row">
+          <span>Tela de entrada</span>
+          <span class="mono" id="summary-entrance">Desativada</span>
+        </div>
+
+        <hr>
+
         <label>Seu link de perfil</label>
 
         <div class="profile-link-row">
           <input id="profile-url" readonly placeholder="Carregando...">
-
-          <button id="copy-profile-url">
-            Copiar
-          </button>
-        </div>
-      </div>
-
-      <button id="save-btn">SALVAR PERFIL [CLICK UMA VEZ]</button>
-      <button id="view-profile-btn">VER PERFIL</button>
-
-      <div class="support-card">
-
-        <h3>💬 Precisa de ajuda?</h3>
-        <p>
-          Encontrou algum problema ou tem dúvidas sobre como personalizar seu perfil?
-          Fale diretamente comigo no Discord.
-        </p>
-
-        <a href="https://discord.gg/utdzwnmBCn" target="_blank" class="support-btn">
-
-          Abrir Discord
-
-        </a>
-
-      </div>
-
-    </div>
-
-    <!-- PREVIEW -->
-    <div class="preview-area">
-
-      <div class="cardking">
-
-        <div class="topo" id="preview-banner"></div>
-
-        <div class="avatar-wrapper">
-
-          <img id="preview-avatar" class="perfilking">
-
-          <img id="preview-frame" class="avatar-frame" src="" style="display:none;">
-
-        </div>
-
-        <div class="balao" id="preview-overlay"></div>
-
-        <div class="conteudoking">
-
-          <h2 id="preview-name"></h2>
-          <p id="preview-bio"></p>
-
-          <div class="socials" id="socials"></div>
-
-          <div id="extras-container"></div>
-
+          <button id="copy-profile-url"><i class="fa-solid fa-copy"></i></button>
         </div>
 
       </div>
 
-    </div>
+    </aside>
 
   </div>
 
