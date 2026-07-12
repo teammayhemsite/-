@@ -219,28 +219,22 @@ const albumImages = [
   data.album4_url
 ];
 
-document
-  .querySelectorAll(".album-grid img")
-  .forEach((img, index) => {
+const albumImgEls =
+  document.querySelectorAll(".album-grid img");
 
-    const url = albumImages[index];
+albumImgEls.forEach((img, index) => {
 
-    if (url) {
+  const url = albumImages[index];
 
-      img.src = url;
-      img.style.display = "block";
+  // Não define src ainda — só reserva o slot.
+  // O download real só acontece quando o álbum é aberto (ver loadAlbumImages abaixo).
+  img.style.display =
+    url ? "block" : "none";
 
-    } else {
+});
 
-      img.style.display = "none";
-
-    }
-
-  });
-
-const visiblePhotos = [
-  ...document.querySelectorAll(".album-grid img")
-].filter(img => img.style.display !== "none");
+const visiblePhotos =
+  albumImages.filter(url => !!url);
 
 const hasAlbum =
   visiblePhotos.length > 0;
@@ -255,6 +249,23 @@ if (
 
   albumGrid.style.gridTemplateColumns =
     "1fr";
+
+}
+
+let albumLoaded = false;
+
+function loadAlbumImages() {
+
+  if (albumLoaded) return;
+  albumLoaded = true;
+
+  albumImgEls.forEach((img, index) => {
+
+    const url = albumImages[index];
+
+    if (url) img.src = url;
+
+  });
 
 }
 
@@ -568,9 +579,7 @@ if (
 
     data.avatar_url
 
-      ? `${data.avatar_url}?v=${Date.now()}`
-
-      : "https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/semfotodeperfil.jpg";
+      || "https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/semfotodeperfil.jpg";
 
   const frame =
     document.getElementById("avatar-frame");
@@ -592,7 +601,7 @@ if (
 
     data.banner_url
 
-      ? `url(${data.banner_url}?v=${Date.now()})`
+      ? `url(${data.banner_url})`
 
       : "";
 
@@ -604,7 +613,7 @@ if (
 
     document.body.style.backgroundImage =
 
-      `url(${data.background_url}?v=${Date.now()})`;
+      `url(${data.background_url})`;
 
     document.body.style.backgroundSize =
       "cover";
@@ -1048,6 +1057,8 @@ if (
   if (albumBtn && albumPage) {
 
     albumBtn.onclick = () => {
+
+      loadAlbumImages();
 
       albumPage.classList.add("active");
 
