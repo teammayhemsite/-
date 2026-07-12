@@ -1415,7 +1415,140 @@ $("remove-album4")?.addEventListener("click", () => {
 
 });
 
-loadDashboard();
+// =========================
+// NAVEGAÇÃO DE PÁGINAS
+// =========================
+
+const pageTitles = {
+  perfil: "Identidade",
+  album: "Álbum",
+  moldura: "Moldura",
+  template: "Aparência",
+  redes: "Redes sociais",
+  extras: "Cards extras",
+};
+
+document.querySelectorAll(".nav-item[data-page]").forEach(btn => {
+
+  btn.addEventListener("click", () => {
+
+    const page = btn.dataset.page;
+
+    document
+      .querySelectorAll(".nav-item[data-page]")
+      .forEach(b => b.classList.remove("active"));
+
+    btn.classList.add("active");
+
+    document
+      .querySelectorAll(".page")
+      .forEach(p => p.classList.remove("active"));
+
+    document
+      .querySelector(`.page[data-page="${page}"]`)
+      ?.classList.add("active");
+
+    const title = $("page-title");
+
+    if (title)
+      title.textContent = pageTitles[page] || "";
+
+    $("content-scroll")?.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  });
+
+});
+
+// =========================
+// RESUMO
+// =========================
+
+function frameLabel(url) {
+
+  if (!url) return "Nenhuma";
+
+  const match = document.querySelector(
+    `.frame-card[data-frame="${CSS.escape(url)}"] span`
+  );
+
+  return match ? match.textContent.trim() : "Personalizada";
+
+}
+
+const socialInputsList = [
+  youtubeInput, instagramInput, discordInput, spotifyInput, tiktokInput,
+  whatsappInput, twitterInput, facebookInput, telegramInput, githubInput,
+  linkedinInput, kickInput, robloxInput, steamInput, xboxInput, twitchInput,
+  privacyInput, onlyfansInput, fivemInput, pinterestInput, emailInput,
+  threadsInput, bskyInput, vscoInput, pixInput
+];
+
+function updateSummary() {
+
+  const summaryName = $("summary-name");
+
+  if (!summaryName) return;
+
+  summaryName.textContent =
+    nameInput.value || "Sem nome";
+
+  $("summary-template").textContent =
+    templateInput.options[templateInput.selectedIndex]?.text.trim() || "—";
+
+  $("summary-frame").textContent =
+    frameLabel(selectedFrame);
+
+  $("summary-color").textContent =
+    textColorInput.value === "black" ? "Preto" : "Branco";
+
+  const connected =
+    socialInputsList.filter(i => i.value.trim()).length;
+
+  $("summary-socials").textContent =
+    `${connected} conectada${connected === 1 ? "" : "s"}`;
+
+  const entranceLabel = $("summary-entrance");
+
+  if (entranceLabel)
+    entranceLabel.textContent =
+      entranceEnabled.value === "true" ? "Ativada" : "Desativada";
+
+}
+
+document
+  .querySelectorAll("input, textarea, select")
+  .forEach(el => el.addEventListener("input", updateSummary));
+
+document
+  .querySelectorAll(".frame-card")
+  .forEach(card => card.addEventListener("click", updateSummary));
+
+// =========================
+// CARREGAR DASHBOARD
+// =========================
+
+loadDashboard().then(async () => {
+
+  updateSummary();
+
+  const {
+    data: { user }
+  } = await supabaseClient.auth.getUser();
+
+  if (!user) return;
+
+  const username =
+    user.email.split("@")[0].toLowerCase();
+
+  const sidebarName = $("sidebar-username");
+
+  if (sidebarName)
+    sidebarName.textContent = "@" + username;
+
+});
 
 
 $("copy-profile-url")
