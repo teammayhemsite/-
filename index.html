@@ -4,130 +4,149 @@
 <head>
 
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>teammayhem</title>
+  <title>Team Mayhem — sua identidade digital, numa página só</title>
 
   <link rel="icon" href="https://cdn.discordapp.com/emojis/1380340818224877710.webp?size=96">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="index.css">
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <script src="supabase.js"></script>
+  <script src="https://kit.fontawesome.com/eb9af641fe.js" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
 
-  <!-- HERO -->
+  <div class="bg-photo"></div>
 
+  <!-- TOPO -->
+  <header class="topbar">
+
+    <a href="index.html" class="brand">Team<span>Mayhem</span></a>
+
+    <nav class="topnav">
+      <a href="users.html">Explorar perfis</a>
+      <a href="login.html">Entrar</a>
+      <a href="cadastro.html" class="topnav-cta">Criar conta</a>
+    </nav>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+  </header>
+
+  <!-- HERO -->
   <section class="hero">
 
     <!-- TEXTO -->
-
     <div class="hero-left">
 
+      <span class="eyebrow">Sua identidade digital</span>
+
       <h1>
-        Crie sua identidade digital
+        Todos os seus links,<br>
+        numa página só.
       </h1>
 
       <p>
-        Todos os seus links,
-        redes sociais e informações
-        em uma única página.
+        Crie um perfil com sua cara: avatar, banner, música, moldura
+        animada e todas as suas redes sociais em um único lugar.
       </p>
 
       <div class="buttons">
 
         <a href="cadastro.html" class="btn-primary">
-          Criar Conta
+          Criar conta grátis
         </a>
 
-        
-        <a href="login.html" class="btn-secondary" style="color: white;">
-          Login
+        <a href="users.html" class="btn-secondary">
+          Explorar perfis
         </a>
 
-        <a href="users.html" class="btn-secondary" style="color: white;">
-          Explorar Usuários E
-        </a>
+      </div>
+
+      <div class="hero-features">
+
+        <div class="hero-feature">
+          <i class="fa-solid fa-palette"></i>
+          <span>Personalização total</span>
+        </div>
+
+        <div class="hero-feature">
+          <i class="fa-solid fa-share-nodes"></i>
+          <span>Todas as suas redes</span>
+        </div>
+
+        <div class="hero-feature">
+          <i class="fa-solid fa-crown"></i>
+          <span>Molduras animadas</span>
+        </div>
 
       </div>
 
     </div>
 
     <!-- PREVIEW -->
-
     <div class="preview-card">
 
       <!-- BANNER -->
-
       <div class="preview-banner" style="
-      background-image:
-      url('https://i.pinimg.com/1200x/d8/c6/4b/d8c64bff57acfb48572939240f478099.jpg');
-    "></div>
+        background-image:
+        url('https://i.pinimg.com/1200x/d8/c6/4b/d8c64bff57acfb48572939240f478099.jpg');
+      "></div>
 
       <!-- FOTO + BALÃO -->
-
       <div class="preview-top">
 
-        <img class="preview-avatar" src="https://i.pinimg.com/736x/ed/60/6b/ed606ba7199a2b8c9c9b50dacfb1bbcb.jpg">
+        <img class="preview-avatar" src="https://i.pinimg.com/736x/e6/a2/c9/e6a2c96878248c790d5f8e420d756247.jpg">
 
         <div class="preview-balao">
-         A Tcaos ainda vai mudar o mundo.
+          A Tcaos ainda vai mudar o mundo.
         </div>
 
       </div>
 
       <!-- CONTEÚDO -->
-
       <div class="preview-content">
 
-        <h2>
-          mayhem
-        </h2>
+        <h2>mayhem</h2>
 
-        <p>
-          editor • designer • gamer
-        </p>
+        <p>editor • designer • gamer</p>
 
         <!-- REDES -->
-
         <div class="preview-socials">
 
-          <a href="#">
+          <a href="">
             <img src="https://cdn.simpleicons.org/instagram">
           </a>
 
-          <a href="#">
+          <a href="">
             <img src="https://cdn.simpleicons.org/discord">
           </a>
 
-          <a href="#">
+          <a href="">
             <img src="https://cdn.simpleicons.org/youtube">
           </a>
 
-          <a href="#">
+          <a href="">
             <img src="https://cdn.simpleicons.org/spotify">
           </a>
 
         </div>
 
         <!-- CARD EXTRA -->
-
         <a href="https://discord.com/invite/utdzwnmBCn" class="preview-extra">
 
           <div class="preview-extra-icon">
-
             <img src="https://i.pinimg.com/736x/ff/a1/e7/ffa1e733a82e5ab37794e7011eaab90b.jpg">
-
           </div>
 
-          <span>
-            Meu servidor no Discord
-          </span>
+          <span>Meu servidor no Discord</span>
 
         </a>
 
@@ -136,6 +155,19 @@
     </div>
 
   </section>
+
+  <footer class="site-footer">
+    Team Mayhem&trade; &copy; 2026
+  </footer>
+
+  <script>
+    const navToggle = document.getElementById("nav-toggle");
+    const topnav = document.querySelector(".topnav");
+
+    navToggle?.addEventListener("click", () => {
+      topnav.classList.toggle("open");
+    });
+  </script>
 
 </body>
 
