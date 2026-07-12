@@ -18,7 +18,12 @@ async function loadUsers() {
 
     await supabaseClient
       .from("profiles")
-      .select("*")
+      .select(`
+        username,
+        display_name,
+        bio,
+        avatar_url
+      `)
       .order("created_at", {
         ascending: true
       });
