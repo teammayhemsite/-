@@ -1576,3 +1576,75 @@ viewProfileBtn.addEventListener("click", async () => {
   window.location.href = `/${username}`;
 
 });
+
+// =========================
+// MENU MOBILE (gaveta)
+// =========================
+
+const sidebarEl =
+  $("sidebar");
+
+const sidebarBackdrop =
+  $("sidebar-backdrop");
+
+const mobileMenuToggle =
+  $("mobile-menu-toggle");
+
+const sidebarClose =
+  $("sidebar-close");
+
+function openSidebar() {
+
+  sidebarEl?.classList.add("mobile-open");
+  sidebarBackdrop?.classList.add("visible");
+
+}
+
+function closeSidebar() {
+
+  sidebarEl?.classList.remove("mobile-open");
+  sidebarBackdrop?.classList.remove("visible");
+
+}
+
+mobileMenuToggle?.addEventListener("click", openSidebar);
+sidebarClose?.addEventListener("click", closeSidebar);
+sidebarBackdrop?.addEventListener("click", closeSidebar);
+
+// Fecha a gaveta ao escolher uma página (só faz sentido no mobile)
+document.querySelectorAll(".nav-item[data-page]").forEach(btn => {
+
+  btn.addEventListener("click", () => {
+
+    if (window.innerWidth <= 760) closeSidebar();
+
+  });
+
+});
+
+// =========================
+// PRÉVIA EM TELA CHEIA (mobile)
+// =========================
+
+const previewPanelEl =
+  document.querySelector(".preview-panel");
+
+const mobilePreviewToggle =
+  $("mobile-preview-toggle");
+
+const mobilePreviewClose =
+  $("mobile-preview-close");
+
+mobilePreviewToggle?.addEventListener("click", () => {
+
+  previewPanelEl?.classList.add("mobile-preview-open");
+  document.body.style.overflow = "hidden";
+
+});
+
+mobilePreviewClose?.addEventListener("click", () => {
+
+  previewPanelEl?.classList.remove("mobile-preview-open");
+  document.body.style.overflow = "";
+
+});
