@@ -102,13 +102,20 @@ hr{
   border-right:1px solid var(--border);
 }
 
+.sidebar-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:28px;
+}
+
 .brand{
   display:flex;
   align-items:center;
   gap:10px;
 
   padding:0 8px;
-  margin-bottom:28px;
+  margin-bottom:0;
 }
 
 .brand-mark{
@@ -341,6 +348,13 @@ hr{
   background: rgba(10,11,13,0.85);
   backdrop-filter: blur(14px);
   border-bottom:1px solid var(--border);
+}
+
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  min-width:0;
 }
 
 .breadcrumb{
@@ -1001,6 +1015,20 @@ select option{
 }
 
 /* =========================================================
+   ELEMENTOS SÓ-MOBILE
+   Ocultos por padrão — só aparecem dentro dos media queries
+   abaixo. Isso garante zero efeito no desktop.
+========================================================= */
+
+.sidebar-backdrop,
+.mobile-menu-toggle,
+.sidebar-close,
+.mobile-preview-close,
+.header-actions .mobile-only-btn{
+  display:none;
+}
+
+/* =========================================================
    RESPONSIVE
 ========================================================= */
 
@@ -1047,60 +1075,163 @@ select option{
     grid-template-columns:1fr;
   }
 
-  .sidebar{
-    position:relative;
-    height:auto;
-
-    flex-direction:row;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:12px;
-
-    padding:16px;
+  .main{
+    border-right:none;
   }
 
-  .brand{ margin-bottom:0; }
-  .user-card{ margin-bottom:0; }
+  /* ===== SIDEBAR VIRA GAVETA ===== */
+
+  .sidebar{
+    position:fixed;
+    top:0;
+    left:0;
+    height:100vh;
+    width:280px;
+    max-width:82vw;
+
+    display:flex;
+    flex-direction:column;
+
+    padding:20px 16px;
+
+    transform:translateX(-100%);
+    transition:transform .3s ease;
+
+    z-index:100;
+    box-shadow:0 0 60px rgba(0,0,0,0.6);
+  }
+
+  .sidebar.mobile-open{
+    transform:translateX(0);
+  }
+
+  .sidebar-backdrop{
+    display:block;
+    position:fixed;
+    inset:0;
+    z-index:90;
+
+    background:rgba(0,0,0,0.6);
+    backdrop-filter:blur(2px);
+
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .3s ease;
+  }
+
+  .sidebar-backdrop.visible{
+    opacity:1;
+    pointer-events:auto;
+  }
+
+  .sidebar-close{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:34px;
+    height:34px;
+    flex-shrink:0;
+
+    border-radius:9px;
+    background: var(--surface);
+    border:1px solid var(--border);
+    color: var(--text-muted);
+  }
 
   .nav{
-    flex-direction:row;
-    flex-wrap:wrap;
-    width:100%;
-    gap:8px;
+    flex-direction:column;
+    gap:22px;
   }
 
   .nav-group{
-    width:100%;
-    flex-direction:row;
-    flex-wrap:wrap;
-    gap:6px;
+    width:auto;
+    flex-direction:column;
+    flex-wrap:nowrap;
+    gap:2px;
   }
 
   .nav-group-label{
-    display:none;
+    display:block;
   }
 
   .nav-item{
-    width:auto;
-    border-left:none;
-    border-radius: var(--radius-sm);
-    padding:9px 12px;
-  }
-
-  .nav-item.active{
-    border-left:none;
+    width:100%;
+    border-left:2px solid transparent;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding:11px 12px;
   }
 
   .sidebar-footer{
-    width:100%;
+    margin-top:18px;
+  }
+
+  /* ===== CABEÇALHO ===== */
+
+  .mobile-menu-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:38px;
+    height:38px;
+    flex-shrink:0;
+
+    border-radius:10px;
+    background: var(--surface);
+    border:1px solid var(--border);
+    color: var(--text);
   }
 
   .main-header{
-    padding:16px 18px;
+    padding:14px 16px;
+    background: var(--bg-elevated);
+    backdrop-filter:none;
+  }
+
+  .breadcrumb span:first-child,
+  .breadcrumb > i{
+    display:none;
+  }
+
+  .breadcrumb span:last-child{
+    font-size:17px;
+  }
+
+  /* header-actions vira barra fixa no rodapé */
+
+  .header-actions{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:60;
+
+    display:flex;
+    gap:8px;
+
+    padding:12px 14px calc(12px + env(safe-area-inset-bottom));
+
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(16px);
+    border-top:1px solid var(--border);
+  }
+
+  .header-actions .mobile-only-btn{
+    display:flex;
+  }
+
+  .header-actions button{
+    flex:1;
+    padding:13px 8px;
+    font-size:12px;
+    justify-content:center;
+    gap:5px;
+    white-space:nowrap;
   }
 
   .content-scroll{
-    padding:20px 18px 48px;
+    padding:20px 16px calc(92px + env(safe-area-inset-bottom));
   }
 
   .field-card-body.two-col,
@@ -1112,30 +1243,46 @@ select option{
     grid-template-columns: repeat(2, 1fr);
   }
 
+  /* ===== PRÉVIA VIRA TELA CHEIA ===== */
+
   .preview-panel{
+    display:none;
+  }
+
+  .preview-panel.mobile-preview-open{
+    display:flex;
     flex-direction:column;
-    padding:20px 18px;
+
+    position:fixed;
+    inset:0;
+    z-index:120;
+
+    padding:18px 18px calc(24px + env(safe-area-inset-bottom));
+    overflow-y:auto;
+
+    background: var(--bg-elevated);
+  }
+
+  .mobile-preview-close{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    align-self:flex-end;
+
+    width:38px;
+    height:38px;
+    margin-bottom:14px;
+    flex-shrink:0;
+
+    border-radius:10px;
+    background: var(--surface);
+    border:1px solid var(--border);
+    color: var(--text);
   }
 
 }
 
 @media(max-width:480px){
-
-  .main-header{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:12px;
-  }
-
-  .header-actions{
-    width:100%;
-  }
-
-  .header-actions button{
-    flex:1;
-    justify-content:center;
-    padding:11px 10px;
-  }
 
   .frame-grid{
     grid-template-columns: repeat(2, 1fr);
@@ -1149,6 +1296,11 @@ select option{
   .balao{
     left:100px;
     max-width:calc(100% - 116px);
+  }
+
+  .header-actions button{
+    font-size:11px;
+    padding:12px 6px;
   }
 
 }
