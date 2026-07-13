@@ -6,51 +6,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="https://cdn.discordapp.com/emojis/1525949441100480702.webp?size=96">
 
-  <title>Cadastro</title>
+  <title>Criar conta — Team Mayhem</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/eb9af641fe.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="auth-body">
 
+  <div class="bg-photo"></div>
+  <div class="bg-glow"></div>
+
+  <a href="index.html" class="auth-back">
+    <i class="fa-solid fa-arrow-left"></i> Início
+  </a>
+
   <div class="auth-card">
-    <p>teammayhem</p>
-    <h1>Criar sua conta</h1>
 
-    <div id="register-error" class="error-text"></div>
-    <input type="text" maxlength="20" placeholder="＠ Usuário" id="register-user">
-
-    <div class="url-preview">
-
-      <span class="domain">
-        teammayhem.vercel.app/
+    <div class="auth-brand">
+      <span class="auth-brand-mark">
+        <img src="https://cdn.discordapp.com/emojis/1525949441100480702.webp?size=96" alt="">
       </span>
-
-      <span id="preview-user">
-        ＠ Usuário
-      </span>
-
+      <span>Team<b>Mayhem</b></span>
     </div>
 
-    <input type="password" placeholder="🔒 Senha" id="register-pass">
+    <h1>Criar sua conta</h1>
+    <p class="auth-subtitle">Grátis pra criar. Sua página pronta em minutos.</p>
+
+    <div id="register-error" class="error-text"></div>
+
+    <div class="input-wrap">
+      <i class="fa-solid fa-at field-icon"></i>
+      <input type="text" maxlength="20" placeholder="Usuário" id="register-user">
+    </div>
+
+    <div class="url-preview">
+      <span class="domain">teammayhem.vercel.app/</span>
+      <span id="preview-user">usuário</span>
+    </div>
+
+    <div class="input-wrap">
+      <i class="fa-solid fa-lock field-icon"></i>
+      <input type="password" placeholder="Senha" id="register-pass">
+      <button type="button" class="toggle-pass" data-target="register-pass" aria-label="Mostrar senha">
+        <i class="fa-solid fa-eye"></i>
+      </button>
+    </div>
 
     <button id="register-btn">
-      ⎙ CRIAR
+      Criar conta
     </button>
 
-    <p>
+    <p class="auth-footer-text">
       Já tenho uma conta!
-      <a href="login.html">
-        Entrar.
-      </a>
+      <a href="login.html">Entrar</a>
     </p>
-    <br>   
+
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
   <script src="supabase.js"></script>
-
   <script src="auth.js"></script>
 
   <script>
@@ -70,7 +89,29 @@
       userInput.value = username;
 
       previewUser.textContent =
-        username || "?";
+        username || "usuário";
+
+    });
+
+    document.querySelectorAll(".toggle-pass").forEach(btn => {
+
+      btn.addEventListener("click", () => {
+
+        const input =
+          document.getElementById(btn.dataset.target);
+
+        const showing =
+          input.type === "text";
+
+        input.type =
+          showing ? "password" : "text";
+
+        btn.innerHTML =
+          showing
+            ? '<i class="fa-solid fa-eye"></i>'
+            : '<i class="fa-solid fa-eye-slash"></i>';
+
+      });
 
     });
   </script>
