@@ -6,42 +6,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="https://cdn.discordapp.com/emojis/1525949441100480702.webp?size=96">
 
-  <title>Login</title>
+  <title>Entrar — Team Mayhem</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/eb9af641fe.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="auth-body">
 
+  <div class="bg-photo"></div>
+  <div class="bg-glow"></div>
+
+  <a href="index.html" class="auth-back">
+    <i class="fa-solid fa-arrow-left"></i> Início
+  </a>
+
   <div class="auth-card">
-    <p>teammayhem</p>
+
+    <div class="auth-brand">
+      <span class="auth-brand-mark">
+        <img src="https://cdn.discordapp.com/emojis/1525949441100480702.webp?size=96" alt="">
+      </span>
+      <span>Team<b>Mayhem</b></span>
+    </div>
+
     <h1>Entrar</h1>
-        
-    <input type="text" id="login-user" placeholder="👤 Usuário">
+    <p class="auth-subtitle">Acesse seu perfil e continue de onde parou.</p>
 
-    <input type="password" placeholder="🔒 Senha" id="login-pass">
-
-    <!--Erro ao logar-->
+    <!-- Erro ao logar -->
     <div id="login-error" class="error-text"></div>
 
-    <button id="login-btn">
-      ENTRAR
-    </button>    
+    <div class="input-wrap">
+      <i class="fa-solid fa-user field-icon"></i>
+      <input type="text" id="login-user" placeholder="Usuário">
+    </div>
 
-    <p>
-      Não tenho uma conta:
-      <a href="cadastro.html">
-        Criar.
-      </a>
+    <div class="input-wrap">
+      <i class="fa-solid fa-lock field-icon"></i>
+      <input type="password" id="login-pass" placeholder="Senha">
+      <button type="button" class="toggle-pass" data-target="login-pass" aria-label="Mostrar senha">
+        <i class="fa-solid fa-eye"></i>
+      </button>
+    </div>
+
+    <button id="login-btn">
+      Entrar
+    </button>
+
+    <p class="auth-footer-text">
+      Não tem uma conta?
+      <a href="cadastro.html">Criar agora</a>
     </p>
 
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
   <script src="supabase.js"></script>
-
   <script src="auth.js"></script>
+
+  <script>
+    document.querySelectorAll(".toggle-pass").forEach(btn => {
+
+      btn.addEventListener("click", () => {
+
+        const input =
+          document.getElementById(btn.dataset.target);
+
+        const showing =
+          input.type === "text";
+
+        input.type =
+          showing ? "password" : "text";
+
+        btn.innerHTML =
+          showing
+            ? '<i class="fa-solid fa-eye"></i>'
+            : '<i class="fa-solid fa-eye-slash"></i>';
+
+      });
+
+    });
+  </script>
 
 </body>
 
