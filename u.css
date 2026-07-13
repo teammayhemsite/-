@@ -345,7 +345,7 @@ SOCIAL BOX
 
   padding: 0 25px;
 
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 /* =========================
@@ -358,7 +358,7 @@ SOCIALS
 
   flex-wrap: wrap;
 
-  gap: 18px;
+  gap: 25px;
 
   align-items: center;
 
@@ -385,8 +385,8 @@ SOCIALS
 
 .socials img {
 
-  width: 25px;
-  height: 25px;
+  width: 21px;
+  height: 21px;
 
   object-fit: contain;
 
