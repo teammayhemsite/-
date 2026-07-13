@@ -10,6 +10,36 @@ document.getElementById(
 
 let allUsers = [];
 
+const FALLBACK_AVATAR =
+  "https://i.pinimg.com/736x/b8/77/85/b8778585aab18dca3f09ad853b5bff2b.jpg";
+
+/* SKELETON ENQUANTO CARREGA */
+
+function renderSkeleton(count = 8) {
+
+  container.innerHTML = "";
+
+  for (let i = 0; i < count; i++) {
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "user-card-skeleton";
+
+    card.innerHTML = `
+      <div class="skeleton-circle"></div>
+      <div class="skeleton-line short"></div>
+      <div class="skeleton-line"></div>
+      <div class="skeleton-line"></div>
+    `;
+
+    container.appendChild(card);
+
+  }
+
+}
+
 /* CARREGAR USERS */
 
 async function loadUsers() {
@@ -33,8 +63,10 @@ async function loadUsers() {
 
   if (error) {
 
-    container.innerHTML =
-      "<p>Erro ao carregar usuários</p>";
+    renderEmptyState(
+      "fa-triangle-exclamation",
+      "Não deu pra carregar os usuários agora. Tenta de novo em instantes."
+    );
 
     return;
   }
@@ -44,11 +76,35 @@ async function loadUsers() {
   renderUsers(data);
 }
 
+/* ESTADO VAZIO */
+
+function renderEmptyState(icon, message) {
+
+  container.innerHTML = `
+    <div class="empty-state">
+      <i class="fa-solid ${icon}"></i>
+      <p>${message}</p>
+    </div>
+  `;
+
+}
+
 /* RENDER USERS */
 
 function renderUsers(users) {
 
   container.innerHTML = "";
+
+  if (users.length === 0) {
+
+    renderEmptyState(
+      "fa-magnifying-glass",
+      "Nenhum usuário encontrado."
+    );
+
+    return;
+
+  }
 
   users.forEach(user => {
 
@@ -61,17 +117,24 @@ function renderUsers(users) {
     card.href =
       `/${user.username}`;
 
+    const showHandle =
+      user.display_name &&
+      user.display_name !== user.username;
+
     card.innerHTML = `
 
-      <img src="
-        ${user.avatar_url ||
-        "https://i.pinimg.com/736x/b8/77/85/b8778585aab18dca3f09ad853b5bff2b.jpg"}
-      ">
+      <div class="user-card-avatar">
+        <img src="${user.avatar_url || FALLBACK_AVATAR}">
+      </div>
 
       <h2>
-        ${user.display_name ||
-        user.username}
+        ${user.display_name || user.username}
       </h2>
+
+      ${showHandle
+        ? `<span class="handle">@${user.username}</span>`
+        : ""
+      }
 
       <p>
         ${user.bio || "Sem bio"}
@@ -81,6 +144,7 @@ function renderUsers(users) {
 
     container.appendChild(card);
   });
+
 }
 
 /* PESQUISA */
