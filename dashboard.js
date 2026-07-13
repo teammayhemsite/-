@@ -777,12 +777,216 @@ $("save-btn")
     }
   );
 
+// =========================
+// LIMITES DE UPLOAD
+// =========================
+
+const MAX_IMAGE_MB = 5;
+const MAX_MUSIC_MB = 50;
+
+const MAX_IMAGE_BYTES = MAX_IMAGE_MB * 1024 * 1024;
+const MAX_MUSIC_BYTES = MAX_MUSIC_MB * 1024 * 1024;
+
+// Dimensão máxima (px) que cada tipo de imagem mantém após a compressão.
+// Só reduz imagens maiores que isso — nunca aumenta uma imagem pequena.
+const IMAGE_DIMENSION_LIMITS = {
+  avatar: [800, 800],
+  banner: [1600, 900],
+  background: [1920, 1920],
+  cardbackground: [1200, 1200],
+  album1: [1600, 1600],
+  album2: [1600, 1600],
+  album3: [1600, 1600],
+  album4: [1600, 1600]
+};
+
+function formatMb(bytes) {
+
+  return (bytes / 1024 / 1024).toFixed(1);
+
+}
+
+// Valida o tamanho de um arquivo assim que ele é escolhido, e já limpa
+// o input se passar do limite — feedback imediato, antes de tentar salvar.
+function validateFileSize(input, maxBytes, maxMb, label) {
+
+  const file = input.files[0];
+
+  if (!file) return true;
+
+  if (file.size > maxBytes) {
+
+    alert(
+      `${label} muito grande (${formatMb(file.size)}MB). O limite é ${maxMb}MB.`
+    );
+
+    input.value = "";
+    return false;
+
+  }
+
+  return true;
+
+}
+
+const imageInputsToValidate = [
+  { input: avatarFile, label: "Foto de perfil" },
+  { input: bannerFile, label: "Banner" },
+  { input: backgroundFile, label: "Wallpaper" },
+  { input: cardBackgroundFile, label: "Wallpaper do card" },
+  { input: album1File, label: "Foto 1 do álbum" },
+  { input: album2File, label: "Foto 2 do álbum" },
+  { input: album3File, label: "Foto 3 do álbum" },
+  { input: album4File, label: "Foto 4 do álbum" }
+];
+
+imageInputsToValidate.forEach(({ input, label }) => {
+
+  input.addEventListener("change", () => {
+
+    validateFileSize(input, MAX_IMAGE_BYTES, MAX_IMAGE_MB, label);
+
+  });
+
+});
+
+musicFile.addEventListener("change", () => {
+
+  validateFileSize(musicFile, MAX_MUSIC_BYTES, MAX_MUSIC_MB, "Música");
+
+});
+
+// =========================
+// COMPRESSÃO DE IMAGEM
+// =========================
+
+// Redimensiona (só reduz, nunca aumenta) e reexporta a imagem antes do
+// upload. GIFs não são recomprimidos — isso quebraria a animação, então
+// só passam pela validação de tamanho. PNGs mantêm PNG (preserva
+// transparência); o resto vira JPEG em boa qualidade, bem mais leve.
+function compressImage(file, maxWidth, maxHeight, quality = 0.85) {
+
+  return new Promise((resolve, reject) => {
+
+    if (file.type === "image/gif") {
+
+      resolve({ blob: file, ext: "gif" });
+      return;
+
+    }
+
+    const objectUrl =
+      URL.createObjectURL(file);
+
+    const img = new Image();
+
+    img.onload = () => {
+
+      let width = img.width;
+      let height = img.height;
+
+      if (width > maxWidth || height > maxHeight) {
+
+        const ratio =
+          Math.min(maxWidth / width, maxHeight / height);
+
+        width = Math.round(width * ratio);
+        height = Math.round(height * ratio);
+
+      }
+
+      const canvas =
+        document.createElement("canvas");
+
+      canvas.width = width;
+      canvas.height = height;
+
+      canvas
+        .getContext("2d")
+        .drawImage(img, 0, 0, width, height);
+
+      URL.revokeObjectURL(objectUrl);
+
+      const isPng =
+        file.type === "image/png";
+
+      canvas.toBlob(
+
+        (blob) => {
+
+          if (!blob) {
+
+            reject(new Error("Falha ao comprimir imagem"));
+            return;
+
+          }
+
+          resolve({
+            blob,
+            ext: isPng ? "png" : "jpg"
+          });
+
+        },
+
+        isPng ? "image/png" : "image/jpeg",
+        isPng ? undefined : quality
+
+      );
+
+    };
+
+    img.onerror = () => {
+
+      URL.revokeObjectURL(objectUrl);
+      reject(new Error("Não foi possível ler a imagem"));
+
+    };
+
+    img.src = objectUrl;
+
+  });
+
+}
+
 async function uploadImage(
   file,
   userId,
   type,
   oldUrl = null
 ) {
+
+  // Checagem de segurança (a validação principal já acontece na escolha do arquivo)
+  if (file.size > MAX_IMAGE_BYTES) {
+
+    alert(
+      `Essa imagem passa de ${MAX_IMAGE_MB}MB (${formatMb(file.size)}MB). Escolha um arquivo menor.`
+    );
+
+    return null;
+
+  }
+
+  // COMPRESSÃO
+  let uploadBlob = file;
+  let fileExt = file.name.split(".").pop().toLowerCase();
+
+  try {
+
+    const [maxWidth, maxHeight] =
+      IMAGE_DIMENSION_LIMITS[type] || [1600, 1600];
+
+    const compressed =
+      await compressImage(file, maxWidth, maxHeight);
+
+    uploadBlob = compressed.blob;
+    fileExt = compressed.ext;
+
+  } catch (e) {
+
+    console.log("Falha ao comprimir, enviando original:", e);
+    uploadBlob = file;
+
+  }
 
   // Remove versões antigas
 
@@ -797,12 +1001,6 @@ async function uploadImage(
       `users/${userId}/${type}.webp`
     ]);
 
-  // EXTENSÃO
-  const fileExt =
-    file.name
-      .split(".")
-      .pop();
-
   // NOVO CAMINHO
   const filePath =
     `users/${userId}/${type}.${fileExt}`;
@@ -812,8 +1010,9 @@ async function uploadImage(
     await supabaseClient
       .storage
       .from("images")
-      .upload(filePath, file, {
-        upsert: true
+      .upload(filePath, uploadBlob, {
+        upsert: true,
+        contentType: uploadBlob.type || file.type
       });
 
   if (error) {
@@ -839,6 +1038,16 @@ async function uploadMusic(
   userId,
   oldUrl = null
 ) {
+
+  if (file.size > MAX_MUSIC_BYTES) {
+
+    alert(
+      `Esse arquivo de música passa de ${MAX_MUSIC_MB}MB (${formatMb(file.size)}MB). Escolha um arquivo menor.`
+    );
+
+    return null;
+
+  }
 
   await supabaseClient
     .storage
