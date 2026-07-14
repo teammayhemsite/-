@@ -1685,6 +1685,8 @@ Marca d agua
 /* Anel decorativo, sobreposto no canto do avatar */
 .entrance-ring{
 
+  display: none;
+
   position: absolute;
   top: 18px;
   left: 18px;
