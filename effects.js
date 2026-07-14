@@ -113,6 +113,272 @@
         ctx.stroke();
       }
 
+    },
+
+    flowers: {
+
+      density: 16000,
+      minCount: 18,
+      maxCount: 70,
+
+      create() {
+        return {
+          size: rand(6, 12),
+          speedY: rand(0.5, 1.1),
+          drift: rand(-0.4, 0.4),
+          wobble: rand(0, Math.PI * 2),
+          wobbleSpeed: rand(0.01, 0.02),
+          rotation: rand(0, Math.PI * 2),
+          rotationSpeed: rand(-0.012, 0.012),
+          opacity: rand(0.55, 0.9),
+          petalHue: rand(320, 350)
+        };
+      },
+
+      update(p) {
+        p.wobble += p.wobbleSpeed;
+        p.rotation += p.rotationSpeed;
+        p.x += p.drift + Math.sin(p.wobble) * 0.5;
+        p.y += p.speedY;
+      },
+
+      draw(ctx, p) {
+
+        const r = p.size * 0.42;
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
+
+        ctx.fillStyle = `hsla(${p.petalHue},85%,78%,${p.opacity})`;
+
+        for (let i = 0; i < 5; i++) {
+
+          const a = (i / 5) * Math.PI * 2;
+
+          ctx.beginPath();
+          ctx.arc(Math.cos(a) * r, Math.sin(a) * r, r * 0.85, 0, Math.PI * 2);
+          ctx.fill();
+
+        }
+
+        ctx.fillStyle = `hsla(48,95%,75%,${p.opacity})`;
+        ctx.beginPath();
+        ctx.arc(0, 0, r * 0.55, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.restore();
+
+      }
+
+    },
+
+    leaves: {
+
+      density: 15000,
+      minCount: 20,
+      maxCount: 80,
+
+      create() {
+
+        const hue =
+          Math.random() < 0.5 ? rand(90, 140) : rand(20, 45);
+
+        return {
+          size: rand(6, 11),
+          speedY: rand(0.6, 1.4),
+          drift: rand(-0.6, 0.6),
+          wobble: rand(0, Math.PI * 2),
+          wobbleSpeed: rand(0.02, 0.05),
+          rotation: rand(0, Math.PI * 2),
+          rotationSpeed: rand(-0.05, 0.05),
+          opacity: rand(0.5, 0.85),
+          hue
+        };
+
+      },
+
+      update(p) {
+        p.wobble += p.wobbleSpeed;
+        p.rotation += p.rotationSpeed;
+        p.x += p.drift + Math.sin(p.wobble) * 0.8;
+        p.y += p.speedY;
+      },
+
+      draw(ctx, p) {
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
+
+        ctx.beginPath();
+        ctx.moveTo(0, -p.size);
+        ctx.quadraticCurveTo(p.size * 0.75, 0, 0, p.size);
+        ctx.quadraticCurveTo(-p.size * 0.75, 0, 0, -p.size);
+
+        ctx.fillStyle = `hsla(${p.hue},55%,55%,${p.opacity})`;
+        ctx.fill();
+
+        ctx.restore();
+
+      }
+
+    },
+
+    hearts: {
+
+      density: 15000,
+      minCount: 18,
+      maxCount: 70,
+
+      create() {
+        return {
+          size: rand(5, 10),
+          speedY: rand(0.4, 1.0),
+          drift: rand(-0.3, 0.3),
+          wobble: rand(0, Math.PI * 2),
+          wobbleSpeed: rand(0.01, 0.025),
+          opacity: rand(0.5, 0.85)
+        };
+      },
+
+      update(p) {
+        p.wobble += p.wobbleSpeed;
+        p.x += p.drift + Math.sin(p.wobble) * 0.5;
+        p.y += p.speedY;
+      },
+
+      draw(ctx, p) {
+
+        const s = p.size;
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+
+        ctx.beginPath();
+        ctx.moveTo(0, s * 0.3);
+        ctx.quadraticCurveTo(0, 0, -s * 0.5, 0);
+        ctx.quadraticCurveTo(-s, 0, -s, s * 0.3);
+        ctx.quadraticCurveTo(-s, s * 0.65, 0, s);
+        ctx.quadraticCurveTo(s, s * 0.65, s, s * 0.3);
+        ctx.quadraticCurveTo(s, 0, s * 0.5, 0);
+        ctx.quadraticCurveTo(0, 0, 0, s * 0.3);
+
+        ctx.fillStyle = `rgba(255,110,145,${p.opacity})`;
+        ctx.fill();
+
+        ctx.restore();
+
+      }
+
+    },
+
+    crystals: {
+
+      density: 13000,
+      minCount: 25,
+      maxCount: 90,
+
+      create() {
+        return {
+          size: rand(4, 8),
+          speedY: rand(0.5, 1.1),
+          drift: rand(-0.2, 0.2),
+          rotation: rand(0, Math.PI * 2),
+          rotationSpeed: rand(-0.02, 0.02),
+          shimmer: rand(0, Math.PI * 2),
+          shimmerSpeed: rand(0.03, 0.06),
+          baseOpacity: rand(0.35, 0.6)
+        };
+      },
+
+      update(p) {
+        p.rotation += p.rotationSpeed;
+        p.shimmer += p.shimmerSpeed;
+        p.x += p.drift;
+        p.y += p.speedY;
+      },
+
+      draw(ctx, p) {
+
+        const opacity =
+          clamp(p.baseOpacity + Math.sin(p.shimmer) * 0.25, 0, 1);
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
+
+        ctx.beginPath();
+        ctx.moveTo(0, -p.size);
+        ctx.lineTo(p.size * 0.6, 0);
+        ctx.lineTo(0, p.size);
+        ctx.lineTo(-p.size * 0.6, 0);
+        ctx.closePath();
+
+        ctx.fillStyle = `rgba(200,235,255,${opacity})`;
+        ctx.fill();
+
+        ctx.strokeStyle = `rgba(255,255,255,${clamp(opacity + 0.2, 0, 1)})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        ctx.restore();
+
+      }
+
+    },
+
+    meteors: {
+
+      density: 40000,
+      minCount: 6,
+      maxCount: 18,
+
+      create() {
+
+        const angle = rand(0.9, 1.3);
+        const speed = rand(9, 15);
+
+        return {
+          size: rand(1.5, 2.5),
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          tailLength: rand(40, 90),
+          opacity: rand(0.5, 0.9)
+        };
+
+      },
+
+      update(p) {
+        p.x += p.vx;
+        p.y += p.vy;
+      },
+
+      draw(ctx, p) {
+
+        const mag =
+          Math.hypot(p.vx, p.vy) || 1;
+
+        const tailX = p.x - (p.vx / mag) * p.tailLength;
+        const tailY = p.y - (p.vy / mag) * p.tailLength;
+
+        const gradient =
+          ctx.createLinearGradient(p.x, p.y, tailX, tailY);
+
+        gradient.addColorStop(0, `rgba(255,255,255,${p.opacity})`);
+        gradient.addColorStop(1, "rgba(255,255,255,0)");
+
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = p.size;
+        ctx.lineCap = "round";
+
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(tailX, tailY);
+        ctx.stroke();
+
+      }
+
     }
 
   };
