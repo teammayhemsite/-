@@ -43,6 +43,42 @@ function showNotFound() {
 
 }
 
+// Estrelinhas estáticas de fundo da tela de entrada (estilos "aurora" e "grade")
+function renderEntranceStars(style) {
+
+  const container =
+    document.getElementById("entrance-stars");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  if (style !== "aurora" && style !== "grade") return;
+
+  const count = 26;
+
+  for (let i = 0; i < count; i++) {
+
+    const star =
+      document.createElement("span");
+
+    star.className = "entrance-star";
+
+    star.style.top = `${Math.random() * 100}%`;
+    star.style.left = `${Math.random() * 100}%`;
+
+    const size = 1.5 + Math.random() * 2;
+
+    star.style.width = `${size}px`;
+    star.style.height = `${size}px`;
+    star.style.opacity = (0.3 + Math.random() * 0.5).toFixed(2);
+
+    container.appendChild(star);
+
+  }
+
+}
+
 async function loadProfile() {
 
   let visitorId =
@@ -137,11 +173,38 @@ async function loadProfile() {
       "entrance-avatar"
     );
 
+  const entranceAvatarFallback =
+    document.getElementById(
+      "entrance-avatar-fallback"
+    );
+
   if (entranceAvatar) {
 
-    entranceAvatar.src =
-      data.avatar_url ||
-      "https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/defaults/avatar.png";
+    if (data.avatar_url) {
+
+      entranceAvatar.src = data.avatar_url;
+      entranceAvatar.style.display = "block";
+
+      if (entranceAvatarFallback)
+        entranceAvatarFallback.style.display = "none";
+
+    } else {
+
+      entranceAvatar.style.display = "none";
+
+      if (entranceAvatarFallback) {
+
+        const label =
+          data.display_name || data.username || "?";
+
+        entranceAvatarFallback.textContent =
+          label.trim().charAt(0).toUpperCase();
+
+        entranceAvatarFallback.style.display = "flex";
+
+      }
+
+    }
 
   }
 
@@ -393,19 +456,27 @@ function loadAlbumImages() {
 
   else {
 
+    entrance.dataset.style =
+      data.entrance_style || "aurora";
+
     document.getElementById(
       "entrance-title"
-    ).innerText =
-
-      data.entrance_text?.trim()
-
-      ||
+    ).textContent =
 
       data.display_name
+      || data.username
+      || "";
 
-      ||
+    document.getElementById(
+      "entrance-subtitle"
+    ).textContent =
 
-      data.username;
+      data.entrance_text?.trim()
+      || "Clique aqui";
+
+    renderEntranceStars(
+      entrance.dataset.style
+    );
 
   }
 
