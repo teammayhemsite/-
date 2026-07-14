@@ -119,19 +119,6 @@ async function loadProfile() {
 
   }
 
-  // =========================
-  // EFEITO DE FUNDO
-  // =========================
-
-  const effectCanvas =
-    document.getElementById("profile-effect-canvas");
-
-  if (effectCanvas && window.ProfileEffects) {
-
-    window.ProfileEffects.start(effectCanvas, data.effect);
-
-  }
-
   const entranceAvatar =
     document.getElementById(
       "entrance-avatar"
@@ -164,7 +151,7 @@ async function loadProfile() {
   //=================
   // Emblemas
   //================
-  if (data.username === "krpris" || data.username === "kaio") {
+  if (data.username === "krpris" || data.username === "kaio" || data.username === "emika") {
 
     card.insertAdjacentHTML(
       "afterbegin",
