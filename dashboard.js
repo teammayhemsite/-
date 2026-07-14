@@ -58,6 +58,9 @@ const effectInput =
 const entranceEnabled =
   $("entrance-enabled");
 
+const entranceStyle =
+  $("entrance-style");
+
 const entranceText =
   $("entrance-text");
 
@@ -548,6 +551,9 @@ $("save-btn")
 
           entrance_enabled:
             entranceEnabled.value === "true",
+
+          entrance_style:
+            entranceStyle.value,
 
           entrance_text:
             entranceText.value,
@@ -1454,6 +1460,9 @@ async function loadDashboard() {
       ? "true"
       : "false";
 
+  entranceStyle.value =
+    data.entrance_style || "aurora";
+
   entranceText.value =
     data.entrance_text || "";
 
@@ -1747,6 +1756,12 @@ function updateSummary() {
   if (entranceLabel)
     entranceLabel.textContent =
       entranceEnabled.value === "true" ? "Ativada" : "Desativada";
+
+  const entranceStyleLabel = $("summary-entrance-style");
+
+  if (entranceStyleLabel)
+    entranceStyleLabel.textContent =
+      entranceStyle.options[entranceStyle.selectedIndex]?.text.trim() || "Aurora";
 
   applyEffectPreview();
 
