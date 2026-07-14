@@ -4,6 +4,17 @@
   box-sizing: border-box;
 }
 
+#profile-effect-canvas{
+  position: fixed;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+  z-index: 9999;
+}
+
 body {
 
   min-height: 100vh;
@@ -345,7 +356,7 @@ SOCIAL BOX
 
   padding: 0 25px;
 
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 /* =========================
@@ -358,7 +369,7 @@ SOCIALS
 
   flex-wrap: wrap;
 
-  gap: 25px;
+  gap: 18px;
 
   align-items: center;
 
@@ -385,8 +396,8 @@ SOCIALS
 
 .socials img {
 
-  width: 21px;
-  height: 21px;
+  width: 25px;
+  height: 25px;
 
   object-fit: contain;
 
@@ -1610,7 +1621,12 @@ Marca d agua
 }
 
 .entrance-content h1 {
-  margin-bottom: 5px;
+
+  font-size:
+    clamp(35px, 3vw, 60px);
+
+  margin-bottom: 15px;
+
 }
 
 .entrance-content p {
