@@ -52,6 +52,9 @@ const boxStyleInput =
 const musicFile =
   $("music-file");
 
+const effectInput =
+  $("effect-input");
+
 const entranceEnabled =
   $("entrance-enabled");
 
@@ -539,6 +542,9 @@ $("save-btn")
 
           pix_url:
             pixInput.value,
+
+          effect:
+            effectInput.value,
 
           entrance_enabled:
             entranceEnabled.value === "true",
@@ -1440,6 +1446,9 @@ async function loadDashboard() {
 
     });
 
+  effectInput.value =
+    data.effect || "none";
+
   entranceEnabled.value =
     data.entrance_enabled
       ? "true"
@@ -1674,6 +1683,38 @@ const socialInputsList = [
   threadsInput, bskyInput, vscoInput, pixInput
 ];
 
+// =========================
+// EFEITO NA PRÉVIA
+// =========================
+
+let currentEffectType = null;
+let currentEffectController = null;
+
+function applyEffectPreview() {
+
+  if (!effectInput || !window.ProfileEffects) return;
+
+  const type = effectInput.value;
+
+  if (type === currentEffectType) return;
+
+  currentEffectType = type;
+
+  if (currentEffectController) {
+
+    currentEffectController.destroy();
+    currentEffectController = null;
+
+  }
+
+  const canvas = $("preview-effect-canvas");
+
+  if (canvas) {
+    currentEffectController = window.ProfileEffects.start(canvas, type);
+  }
+
+}
+
 function updateSummary() {
 
   const summaryName = $("summary-name");
@@ -1698,11 +1739,16 @@ function updateSummary() {
   $("summary-socials").textContent =
     `${connected} conectada${connected === 1 ? "" : "s"}`;
 
+  $("summary-effect").textContent =
+    effectInput.options[effectInput.selectedIndex]?.text.trim() || "Nenhum";
+
   const entranceLabel = $("summary-entrance");
 
   if (entranceLabel)
     entranceLabel.textContent =
       entranceEnabled.value === "true" ? "Ativada" : "Desativada";
+
+  applyEffectPreview();
 
 }
 
