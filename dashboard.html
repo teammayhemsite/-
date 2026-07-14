@@ -584,6 +584,27 @@
 
           <div class="field-card">
             <div class="field-card-header">
+              <span class="field-card-icon"><i class="fa-solid fa-snowflake"></i></span>
+              <div>
+                <h3>Efeito de fundo</h3>
+                <p>Uma animação sutil caindo sobre o seu perfil</p>
+              </div>
+            </div>
+            <div class="field-card-body">
+
+              <label>Efeito</label>
+              <select id="effect-input">
+                <option value="none">Nenhum</option>
+                <option value="snow">Neve</option>
+                <option value="rain">Chuva</option>
+                <option value="bubbles">Bolinhas</option>
+              </select>
+
+            </div>
+          </div>
+
+          <div class="field-card">
+            <div class="field-card-header">
               <span class="field-card-icon"><i class="fa-solid fa-door-open"></i></span>
               <div>
                 <h3>Tela de entrada</h3>
@@ -706,6 +727,8 @@
 
         <div class="cardking">
 
+          <canvas id="preview-effect-canvas" class="effect-canvas"></canvas>
+
           <div class="topo" id="preview-banner"></div>
 
           <div class="avatar-wrapper">
@@ -760,6 +783,11 @@
         </div>
 
         <div class="summary-row">
+          <span>Efeito</span>
+          <span class="mono" id="summary-effect">Nenhum</span>
+        </div>
+
+        <div class="summary-row">
           <span>Tela de entrada</span>
           <span class="mono" id="summary-entrance">Desativada</span>
         </div>
@@ -781,6 +809,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase.js"></script>
+  <script src="effects.js"></script>
   <script src="dashboard.js"></script>
 
 </body>
