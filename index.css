@@ -56,10 +56,7 @@ body{
 a{ color:inherit; }
 
 /* =========================================================
-   FUNDO
-   Foto original, em tom de cinza + escurecida, mantendo o
-   clima fotográfico mas dentro da paleta monocromática.
-   Glows radiais sutis dão profundidade ao longo da página.
+   FUNDO  
 ========================================================= */
 
 .bg-photo{
@@ -638,9 +635,7 @@ a{ color:inherit; }
 }
 
 /* =========================================================
-   DASHBOARD MOCK
-   Miniatura fiel do painel real, só pra ilustração —
-   não é interativa.
+   DASHBOARD   
 ========================================================= */
 
 .dmock{
