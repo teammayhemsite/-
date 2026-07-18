@@ -1,7 +1,5 @@
 // =========================================================
-// PROFILE EFFECTS
-// Efeitos de partículas em Canvas 2D puro (sem libs).
-// Usado tanto na prévia do Dashboard quanto no perfil público.
+// PROFILE EFFECTS DEE CHUVA
 // =========================================================
 
 (function () {
