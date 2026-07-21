@@ -794,7 +794,7 @@ $("save-btn")
 // =========================
 
 const MAX_IMAGE_MB = 5;
-const MAX_MUSIC_MB = 50;
+const MAX_MUSIC_MB = 10;
 
 const MAX_IMAGE_BYTES = MAX_IMAGE_MB * 1024 * 1024;
 const MAX_MUSIC_BYTES = MAX_MUSIC_MB * 1024 * 1024;
