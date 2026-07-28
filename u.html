@@ -2,85 +2,203 @@
 <html lang="pt-br">
 
 <head>
+
   <meta charset="UTF-8">
+
+  <link rel="icon" href="https://cdn.discordapp.com/emojis/1525949441100480702.webp?size=96">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Ranking de perfis — Team Mayhem</title>
+  <title>Perfil</title>
 
-   <link rel="icon" href="https://cdn.discordapp.com/emojis/1525949441100480702.webp?size=96">
+  <link rel="stylesheet" href="u.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Caveat:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="users.css">
-  <script src="https://kit.fontawesome.com/eb9af641fe.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/eb9af641fe.js" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="supabase.js"></script>
 
 </head>
 
 <body>
 
-  <div class="bg-photo"></div>
-  <div class="bg-glow"></div>
+  <canvas id="profile-effect-canvas"></canvas>
 
-  <!-- TOPO -->
-  <header class="topbar">
+  <div id="entrance-screen">
 
-    <a href="index.html" class="brand">Team<span>Mayhem</span></a>
+    <div class="entrance-stars" id="entrance-stars"></div>
 
-    <nav class="topnav">
-      <a href="https://teammayhem.vercel.app/">Início</a>
-      <a href="login.html">Entrar</a>
-      <a href="cadastro.html" class="topnav-cta">Criar conta</a>
-    </nav>
+    <div class="entrance-content">
 
-    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
-      <i class="fa-solid fa-bars"></i>
-    </button>
+      <div class="entrance-ring"></div>
 
-  </header>
+      <div class="entrance-avatar-wrap">
 
-  <!-- CABEÇALHO -->
-  <section class="explore-hero">
+        <img id="entrance-avatar" class="entrance-avatar" src="" alt="">
+        <div id="entrance-avatar-fallback" class="entrance-avatar-fallback"></div>
 
-    <span class="eyebrow">Ranking</span>
+      </div>
 
-    <h1>Perfis mais curtidos</h1>
+      <p id="entrance-title"></p>
 
-    <p>Quem está bombando por aqui — veja os perfis com mais curtidas.</p>
+      <p id="entrance-subtitle">
+        Clique aqui
+      </p>
 
-    <div class="search-box">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" id="search" placeholder="Pesquisar por nome ou usuário...">
     </div>
 
-  </section>
+  </div>
 
-  <!-- PÓDIUM -->
-  <div id="podium" class="podium"></div>
+  <div class="cardking">
 
-  <!-- GRID -->
-  <main class="users-wrap">
-    <div id="users-container" class="users-grid"></div>
-  </main>
+    <div class="like-box">
 
-  <footer class="site-footer">
-    Team Mayhem&trade; &copy; 2026
-  </footer>
+      <i class="fa-solid fa-heart" id="like-btn">
+      </i>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="supabase.js"></script>
-  <script src="users.js"></script>
+      <span id="like-count">
+        0
+      </span>
 
-  <script>
-    const navToggle = document.getElementById("nav-toggle");
-    const topnav = document.querySelector(".topnav");
+    </div>     
 
-    navToggle?.addEventListener("click", () => {
-      topnav.classList.toggle("open");
-    });
-  </script>
+    <!-- BANNER -->
+    <div class="topo" id="banner">
+    </div>
 
+    <!-- FOTO + BALÃO -->
+    <div class="top-info">
+
+      <div class="avatar-wrapper">
+
+        <img src="" class="perfilking" id="avatar">
+
+        <img src="" class="avatar-frame" id="avatar-frame">
+
+      </div>
+
+      <div class="balao" id="balao">
+        texto
+      </div>
+
+    </div>
+
+    <!-- CONTEÚDO -->
+    <div class="conteudoking">
+
+      <h1 id="username">
+        usuário
+      </h1>
+
+      <p id="bio">
+        bio
+      </p>
+
+    </div>
+
+    <!-- SOCIAL + EXTRAS -->
+    <div class="social-box">
+
+      <!-- REDES -->
+      <div class="socials" id="socials">
+      </div>
+
+      <!-- EXTRAS -->
+      <div id="extras-container"></div>
+
+    </div>
+
+  </div>
+
+  <script src="effects.js"></script>
+  <script src="u.js"></script>
+
+  <!-- PLAYER -->
+  <audio id="profile-music" preload="none"></audio>
+
+  <button class="ac2-trigger playing" aria-label="Toggle player">
+
+    <div class="ac2-bars">
+
+      <div class="ac2-bar"></div>
+      <div class="ac2-bar"></div>
+      <div class="ac2-bar"></div>
+      <div class="ac2-bar"></div>
+      <div class="ac2-bar"></div>
+
+    </div>
+
+  </button>
+
+  <div class="ac2-pill">
+    <img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/Mix%20de%20musica.jpg"
+      class="ac2-thumb" draggable="false">
+
+    <div class="ac2-info">
+
+      <span class="ac2-song">
+        Mix de música
+      </span>
+
+      <span class="ac2-artist">
+        tocando agora
+      </span>
+
+    </div>
+
+    <div class="ac2-sep"></div>
+
+    <button class="ac2-btn play-btn">
+
+      <i class="fas fa-pause"></i>
+
+    </button>
+
+    <div class="ac2-sep"></div>
+
+    <div class="ac2-volume-wrap">
+      -
+      <input class="ac2-range ac2-volume" min="0" max="100" value="10" type="range">
+      +
+    </div>
+
+  </div>
+
+  <a href="https://teammayhem.vercel.app/" target="_blank" class="watermark-card">
+    <img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/Crie%20seu%20perfil.jpg"
+      alt="">
+
+    <span>CRIAR PERFIL</span>
+  </a> 
+
+  <button id="album-btn" class="album-btn">
+    <i class="fa-regular fa-images"></i>
+  </button>
+
+  <div id="album-page" class="album-page">
+
+    <button id="close-album" class="close-album">
+      ✕
+    </button>
+
+    <div class="album-grid">
+
+      <img id="album1">
+      <img id="album2">
+      <img id="album3">
+      <img id="album4">
+
+    </div>
+
+  </div>
+  
+  <header>Team Mayhem&trade; &copy; 2026</header>
 </body>
 
 </html>
