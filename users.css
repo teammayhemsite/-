@@ -12,6 +12,10 @@
   --accent-soft:   rgba(255,255,255,0.10);
   --accent-dim:    rgba(255,255,255,0.40);
 
+  --gold:          #E8C468;
+  --silver:        #CBD2D9;
+  --bronze:        #CE8A5C;
+
   --text:          #F2F2F0;
   --text-muted:    rgba(242,242,240,0.60);
   --text-faint:    rgba(242,242,240,0.36);
@@ -252,6 +256,183 @@ a{ color:inherit; }
 }
 
 /* =========================================================
+   PÓDIUM
+========================================================= */
+
+.podium{
+  max-width:900px;
+  margin:0 auto;
+  padding:10px 40px 50px;
+
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  gap:18px;
+}
+
+.podium.visible{
+  display:flex;
+}
+
+.podium-place{
+  flex:1;
+  max-width:230px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  padding:24px 16px 0;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+
+  background: var(--surface);
+  border:1px solid var(--border);
+  border-bottom:none;
+
+  text-decoration:none;
+  color: var(--text);
+
+  transition: transform .2s ease, background .2s ease;
+}
+
+.podium-place:hover{
+  transform:translateY(-4px);
+  background: var(--surface-hover);
+}
+
+.place-1{ order:2; padding-top:0; }
+.place-2{ order:1; }
+.place-3{ order:3; }
+
+.podium-crown{
+  height:26px;
+  margin-bottom:6px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color: var(--gold);
+  font-size:20px;
+}
+
+.podium-avatar{
+  width:66px;
+  height:66px;
+  margin-bottom:12px;
+
+  border-radius:50%;
+  overflow:hidden;
+
+  border:2px solid var(--border-strong);
+  background: var(--bg-elevated);
+  flex-shrink:0;
+}
+
+.place-1 .podium-avatar{
+  width:84px;
+  height:84px;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(232,196,104,0.15);
+}
+
+.place-2 .podium-avatar{ border-color: var(--silver); }
+.place-3 .podium-avatar{ border-color: var(--bronze); }
+
+.podium-avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.podium-place h3{
+  font-family: var(--font-display);
+  font-weight:600;
+  font-size:16px;
+  margin-bottom:2px;
+
+  max-width:100%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.podium-place .handle{
+  font-family: var(--font-mono);
+  font-size:11px;
+  color: var(--text-faint);
+  margin-bottom:10px;
+}
+
+.podium-likes{
+  display:flex;
+  align-items:center;
+  gap:6px;
+
+  margin-bottom:16px;
+
+  font-size:12.5px;
+  font-weight:700;
+  color: var(--text-muted);
+}
+
+.podium-likes i{
+  color:#ff4d6d;
+  font-size:12px;
+}
+
+.podium-base{
+  width:100%;
+
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+
+  padding-top:10px;
+
+  font-family: var(--font-display);
+  font-weight:600;
+  font-size:26px;
+
+  border-top:1px solid var(--border);
+}
+
+.place-1 .podium-base{
+  height:86px;
+  background: linear-gradient(180deg, rgba(232,196,104,0.14), transparent);
+  color: var(--gold);
+}
+
+.place-2 .podium-base{
+  height:60px;
+  background: linear-gradient(180deg, rgba(203,210,217,0.12), transparent);
+  color: var(--silver);
+}
+
+.place-3 .podium-base{
+  height:44px;
+  background: linear-gradient(180deg, rgba(206,138,92,0.12), transparent);
+  color: var(--bronze);
+}
+
+.podium-skeleton{
+  flex:1;
+  max-width:230px;
+  height:170px;
+
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: var(--surface);
+  border:1px solid var(--border);
+  border-bottom:none;
+
+  animation: pulse 1.4s ease infinite;
+}
+
+.podium-skeleton.ps-1{ order:2; height:210px; }
+.podium-skeleton.ps-2{ order:1; }
+.podium-skeleton.ps-3{ order:3; height:150px; }
+
+/* =========================================================
    GRID DE USUÁRIOS
 ========================================================= */
 
@@ -268,6 +449,7 @@ a{ color:inherit; }
 }
 
 .user-card{
+  position:relative;
   display:flex;
   flex-direction:column;
 
@@ -287,6 +469,34 @@ a{ color:inherit; }
   transform:translateY(-4px);
   background: var(--surface-hover);
   border-color: var(--border-strong);
+}
+
+.rank-badge{
+  position:absolute;
+  top:18px;
+  right:18px;
+
+  font-family: var(--font-mono);
+  font-size:12px;
+  font-weight:600;
+  color: var(--text-faint);
+}
+
+.user-card-likes{
+  display:flex;
+  align-items:center;
+  gap:6px;
+
+  margin-bottom:14px;
+
+  font-size:12.5px;
+  font-weight:700;
+  color: var(--text-muted);
+}
+
+.user-card-likes i{
+  color:#ff4d6d;
+  font-size:12px;
 }
 
 .user-card-avatar{
@@ -477,6 +687,35 @@ a{ color:inherit; }
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap:14px;
   }
+
+  .podium{
+    padding:6px 20px 34px;
+    gap:10px;
+  }
+
+  .podium-place{
+    padding:16px 10px 0;
+  }
+
+  .place-1{ padding-top:0; }
+
+  .podium-avatar{
+    width:52px;
+    height:52px;
+  }
+
+  .place-1 .podium-avatar{
+    width:66px;
+    height:66px;
+  }
+
+  .podium-place h3{
+    font-size:13.5px;
+  }
+
+  .place-1 .podium-base{ height:66px; }
+  .place-2 .podium-base{ height:46px; }
+  .place-3 .podium-base{ height:34px; }
 
 }
 
