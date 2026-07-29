@@ -834,7 +834,7 @@ select option{
 }
 
 .conteudoking h2{
-  font-family: var(--font-display);
+  font-family: var(--profile-font, var(--font-display));
   font-size:26px;
   font-weight:600;
   margin-bottom:8px;
@@ -842,6 +842,7 @@ select option{
 }
 
 .conteudoking p{
+  font-family: var(--profile-font, var(--font-body));
   font-size:13.5px;
   line-height:1.55;
   opacity:0.85;
