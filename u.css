@@ -148,6 +148,44 @@ background: linear-gradient(145deg,
 
 }
 
+.embverified {
+
+  position: absolute;
+
+  top: 5px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 7px 14px;
+
+background: linear-gradient(145deg,
+ #8CC8FF 0%,
+ #74BAFF 20%,
+ #68AFFF 40%,
+ #5FA8FF 60%,
+ #539FFF 80%,
+ #4B95F5 100%);
+
+  color: #ffffff;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, .18);
+
+  z-index: 1000;
+
+}
+
+
 .badge-icon {
 
   width: 14px;
