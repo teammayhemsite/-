@@ -328,7 +328,7 @@ CONTEÚDO
 .conteudoking h1 {
 
   font-size:
-    clamp(28px, 5vw, 38px);
+    clamp(28px, 5vw, 35px);
 
   margin-bottom: 15px;
 
