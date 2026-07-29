@@ -74,6 +74,8 @@ CARD BASE
   padding-bottom: 25px;
 
   color: var(--text-color, white);
+
+  font-family: var(--profile-font, 'Manrope', sans-serif);
 }
 
 /* =========================
