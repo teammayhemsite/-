@@ -621,6 +621,18 @@ function loadAlbumImages() {
       data.text_color || "white"
     );
 
+  const SERIF_FONTS = ["Playfair Display"];
+  const chosenFont = data.font || "Manrope";
+  const fontFallback =
+    SERIF_FONTS.includes(chosenFont) ? "serif" : "sans-serif";
+
+  document
+    .querySelector(".cardking")
+    .style.setProperty(
+      "--profile-font",
+      `'${chosenFont}', ${fontFallback}`
+    );
+
   document.getElementById(
     "username"
   ).innerText =
