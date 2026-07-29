@@ -15,6 +15,21 @@ document.querySelectorAll(".toggle").forEach(btn => {
 const $ = (id) =>
   document.getElementById(id);
 
+// Monta a pilha de fontes com um fallback genérico adequado, para que o
+// texto continue legível caso a fonte do Google Fonts não carregue.
+const SERIF_FONTS = ["Playfair Display"];
+
+function fontStack(fontName) {
+
+  const name = fontName || "Manrope";
+
+  const fallback =
+    SERIF_FONTS.includes(name) ? "serif" : "sans-serif";
+
+  return `'${name}', ${fallback}`;
+
+}
+
 // =========================
 // INPUTS PERFIL
 // =========================
@@ -48,6 +63,9 @@ const textColorInput =
 
 const boxStyleInput =
   $("box-style-input");
+
+const fontInput =
+  $("font-input");
 
 const musicFile =
   $("music-file");
@@ -462,6 +480,9 @@ $("save-btn")
 
           text_color:
             textColorInput.value,
+
+          font:
+            fontInput.value,
 
           template:
             templateInput.value,
@@ -1133,6 +1154,11 @@ function updatePreview() {
     textColorInput.value
   );
 
+  previewCard.style.setProperty(
+    "--profile-font",
+    fontStack(fontInput.value)
+  );
+
   document.body.classList.remove(
     "cardking-theme",
     "cardkingdois-theme",
@@ -1356,6 +1382,9 @@ async function loadDashboard() {
 
   textColorInput.value =
     data.text_color || "white";
+
+  fontInput.value =
+    data.font || "Manrope";
 
   youtubeInput.value =
     data.youtube_url || "";
@@ -1741,6 +1770,12 @@ function updateSummary() {
 
   $("summary-color").textContent =
     textColorInput.value === "black" ? "Preto" : "Branco";
+
+  const summaryFont = $("summary-font");
+
+  if (summaryFont)
+    summaryFont.textContent =
+      fontInput.value || "Manrope";
 
   const connected =
     socialInputsList.filter(i => i.value.trim()).length;
