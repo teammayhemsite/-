@@ -164,12 +164,15 @@ background: linear-gradient(145deg,
   padding: 7px 14px;
 
 background: linear-gradient(145deg,
- #8CC8FF 0%,
- #74BAFF 20%,
- #68AFFF 40%,
- #5FA8FF 60%,
- #539FFF 80%,
- #4B95F5 100%);
+  #4d93f5 0%,
+  #5ea5fa 20%,
+  #73b7fe 35%,
+  #84c3ff 45%,
+  #a4d4ff 50%,
+  #8bc6fe 55%,
+  #73b7fe 65%,
+  #5ea5fa 80%,
+  #4d93f5 100%);
 
   color: #ffffff;
 
