@@ -373,7 +373,7 @@ CONTEÚDO
   font-size:
     clamp(28px, 5vw, 35px);
 
-  margin-bottom: 15px;
+  margin-bottom: 0px;
 
   font-weight: 700;
 }
@@ -385,7 +385,7 @@ CONTEÚDO
 
   line-height: 1.6;
 
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 /* =========================
