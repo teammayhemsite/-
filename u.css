@@ -51,10 +51,10 @@ CARD BASE
 
 .cardking {
 
-  width: 95%;
-  max-width: 600px;
+  width: var(--card-width, 95%);
+  max-width: var(--card-max-width, 600px);
 
-  border-radius: 20px;
+  border-radius: var(--card-radius, 20px);
 
   overflow: hidden;
 
@@ -398,7 +398,7 @@ SOCIAL BOX
 
   padding: 0 25px;
 
-  margin-top: 20px;
+  margin-top: var(--social-margin-top, 20px);
 }
 
 /* =========================
