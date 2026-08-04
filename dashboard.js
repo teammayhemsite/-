@@ -73,6 +73,59 @@ const musicFile =
 const effectInput =
   $("effect-input");
 
+// =========================
+// DIMENSÕES DO CARD
+// =========================
+
+const CARD_DIMENSION_DEFAULTS = {
+  cardWidth: 95,
+  cardMaxWidth: 600,
+  cardRadius: 20,
+  socialMarginTop: 20
+};
+
+const cardWidthInput = $("card-width-input");
+const cardWidthValue = $("card-width-value");
+const cardWidthReset = $("card-width-reset");
+
+const cardMaxWidthInput = $("card-max-width-input");
+const cardMaxWidthValue = $("card-max-width-value");
+const cardMaxWidthReset = $("card-max-width-reset");
+
+const cardRadiusInput = $("card-radius-input");
+const cardRadiusValue = $("card-radius-value");
+const cardRadiusReset = $("card-radius-reset");
+
+const socialMarginInput = $("social-margin-input");
+const socialMarginValue = $("social-margin-value");
+const socialMarginReset = $("social-margin-reset");
+
+function resetRangeField(input, defaultValue) {
+
+  input.value = defaultValue;
+
+  input.dispatchEvent(
+    new Event("input", { bubbles: true })
+  );
+
+}
+
+cardWidthReset.addEventListener("click", () =>
+  resetRangeField(cardWidthInput, CARD_DIMENSION_DEFAULTS.cardWidth)
+);
+
+cardMaxWidthReset.addEventListener("click", () =>
+  resetRangeField(cardMaxWidthInput, CARD_DIMENSION_DEFAULTS.cardMaxWidth)
+);
+
+cardRadiusReset.addEventListener("click", () =>
+  resetRangeField(cardRadiusInput, CARD_DIMENSION_DEFAULTS.cardRadius)
+);
+
+socialMarginReset.addEventListener("click", () =>
+  resetRangeField(socialMarginInput, CARD_DIMENSION_DEFAULTS.socialMarginTop)
+);
+
 const entranceEnabled =
   $("entrance-enabled");
 
@@ -489,6 +542,18 @@ $("save-btn")
 
           box_style:
             boxStyleInput.value,
+
+          card_width:
+            Number(cardWidthInput.value),
+
+          card_max_width:
+            Number(cardMaxWidthInput.value),
+
+          card_radius:
+            Number(cardRadiusInput.value),
+
+          social_margin_top:
+            Number(socialMarginInput.value),
 
           youtube_url:
             youtubeInput.value,
@@ -1159,6 +1224,41 @@ function updatePreview() {
     fontStack(fontInput.value)
   );
 
+  // DIMENSÕES DO CARD
+
+  previewCard.style.width =
+    cardWidthInput.value + "%";
+
+  previewCard.style.maxWidth =
+    `min(${cardMaxWidthInput.value}px, 100%)`;
+
+  previewCard.style.borderRadius =
+    cardRadiusInput.value + "px";
+
+  cardWidthValue.innerText =
+    cardWidthInput.value + "%";
+
+  cardMaxWidthValue.innerText =
+    cardMaxWidthInput.value + "px";
+
+  cardRadiusValue.innerText =
+    cardRadiusInput.value + "px";
+
+  socialMarginValue.innerText =
+    socialMarginInput.value + "px";
+
+  // A prévia não tem o wrapper .social-box, então aplicamos
+  // o espaçamento direto no elemento .socials pra representar o efeito
+  const previewSocials =
+    document.getElementById("socials");
+
+  if (previewSocials) {
+
+    previewSocials.style.marginTop =
+      socialMarginInput.value + "px";
+
+  }
+
   document.body.classList.remove(
     "cardking-theme",
     "cardkingdois-theme",
@@ -1385,6 +1485,18 @@ async function loadDashboard() {
 
   fontInput.value =
     data.font || "Manrope";
+
+  cardWidthInput.value =
+    data.card_width != null ? data.card_width : CARD_DIMENSION_DEFAULTS.cardWidth;
+
+  cardMaxWidthInput.value =
+    data.card_max_width != null ? data.card_max_width : CARD_DIMENSION_DEFAULTS.cardMaxWidth;
+
+  cardRadiusInput.value =
+    data.card_radius != null ? data.card_radius : CARD_DIMENSION_DEFAULTS.cardRadius;
+
+  socialMarginInput.value =
+    data.social_margin_top != null ? data.social_margin_top : CARD_DIMENSION_DEFAULTS.socialMarginTop;
 
   youtubeInput.value =
     data.youtube_url || "";
