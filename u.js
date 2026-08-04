@@ -633,6 +633,38 @@ function loadAlbumImages() {
       `'${chosenFont}', ${fontFallback}`
     );
 
+  // =========================
+  // DIMENSÕES DO CARD
+  // =========================
+
+  document
+    .querySelector(".cardking")
+    .style.setProperty(
+      "--card-width",
+      (data.card_width || 95) + "%"
+    );
+
+  document
+    .querySelector(".cardking")
+    .style.setProperty(
+      "--card-max-width",
+      (data.card_max_width || 600) + "px"
+    );
+
+  document
+    .querySelector(".cardking")
+    .style.setProperty(
+      "--card-radius",
+      (data.card_radius != null ? data.card_radius : 20) + "px"
+    );
+
+  document
+    .querySelector(".social-box")
+    .style.setProperty(
+      "--social-margin-top",
+      (data.social_margin_top != null ? data.social_margin_top : 20) + "px"
+    );
+
   document.getElementById(
     "username"
   ).innerText =
