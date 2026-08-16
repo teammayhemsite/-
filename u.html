@@ -17,6 +17,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Caveat:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+  <!-- Fontes selecionáveis para o perfil -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=Bebas+Neue&family=Orbitron:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Oxanium:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <script src="https://kit.fontawesome.com/eb9af641fe.js" crossorigin="anonymous">
   </script>
 
@@ -122,50 +125,50 @@
   <!-- PLAYER -->
   <audio id="profile-music" preload="none"></audio>
 
-  <button class="ac2-trigger playing" aria-label="Toggle player">
+  <div class="music-player" id="music-player">
 
-    <div class="ac2-bars">
-
-      <div class="ac2-bar"></div>
-      <div class="ac2-bar"></div>
-      <div class="ac2-bar"></div>
-      <div class="ac2-bar"></div>
-      <div class="ac2-bar"></div>
-
-    </div>
-
-  </button>
-
-  <div class="ac2-pill">
-    <img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/Mix%20de%20musica.jpg"
-      class="ac2-thumb" draggable="false">
-
-    <div class="ac2-info">
-
-      <span class="ac2-song">
-        Mix de música
-      </span>
-
-      <span class="ac2-artist">
-        tocando agora
-      </span>
-
-    </div>
-
-    <div class="ac2-sep"></div>
-
-    <button class="ac2-btn play-btn">
-
-      <i class="fas fa-pause"></i>
-
+    <!-- Botão de silenciar -->
+    <button class="mute-button" id="mute-btn" title="Silenciar" aria-label="Silenciar">
+      <i class="fa-solid fa-volume-high" id="mute-icon"></i>
     </button>
 
-    <div class="ac2-sep"></div>
+    <div class="player-bar">
 
-    <div class="ac2-volume-wrap">
-      -
-      <input class="ac2-range ac2-volume" min="0" max="100" value="10" type="range">
-      +
+      <!-- Avatar -->
+      <div class="music-avatar">
+        <img id="player-avatar" src="" alt="">
+      </div>
+
+      <!-- Nome -->
+      <div class="music-info">
+        <span class="music-name" id="player-song-name">tocando agora</span>
+      </div>
+
+      <!-- Play -->
+      <button class="play-button" id="playButton">
+        <i class="fa-solid fa-pause" id="play-icon"></i>
+      </button>
+
+      <!-- Tempo atual -->
+      <span class="music-time" id="currentTime">0:00</span>
+
+      <!-- Barra de progresso -->
+      <div class="progress-container" id="progressContainer">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <!-- Duração -->
+      <span class="music-time" id="duration">0:00</span>
+
+      <!-- Volume -->
+      <i class="fa-solid fa-volume-low volume-icon"></i>
+      <input class="volume-slider" id="volumeSlider" type="range" min="0" max="1" step="0.01" value="0.1">
+
+      <!-- Botão fechar -->
+      <button class="close-button" id="closePlayerBtn" title="Fechar" aria-label="Fechar player">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
     </div>
 
   </div>
