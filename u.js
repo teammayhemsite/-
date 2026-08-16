@@ -227,7 +227,7 @@ async function loadProfile() {
   //=================
   // Emblemas
   //================
-  if (data.username === "" || data.username === "kaio") {
+  if (data.username === "" || data.username === "") {
 
     card.insertAdjacentHTML(
       "afterbegin",
