@@ -11,9 +11,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <!-- Fontes selecionáveis para o perfil (usadas na prévia ao vivo) -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=Bebas+Neue&family=Orbitron:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Oxanium:wght@400;500;600;700&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="dashboard.css">
   <script src="https://kit.fontawesome.com/eb9af641fe.js" crossorigin="anonymous"></script>
 </head>
@@ -637,91 +634,28 @@
 
           <div class="field-card">
             <div class="field-card-header">
-              <span class="field-card-icon"><i class="fa-solid fa-expand"></i></span>
-              <div>
-                <h3>Dimensões do card</h3>
-                <p>Ajuste o tamanho, o arredondamento e o espaçamento do seu perfil</p>
-              </div>
-            </div>
-            <div class="field-card-body">
-
-              <div class="range-field">
-                <div class="range-field-label">
-                  <label>Largura do card</label>
-                  <div class="range-field-actions">
-                    <span class="range-value" id="card-width-value">95%</span>
-                    <button type="button" class="reset-btn" id="card-width-reset" title="Restaurar padrão" aria-label="Restaurar padrão">
-                      <i class="fa-solid fa-rotate-left"></i>
-                    </button>
-                  </div>
-                </div>
-                <input type="range" id="card-width-input" min="60" max="100" step="1" value="95">
-              </div>
-
-              <div class="range-field">
-                <div class="range-field-label">
-                  <label>Largura máxima</label>
-                  <div class="range-field-actions">
-                    <span class="range-value" id="card-max-width-value">600px</span>
-                    <button type="button" class="reset-btn" id="card-max-width-reset" title="Restaurar padrão" aria-label="Restaurar padrão">
-                      <i class="fa-solid fa-rotate-left"></i>
-                    </button>
-                  </div>
-                </div>
-                <input type="range" id="card-max-width-input" min="400" max="900" step="10" value="600">
-              </div>
-
-              <div class="range-field">
-                <div class="range-field-label">
-                  <label>Arredondamento das bordas</label>
-                  <div class="range-field-actions">
-                    <span class="range-value" id="card-radius-value">20px</span>
-                    <button type="button" class="reset-btn" id="card-radius-reset" title="Restaurar padrão" aria-label="Restaurar padrão">
-                      <i class="fa-solid fa-rotate-left"></i>
-                    </button>
-                  </div>
-                </div>
-                <input type="range" id="card-radius-input" min="0" max="40" step="1" value="20">
-              </div>
-
-              <div class="range-field">
-                <div class="range-field-label">
-                  <label>Espaço acima das redes sociais</label>
-                  <div class="range-field-actions">
-                    <span class="range-value" id="social-margin-value">20px</span>
-                    <button type="button" class="reset-btn" id="social-margin-reset" title="Restaurar padrão" aria-label="Restaurar padrão">
-                      <i class="fa-solid fa-rotate-left"></i>
-                    </button>
-                  </div>
-                </div>
-                <input type="range" id="social-margin-input" min="0" max="60" step="1" value="20">
-              </div>
-
-            </div>
-          </div>
-
-          <div class="field-card">
-            <div class="field-card-header">
               <span class="field-card-icon"><i class="fa-solid fa-font"></i></span>
               <div>
-                <h3>Fonte</h3>
-                <p>A tipografia usada no nome, bio e textos do seu perfil</p>
+                <h3>Estilo de texto</h3>
+                <p>Transforma as letras do Nome e da Bio em caracteres estilizados — funciona em qualquer dispositivo, sem precisar carregar fonte nenhuma</p>
               </div>
             </div>
             <div class="field-card-body">
 
-              <label>Fonte</label>
+              <label>Estilo</label>
               <select id="font-input">
-                <option value="Manrope">Manrope</option>
-                <option value="Montserrat">Montserrat</option>
-                <option value="Poppins">Poppins</option>
-                <option value="Inter">Inter</option>
-                <option value="Outfit">Outfit</option>
-                <option value="Bebas Neue">Bebas Neue</option>
-                <option value="Orbitron">Orbitron</option>
-                <option value="Playfair Display">Playfair Display</option>
-                <option value="Space Grotesk">Space Grotesk</option>
-                <option value="Oxanium">Oxanium</option>
+                <option value="normal">Normal</option>
+                <option value="bold">𝐁𝐨𝐥𝐝 (Negrito)</option>
+                <option value="italic">𝘪𝘵𝘢𝘭𝘪𝘤 (Itálico)</option>
+                <option value="bold-italic">𝑩𝒐𝒍𝒅 𝑰𝒕𝒂𝒍𝒊𝒄</option>
+                <option value="script">𝓢𝓬𝓻𝓲𝓹𝓽 (Cursiva)</option>
+                <option value="fraktur">𝕱𝖗𝖆𝖐𝖙𝖚𝖗 (Gótica)</option>
+                <option value="double-struck">𝔻𝕠𝕦𝕓𝕝𝕖-𝕊𝕥𝕣𝕦𝕔𝕜 (Duplo contorno)</option>
+                <option value="mono">𝙼𝚘𝚗𝚘 (Monoespaçada)</option>
+                <option value="circular">Ⓒⓘⓡⓒⓤⓛⓐⓡ (Circular)</option>
+                <option value="square">🅂🅀🅄🄰🅁🄴 (Quadrada)</option>
+                <option value="fullwidth">Ｆｕｌｌｗｉｄｔｈ (Larga)</option>
+                <option value="tiny">ᴛɪɴʏ (Small Caps)</option>
               </select>
 
             </div>
@@ -933,11 +867,6 @@
         <div class="summary-row">
           <span>Cor do texto</span>
           <span class="mono" id="summary-color">—</span>
-        </div>
-
-        <div class="summary-row">
-          <span>Fonte</span>
-          <span class="mono" id="summary-font">Manrope</span>
         </div>
 
         <div class="summary-row">
