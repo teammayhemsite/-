@@ -621,6 +621,50 @@ function loadAlbumImages() {
       data.text_color || "white"
     );
 
+  const SERIF_FONTS = ["Playfair Display"];
+  const chosenFont = data.font || "Manrope";
+  const fontFallback =
+    SERIF_FONTS.includes(chosenFont) ? "serif" : "sans-serif";
+
+  document
+    .querySelector(".cardking")
+    .style.setProperty(
+      "--profile-font",
+      `'${chosenFont}', ${fontFallback}`
+    );
+
+  // =========================
+  // DIMENSÕES DO CARD
+  // =========================
+
+  document
+    .querySelector(".cardking")
+    .style.setProperty(
+      "--card-width",
+      (data.card_width || 95) + "%"
+    );
+
+  document
+    .querySelector(".cardking")
+    .style.setProperty(
+      "--card-max-width",
+      (data.card_max_width || 600) + "px"
+    );
+
+  document
+    .querySelector(".cardking")
+    .style.setProperty(
+      "--card-radius",
+      (data.card_radius != null ? data.card_radius : 20) + "px"
+    );
+
+  document
+    .querySelector(".social-box")
+    .style.setProperty(
+      "--social-margin-top",
+      (data.social_margin_top != null ? data.social_margin_top : 20) + "px"
+    );
+
   document.getElementById(
     "username"
   ).innerText =
@@ -720,59 +764,75 @@ function loadAlbumImages() {
   // MUSIC PLAYER
   // =========================
 
+  function formatTime(seconds) {
+
+    if (!isFinite(seconds) || isNaN(seconds)) return "0:00";
+
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+
+    return `${m}:${s.toString().padStart(2, "0")}`;
+
+  }
+
   if (data.music_url) {
 
     const audio =
-      document.getElementById(
-        "profile-music"
-      );
+      document.getElementById("profile-music");
 
-    const pill =
-      document.querySelector(
-        ".ac2-pill"
-      );
+    const player =
+      document.getElementById("music-player");
 
     const playBtn =
-      document.querySelector(
-        ".play-btn"
-      );
+      document.getElementById("playButton");
 
-    const trigger =
-      document.querySelector(
-        ".ac2-trigger"
-      );
+    const playIcon =
+      document.getElementById("play-icon");
+
+    const muteBtn =
+      document.getElementById("mute-btn");
+
+    const muteIcon =
+      document.getElementById("mute-icon");
+
+    const closeBtn =
+      document.getElementById("closePlayerBtn");
 
     const volume =
-      document.querySelector(
-        ".ac2-volume"
-      );
+      document.getElementById("volumeSlider");
 
-    pill.classList.add("show");
+    const currentTimeEl =
+      document.getElementById("currentTime");
+
+    const durationEl =
+      document.getElementById("duration");
+
+    const progressBar =
+      document.getElementById("progressBar");
+
+    const progressContainer =
+      document.getElementById("progressContainer");
+
+    const avatarImg =
+      document.getElementById("player-avatar");
+
+    const songNameEl =
+      document.getElementById("player-song-name");
+
+    player.classList.remove("hidden");
 
     audio.src =
       data.music_url;
 
     audio.volume = 0.1;
 
-    // autoplay
+    // avatar + nome do player
+    avatarImg.src =
+      data.avatar_url
+      || "https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/semfotodeperfil.jpg";
 
-    audio.addEventListener("play", () => {
-
-      trigger.classList.add("playing");
-
-      playBtn.innerHTML =
-        `<i class="fas fa-pause"></i>`;
-
-    });
-
-    audio.addEventListener("pause", () => {
-
-      trigger.classList.remove("playing");
-
-      playBtn.innerHTML =
-        `<i class="fas fa-play"></i>`;
-
-    });
+    songNameEl.textContent =
+      data.display_name || data.username || "tocando agora";
 
     // PLAY / PAUSE
     function toggleMusic() {
@@ -781,44 +841,123 @@ function loadAlbumImages() {
 
         audio.play();
 
-        trigger.classList.add(
-          "playing"
-        );
-
-        playBtn.innerHTML =
-          `<i class="fas fa-pause"></i>`;
-
       } else {
 
         audio.pause();
-
-        trigger.classList.remove(
-          "playing"
-        );
-
-        playBtn.innerHTML =
-          `<i class="fas fa-play"></i>`;
 
       }
 
     }
 
-    trigger.onclick =
-      toggleMusic;
+    audio.addEventListener("play", () => {
+
+      playIcon.className = "fa-solid fa-pause";
+
+    });
+
+    audio.addEventListener("pause", () => {
+
+      playIcon.className = "fa-solid fa-play";
+
+    });
 
     playBtn.onclick =
       toggleMusic;
 
-    // volume
-    volume.addEventListener(
-      "input",
-      () => {
+    // duração / progresso
+    audio.addEventListener("loadedmetadata", () => {
 
-        audio.volume =
-          volume.value / 100;
+      durationEl.textContent =
+        formatTime(audio.duration);
+
+    });
+
+    audio.addEventListener("timeupdate", () => {
+
+      currentTimeEl.textContent =
+        formatTime(audio.currentTime);
+
+      if (audio.duration) {
+
+        progressBar.style.width =
+          `${(audio.currentTime / audio.duration) * 100}%`;
 
       }
-    );
+
+    });
+
+    // clique na barra para buscar o ponto da música
+    progressContainer.addEventListener("click", (e) => {
+
+      if (!audio.duration) return;
+
+      const rect =
+        progressContainer.getBoundingClientRect();
+
+      const ratio =
+        Math.min(
+          Math.max((e.clientX - rect.left) / rect.width, 0),
+          1
+        );
+
+      audio.currentTime =
+        ratio * audio.duration;
+
+    });
+
+    // volume
+    volume.addEventListener("input", () => {
+
+      audio.volume =
+        Number(volume.value);
+
+      if (audio.volume === 0) {
+
+        audio.muted = true;
+
+      } else {
+
+        audio.muted = false;
+
+      }
+
+      muteIcon.className =
+        audio.muted
+          ? "fa-solid fa-volume-xmark"
+          : "fa-solid fa-volume-high";
+
+    });
+
+    volume.value =
+      audio.volume;
+
+    // mudo
+    muteBtn.onclick = () => {
+
+      audio.muted = !audio.muted;
+
+      muteIcon.className =
+        audio.muted
+          ? "fa-solid fa-volume-xmark"
+          : "fa-solid fa-volume-high";
+
+    };
+
+    // fechar player
+    closeBtn.onclick = () => {
+
+      audio.pause();
+
+      player.classList.add("hidden");
+
+    };
+
+  } else {
+
+    const player =
+      document.getElementById("music-player");
+
+    if (player) player.classList.add("hidden");
 
   }
 
