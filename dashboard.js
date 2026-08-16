@@ -15,18 +15,202 @@ document.querySelectorAll(".toggle").forEach(btn => {
 const $ = (id) =>
   document.getElementById(id);
 
-// Monta a pilha de fontes com um fallback genérico adequado, para que o
-// texto continue legível caso a fonte do Google Fonts não carregue.
-const SERIF_FONTS = ["Playfair Display"];
+// =========================
+// ESTILOS DE TEXTO (Unicode)
+// Substitui letras/números por caracteres Unicode equivalentes — não é
+// uma fonte de verdade, então funciona em qualquer dispositivo/navegador
+// sem precisar carregar nada.
+// =========================
 
-function fontStack(fontName) {
+function mapSequential(text, { upperBase, lowerBase, digitBase, upperExceptions, lowerExceptions }) {
 
-  const name = fontName || "Manrope";
+  const upperExc = upperExceptions || {};
+  const lowerExc = lowerExceptions || {};
 
-  const fallback =
-    SERIF_FONTS.includes(name) ? "serif" : "sans-serif";
+  return [...text].map(ch => {
 
-  return `'${name}', ${fallback}`;
+    const code = ch.codePointAt(0);
+
+    if (ch >= "A" && ch <= "Z") {
+
+      if (upperExc[ch]) return upperExc[ch];
+      if (upperBase == null) return ch;
+      return String.fromCodePoint(upperBase + (code - 65));
+
+    }
+
+    if (ch >= "a" && ch <= "z") {
+
+      if (lowerExc[ch]) return lowerExc[ch];
+      if (lowerBase == null) return ch;
+      return String.fromCodePoint(lowerBase + (code - 97));
+
+    }
+
+    if (ch >= "0" && ch <= "9") {
+
+      if (digitBase == null) return ch;
+      return String.fromCodePoint(digitBase + (code - 48));
+
+    }
+
+    return ch;
+
+  }).join("");
+
+}
+
+const SMALL_CAPS_MAP = {
+  a: "ᴀ", b: "ʙ", c: "ᴄ", d: "ᴅ", e: "ᴇ", f: "ꜰ", g: "ɢ", h: "ʜ", i: "ɪ",
+  j: "ᴊ", k: "ᴋ", l: "ʟ", m: "ᴍ", n: "ɴ", o: "ᴏ", p: "ᴘ", q: "ꞯ", r: "ʀ",
+  s: "ꜱ", t: "ᴛ", u: "ᴜ", v: "ᴠ", w: "ᴡ", x: "x", y: "ʏ", z: "ᴢ"
+};
+
+const CIRCLED_DIGITS = {
+  "0": "⓪", "1": "①", "2": "②", "3": "③", "4": "④",
+  "5": "⑤", "6": "⑥", "7": "⑦", "8": "⑧", "9": "⑨"
+};
+
+const DOUBLE_STRUCK_UPPER_EXC = {
+  C: "ℂ", H: "ℍ", N: "ℕ", P: "ℙ", Q: "ℚ", R: "ℝ", Z: "ℤ"
+};
+
+function applyTextStyle(text, style) {
+
+  if (!text) return text;
+
+  switch (style) {
+
+    case "bold":
+      return mapSequential(text, { upperBase: 0x1D400, lowerBase: 0x1D41A, digitBase: 0x1D7CE });
+
+    case "italic":
+      // Sans-serif italic: bloco totalmente contíguo, sem exceções
+      return mapSequential(text, { upperBase: 0x1D608, lowerBase: 0x1D622, digitBase: null });
+
+    case "bold-italic":
+      return mapSequential(text, { upperBase: 0x1D468, lowerBase: 0x1D482, digitBase: null });
+
+    case "script":
+      // Bold script: bloco totalmente contíguo, sem exceções
+      return mapSequential(text, { upperBase: 0x1D4D0, lowerBase: 0x1D4EA, digitBase: null });
+
+    case "fraktur":
+      // Bold fraktur: bloco totalmente contíguo, sem exceções
+      return mapSequential(text, { upperBase: 0x1D56C, lowerBase: 0x1D586, digitBase: null });
+
+    case "double-struck":
+      return mapSequential(text, {
+        upperBase: 0x1D538, lowerBase: 0x1D552, digitBase: 0x1D7D8,
+        upperExceptions: DOUBLE_STRUCK_UPPER_EXC
+      });
+
+    case "mono":
+      return mapSequential(text, { upperBase: 0x1D670, lowerBase: 0x1D68A, digitBase: 0x1D7F6 });
+
+    case "circular":
+      return [...text].map(ch => {
+
+        if (ch >= "A" && ch <= "Z")
+          return String.fromCodePoint(0x24B6 + (ch.codePointAt(0) - 65));
+
+        if (ch >= "a" && ch <= "z")
+          return String.fromCodePoint(0x24D0 + (ch.codePointAt(0) - 97));
+
+        if (ch >= "0" && ch <= "9") return CIRCLED_DIGITS[ch];
+
+        return ch;
+
+      }).join("");
+
+    case "square":
+      // Só existe o bloco maiúsculo — minúsculas viram maiúsculas
+      return [...text].map(ch => {
+
+        if (ch >= "A" && ch <= "Z")
+          return String.fromCodePoint(0x1F130 + (ch.codePointAt(0) - 65));
+
+        if (ch >= "a" && ch <= "z")
+          return String.fromCodePoint(0x1F130 + (ch.codePointAt(0) - 97));
+
+        return ch;
+
+      }).join("");
+
+    case "fullwidth":
+      return mapSequential(text, { upperBase: 0xFF21, lowerBase: 0xFF41, digitBase: 0xFF10 })
+        .replace(/ /g, "\u3000");
+
+    case "tiny":
+      return [...text].map(ch => {
+
+        const lower = ch.toLowerCase();
+
+        return SMALL_CAPS_MAP[lower] || ch;
+
+      }).join("");
+
+    case "normal":
+    default:
+      return text;
+
+  }
+
+}
+
+// Constrói o mapa reverso (caractere estilizado -> letra normal) juntando
+// a saída de todos os estilos acima. Assim dá pra voltar ao "Normal" (ou
+// trocar de estilo) sem perder o texto original, mesmo que o campo já
+// esteja com Unicode chique dentro.
+const REVERSE_STYLE_MAP = (() => {
+
+  // minúsculas primeiro: em estilos onde maiúscula/minúscula colapsam no
+  // mesmo caractere (small caps, quadrada), prefere reconstruir minúscula
+  const alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+  const styles = [
+    "bold", "italic", "bold-italic", "script", "fraktur",
+    "double-struck", "mono", "circular", "square", "fullwidth", "tiny"
+  ];
+
+  // Algumas letras (ex: "x" no small caps) não têm glifo Unicode dedicado
+  // e a tabela cai de volta pro caractere original sem estilo nenhum. Um
+  // "estilo" que devolve uma letra ASCII comum não é um caractere estilizado
+  // de verdade — não pode virar chave do mapa reverso, senão qualquer "x"
+  // normal em qualquer texto seria "revertido" por engano.
+  const isPlainAscii = ch => /^[A-Za-z0-9]$/.test(ch);
+
+  const reverse = {};
+
+  styles.forEach(style => {
+
+    [...alphabet].forEach(plainChar => {
+
+      const styledChar = applyTextStyle(plainChar, style);
+
+      if (
+        styledChar !== plainChar &&
+        !isPlainAscii(styledChar) &&
+        !(styledChar in reverse)
+      ) {
+        reverse[styledChar] = plainChar;
+      }
+
+    });
+
+  });
+
+  reverse["\u3000"] = " ";
+
+  return reverse;
+
+})();
+
+function stripTextStyle(text) {
+
+  if (!text) return text;
+
+  return [...text].map(ch => REVERSE_STYLE_MAP[ch] || ch).join("");
 
 }
 
@@ -72,59 +256,6 @@ const musicFile =
 
 const effectInput =
   $("effect-input");
-
-// =========================
-// DIMENSÕES DO CARD
-// =========================
-
-const CARD_DIMENSION_DEFAULTS = {
-  cardWidth: 95,
-  cardMaxWidth: 600,
-  cardRadius: 20,
-  socialMarginTop: 20
-};
-
-const cardWidthInput = $("card-width-input");
-const cardWidthValue = $("card-width-value");
-const cardWidthReset = $("card-width-reset");
-
-const cardMaxWidthInput = $("card-max-width-input");
-const cardMaxWidthValue = $("card-max-width-value");
-const cardMaxWidthReset = $("card-max-width-reset");
-
-const cardRadiusInput = $("card-radius-input");
-const cardRadiusValue = $("card-radius-value");
-const cardRadiusReset = $("card-radius-reset");
-
-const socialMarginInput = $("social-margin-input");
-const socialMarginValue = $("social-margin-value");
-const socialMarginReset = $("social-margin-reset");
-
-function resetRangeField(input, defaultValue) {
-
-  input.value = defaultValue;
-
-  input.dispatchEvent(
-    new Event("input", { bubbles: true })
-  );
-
-}
-
-cardWidthReset.addEventListener("click", () =>
-  resetRangeField(cardWidthInput, CARD_DIMENSION_DEFAULTS.cardWidth)
-);
-
-cardMaxWidthReset.addEventListener("click", () =>
-  resetRangeField(cardMaxWidthInput, CARD_DIMENSION_DEFAULTS.cardMaxWidth)
-);
-
-cardRadiusReset.addEventListener("click", () =>
-  resetRangeField(cardRadiusInput, CARD_DIMENSION_DEFAULTS.cardRadius)
-);
-
-socialMarginReset.addEventListener("click", () =>
-  resetRangeField(socialMarginInput, CARD_DIMENSION_DEFAULTS.socialMarginTop)
-);
 
 const entranceEnabled =
   $("entrance-enabled");
@@ -534,26 +665,11 @@ $("save-btn")
           text_color:
             textColorInput.value,
 
-          font:
-            fontInput.value,
-
           template:
             templateInput.value,
 
           box_style:
             boxStyleInput.value,
-
-          card_width:
-            Number(cardWidthInput.value),
-
-          card_max_width:
-            Number(cardMaxWidthInput.value),
-
-          card_radius:
-            Number(cardRadiusInput.value),
-
-          social_margin_top:
-            Number(socialMarginInput.value),
 
           youtube_url:
             youtubeInput.value,
@@ -1219,46 +1335,6 @@ function updatePreview() {
     textColorInput.value
   );
 
-  previewCard.style.setProperty(
-    "--profile-font",
-    fontStack(fontInput.value)
-  );
-
-  // DIMENSÕES DO CARD
-
-  previewCard.style.width =
-    cardWidthInput.value + "%";
-
-  previewCard.style.maxWidth =
-    `min(${cardMaxWidthInput.value}px, 100%)`;
-
-  previewCard.style.borderRadius =
-    cardRadiusInput.value + "px";
-
-  cardWidthValue.innerText =
-    cardWidthInput.value + "%";
-
-  cardMaxWidthValue.innerText =
-    cardMaxWidthInput.value + "px";
-
-  cardRadiusValue.innerText =
-    cardRadiusInput.value + "px";
-
-  socialMarginValue.innerText =
-    socialMarginInput.value + "px";
-
-  // A prévia não tem o wrapper .social-box, então aplicamos
-  // o espaçamento direto no elemento .socials pra representar o efeito
-  const previewSocials =
-    document.getElementById("socials");
-
-  if (previewSocials) {
-
-    previewSocials.style.marginTop =
-      socialMarginInput.value + "px";
-
-  }
-
   document.body.classList.remove(
     "cardking-theme",
     "cardkingdois-theme",
@@ -1482,21 +1558,6 @@ async function loadDashboard() {
 
   textColorInput.value =
     data.text_color || "white";
-
-  fontInput.value =
-    data.font || "Manrope";
-
-  cardWidthInput.value =
-    data.card_width != null ? data.card_width : CARD_DIMENSION_DEFAULTS.cardWidth;
-
-  cardMaxWidthInput.value =
-    data.card_max_width != null ? data.card_max_width : CARD_DIMENSION_DEFAULTS.cardMaxWidth;
-
-  cardRadiusInput.value =
-    data.card_radius != null ? data.card_radius : CARD_DIMENSION_DEFAULTS.cardRadius;
-
-  socialMarginInput.value =
-    data.social_margin_top != null ? data.social_margin_top : CARD_DIMENSION_DEFAULTS.socialMarginTop;
 
   youtubeInput.value =
     data.youtube_url || "";
@@ -1883,12 +1944,6 @@ function updateSummary() {
   $("summary-color").textContent =
     textColorInput.value === "black" ? "Preto" : "Branco";
 
-  const summaryFont = $("summary-font");
-
-  if (summaryFont)
-    summaryFont.textContent =
-      fontInput.value || "Manrope";
-
   const connected =
     socialInputsList.filter(i => i.value.trim()).length;
 
@@ -1921,6 +1976,29 @@ document
 document
   .querySelectorAll(".frame-card")
   .forEach(card => card.addEventListener("click", updateSummary));
+
+// Aplica o estilo de texto escolhido ao Nome e à Bio. Sempre limpa
+// qualquer estilo anterior antes de aplicar o novo, então dá pra trocar
+// de estilo (ou voltar a "Normal") quantas vezes quiser sem acumular.
+fontInput?.addEventListener("change", () => {
+
+  const style = fontInput.value;
+
+  [nameInput, bioInput].forEach(field => {
+
+    const plain = stripTextStyle(field.value);
+
+    field.value =
+      style === "normal"
+        ? plain
+        : applyTextStyle(plain, style);
+
+  });
+
+  updatePreview();
+  updateSummary();
+
+});
 
 // =========================
 // CARREGAR DASHBOARD
