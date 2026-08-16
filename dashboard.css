@@ -569,143 +569,6 @@ select option{
 }
 
 /* =========================================================
-   RANGE FIELDS (sliders com valor + restaurar padrão)
-========================================================= */
-
-.range-field{
-  margin-bottom: 18px;
-}
-
-.range-field:last-child{
-  margin-bottom: 0;
-}
-
-.range-field-label{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-
-  margin-top:14px;
-  margin-bottom:10px;
-}
-
-.range-field:first-child .range-field-label{
-  margin-top:0;
-}
-
-.range-field-label label{
-  margin:0;
-}
-
-.range-field-actions{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-
-.range-value{
-  min-width:44px;
-  text-align:right;
-
-  font-family: var(--font-mono);
-  font-size:12px;
-  color: var(--text-muted);
-}
-
-.reset-btn{
-  width:26px;
-  height:26px;
-  flex-shrink:0;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:0;
-  margin:0;
-
-  border-radius:50%;
-  border:1px solid var(--border);
-  background: var(--bg-elevated);
-  color: var(--text-muted);
-
-  font-size:11px;
-  cursor:pointer;
-
-  transition: background .15s ease, border-color .15s ease, color .15s ease, transform .15s ease;
-}
-
-.reset-btn:hover{
-  background: var(--surface-alt);
-  border-color: var(--gold-dim);
-  color: var(--text);
-}
-
-.reset-btn:active{
-  transform: scale(0.92);
-}
-
-input[type="range"]{
-  -webkit-appearance:none;
-  appearance:none;
-
-  width:100%;
-  height:4px;
-  padding:0;
-  margin:0 0 4px;
-
-  background: var(--border-strong);
-  border:none;
-  border-radius:999px;
-
-  cursor:pointer;
-}
-
-input[type="range"]::-webkit-slider-thumb{
-  -webkit-appearance:none;
-  appearance:none;
-
-  width:16px;
-  height:16px;
-
-  border-radius:50%;
-  background: var(--gold);
-  border:3px solid var(--bg-elevated);
-  box-shadow: 0 0 0 1px var(--border-strong);
-
-  cursor:pointer;
-  transition: transform .15s ease;
-}
-
-input[type="range"]::-webkit-slider-thumb:hover{
-  transform: scale(1.15);
-}
-
-input[type="range"]::-moz-range-thumb{
-  width:16px;
-  height:16px;
-
-  border-radius:50%;
-  background: var(--gold);
-  border:3px solid var(--bg-elevated);
-  box-shadow: 0 0 0 1px var(--border-strong);
-
-  cursor:pointer;
-  transition: transform .15s ease;
-}
-
-input[type="range"]::-moz-range-thumb:hover{
-  transform: scale(1.15);
-}
-
-input[type="range"]::-moz-range-track{
-  background: var(--border-strong);
-  height:4px;
-  border-radius:999px;
-}
-
-/* =========================================================
    UPLOAD BOXES
 ========================================================= */
 
@@ -971,7 +834,7 @@ input[type="range"]::-moz-range-track{
 }
 
 .conteudoking h2{
-  font-family: var(--profile-font, var(--font-display));
+  font-family: var(--font-display);
   font-size:26px;
   font-weight:600;
   margin-bottom:8px;
@@ -979,7 +842,6 @@ input[type="range"]::-moz-range-track{
 }
 
 .conteudoking p{
-  font-family: var(--profile-font, var(--font-body));
   font-size:13.5px;
   line-height:1.55;
   opacity:0.85;
