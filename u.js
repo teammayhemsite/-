@@ -578,39 +578,6 @@ function loadAlbumImages() {
   }
 
   // =========================
-  // BOX STYLE
-  // =========================
-
-  if (
-    data.box_style ===
-    "transparent"
-  ) {
-
-    document
-      .querySelector(".cardking")
-      .style.backdropFilter =
-      "blur(1px)";
-
-    document
-      .querySelector(".cardking")
-      .style.webkitBackdropFilter =
-      "blur(1px)";
-
-  } else {
-
-    document
-      .querySelector(".cardking")
-      .style.backdropFilter =
-      "blur(18px)";
-
-    document
-      .querySelector(".cardking")
-      .style.webkitBackdropFilter =
-      "blur(18px)";
-
-  }
-
-  // =========================
   // TEXTO
   // =========================
 
@@ -621,48 +588,58 @@ function loadAlbumImages() {
       data.text_color || "white"
     );
 
-  const SERIF_FONTS = ["Playfair Display"];
-  const chosenFont = data.font || "Manrope";
-  const fontFallback =
-    SERIF_FONTS.includes(chosenFont) ? "serif" : "sans-serif";
-
-  document
-    .querySelector(".cardking")
-    .style.setProperty(
-      "--profile-font",
-      `'${chosenFont}', ${fontFallback}`
-    );
-
   // =========================
-  // DIMENSÕES DO CARD
+  // PERSONALIZAR CARD
   // =========================
 
-  document
-    .querySelector(".cardking")
-    .style.setProperty(
-      "--card-width",
-      (data.card_width || 95) + "%"
-    );
+  const cardEl =
+    document.querySelector(".cardking");
 
-  document
-    .querySelector(".cardking")
-    .style.setProperty(
-      "--card-max-width",
-      (data.card_max_width || 600) + "px"
-    );
+  cardEl.style.setProperty(
+    "--card-width",
+    (data.card_width ?? 95) + "%"
+  );
 
-  document
-    .querySelector(".cardking")
-    .style.setProperty(
-      "--card-radius",
-      (data.card_radius != null ? data.card_radius : 20) + "px"
-    );
+  cardEl.style.setProperty(
+    "--card-max-width",
+    (data.card_max_width ?? 600) + "px"
+  );
+
+  cardEl.style.setProperty(
+    "--card-radius",
+    (data.card_radius ?? 20) + "px"
+  );
+
+  cardEl.style.setProperty(
+    "--card-blur",
+    (data.card_blur ?? 18) + "px"
+  );
+
+  cardEl.style.setProperty(
+    "--card-bg-opacity",
+    (data.card_bg_opacity ?? 0) / 100
+  );
+
+  cardEl.style.setProperty(
+    "--card-border-opacity",
+    (data.card_border_opacity ?? 20) / 100
+  );
+
+  cardEl.style.setProperty(
+    "--banner-height",
+    (data.banner_height ?? 170) + "px"
+  );
+
+  cardEl.style.setProperty(
+    "--avatar-size",
+    (data.avatar_size ?? 95) + "px"
+  );
 
   document
     .querySelector(".social-box")
     .style.setProperty(
       "--social-margin-top",
-      (data.social_margin_top != null ? data.social_margin_top : 20) + "px"
+      (data.social_margin_top ?? 20) + "px"
     );
 
   document.getElementById(
