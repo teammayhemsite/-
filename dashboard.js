@@ -245,8 +245,30 @@ const templateInput =
 const textColorInput =
   $("text-color-input");
 
-const boxStyleInput =
-  $("box-style-input");
+const cardWidthInput = $("card-width-input");
+const cardMaxWidthInput = $("card-max-width-input");
+const cardRadiusInput = $("card-radius-input");
+const cardBlurInput = $("card-blur-input");
+const cardBgOpacityInput = $("card-bg-opacity-input");
+const cardBorderOpacityInput = $("card-border-opacity-input");
+const bannerHeightInput = $("banner-height-input");
+const avatarSizeInput = $("avatar-size-input");
+const socialMarginInput = $("social-margin-input");
+const resetCardStyleBtn = $("reset-card-style");
+
+// Valor padrão de cada slider — usado tanto no botão "Restaurar padrão"
+// quanto como fallback quando o perfil ainda não tem nada salvo.
+const CARD_STYLE_DEFAULTS = {
+  cardWidthInput: 95,
+  cardMaxWidthInput: 600,
+  cardRadiusInput: 20,
+  cardBlurInput: 18,
+  cardBgOpacityInput: 0,
+  cardBorderOpacityInput: 20,
+  bannerHeightInput: 170,
+  avatarSizeInput: 95,
+  socialMarginInput: 20
+};
 
 const fontInput =
   $("font-input");
@@ -668,8 +690,32 @@ $("save-btn")
           template:
             templateInput.value,
 
-          box_style:
-            boxStyleInput.value,
+          card_width:
+            Number(cardWidthInput.value),
+
+          card_max_width:
+            Number(cardMaxWidthInput.value),
+
+          card_radius:
+            Number(cardRadiusInput.value),
+
+          card_blur:
+            Number(cardBlurInput.value),
+
+          card_bg_opacity:
+            Number(cardBgOpacityInput.value),
+
+          card_border_opacity:
+            Number(cardBorderOpacityInput.value),
+
+          banner_height:
+            Number(bannerHeightInput.value),
+
+          avatar_size:
+            Number(avatarSizeInput.value),
+
+          social_margin_top:
+            Number(socialMarginInput.value),
 
           youtube_url:
             youtubeInput.value,
@@ -1307,6 +1353,82 @@ async function uploadMusic(
 }
 
 // =========================
+// PERSONALIZAR CARD
+// =========================
+
+function applyCardStyleVars(previewCard) {
+
+  $("card-width-value").textContent =
+    cardWidthInput.value + "%";
+
+  $("card-max-width-value").textContent =
+    cardMaxWidthInput.value + "px";
+
+  $("card-radius-value").textContent =
+    cardRadiusInput.value + "px";
+
+  $("card-blur-value").textContent =
+    cardBlurInput.value + "px";
+
+  $("card-bg-opacity-value").textContent =
+    cardBgOpacityInput.value + "%";
+
+  $("card-border-opacity-value").textContent =
+    cardBorderOpacityInput.value + "%";
+
+  $("banner-height-value").textContent =
+    bannerHeightInput.value + "px";
+
+  $("avatar-size-value").textContent =
+    avatarSizeInput.value + "px";
+
+  $("social-margin-value").textContent =
+    socialMarginInput.value + "px";
+
+  if (!previewCard) return;
+
+  // A mini-prévia do dashboard usa um layout simplificado e fixo (banner,
+  // avatar e espaçamento das redes têm posições próprias aqui dentro).
+  // Por isso só refletimos aqui o que dá pra aplicar com segurança —
+  // arredondamento, vidro e opacidades. Largura, banner, avatar e o
+  // espaçamento das redes aparecem fiéis de verdade no perfil público.
+  previewCard.style.borderRadius =
+    cardRadiusInput.value + "px";
+
+  previewCard.style.backdropFilter =
+    `blur(${cardBlurInput.value}px)`;
+
+  previewCard.style.webkitBackdropFilter =
+    `blur(${cardBlurInput.value}px)`;
+
+  previewCard.style.background =
+    `rgba(255,255,255,${cardBgOpacityInput.value / 100})`;
+
+  previewCard.style.borderColor =
+    `rgba(255,255,255,${cardBorderOpacityInput.value / 100})`;
+
+}
+
+function resetCardStyleDefaults() {
+
+  cardWidthInput.value = CARD_STYLE_DEFAULTS.cardWidthInput;
+  cardMaxWidthInput.value = CARD_STYLE_DEFAULTS.cardMaxWidthInput;
+  cardRadiusInput.value = CARD_STYLE_DEFAULTS.cardRadiusInput;
+  cardBlurInput.value = CARD_STYLE_DEFAULTS.cardBlurInput;
+  cardBgOpacityInput.value = CARD_STYLE_DEFAULTS.cardBgOpacityInput;
+  cardBorderOpacityInput.value = CARD_STYLE_DEFAULTS.cardBorderOpacityInput;
+  bannerHeightInput.value = CARD_STYLE_DEFAULTS.bannerHeightInput;
+  avatarSizeInput.value = CARD_STYLE_DEFAULTS.avatarSizeInput;
+  socialMarginInput.value = CARD_STYLE_DEFAULTS.socialMarginInput;
+
+  updatePreview();
+  updateSummary();
+
+}
+
+resetCardStyleBtn?.addEventListener("click", resetCardStyleDefaults);
+
+// =========================
 // PREVIEW
 // =========================
 
@@ -1315,25 +1437,12 @@ function updatePreview() {
   const previewCard =
     document.querySelector(".cardking");
 
-  if (
-    boxStyleInput.value ===
-    "transparent"
-  ) {
-
-    previewCard.style.backdropFilter =
-      "blur(1px)";
-
-  } else {
-
-    previewCard.style.backdropFilter =
-      "blur(18px)";
-
-  }
-
   previewCard.style.setProperty(
     "--text-color",
     textColorInput.value
   );
+
+  applyCardStyleVars(previewCard);
 
   document.body.classList.remove(
     "cardking-theme",
@@ -1553,8 +1662,32 @@ async function loadDashboard() {
   templateInput.value =
     data.template || "cardking";
 
-  boxStyleInput.value =
-    data.box_style || "blur";
+  cardWidthInput.value =
+    data.card_width ?? CARD_STYLE_DEFAULTS.cardWidthInput;
+
+  cardMaxWidthInput.value =
+    data.card_max_width ?? CARD_STYLE_DEFAULTS.cardMaxWidthInput;
+
+  cardRadiusInput.value =
+    data.card_radius ?? CARD_STYLE_DEFAULTS.cardRadiusInput;
+
+  cardBlurInput.value =
+    data.card_blur ?? CARD_STYLE_DEFAULTS.cardBlurInput;
+
+  cardBgOpacityInput.value =
+    data.card_bg_opacity ?? CARD_STYLE_DEFAULTS.cardBgOpacityInput;
+
+  cardBorderOpacityInput.value =
+    data.card_border_opacity ?? CARD_STYLE_DEFAULTS.cardBorderOpacityInput;
+
+  bannerHeightInput.value =
+    data.banner_height ?? CARD_STYLE_DEFAULTS.bannerHeightInput;
+
+  avatarSizeInput.value =
+    data.avatar_size ?? CARD_STYLE_DEFAULTS.avatarSizeInput;
+
+  socialMarginInput.value =
+    data.social_margin_top ?? CARD_STYLE_DEFAULTS.socialMarginInput;
 
   textColorInput.value =
     data.text_color || "white";
