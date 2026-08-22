@@ -582,11 +582,6 @@
                   <span>Super Fire</span>
                 </div>
 
-                 <div class="frame-card" data-frame="https://cdn.discordapp.com/avatar-decoration-presets/a_c1fba076919b76b5170df846d285117d.png">
-                  <img src="https://cdn.discordapp.com/avatar-decoration-presets/a_c1fba076919b76b5170df846d285117d.png">
-                  <span>Zé cavera blue</span>
-                </div>
-
                 <!--Final moldura-->
               </div>
 
@@ -603,18 +598,10 @@
               <span class="field-card-icon"><i class="fa-solid fa-swatchbook"></i></span>
               <div>
                 <h3>Estilo do card</h3>
-                <p>Vidro, layout e cor do texto do seu perfil</p>
+                <p>Layout e cor do texto do seu perfil</p>
               </div>
             </div>
             <div class="field-card-body two-col">
-
-              <div>
-                <label>Box / Card</label>
-                <select id="box-style-input">
-                  <option value="blur">Vidro borrado</option>
-                  <option value="transparent">Vidro transparente</option>
-                </select>
-              </div>
 
               <div>
                 <label>Layout</label>
@@ -633,6 +620,95 @@
                   <option value="black">Preto</option>
                 </select>
               </div>
+
+            </div>
+          </div>
+
+          <div class="field-card">
+            <div class="field-card-header">
+              <span class="field-card-icon"><i class="fa-solid fa-sliders"></i></span>
+              <div>
+                <h3>Personalizar card</h3>
+                <p>Ajuste fino do tamanho, vidro e espaçamento do seu card — igual você vê em outros sites de perfil</p>
+              </div>
+            </div>
+            <div class="field-card-body range-grid">
+
+              <div class="range-row">
+                <div class="range-row-label">
+                  <label>Largura do card</label>
+                  <span class="range-value" id="card-width-value">95%</span>
+                </div>
+                <input type="range" id="card-width-input" min="60" max="100" step="1" value="95">
+              </div>
+
+              <div class="range-row">
+                <div class="range-row-label">
+                  <label>Largura máxima</label>
+                  <span class="range-value" id="card-max-width-value">600px</span>
+                </div>
+                <input type="range" id="card-max-width-input" min="380" max="800" step="10" value="600">
+              </div>
+
+              <div class="range-row">
+                <div class="range-row-label">
+                  <label>Arredondamento</label>
+                  <span class="range-value" id="card-radius-value">20px</span>
+                </div>
+                <input type="range" id="card-radius-input" min="0" max="40" step="1" value="20">
+              </div>
+
+              <div class="range-row">
+                <div class="range-row-label">
+                  <label>Intensidade do vidro</label>
+                  <span class="range-value" id="card-blur-value">18px</span>
+                </div>
+                <input type="range" id="card-blur-input" min="0" max="40" step="1" value="18">
+              </div>
+
+              <div class="range-row">
+                <div class="range-row-label">
+                  <label>Opacidade do fundo</label>
+                  <span class="range-value" id="card-bg-opacity-value">0%</span>
+                </div>
+                <input type="range" id="card-bg-opacity-input" min="0" max="60" step="1" value="0">
+              </div>
+
+              <div class="range-row">
+                <div class="range-row-label">
+                  <label>Opacidade da borda</label>
+                  <span class="range-value" id="card-border-opacity-value">20%</span>
+                </div>
+                <input type="range" id="card-border-opacity-input" min="0" max="60" step="1" value="20">
+              </div>
+
+              <div class="range-row">
+                <div class="range-row-label">
+                  <label>Altura do banner</label>
+                  <span class="range-value" id="banner-height-value">170px</span>
+                </div>
+                <input type="range" id="banner-height-input" min="100" max="260" step="5" value="170">
+              </div>
+
+              <div class="range-row">
+                <div class="range-row-label">
+                  <label>Tamanho do avatar</label>
+                  <span class="range-value" id="avatar-size-value">95px</span>
+                </div>
+                <input type="range" id="avatar-size-input" min="60" max="140" step="5" value="95">
+              </div>
+
+              <div class="range-row">
+                <div class="range-row-label">
+                  <label>Espaço acima das redes</label>
+                  <span class="range-value" id="social-margin-value">20px</span>
+                </div>
+                <input type="range" id="social-margin-input" min="0" max="50" step="2" value="20">
+              </div>
+
+              <button type="button" id="reset-card-style" class="reset-range-btn">
+                <i class="fa-solid fa-arrow-rotate-left"></i> Restaurar padrão
+              </button>
 
             </div>
           </div>
