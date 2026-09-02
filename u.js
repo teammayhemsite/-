@@ -268,7 +268,7 @@ async function loadProfile() {
 
   }
 
-    if (data.username === "krpris") {
+    if (data.username === "") {
 
     card.insertAdjacentHTML(
       "afterbegin",
