@@ -1448,3 +1448,129 @@ input[type="range"]::-moz-range-thumb{
   }
 
 }
+
+/* =========================================================
+   TEMPLATE PREVIEW OVERRIDES
+   Styles applied when dashboard.js adds theme classes to body
+========================================================= */
+
+/* CENTRALIZADO */
+
+.cardkingdois-theme .cardking {
+  max-width: 280px;
+}
+
+.cardkingdois-theme .avatar-wrapper {
+  position: relative;
+  top: auto;
+  left: auto;
+  margin: -30px auto 0;
+}
+
+.cardkingdois-theme .balao {
+  display: none !important;
+}
+
+.cardkingdois-theme .conteudoking {
+  text-align: center;
+  padding-top: 12px;
+}
+
+.cardkingdois-theme .socials {
+  justify-content: center;
+}
+
+/* GRANDE (template3) */
+
+.template3-theme .cardking {
+  max-width: 420px;
+}
+
+.template3-theme .topo {
+  height: 150px;
+}
+
+.template3-theme .avatar-wrapper {
+  top: 100px;
+  width: 90px;
+  height: 90px;
+}
+
+.template3-theme .conteudoking {
+  padding-top: 66px;
+}
+
+.template3-theme .socials {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.template3-theme .socials a {
+  width: 100%;
+  min-height: 48px;
+  border-radius: 12px;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* MINIMALISTA (template4) */
+
+.template4-theme .cardking {
+  max-width: 320px;
+  overflow: visible;
+  background: rgba(0,0,0,.25);
+  border: 2px solid rgba(255,255,255,.25);
+  padding: 20px;
+}
+
+.template4-theme .topo {
+  display: none;
+}
+
+.template4-theme .avatar-wrapper {
+  position: absolute;
+  top: -25px;
+  left: 16px;
+  width: 70px;
+  height: 70px;
+}
+
+.template4-theme .avatar-wrapper .perfilking {
+  border-radius: 14px;
+  border: none;
+}
+
+.template4-theme .balao {
+  display: none !important;
+}
+
+.template4-theme .conteudoking {
+  padding-top: 55px;
+  padding-left: 0;
+}
+
+.template4-theme .conteudoking h2 {
+  font-size: 28px;
+  margin-left: 10px;
+}
+
+.template4-theme .conteudoking p {
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+.template4-theme .socials {
+  margin-left: 10px;
+}
+
+.template4-theme .socials a {
+  width: 34px;
+  height: 34px;
+}
+
+.template4-theme #extras-container {
+  display: none;
+}
+
