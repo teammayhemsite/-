@@ -1,0 +1,144 @@
+/* =========================================================
+   MINIMALISTA LAYOUT — Clean minimal profile styles
+========================================================= */
+
+.cardking {
+  max-width: 650px;
+  width: var(--card-width, 95%);
+  min-height: 260px;
+  border-radius: 24px;
+  overflow: visible;
+  background: rgba(0, 0, 0, .25);
+  border: 2px solid rgba(255, 255, 255, .25);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  padding: 30px;
+  position: relative;
+  color: var(--text-color, white);
+}
+
+/* BANNER — HIDDEN */
+
+.topo {
+  display: none;
+}
+
+/* BADGE — HIDDEN */
+
+.embking {
+  display: none;
+}
+
+/* BALÃO — HIDDEN */
+
+.balao {
+  position: absolute;
+  left: -99999px;
+}
+
+/* TOP INFO */
+
+.top-info {
+  margin: 1;
+  padding: 0;
+  position: relative;
+  z-index: 5;
+}
+
+/* AVATAR — FLOATING ABOVE CARD */
+
+.avatar-wrapper {
+  position: relative;
+  width: 0px;
+  height: 0px;
+  flex-shrink: 0;
+}
+
+.perfilking {
+  position: absolute;
+  top: -35px;
+  left: 25px;
+  width: 120px;
+  height: 120px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: none;
+  border: none;
+}
+
+.avatar-frame {
+  position: absolute;
+  inset: -55%;
+  width: 300%;
+  height: 180%;
+  pointer-events: none;
+  object-fit: contain;
+  z-index: 10;
+}
+
+/* CONTEÚDO — BIGGER TEXT */
+
+.conteudoking {
+  padding-top: 95px;
+  padding-left: 0;
+  padding-right: 25px;
+  padding-bottom: 0;
+}
+
+.conteudoking h1 {
+  margin-left: 20px;
+  font-size: 42px;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.conteudoking p {
+  margin-left: 20px;
+  opacity: .9;
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+/* SOCIAL BOX */
+
+.social-box {
+  padding: 0;
+  margin-top: 0;
+  width: 100%;
+}
+
+/* SOCIALS — BIGGER ICONS */
+
+.socials {
+  margin-left: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.socials a:hover {
+  transform: scale(1.15);
+}
+
+.socials img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
+}
+
+/* EXTRAS — HIDDEN */
+
+#extras-container {
+  display: none;
+}
