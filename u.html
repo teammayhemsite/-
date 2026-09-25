@@ -2,206 +2,196 @@
 <html lang="pt-br">
 
 <head>
-
   <meta charset="UTF-8">
-
   <link rel="icon" href="https://cdn.discordapp.com/emojis/1525949441100480702.webp?size=96">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Perfil</title>
 
-  <link rel="stylesheet" href="u.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Caveat:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #050505;
+      color: white;
+      font-family: 'Manrope', sans-serif;
+    }
 
-  <!-- Fontes selecionáveis para o perfil -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=Bebas+Neue&family=Orbitron:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Oxanium:wght@400;500;600;700&display=swap" rel="stylesheet">
+    .router-loading {
+      text-align: center;
+      opacity: 0.4;
+    }
 
-  <script src="https://kit.fontawesome.com/eb9af641fe.js" crossorigin="anonymous">
-  </script>
+    .router-loading .dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: white;
+      margin: 0 3px;
+      animation: dotPulse 1.2s ease-in-out infinite;
+    }
+
+    .router-loading .dot:nth-child(2) { animation-delay: 0.15s; }
+    .router-loading .dot:nth-child(3) { animation-delay: 0.3s; }
+
+    @keyframes dotPulse {
+      0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+      40% { opacity: 1; transform: scale(1); }
+    }
+
+    /* 404 styles inline para não precisar de CSS externo */
+    .notfound-page {
+      width: 100%;
+      height: 100vh;
+      background:
+        linear-gradient(to top, rgba(145,145,145,0.493), rgba(0,0,0,0.596)),
+        url("https://i.pinimg.com/736x/b9/f6/fb/b9f6fb42bf176d06de708bc564fa29a8.jpg");
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      font-family: sans-serif;
+    }
+
+    .notfound-content {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      z-index: 2;
+    }
+
+    .astronaut {
+      width: 180px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .notfound-text h2 { color: white; font-size: 50px; font-weight: 400; }
+    .notfound-text h1 { color: white; font-size: 180px; line-height: 1; }
+    .notfound-text p { color: white; opacity: .8; font-size: 20px; margin-top: 10px; margin-bottom: 30px; }
+
+    .back-home {
+      color: white;
+      text-decoration: none;
+      border: 2px solid white;
+      padding: 12px 28px;
+      border-radius: 999px;
+      transition: .25s;
+    }
+
+    .back-home:hover { background: white; color: black; }
+
+    @keyframes float {
+      0%   { transform: translateY(0px); }
+      50%  { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+  </style>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
   <script src="supabase.js"></script>
-
 </head>
 
 <body>
 
-  <canvas id="profile-effect-canvas"></canvas>
-
-  <div id="entrance-screen">
-
-    <div class="entrance-stars" id="entrance-stars"></div>
-
-    <div class="entrance-content">
-
-      <div class="entrance-ring"></div>
-
-      <div class="entrance-avatar-wrap">
-
-        <img id="entrance-avatar" class="entrance-avatar" src="" alt="">
-        <div id="entrance-avatar-fallback" class="entrance-avatar-fallback"></div>
-
-      </div>
-
-      <p id="entrance-title"></p>
-
-      <p id="entrance-subtitle">
-        Clique aqui
-      </p>
-
-    </div>
-
+  <div class="router-loading" id="loading">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
   </div>
 
-  <div class="cardking">
+  <script>
 
-    <div class="like-box">
+    // =========================================================
+    // ROUTER — Detecta o template do perfil e redireciona
+    // pro layout independente correspondente
+    // =========================================================
 
-      <i class="fa-solid fa-heart" id="like-btn">
-      </i>
+    (async function () {
 
-      <span id="like-count">
-        0
-      </span>
+      // Pega o username da URL
+      const params = new URLSearchParams(window.location.search);
+      let username = params.get("user");
 
-    </div>     
+      if (!username) {
+        username = window.location.pathname.replace("/", "").trim();
+      }
 
-    <!-- BANNER -->
-    <div class="topo" id="banner">
-    </div>
+      if (!username || username === "u.html") {
+        showNotFound();
+        return;
+      }
 
-    <!-- FOTO + BALÃO -->
-    <div class="top-info">
+      // Busca APENAS o template do perfil (query leve)
+      const { data, error } = await supabaseClient
+        .from("profiles")
+        .select("template")
+        .eq("username", username)
+        .single();
 
-      <div class="avatar-wrapper">
+      if (error || !data) {
+        showNotFound();
+        return;
+      }
 
-        <img src="" class="perfilking" id="avatar">
+      // Mapa de template → pasta do layout
+      const layoutMap = {
+        "cardking":      "normal",
+        "cardkingdois":  "centralizado",
+        "template3":     "grande",
+        "template4":     "minimalista"
+      };
 
-        <img src="" class="avatar-frame" id="avatar-frame">
+      const template = data.template || "cardking";
+      const layout = layoutMap[template] || "normal";
 
-      </div>
+      // Redireciona pro layout correto (sem poluir histórico)
+      window.location.replace(
+        `/layouts/${layout}/${layout}.html?user=${encodeURIComponent(username)}`
+      );
 
-      <div class="balao" id="balao">
-        texto
-      </div>
+    })();
 
-    </div>
+    function showNotFound() {
 
-    <!-- CONTEÚDO -->
-    <div class="conteudoking">
+      document.getElementById("loading").style.display = "none";
 
-      <h1 id="username">
-        usuário
-      </h1>
+      document.body.innerHTML = `
+        <div class="notfound-page">
+          <div class="notfound-content">
+            <img
+              class="astronaut"
+              src="https://i.pinimg.com/originals/42/c6/2a/42c62a68fa0154599d1da42a43ac6dcd.gif"
+            >
+            <div class="notfound-text">
+              <h2>Oops!</h2>
+              <h1>404</h1>
+              <p>
+                Perfil não encontrado<br>
+                ou inexistente.
+              </p>
+              <a href="https://teammayhem.vercel.app" class="back-home">
+                Voltar ao início
+              </a>
+              <br><br><br>
+              <a href="https://teammayhem.vercel.app/cadastro.html" class="back-home">
+                Criar perfil
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
 
-      <p id="bio">
-        bio
-      </p>
+    }
 
-    </div>
+  </script>
 
-    <!-- SOCIAL + EXTRAS -->
-    <div class="social-box">
-
-      <!-- REDES -->
-      <div class="socials" id="socials">
-      </div>
-
-      <!-- EXTRAS -->
-      <div id="extras-container"></div>
-
-    </div>
-
-  </div>
-
-  <script src="effects.js"></script>
-  <script src="u.js"></script>
-
-  <!-- PLAYER -->
-  <audio id="profile-music" preload="none"></audio>
-
-  <div class="music-player" id="music-player">
-
-    <!-- Botão de silenciar -->
-    <button class="mute-button" id="mute-btn" title="Silenciar" aria-label="Silenciar">
-      <i class="fa-solid fa-volume-high" id="mute-icon"></i>
-    </button>
-
-    <div class="player-bar">
-
-      <!-- Avatar -->
-      <div class="music-avatar">
-        <img id="player-avatar" src="" alt="">
-      </div>
-
-      <!-- Nome -->
-      <div class="music-info">
-        <span class="music-name" id="player-song-name">tocando agora</span>
-      </div>
-
-      <!-- Play -->
-      <button class="play-button" id="playButton">
-        <i class="fa-solid fa-pause" id="play-icon"></i>
-      </button>
-
-      <!-- Tempo atual -->
-      <span class="music-time" id="currentTime">0:00</span>
-
-      <!-- Barra de progresso -->
-      <div class="progress-container" id="progressContainer">
-        <div class="progress-bar" id="progressBar"></div>
-      </div>
-
-      <!-- Duração -->
-      <span class="music-time" id="duration">0:00</span>
-
-      <!-- Volume -->
-      <i class="fa-solid fa-volume-low volume-icon"></i>
-      <input class="volume-slider" id="volumeSlider" type="range" min="0" max="1" step="0.01" value="0.1">
-
-      <!-- Botão fechar -->
-      <button class="close-button" id="closePlayerBtn" title="Fechar" aria-label="Fechar player">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-
-    </div>
-
-  </div>
-
-  <a href="https://teammayhem.vercel.app/" target="_blank" class="watermark-card">
-    <img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/Crie%20seu%20perfil.jpg"
-      alt="">
-
-    <span>CRIAR PERFIL</span>
-  </a> 
-
-  <button id="album-btn" class="album-btn">
-    <i class="fa-regular fa-images"></i>
-  </button>
-
-  <div id="album-page" class="album-page">
-
-    <button id="close-album" class="close-album">
-      ✕
-    </button>
-
-    <div class="album-grid">
-
-      <img id="album1">
-      <img id="album2">
-      <img id="album3">
-      <img id="album4">
-
-    </div>
-
-  </div>
-  
-  <header></header>
 </body>
 
 </html>
