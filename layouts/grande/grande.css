@@ -3,9 +3,11 @@
    Card principal (banner + avatar + nome)
    Card conexões (grid de social cards com labels)
 ========================================================= */
+
 /* =========================
    WRAPPER
 ========================= */
+
 .grande-wrapper {
   display: flex;
   flex-direction: column;
@@ -13,9 +15,11 @@
   width: 95%;
   max-width: 750px;
 }
+
 /* =========================
    CARD PRINCIPAL
 ========================= */
+
 .card-main {
   position: relative;
   border-radius: 20px;
@@ -27,7 +31,9 @@
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.45);
   padding-bottom: 24px;
 }
+
 /* BANNER */
+
 .banner {
   width: 100%;
   height: 220px;
@@ -35,7 +41,9 @@
   background-position: center;
   background-color: rgba(255, 255, 255, 0.03);
 }
+
 /* PROFILE INFO — avatar + nome sobrepondo banner */
+
 .profile-info {
   display: flex;
   align-items: flex-end;
@@ -45,5 +53,391 @@
   position: relative;
   z-index: 5;
 }
+
 /* AVATAR */
+
 .avatar-wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+}
+
+.perfilking {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(20, 20, 30, 0.9);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.avatar-frame {
+  position: absolute;
+  inset: -12%;
+  width: 126%;
+  height: 126%;
+  pointer-events: none;
+  object-fit: contain;
+  z-index: 10;
+}
+
+.online-dot {
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #3ba55c;
+  border: 3px solid rgba(20, 20, 30, 0.9);
+  z-index: 11;
+}
+
+/* NAME BLOCK */
+
+.name-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: 8px;
+}
+
+.name-block h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-color, white);
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+  line-height: 1.2;
+}
+
+.handle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 400;
+}
+
+/* BIO */
+
+.bio {
+  padding: 0 30px;
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 500px;
+}
+
+.bio:empty {
+  display: none;
+}
+
+/* MINI SOCIALS (pequenos ícones abaixo do nome, tipo a engrenagem na imagem) */
+
+.mini-socials {
+  display: flex;
+  gap: 10px;
+  padding: 12px 30px 0;
+}
+
+.mini-socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.mini-socials a:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+.mini-socials img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  opacity: 0.6;
+}
+
+/* LIKE BOX */
+
+.like-box {
+  top: 12px;
+  right: 12px;
+}
+
+/* ALBUM BTN */
+
+.album-btn {
+  top: 12px;
+  left: 12px;
+}
+
+/* =========================
+   CARD CONEXÕES
+========================= */
+
+.card-connections {
+  position: relative;
+  border-radius: 20px;
+  background: rgba(30, 30, 30, 0.45);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+  padding: 28px 30px;
+}
+
+/* HEADER */
+
+.connections-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.connections-icon {
+  font-size: 16px;
+}
+
+.connections-header h2 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.connections-desc {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 22px;
+  font-weight: 400;
+}
+
+/* =========================
+   CONNECTIONS GRID
+========================= */
+
+.connections-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+/* CONNECTION CARD */
+
+.connection-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  text-decoration: none;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.connection-card:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+/* ICON */
+
+.connection-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.connection-icon img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+/* INFO */
+
+.connection-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.connection-info strong {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-color, white);
+}
+
+.connection-info span {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.35);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: 'JetBrains Mono', 'SF Mono', monospace;
+}
+
+/* EXTERNAL LINK ICON */
+
+.connection-external {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+  transition: 0.2s;
+}
+
+.connection-card:hover .connection-external {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* =========================
+   EXTRAS (dentro do card conexões)
+========================= */
+
+#extras-container {
+  margin-top: 16px;
+}
+
+.extra-card {
+  width: 100%;
+  margin-top: 10px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  transition: 0.25s;
+}
+
+.extra-card:hover {
+  background: rgba(255, 255, 255, 0.07);
+  transform: translateY(-2px);
+}
+
+.extra-card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.extra-card-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.extra-card span {
+  font-size: 14px;
+  color: var(--text-color, white);
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 650px) {
+
+  .grande-wrapper {
+    width: 100%;
+  }
+
+  .banner {
+    height: 180px;
+  }
+
+  .profile-info {
+    padding: 0 20px;
+    gap: 14px;
+  }
+
+  .avatar-wrapper {
+    width: 80px;
+    height: 80px;
+  }
+
+  .name-block h1 {
+    font-size: 22px;
+  }
+
+  .bio {
+    padding: 0 20px;
+  }
+
+  .mini-socials {
+    padding: 12px 20px 0;
+  }
+
+  .card-connections {
+    padding: 22px 20px;
+  }
+
+  .connections-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .connection-card {
+    padding: 12px 14px;
+  }
+
+  .connection-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .connection-icon img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+
+  .banner {
+    height: 150px;
+  }
+
+  .avatar-wrapper {
+    width: 70px;
+    height: 70px;
+  }
+
+  .name-block h1 {
+    font-size: 20px;
+  }
+
+  .handle {
+    font-size: 13px;
+  }
+}
