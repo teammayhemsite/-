@@ -56,7 +56,7 @@
 
 .perfilking {
   position: absolute;
-  top: -35px;
+  top: -20px;
   left: 25px;
   width: 120px;
   height: 120px;
@@ -79,7 +79,7 @@
 /* CONTEÚDO — BIGGER TEXT */
 
 .conteudoking {
-  padding-top: 95px;
+  padding-top: 100px;
   padding-left: 0;
   padding-right: 25px;
   padding-bottom: 0;
