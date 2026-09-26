@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <link rel="icon" href="https://cdn.discordapp.com/emojis/1525949441100480702.webp?size=96">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perfil</title>
+
   <link rel="stylesheet" href="../shared.css">
   <link rel="stylesheet" href="grande.css">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Caveat:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=Bebas+Neue&family=Orbitron:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Oxanium:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <script src="https://kit.fontawesome.com/eb9af641fe.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="../../supabase.js"></script>
 </head>
+
 <body>
+
   <canvas id="profile-effect-canvas"></canvas>
+
   <!-- ENTRANCE -->
   <div id="entrance-screen">
     <div class="entrance-stars" id="entrance-stars"></div>
@@ -30,14 +37,106 @@
       <p id="entrance-subtitle">Clique aqui</p>
     </div>
   </div>
+
   <!-- WRAPPER DOS DOIS CARDS -->
   <div class="grande-wrapper">
+
     <!-- ========== CARD PRINCIPAL ========== -->
     <div class="card-main">
+
       <div class="like-box">
         <i class="fa-solid fa-heart" id="like-btn"></i>
         <span id="like-count">0</span>
       </div>
+
       <button id="album-btn" class="album-btn">
         <i class="fa-regular fa-images"></i>
       </button>
+
+      <!-- BANNER -->
+      <div class="banner" id="banner"></div>
+
+      <!-- PROFILE INFO -->
+      <div class="profile-info">
+
+        <div class="avatar-wrapper">
+          <img src="" class="perfilking" id="avatar">
+          <img src="" class="avatar-frame" id="avatar-frame">
+          <span class="online-dot"></span>
+        </div>
+
+        <div class="name-block">
+          <h1 id="username">usuário</h1>
+          <span class="handle" id="handle">@usuário</span>
+        </div>
+
+      </div>
+
+      <!-- BIO (abaixo do profile info) -->
+      <p class="bio" id="bio"></p>
+
+      <!-- BADGES (socials pequenos tipo engrenagem) -->
+      <div class="mini-socials" id="mini-socials"></div>
+
+    </div>
+
+    <!-- ========== CARD CONEXÕES ========== -->
+    <div class="card-connections">
+
+      <div class="connections-header">
+        <span class="connections-icon">🌐</span>
+        <h2>CONEXÕES</h2>
+      </div>
+
+      <p class="connections-desc">Você pode me encontrar nessas plataformas.</p>
+
+      <div class="connections-grid" id="socials"></div>
+
+      <!-- EXTRAS -->
+      <div id="extras-container"></div>
+
+    </div>
+
+  </div>
+
+  <script src="../../effects.js"></script>
+  <script src="../shared.js"></script>
+  <script src="grande.js"></script>
+
+  <!-- PLAYER -->
+  <audio id="profile-music" preload="none"></audio>
+
+  <div class="music-player" id="music-player">
+    <button class="mute-button" id="mute-btn" title="Silenciar" aria-label="Silenciar">
+      <i class="fa-solid fa-volume-high" id="mute-icon"></i>
+    </button>
+    <div class="player-bar">
+      <div class="music-avatar"><img id="player-avatar" src="" alt=""></div>
+      <div class="music-info"><span class="music-name" id="player-song-name">tocando agora</span></div>
+      <button class="play-button" id="playButton"><i class="fa-solid fa-pause" id="play-icon"></i></button>
+      <span class="music-time" id="currentTime">0:00</span>
+      <div class="progress-container" id="progressContainer"><div class="progress-bar" id="progressBar"></div></div>
+      <span class="music-time" id="duration">0:00</span>
+      <i class="fa-solid fa-volume-low volume-icon"></i>
+      <input class="volume-slider" id="volumeSlider" type="range" min="0" max="1" step="0.01" value="0.1">
+      <button class="close-button" id="closePlayerBtn" title="Fechar" aria-label="Fechar player"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+  </div>
+
+  <a href="https://teammayhem.vercel.app/" target="_blank" class="watermark-card">
+    <img src="https://kknalifzcckzvypmkbgx.supabase.co/storage/v1/object/public/assets/socials/Crie%20seu%20perfil.jpg" alt="">
+    <span>CRIAR PERFIL</span>
+  </a>
+
+  <!-- ALBUM -->
+  <div id="album-page" class="album-page">
+    <button id="close-album" class="close-album">✕</button>
+    <div class="album-grid">
+      <img id="album1"><img id="album2"><img id="album3"><img id="album4">
+    </div>
+  </div>
+
+  <header></header>
+
+</body>
+</html>
