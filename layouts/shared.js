@@ -2,6 +2,22 @@
 // SHARED.JS — Lógica compartilhada entre TODOS os layouts
 // =========================================================
 
+// =========================================================
+// URL LIMPA — troca /layouts/x/x.html?user=fulano por /fulano
+// (só muda a barra de endereço, não recarrega a página)
+// =========================================================
+
+window.addEventListener("load", function () {
+  try {
+    const user = new URLSearchParams(window.location.search).get("user");
+    if (user && window.location.pathname.startsWith("/layouts/")) {
+      window.history.replaceState(null, "", "/" + encodeURIComponent(user));
+    }
+  } catch (e) {
+    // se falhar, mantém a URL original
+  }
+});
+
 // =========================
 // 404
 // =========================
