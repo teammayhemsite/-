@@ -1,8 +1,9 @@
 {
-  "rewrites": [
+  "redirects": [
     {
-      "source": "/:user",
-      "destination": "/u.html?user=:user"
+      "source": "/:path*",
+      "destination": "https://aevix.xo.je/:path*",
+      "permanent": true
     }
   ]
 }
